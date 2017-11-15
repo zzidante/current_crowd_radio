@@ -27,7 +27,7 @@ module.exports = (DataHelpers) => {
 
   // Remove single song from user's playlist
   router.delete('/:cityId/users/:id', (req, res) => {
-
+    const { songId, type } = req.body
   })
 
   return router
