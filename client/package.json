@@ -21,10 +21,14 @@
     "webpack-dev-server": "^2.9.4"
   },
   "dependencies": {
+    "axiom": "^0.1.6",
+    "axios": "^0.17.1",
     "jquery": "^3.2.1",
+    "location-autocomplete": "^1.2.1",
     "node-sass-chokidar": "0.0.3",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
+    "react-places-autocomplete": "^5.4.3",
     "react-player": "^0.25.3",
     "react-scripts": "1.0.17",
     "simple-react-player": "0.0.2"
@@ -36,6 +40,5 @@
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar src/styles/scss -o src/styles/css",
     "watch-css": "npm run build-css && node-sass-chokidar src/styles/scss -o src/styles/css --watch --recursive"
-  },
-  "proxy": "http://localhost:8081"
+  }
 }

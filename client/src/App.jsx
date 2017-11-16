@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import $ from "jquery";
+import axios from "axios";
 import Nav from "./Nav.jsx";
 import Player from "./Player/Player.jsx";
 import Playlist from "./Playlist.jsx";
@@ -16,25 +16,25 @@ class App extends Component {
       type: "",
       user: ""
     };
-    this.getTracks();
+    // this.getTracks();
     this.APIKEY = "b48755b6";
   }
 
+  setLocation = (loc) => {
+    console.log(loc);
+  }
+
   getTracks = () => {
-    $.ajax({
-      url: `https://api.jamendo.com/v3.0/artists/locations/?client_id=b48755b6&format=jsonpretty&limit=40&haslocation=true&location_country=JPN&location_city=Tokyo`
-    }).done(artists => {
-      console.log(artists);
+    axios.get(`https://api.jamendo.com/v3.0/artists/locations/?client_id=b48755b6&format=jsonpretty&limit=40&haslocation=true&location_country=JPN&location_city=Tokyo`
+    ).then(response => {
       let artistArray = [];
-      artists.results.forEach(artist => {
+      response.data.results.forEach(artist => {
         artistArray.push(Number(artist.id));
       });
-      $.ajax({
-        url: `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${this
-          .APIKEY}&format=jsonpretty&limit=40&id=${artistArray.join("+")}`
-      }).done(artistTracks => {
+      axios.get(`https://api.jamendo.com/v3.0/artists/tracks/?client_id=${this
+          .APIKEY}&format=jsonpretty&limit=40&id=${artistArray.join("+")}`).then(artistTracks => {
         let trackArray = [];
-        artistTracks.results.forEach(tracklist => {
+        artistTracks.data.results.forEach(tracklist => {
           const track =
             tracklist.tracks[
               Math.floor(Math.random() * tracklist.tracks.length)
@@ -49,7 +49,6 @@ class App extends Component {
             duration: track.duration
           });
         });
-        console.log(trackArray);
         this.setState({ tracklist: trackArray });
       });
     });
@@ -58,9 +57,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav location={this.state.location} setLocation={this.setLocation} />
         <Player tracklist={this.state.tracklist} />
-        <Playlist />
+        <Playlist type={this.state.type}/>
         <Footer />
       </div>
     );
