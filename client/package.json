@@ -73,8 +73,6 @@
     "test": "node scripts/test.js --env=jsdom",
     "build-css": "node-sass-chokidar src/styles/scss -o src/styles/css",
     "watch-css": "npm run build-css && node-sass-chokidar src/styles/scss -o src/styles/css --watch --recursive"
-<<<<<<< HEAD
-=======
   },
   "jest": {
     "collectCoverageFrom": [
@@ -117,6 +115,5 @@
   },
   "eslintConfig": {
     "extends": "react-app"
->>>>>>> 3f20b6c643178220777f8f02df0422fd11d1a7f5
   }
 }
