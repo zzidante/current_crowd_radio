@@ -5,8 +5,8 @@ module.exports = function makeDataHelpers (knex) {
 
     // User functions
 
-    // Login function
-    // Returns user object if email and password are vaild
+    // Returns user object if credentials are vaild
+    // If credentials are not valid, returns null
     login: function (email, password) {
       knex('users').where({email: email}).then( user => {
         if (user && bcrypt.compareSync(password, user.password)) {
@@ -16,32 +16,38 @@ module.exports = function makeDataHelpers (knex) {
       });
     },
 
-    // Register function
-    // Returns 
+    // Returns promise to get all playlists for specified user after inserting new user
+    // If user already exists, returns null
     registerUser: function (user) {
       knex('users').where({email: user.email}).then( existing => {
         if (existing) {
           return null;
         }
-        knex('users').insert(user).returning(['id', 'default_location']).then( registered => {
-          return getPlaylists(registered[0].id, registered[0].default_location);
+        knex('users').insert(user).returning('id').then( userId => {
+          return getPlaylists(userId);
         });
       });
     },
+
+    // Returns promise to delete user
     deleteUser: function (id) {
       return knex('users').where({id: id}).del;
     },
+
+    // 
     getProfile: function (id) {
       return knex('users').where({id: id});
     },
+
+    // 
     editProfile: function (user) {
       return knex('users').where({id: user.id}).update(user);
     },
 
     // Playlist functions
 
-    // Returns promise to insert new track to db, returning track_id
-    // If track already exists in db, skips insert and returns track_id directly
+    // Returns promise to insert new track, returning track_id
+    // If track already exists, skips insert and returns track_id directly
     addTrack: function (hrefId) {
       knex('tracks').where({href_id: hrefId}).then( track => {
         if (track) {
@@ -62,8 +68,8 @@ module.exports = function makeDataHelpers (knex) {
       });
     },
 
-    // Returns promise to get all playlists for specified user after inserting new playlist to db
-    // If playlist already exists in db, skips insert and returns same promise
+    // Returns promise to get all playlists for specified user after inserting new playlist
+    // If playlist already exists, skips insert and returns same promise
     addPlaylist: function (playlist) {
       knex('playlists').where(playlist).then( playlistResult => {
         if (playlistResult) {
@@ -75,14 +81,15 @@ module.exports = function makeDataHelpers (knex) {
       });
     },
 
-    // Returns promise to get all playlists for specified user after inserting new track to playlist in db
+    // Returns promise to get all playlists for specified user after inserting new track to playlist
     playlistTracksInsert: function (playlist, trackId) {
       knex('playlist_tracks').insert(playlist).returning('playlist_id').then( data => {
         return getPlaylists(playlist.user_id, playlist.location);
       });
     },
 
-    //
+    // Returns promise to insert new track to playlist
+    // If playlist does not exist, inserts new playlist before returning same promise
     addSongToPlaylist: function (playlist, trackId) {
       knex('playlists').where(playlist).then( playlistResult => {
         if (playlistResult) {
@@ -95,17 +102,24 @@ module.exports = function makeDataHelpers (knex) {
         return null;
       });
     },
-    deleteSongFromPlaylist: function (playlist_id, track_id) {
-      knex('playlists').where({id: playlist_id}).then( playlist => {
-        if (playlist) {
-          return knex('playlist_tracks').insert({playlist_id: playlist.id, track_id: track_id}).returning('playlist_id');
+
+    // Returns promise to get all playlists for specified user after deleting track from playlist
+    // If playlist does not exist, skips delete and returns same promise
+    deleteSongFromPlaylist: function (playlist, trackId) {
+      knex('playlists').where(playlist).then( playlistResult => {
+        if (playlistResult) {
+          return knex('playlist_tracks').where({track_id: trackId}).del().then( data => {
+              return getPlaylists(playlist.user_id);
+            });
         }
-        return null;
+        return getPlaylists(playlist.user_id);
       });
     },
-    moveSongToPlaylist: function (playlist_id_to, playlist_id_from, track_id) {
-      addSongToPlaylist(playlist_id_to, track_id).then( data => {
-        return deleteSongFromPlaylist(playlist_id_from, track_id);
+
+    // Returns promise to delete track from playlistFrom after inserting track to playlistTo
+    moveSongToPlaylist: function (playlistTo, playlistFrom, trackId) {
+      addSongToPlaylist(playlistTo, trackId).then( data => {
+        return deleteSongFromPlaylist(playlistFrom, trackId);
       });
     }
   };
