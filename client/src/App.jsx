@@ -1,7 +1,17 @@
 import React, { Component } from "react";
 import $ from "jquery";
+<<<<<<< HEAD
 import Player from './Player/Player'
 import './styles/css/index.css'
+=======
+import Nav from './Nav.jsx'
+import Player from './Player/Player.jsx'
+import Footer from './Footer.jsx'
+
+import './styles/css/index.css'
+
+
+>>>>>>> 489e2f4dfee7ffaf90a6a03c8ad89df0e37ef355
 class App extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +53,9 @@ class App extends Component {
   
   render() {
     return (
-      <Player />
+      <Nav />,
+      <Player />,
+      <Footer />
     )
   }
 
