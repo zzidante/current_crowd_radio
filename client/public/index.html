@@ -4,6 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
+    <title>Current Crowd Radio</title>
+    
+  <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+  <!-- Stylesheets -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="./styles/.css"> -->
+
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
@@ -26,15 +35,46 @@
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+  
+    <header>
+        <h3><img class="brand-icon"src=""></h3>
+        <h3><a href="#">Current Crowd Radio</a></h3>
+        <form>
+          <input type="email" placeholder="City">
+          <a href="#" class="btn">Change City</a>
+        </form>
+      <nav>
+        <li><a href="#">Register</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Guest</a></li>
+      </nav>
+    </header>
+  
+  
+    <section class="hero">
+      <div class="background-image" style="background-image: url(assets/img/speaker.jpg);"></div>
+      <h2>Random City Playlist</h2>
+      <article class="playlist-box">
+        <div class="current-track-player">
+          <p>Media Player Goes Here</p>
+        </div>
+        <div class="random-tracks-box">
+          <p>Tracks Go Here</p>
+        </div>
+        
+      </article>
+    </section>
+    
+    <footer>
+      <ul>
+        <li><a href="#"><p class="dev-name">Blake</p></a></li>        
+        <li><a href="#"><i class="fa fa-github-square"></i></a></li>
+        <li><a href="#"><p class="dev-name">Curtis</p></a></li>
+        <li><a href="#"><i class="fa fa-github-square"></i></a></li>
+        <li><a href="#"><p class="dev-name">Mel</p></a></li>
+        <li><a href="#"><i class="fa fa-github-square"></i></a></li>
+      </ul>
+    </footer>
+  
   </body>
 </html>
