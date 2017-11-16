@@ -3,7 +3,7 @@ import React , {Component} from 'react';
 class Footer extends Component {
   render() {
     return (
-      <footer class="main-footer .navbar-fixed-bottom">
+      <footer className="main-footer .navbar-fixed-bottom">
         <ul>
           <li><a href="#"><p className="dev-name">Blake</p></a></li>        
           <li><a href="#"><i className="fa fa-github-square"></i></a></li>
