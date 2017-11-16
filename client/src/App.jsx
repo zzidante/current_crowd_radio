@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import $ from "jquery";
-import Player from './Player/Player'
+import Nav from './Nav.jsx'
+import Player from './Player/Player.jsx'
+import Footer from './Footer.jsx'
+
+import './styles/css/index.css'
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +48,9 @@ class App extends Component {
   
   render() {
     return (
-      <Player />
+      <Nav />,
+      <Player />,
+      <Footer />
     )
   }
 
