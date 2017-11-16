@@ -4,11 +4,11 @@ class Nav extends Component {
   render() {
     return (
       <header>
-        <h3><img class="brand-icon" src=""></img></h3>
+        <h3><img className="brand-icon" src=""></img></h3>
         <h3><a href="#">Current Crowd Radio</a></h3>
         <form>
           <input type="email" placeholder="City"></input>
-          <a href="#" class="btn">Change City</a>
+          <a href="#" className="btn">Change City</a>
         </form>
         <nav>
           <li><a href="#">Register</a></li>
