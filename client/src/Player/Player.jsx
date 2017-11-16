@@ -5,26 +5,36 @@ class Player extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentTrack: ''
+      currentTrackIndex: 0
     }
   }
 
-  nextTrack = () => {
-
+  nextTrack = (event) => {
+    console.log(event);
+    this.setState({currentTrackIndex: this.state.currentTrackIndex + 1 })
   }
 
-  previousTrack = () => {
-
+  previousTrack = (event) => {
+    console.log(event);
+    this.setState({currentTrackIndex: this.state.currentTrackIndex - 1 })
   }
 
-  setCurrentTrack = () => {
-
+  setCurrentTrack = (index) => {
+    this.setState({currentTrackIndex: index})
   }
   render() {
+    const trackArray = this.props.tracklist.map( (track, i) => {
+      return (
+        <Tracklist key={track.id} track={track} selectTrack={this.setCurrentTrack} index={i}/>
+      )
+    })
+
     return (
       <div>
-        <Controls next={this.nextTrack} previous={this.previousTrack}/>
-        <Tracklist tracklist={this.props.tracklist} selectTrack={this.setCurrentTrack}/>
+        <Controls next={this.nextTrack} previous={this.previousTrack} currentTrack={this.props.tracklist[this.state.currentTrackIndex]}/>
+        <div className="track-container">
+          {trackArray}
+        </div>
       </div>
     )
   }

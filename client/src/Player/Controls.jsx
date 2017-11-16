@@ -7,7 +7,6 @@ class Controls extends Component {
     super(props);
     this.state = {
       playing: false,
-      currentTrack: "",
       volume: 0.8,
       muted: false,
       duration: 0,
@@ -54,10 +53,12 @@ class Controls extends Component {
       this.setState(state);
     }
   }
+  ref = player => {
+    this.player = player;
+  };
   render() {
 
     const {
-      currentTrack,
       playing,
       volume,
       muted,
@@ -65,14 +66,14 @@ class Controls extends Component {
       played,
       loaded,
       duration
-    } = this.props;
+    } = this.state;
 
     if (this.props.currentTrack) {
       return (
         <div>
           <ReactPlayer
             ref={this.ref}
-            url={currentTrack}
+            url={this.props.currentTrack.trackHREF}
             className="audio-player"
             volume={volume}
             muted={muted}
@@ -87,20 +88,11 @@ class Controls extends Component {
               <tr>
                 <th>Controls</th>
                 <td>
-                  <button onClick={this.stop}>Stop</button>
+                  <button onClick={this.props.previous}><i className="fa fa-angle-double-left"></i> </button>
+                  <button onClick={this.stop}><i className="fa fa-stop"></i></button>
                   <button onClick={this.playPause}>
-                    {playing ? "Pause" : "Play"}
-                  </button>
-                  <button onClick={this.onClickFullscreen}>Fullscreen</button>
-                  <button onClick={this.setPlaybackRate} value={1}>
-                    1
-                  </button>
-                  <button onClick={this.setPlaybackRate} value={1.5}>
-                    1.5
-                  </button>
-                  <button onClick={this.setPlaybackRate} value={2}>
-                    2
-                  </button>
+                    {playing ? <i className="fa fa-pause"></i> : <i className="fa fa-play"></i>}</button>
+                  <button onClick={this.props.next}><i className="fa fa-angle-double-right"></i> </button>
                 </td>
               </tr>
               <tr>
@@ -164,21 +156,9 @@ class Controls extends Component {
                 </td>
               </tr>
               <tr>
-                <th>duration</th>
-                <td>
-                  <Duration seconds={duration} />
-                </td>
-              </tr>
-              <tr>
                 <th>elapsed</th>
                 <td>
                   <Duration seconds={duration * played} />
-                </td>
-              </tr>
-              <tr>
-                <th>remaining</th>
-                <td>
-                  <Duration seconds={duration * (1 - played)} />
                 </td>
               </tr>
             </tbody>
