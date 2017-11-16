@@ -7,6 +7,7 @@ const ENV = process.env.ENV || 'development';
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
+const path = require('path')
 
 const knexConfig = require('./knexfile')
 const knex = require('knex')(knexConfig[ENV])
@@ -26,7 +27,7 @@ app.use(morgan('dev'))
 app.use(knexLogger(knex))
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("../client/public"));
+app.use(express.static("./build/"));
 
 app.use('/playlists/', playlistsRoutes)
 app.use('/users', usersRoutes)

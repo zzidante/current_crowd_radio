@@ -31,10 +31,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && rm -r ../server/build/ && mv build/ ../server/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar src/styles/scss -o src/styles/css",
     "watch-css": "npm run build-css && node-sass-chokidar src/styles/scss -o src/styles/css --watch --recursive"
-  }
+  },
+  "proxy": "http://localhost:8081"
 }

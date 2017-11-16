@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'eval-source-map',
   entry: [
-    './src/index.jsx'
+    './src/index.js'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -20,13 +20,11 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [{
-          loader: 'style-loader'
-          },{
-            loader: 'css-loader'
-          },{
-            loader: 'sass-loader'}
-        ],
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
         // include: path.join(__dirname, 'styles')                
       }
     ]
