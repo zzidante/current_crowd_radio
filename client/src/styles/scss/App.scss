@@ -1,4 +1,3 @@
-
 *{
 	margin: 0;
 	padding: 0;
@@ -123,18 +122,20 @@ header nav li:last-child{
 	position: relative;
 	justify-content: center;
 	min-height: 90vh;
+	max-height: 100%;
 	color: #fff;
 	text-align: center;
+	
 }
 
 .hero .background-image{
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100%;
-	height: 100%;
+	max-width: 100%;
+	height: auto;
 	background-size: cover;
-	z-index: -1;
+	z-index: 0;
 }
 
 .hero .background-image:after{
@@ -148,19 +149,27 @@ header nav li:last-child{
 	opacity: 0.75;
 }
 
-.hero h1{
-	font: bold 60px 'Open Sans', sans-serif;
-	margin-bottom: 15px;
+.back-img {
+	top: 0;
+	left: 0;
+	background-size: cover; 
+	background-image: url("https://previews.123rf.com/images/nikkytok/nikkytok1506/nikkytok150600052/41504664-metal-mesh-of-speaker-grill-texture-Stock-Photo-honeycomb.jpg");
 }
 
-.hero h3{
-	font: normal 28px 'Open Sans', sans-serif;
-	margin-bottom: 40px;
-}
 
-.hero a.btn{
-	padding: 20px 46px;
-}
+// .hero h1{
+// 	font: bold 60px 'Open Sans', sans-serif;
+// 	margin-bottom: 15px;
+// }
+
+// .hero h3{
+// 	font: normal 28px 'Open Sans', sans-serif;
+// 	margin-bottom: 40px;
+// }
+
+// .hero a.btn{
+// 	padding: 20px 46px;
+// }
 
 @media (max-width: 800px){
 
@@ -184,6 +193,8 @@ header nav li:last-child{
 /*-------------
  	Footer
 -------------*/
+
+
 
 footer{
 	display: flex;
@@ -232,32 +243,3 @@ footer p a{
 
 }
 
-
-// .App {
-//   text-align: center;
-// }
-
-// .App-logo {
-//   animation: App-logo-spin infinite 20s linear;
-//   height: 80px;
-// }
-
-// .App-header {
-//   background-color: #222;
-//   height: 150px;
-//   padding: 20px;
-//   color: white;
-// }
-
-// .App-title {
-//   font-size: 1.5em;
-// }
-
-// .App-intro {
-//   font-size: large;
-// }
-
-// @keyframes App-logo-spin {
-//   from { transform: rotate(0deg); }
-//   to { transform: rotate(360deg); }
-// }

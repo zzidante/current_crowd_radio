@@ -3,9 +3,8 @@ import React , {Component} from 'react';
 class Playlist extends Component {
   render() {
     return (
-      <section className="hero">
-        {/* <div className="background-image" style="background-image: url(assets/img/speaker.jpg);"></div> */}
-        <div className="background-image"><img src={ require('./speaker.jpg') } /></div>
+      <section className="back-img">
+        <div className="hero"><img className="background-image" src={ require('./images/speaker.jpg') } /></div>
         <h2>Random City Playlist</h2>
         <article className="playlist-box">
           <div className="current-track-player">
@@ -21,4 +20,4 @@ class Playlist extends Component {
 }
   
 export default Playlist;
-    
+

@@ -90,6 +90,7 @@ header nav li:last-child {
   position: relative;
   justify-content: center;
   min-height: 90vh;
+  max-height: 100%;
   color: #fff;
   text-align: center; }
 
@@ -97,10 +98,10 @@ header nav li:last-child {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  height: auto;
   background-size: cover;
-  z-index: -1; }
+  z-index: 0; }
 
 .hero .background-image:after {
   content: '';
@@ -112,16 +113,11 @@ header nav li:last-child {
   background-color: #414a4f;
   opacity: 0.75; }
 
-.hero h1 {
-  font: bold 60px 'Open Sans', sans-serif;
-  margin-bottom: 15px; }
-
-.hero h3 {
-  font: normal 28px 'Open Sans', sans-serif;
-  margin-bottom: 40px; }
-
-.hero a.btn {
-  padding: 20px 46px; }
+.back-img {
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-image: url("https://previews.123rf.com/images/nikkytok/nikkytok1506/nikkytok150600052/41504664-metal-mesh-of-speaker-grill-texture-Stock-Photo-honeycomb.jpg"); }
 
 @media (max-width: 800px) {
   .hero {
