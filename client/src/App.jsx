@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import $ from "jquery";
 import Player from './Player/Player'
+import './styles/css/index.css'
 class App extends Component {
   constructor(props) {
     super(props);
