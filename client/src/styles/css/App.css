@@ -58,6 +58,12 @@ header {
   color: #fff;
   padding: 35px 100px 25px 0; }
 
+header #city-input {
+  color: black; }
+
+header textarea {
+  color: black; }
+
 header h2 {
   font-family: 'Quicksand', sans-serif; }
 

@@ -16,7 +16,7 @@ class App extends Component {
       type: "",
       user: ""
     };
-    // this.getTracks();
+    // this.getTracks();   // use this to get the tracks
     this.APIKEY = "b48755b6";
   }
 

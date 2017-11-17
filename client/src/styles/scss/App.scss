@@ -110,7 +110,6 @@ header nav li:last-child{
 	}
 }
 
-
 @media (max-width: 700px){
 	header{
 		flex-direction: column;		
@@ -163,21 +162,6 @@ header nav li:last-child{
 	background-image: url("https://previews.123rf.com/images/nikkytok/nikkytok1506/nikkytok150600052/41504664-metal-mesh-of-speaker-grill-texture-Stock-Photo-honeycomb.jpg");
 }
 
-
-// .hero h1{
-// 	font: bold 60px 'Open Sans', sans-serif;
-// 	margin-bottom: 15px;
-// }
-
-// .hero h3{
-// 	font: normal 28px 'Open Sans', sans-serif;
-// 	margin-bottom: 40px;
-// }
-
-// .hero a.btn{
-// 	padding: 20px 46px;
-// }
-
 @media (max-width: 800px){
 
 	.hero{
@@ -200,8 +184,6 @@ header nav li:last-child{
 /*-------------
  	Footer
 -------------*/
-
-
 
 footer{
 	display: flex;
