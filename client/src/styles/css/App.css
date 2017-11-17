@@ -52,11 +52,18 @@ header {
   left: 0;
   z-index: 1;
   width: 100%;
+  max-height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #fff;
   padding: 35px 100px 25px 0; }
+
+header #city-input {
+  color: black; }
+
+header textarea {
+  color: black; }
 
 header h2 {
   font-family: 'Quicksand', sans-serif; }
@@ -72,6 +79,9 @@ header nav li:first-child {
 
 header nav li:last-child {
   margin-right: 0; }
+
+header #location-search {
+  color: black; }
 
 @media (max-width: 1000px) {
   header {
