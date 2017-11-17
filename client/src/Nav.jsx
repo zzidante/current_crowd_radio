@@ -21,8 +21,7 @@ class Nav extends Component {
 
   render() {
     const myStyles = {
-      input: { color: 'black', width: '20vw' },
-
+      input: { color: 'black', width: '20vw', 'font-family': "'Open Sans', 'sans-serif'" },
     }
     const inputProps = {
       value: this.state.city,
@@ -40,7 +39,7 @@ class Nav extends Component {
         </h3>
        
         <form onSubmit={this.handleFormSubmit}>
-        <PlacesAutocomplete id="location-search" inputProps={inputProps} styles={myStyles}/>
+        <PlacesAutocomplete id="location-search" inputProps={inputProps} styles={myStyles} className="city-input"/>
         <button type="submit" className="btn btn-secondary main-btn">Submit</button>
       </form>
         <nav>
