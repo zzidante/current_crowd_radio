@@ -6,10 +6,6 @@ import Footer from './Footer.jsx';
 import './styles/css/index.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.APIKEY = 'b48755b6';
-  }
   render() {
     return (
       <div>

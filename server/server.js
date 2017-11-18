@@ -8,6 +8,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const path = require('path')
+const cors = require('cors')
+const cookieSession = require('cookie-session')
 
 const knexConfig = require('./knexfile')
 const knex = require('knex')(knexConfig[ENV])
@@ -25,10 +27,15 @@ app.use(morgan('dev'))
 
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex))
-
+app.use(cookieSession({
+  name: 'session',
+  keys: ['secretOne', 'secretTwo'],
+  maxAge: 24 * 60 *60 * 1000
+}))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("./build/"));
 
+app.use(cors())
 app.use('/playlists/', playlistsRoutes)
 app.use('/users', usersRoutes)
 
