@@ -9,12 +9,12 @@ class Player extends Component {
       )
     })
     return (
-      <div>
-        <Controls currentTrack={window.getState().tracklist[window.getState().currentTrackIndex]}/>
-        <div className="track-container">
-          {trackArray}
-        </div>
-      </div>
+        <section className="music-container col-xl-6 col-lg-6 col-md-12 col-sm-12">
+          <Controls currentTrack={window.getState().tracklist[window.getState().currentTrackIndex]}/>
+          <div className="track-container">
+            {trackArray}
+          </div>
+        </section>
     )
   }
 }

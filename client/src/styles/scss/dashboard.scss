@@ -5,3 +5,29 @@
 	background-size: cover; 
 	background-image: url("https://previews.123rf.com/images/nikkytok/nikkytok1506/nikkytok150600052/41504664-metal-mesh-of-speaker-grill-texture-Stock-Photo-honeycomb.jpg");
 }
+
+.music-container {
+	border: solid 3px green;
+}
+
+.player-full-container  {
+	color: white;
+	background-color: darkslategrey;
+	padding-top: 110px;
+}
+
+.current-song-container {
+	background-color: darkslategray;
+	padding: 30px;
+	background-color: darkblue;
+}
+
+.audio-player {
+	display: none;
+} 
+
+.track-container {
+	color: red;
+	background-color: black;
+}
+

@@ -72,7 +72,7 @@ class Controls extends Component {
     const { currentTrack } = this.props
       const trackURL = currentTrack ? currentTrack.trackHREF : '';
       return (
-        <div>
+        <div className="player-full-container">
           <ReactPlayer
             ref={this.ref}
             url={trackURL}
@@ -85,10 +85,10 @@ class Controls extends Component {
             onEnded={this.onEnded}
             onDuration={this.onDuration}
           />
-          <table>
+          <table className="current-song-container">
             <tbody>
               <tr>
-                <th>Controls</th>
+                <th>MP Controls</th>
                 <td>
                   <button onClick={this.previousTrack}><i className="fa fa-angle-double-left"></i> </button>
                   <button onClick={this.stop}><i className="fa fa-stop"></i></button>
