@@ -1,7 +1,7 @@
 import React from 'react';
 
-function User({userId}){
+function Profile({userId}){
   return <h1>{userId}</h1>
 }
 
-export default User
+export default Profile

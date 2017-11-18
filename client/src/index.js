@@ -21,6 +21,8 @@ window.setState({
   user: '',
   currentTrackIndex: 0,
   userId: '',
+  username: '',
+  password: '',
   playing: false,
   volume: 0.8,
   muted: false,

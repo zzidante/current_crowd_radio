@@ -7,13 +7,12 @@ const router = express.Router()
 module.exports = (DataHelpers) => {
   // Login
   router.put('/', (req, res) => {
-    const { userId, email, password } = req.body
-    if (userId || userId === req.session.userId) {
-      res.json(userId)
-    }
-    DataHelpers.login( email, password ).then ( result => {
-      res.json(result)
-    })
+    // const { userId, email, password } = req.body
+    // if (userId || userId === req.session.userId) {
+    //   res.json(userId)
+    // }
+    req.session.userId = "9234582345asdfa1"
+    res.json(req.session)
     // Return confirmation response
     // Redirect to dashboard
   })
@@ -23,6 +22,7 @@ module.exports = (DataHelpers) => {
     DataHelpers.registerUser( username, email, password, defaultLocation ).then ( result => {
       
     })
+    res.send('hello')
     // Return confrimation response
     // Redirect to dashboard
   })
