@@ -76,7 +76,7 @@ class Nav extends Component {
        
         <form onSubmit={this.setLocation}>
         <PlacesAutocomplete id="location-search" inputProps={inputProps} styles={myStyles}/>
-        <button type="submit">Submit</button>
+        <button type="submit main-btn">Submit</button>
       </form>
         <nav>
           <li>
