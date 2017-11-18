@@ -5,7 +5,6 @@ class Playlist extends Component {
     return (
       <section className="back-img">
 
-        
         <h2>Random City Playlist</h2>
         <article className="playlist-box">
           <div className="current-track-player">
@@ -15,7 +14,6 @@ class Playlist extends Component {
             <p>Tracks Go Here woooohhoooo</p>
           </div>
         </article>
-
 
       </section>
     )
