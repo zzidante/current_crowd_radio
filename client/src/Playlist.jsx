@@ -4,16 +4,19 @@ class Playlist extends Component {
   render() {
     return (
       <section className="back-img">
-        <div className="hero"><img className="background-image" src={ require('./images/speaker.jpg') } /></div>
+
+        
         <h2>Random City Playlist</h2>
         <article className="playlist-box">
           <div className="current-track-player">
-            <p>Media Player Goes Here</p>
+            <p>Media Player Goes Here Yeah!</p>
           </div>
           <div className="random-tracks-box">
-            <p>Tracks Go Here</p>
+            <p>Tracks Go Here woooohhoooo</p>
           </div>
         </article>
+
+
       </section>
     )
   }

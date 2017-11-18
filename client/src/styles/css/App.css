@@ -35,7 +35,7 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 100px; }
+  padding: 100px 100px; }
 
 @media (max-width: 1000px) {
   section {
@@ -44,49 +44,3 @@ section {
 @media (max-width: 600px) {
   section {
     padding: 40px 30px; } }
-
-/*----------------
- 	Hero Section
-----------------*/
-.hero {
-  position: relative;
-  justify-content: center;
-  min-height: 90vh;
-  max-height: 100%;
-  color: #fff;
-  text-align: center; }
-
-.hero .background-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  max-width: 100%;
-  height: auto;
-  background-size: cover;
-  z-index: 0; }
-
-.hero .background-image:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #414a4f;
-  opacity: 0.75; }
-
-.back-img {
-  top: 0;
-  left: 0;
-  background-size: cover;
-  background-image: url("https://previews.123rf.com/images/nikkytok/nikkytok1506/nikkytok150600052/41504664-metal-mesh-of-speaker-grill-texture-Stock-Photo-honeycomb.jpg"); }
-
-@media (max-width: 800px) {
-  .hero {
-    min-height: 600px; }
-  .hero h1 {
-    font-size: 48px; }
-  .hero h3 {
-    font-size: 24px; }
-  .hero a.btn {
-    padding: 15px 40px; } }
