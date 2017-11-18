@@ -7,9 +7,12 @@ const router = express.Router()
 module.exports = (DataHelpers) => {
   // Login
   router.put('/', (req, res) => {
-    const { email, password } = req.body
+    const { userId, email, password } = req.body
+    if (userId || userId === req.session.userId) {
+      res.json(userId)
+    }
     DataHelpers.login( email, password ).then ( result => {
-
+      res.json(result)
     })
     // Return confirmation response
     // Redirect to dashboard
