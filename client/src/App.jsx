@@ -15,8 +15,16 @@ class App extends Component {
       <div>
         <Nav location={window.getState().location} />
         <div className="back-img">
-          <Player tracklist={window.getState().tracklist} />
-          <Playlist type={window.getState().type} />
+          { window.getState().userId &&
+            <div>
+              <Player tracklist={window.getState().tracklist} />
+              <Playlist type={window.getState().type} />
+            </div>
+          }
+          { window.getState().userId === '' && 
+            <div>
+            </div>
+          }
         </div>
         <Footer />
       </div>
