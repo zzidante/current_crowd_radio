@@ -1,61 +1,63 @@
-import React, { Component } from "react";
-import ReactPlayer from "react-player";
-import Duration from "./Duration";
+import React, { Component } from 'react';
+import ReactPlayer from 'react-player';
+import Duration from './Duration';
 
 class Controls extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      playing: false,
-      volume: 0.8,
-      muted: false,
-      duration: 0,
-      loop: false
-    }
-
-  }
   playPause = () => {
-    this.setState({ playing: !this.state.playing });
+    window.setState({ playing: !window.getState().playing });
   };
 
   stop = () => {
-    this.setState({ currentTrack: null, playing: false });
+    window.setState({ currentTrack: null, playing: false });
   };
 
   toggleLoop = () => {
-    this.setState({ loop: !this.state.loop });
+    window.setState({ loop: !window.getState().loop });
   };
 
   setVolume = event => {
-    this.setState({ volume: parseFloat(event.target.value) });
+    window.setState({ volume: parseFloat(event.target.value) });
   };
 
   toggleMuted = () => {
-    this.setState({ muted: !this.state.muted });
+    window.setState({ muted: !window.getState().muted });
   };
 
   onSeekMouseDown = () => {
-    this.setState({ seeking: true });
+    window.setState({ seeking: true });
   };
 
   onSeekChange = event => {
-    this.setState({ played: parseFloat(event.target.value) });
+    window.setState({ played: parseFloat(event.target.value) });
   };
 
   onSeekMouseUp = event => {
-    this.setState({ seeking: false });
+    window.setState({ seeking: false });
     this.player.seekTo(parseFloat(event.target.value));
   };
 
   onProgress = state => {
     // Progress only if not seeking
-    if (!this.state.seeking) {
-      this.setState(state);
+    if (!window.getState().seeking) {
+      window.setState(state);
     }
   }
   ref = player => {
     this.player = player;
-  };
+  }
+  onEnded = () => {
+    window.setState({playing: window.getState().loop})
+  }
+  onDuration = ( duration ) => {
+    window.setState({ duration })
+  }
+  nextTrack = () => {
+    window.setState({currentTrackIndex: window.getState().currentTrackIndex + 1 })
+  }
+  previousTrack = () => {
+    window.setState({currentTrackIndex: window.getState().currentTrackIndex - 1 })
+  }
+
   render() {
 
     const {
@@ -66,33 +68,33 @@ class Controls extends Component {
       played,
       loaded,
       duration
-    } = this.state;
-
-    if (this.props.currentTrack) {
+    } = window.getState();
+    const { currentTrack } = this.props
+      const trackURL = currentTrack ? currentTrack.trackHREF : '';
       return (
         <div>
           <ReactPlayer
             ref={this.ref}
-            url={this.props.currentTrack.trackHREF}
+            url={trackURL}
             className="audio-player"
             volume={volume}
             muted={muted}
             loop={loop}
             playing={playing}
             onProgress={this.onProgress}
-            onEnded={() => this.setState({ playing: loop })}
-            onDuration={duration => this.setState({ duration })}
+            onEnded={this.onEnded}
+            onDuration={this.onDuration}
           />
           <table>
             <tbody>
               <tr>
                 <th>Controls</th>
                 <td>
-                  <button onClick={this.props.previous}><i className="fa fa-angle-double-left"></i> </button>
+                  <button onClick={this.previousTrack}><i className="fa fa-angle-double-left"></i> </button>
                   <button onClick={this.stop}><i className="fa fa-stop"></i></button>
                   <button onClick={this.playPause}>
                     {playing ? <i className="fa fa-pause"></i> : <i className="fa fa-play"></i>}</button>
-                  <button onClick={this.props.next}><i className="fa fa-angle-double-right"></i> </button>
+                  <button onClick={this.nextTrack}><i className="fa fa-angle-double-right"></i> </button>
                 </td>
               </tr>
               <tr>
@@ -126,7 +128,7 @@ class Controls extends Component {
                       type="checkbox"
                       checked={muted}
                       onChange={this.toggleMuted}
-                    />{" "}
+                    />{' '}
                     Muted
                   </label>
                 </td>
@@ -138,7 +140,7 @@ class Controls extends Component {
                       type="checkbox"
                       checked={loop}
                       onChange={this.toggleLoop}
-                    />{" "}
+                    />{' '}
                     Loop
                   </label>
                 </td>
@@ -165,8 +167,7 @@ class Controls extends Component {
           </table>
         </div>
       );
-    }
-    return <div className="App">Loading...</div>;
+    
   }
 
 }

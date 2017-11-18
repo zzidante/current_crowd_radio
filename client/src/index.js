@@ -1,7 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App.jsx';
+import Routes from './Routes.jsx';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+let state = {}
+window.getState = () => state;
+window.setState = (newState) => {
+  state = {...state, ...newState}
+  ReactDOM.render((
+    <Routes />
+  ), document.getElementById('root'));
+}
+window.setState({
+  tracklist: [{}],
+  locationBar: '',
+  country: '',
+  city: '',
+  type: '',
+  user: '',
+  currentTrackIndex: 0,
+  userId: '',
+  playing: false,
+  volume: 0.8,
+  muted: false,
+  duration: 0,
+  loop: false,
+  apikey: 'b48755b6'
+})
 registerServiceWorker();
