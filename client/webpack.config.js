@@ -24,7 +24,7 @@ module.exports = {
           'style-loader',
           'css-loader',
           'sass-loader'
-        ]
+        ],
         // include: path.join(__dirname, 'styles')                
       }
     ]
