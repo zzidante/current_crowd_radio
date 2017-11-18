@@ -20,7 +20,7 @@ window.setState({
   type: '',
   user: '',
   currentTrackIndex: 0,
-  userId: '',
+  userId: '123',
   username: '',
   password: '',
   playing: false,

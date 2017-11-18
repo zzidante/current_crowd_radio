@@ -3,7 +3,7 @@ import React , {Component} from 'react';
 class Playlist extends Component {
   render() {
     return (
-      <section>
+      <section className="playlist-heading col-xl-3 col-lg-3 col-md-6 col-sm-6">
         <h2>Random Playlist</h2>
         <article className="playlist-box">
           <div className="current-track-player">

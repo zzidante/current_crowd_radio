@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Nav from './Nav.jsx';
 import Player from './Player/Player.jsx';
+import User from './User.jsx';
 import Playlist from './Playlist.jsx';
 import Footer from './Footer.jsx';
 import './styles/css/index.css';
@@ -13,8 +14,9 @@ class App extends Component {
         <div className="back-img">
           { window.getState().userId &&
             <div>
-              <Player tracklist={window.getState().tracklist} />
               <Playlist type={window.getState().type} />
+              <Player tracklist={window.getState().tracklist} />
+              <User />
             </div>
           }
           { window.getState().userId === '' && 
