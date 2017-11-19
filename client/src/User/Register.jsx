@@ -12,8 +12,14 @@ class Login extends Component {
   onChange = locationBar => window.setState({ locationBar });
   register = event => {
     event.preventDefault();
-    const { username, email, password, confirmPassword } = window.getState();
-    if (!username || !email || !password || !confirmPassword) {
+    const {
+      username,
+      email,
+      password,
+      confirmPassword,
+      locationBar
+    } = window.getState();
+    if (!username || !email || !password || !confirmPassword || !locationBar) {
       window.setState({ warning: "Please fill out all forms" });
       return;
     }
@@ -25,10 +31,11 @@ class Login extends Component {
       .post("http://localhost:8081/users", {
         username,
         email,
-        password
+        password,
+        detaultLocation: locationBar
       })
       .then(res => {
-        window.setState({ warnings: [] });
+        window.setState({ warning: "" });
         console.log(res.data);
         const { userId } = res.data;
         console.log(userId);
@@ -41,15 +48,24 @@ class Login extends Component {
   render() {
     const myStyles = {
       input: {
-        display: 'inline-block',
-        width: '100%',
-        color: "black",
-        fontFamily: "'Open Sans', 'sans-serif'"
+        display: "block",
+        width: "100%",
+        height: "34px",
+        padding: "6px 12px",
+        "font-size": "14px",
+        "line-height": "1.42857143",
+        color: "#555",
+        "background-color": "#fff",
+        "background-image": "none",
+        "border": "1px solid #ccc",
+        "border-radius": "4px"
       }
     };
     const inputProps = {
       value: window.getState().locationBar,
-      onChange: this.onChange
+      onChange: this.onChange,
+      placeholder: "default city",
+      id: "register-location"
     };
     const { email, username, password, confirmPassword } = window.getState();
     return (
@@ -84,14 +100,10 @@ class Login extends Component {
             onChange={this.handleConfirmPasswordChange}
           />
           <PlacesAutocomplete
-            className="form-control"
-            id="location-search"
             inputProps={inputProps}
             styles={myStyles}
           />
-          <button type="submit">
-            Submit
-          </button>
+          <button className="btn btn-primary" type="submit">Submit</button>
         </form>
       </div>
     );

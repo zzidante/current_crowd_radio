@@ -23,7 +23,7 @@ class Login extends Component {
         console.log(res.data);
         const { userId } = res.data;
         if (userId) {
-          window.setState({ userId, password: "" });
+          window.setState({ userId, password: "", warning: "" });
         }
       });
   };
@@ -32,17 +32,22 @@ class Login extends Component {
       <div>
           <form id="login" onSubmit={this.login} className="form-group">
             <input
+              className="form-control"
               type="email"
               placeholder="email"
               value={window.getState().username}
               onChange={this.handleUsernameChange}
             />
             <input
+              className="form-control"
               type="password"
               placeholder="password"
               value={window.getState().password}
               onChange={this.handlePasswordChange}
-            />          
+            /> 
+            <button className="btn btn-primary" form="login" type="submit" to="/Playlist/">
+              Submit
+            </button>         
         </form>
           </div>
 
