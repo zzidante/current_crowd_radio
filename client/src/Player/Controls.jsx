@@ -88,53 +88,8 @@ class Controls extends Component {
           <div className="player-image-bg"></div>
           <table className="current-song-container">
             <tbody>
-              <tr>
-                <th>Controls</th>
-                <td>
-                  <button onClick={this.previousTrack}><i className="fa fa-angle-double-left"></i> </button>
-                  <button onClick={this.stop}><i className="fa fa-stop"></i></button>
-                  <button onClick={this.playPause}>
-                    {playing ? <i className="fa fa-pause"></i> : <i className="fa fa-play"></i>}</button>
-                  <button onClick={this.nextTrack}><i className="fa fa-angle-double-right"></i> </button>
-                </td>
-              </tr>
-              <tr>
-                <th>Seek</th>
-                <td>
-                  <input
-                    type="range"
-                    min={0}
-                    max={1}
-                    step="any"
-                    value={played}
-                    onMouseDown={this.onSeekMouseDown}
-                    onChange={this.onSeekChange}
-                    onMouseUp={this.onSeekMouseUp}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <th>Volume</th>
-                <td>
-                  <input
-                    type="range"
-                    min={0}
-                    max={1}
-                    step="any"
-                    value={volume}
-                    onChange={this.setVolume}
-                  />
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={muted}
-                      onChange={this.toggleMuted}
-                    />{' '}
-                    Muted
-                  </label>
-                </td>
-              </tr>
-              <tr>
+              
+              {/* <tr>
                 <td>
                   <label>
                     <input
@@ -145,25 +100,78 @@ class Controls extends Component {
                     Loop
                   </label>
                 </td>
-              </tr>
+              </tr> */}
+
               <tr>
-                <th>Played</th>
                 <td>
-                  <progress max={1} value={played} />
+                  <input
+                    type="range"
+                    min={0}
+                    max={1}
+                    step="any"
+                    value={played}
+                    onMouseDown={this.onSeekMouseDown}
+                    onChange={this.onSeekChange}
+                    onMouseUp={this.onSeekMouseUp}
+                    className="track-seeking"
+                  />
                 </td>
               </tr>
+
               <tr>
-                <th>Loaded</th>
                 <td>
-                  <progress max={1} value={loaded} />
+                  <th>Playedd</th>
+                  <progress max={1} value={played} className="track-progress"/>
                 </td>
               </tr>
+
               <tr>
-                <th>elapsed</th>
                 <td>
+                  <th>Loaded</th>
+                  <progress max={1} value={loaded} className="track-progress loaded-bar"/>
+                </td>
+              </tr>
+
+              <tr>
+
+                <td>
+                  <th>Elapsed</th>
                   <Duration seconds={duration * played} />
                 </td>
               </tr>
+
+              <tr>
+                <td className="player-controls">
+                  <button onClick={this.previousTrack}><i className="fa fa-angle-double-left"></i> </button>
+                  <button onClick={this.stop}><i className="fa fa-stop"></i></button>
+                  <button onClick={this.playPause}>
+                    {playing ? <i className="fa fa-pause"></i> : <i className="fa fa-play"></i>}</button>
+                  <button onClick={this.nextTrack}><i className="fa fa-angle-double-right"></i> </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <th>Volumee</th>
+                  <input
+                    type="range"
+                    min={0}
+                    max={1}
+                    step="any"
+                    value={volume}
+                    onChange={this.setVolume}
+                  />
+                  {/* <label>
+                    <input
+                      type="checkbox"
+                      checked={muted}
+                      onChange={this.toggleMuted}
+                    />{' '}
+                    Muted
+                  </label> */}
+                </td>
+              </tr>
+
             </tbody>
           </table>
         </div>
