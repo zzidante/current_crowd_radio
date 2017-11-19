@@ -110,6 +110,9 @@ $shadow2: rgb(0, 0, 0);
 				}
 			}
 		}
+		.add-border {
+			border: 2px black solid;
+		}
 
 		.full-playlist {
 			position: absolute;
@@ -118,7 +121,6 @@ $shadow2: rgb(0, 0, 0);
 			overflow: auto;
 			padding: 0;
 			margin: 225px 0 5px 0;
-			border: 2px black solid;
 			border-bottom-left-radius: 11px;
 			border-bottom-right-radius: 11px;
 			// prevent current playlist shadow from overlapping

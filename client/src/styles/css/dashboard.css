@@ -68,6 +68,8 @@
         .body-dashboard .music-container .player-full-container button .fa {
           font-size: 2em;
           width: 30px; }
+    .body-dashboard .music-container .add-border {
+      border: 2px black solid; }
     .body-dashboard .music-container .full-playlist {
       position: absolute;
       max-height: 40vh;
@@ -75,7 +77,6 @@
       overflow: auto;
       padding: 0;
       margin: 225px 0 5px 0;
-      border: 2px black solid;
       border-bottom-left-radius: 11px;
       border-bottom-right-radius: 11px;
       z-index: 1; }
