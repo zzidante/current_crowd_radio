@@ -15,13 +15,12 @@
     border: solid 3px orange; }
   .body-dashboard .music-container {
     height: 80vh;
-    border: solid 3px green;
-    padding-top: 30px; }
+    border: solid 3px #498000;
+    padding: 20px 50px; }
     .body-dashboard .music-container .player-full-container {
       position: absolute;
       color: white;
-      background-color: darkslategrey;
-      padding-top: 50px;
+      padding-top: 70px;
       width: 85%;
       border-radius: 6px;
       width: 80%;
@@ -48,29 +47,15 @@
         width: 100%;
         background-color: darkslategray;
         padding: 30px;
-        background-color: darkblue; }
+        background-color: darkblue;
+        font-family: "Open Sans", sans-serif; }
         .body-dashboard .music-container .player-full-container .current-song-container tr {
-          width: 100%; }
-        .body-dashboard .music-container .player-full-container .current-song-container progress {
-          background-color: #eee;
-          border-radius: 2px;
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; }
-        .body-dashboard .music-container .player-full-container .current-song-container .track-seeking {
-          position: absolute;
-          background: transparent;
-          top: 0;
-          left: 0; }
-        .body-dashboard .music-container .player-full-container .current-song-container .track-progress {
-          position: relative;
-          top: 0;
-          left: 0;
           width: 100%;
-          height: 8px; }
-        .body-dashboard .music-container .player-full-container .current-song-container .loaded-bar {
-          position: relative;
-          color: red;
-          top: 0;
-          left: 0; }
+          font-size: 14px;
+          line-height: 0; }
+          .body-dashboard .music-container .player-full-container .current-song-container tr time {
+            float: right;
+            padding: 0 20px; }
         .body-dashboard .music-container .player-full-container .current-song-container .player-controls {
           text-align: center;
           margin: 0 auto; }

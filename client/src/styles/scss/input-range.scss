@@ -1,7 +1,9 @@
-$ball: rgb(255, 37, 182);
+$ball: rgb(81, 161, 192);
 $slide: transparent;
+$loading: rgba(109, 1, 119, 0.226);
 $width: 80% ;
 $slideheight: 8px;
+$gray: darkslategray;
 
 // Webkit
 
@@ -112,4 +114,78 @@ input[type=range]:focus::-ms-fill-lower {
 
 input[type=range]:focus::-ms-fill-upper {
   background: $slide;
+}
+
+// Progress
+
+progress::-moz-progress-bar { 
+  background: $loading; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+progress::-webkit-progress-value { 
+  background: $loading; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+progress { 
+  color: $loading; 
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+// Dev Settings
+
+.track-seeking {
+  position: absolute;
+  background: transparent;
+  left: 0;
+  z-index: 2;
+}
+
+.track-progress {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 8px;	
+  z-index: 1;				
+}
+
+.loaded-bar {
+  position: relative;
+  top: -6px;
+  left: 0;
+}
+
+.volume-control {
+  float: right;
+  background: $gray;
+
+  // WebKit
+  input[type=range]::-webkit-slider-runnable-track {
+    background: $gray;
+  }
+
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: $gray;
+  }
+
+  // Mozilla
+  input[type=range]::-moz-range-track {
+    background: $gray;
+  }
+
+  input[type=range]:focus::-moz-range-track {
+    background: $gray;
+  }
+  
+  // IE
+  input[type=range]:focus::-ms-fill-lower {
+    background: $gray;
+  }
+  
+  input[type=range]:focus::-ms-fill-upper {
+    background: $gray;
+  }
 }

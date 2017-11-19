@@ -115,27 +115,12 @@ class Controls extends Component {
                     onMouseUp={this.onSeekMouseUp}
                     className="track-seeking"
                   />
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <th>Playedd</th>
                   <progress max={1} value={played} className="track-progress"/>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <th>Loaded</th>
                   <progress max={1} value={loaded} className="track-progress loaded-bar"/>
                 </td>
               </tr>
-
               <tr>
-
                 <td>
-                  <th>Elapsed</th>
                   <Duration seconds={duration * played} />
                 </td>
               </tr>
@@ -152,7 +137,7 @@ class Controls extends Component {
 
               <tr>
                 <td>
-                  <th>Volumee</th>
+                  <th>Volumme</th>
                   <input
                     type="range"
                     min={0}
@@ -160,6 +145,7 @@ class Controls extends Component {
                     step="any"
                     value={volume}
                     onChange={this.setVolume}
+                    className="volume-control"
                   />
                   {/* <label>
                     <input

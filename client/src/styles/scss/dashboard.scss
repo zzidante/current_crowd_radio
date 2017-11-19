@@ -1,3 +1,5 @@
+$font: 'Open Sans', sans-serif;
+
 .back-img {
 	top: 0;
 	left: 0;
@@ -22,14 +24,13 @@
 
 	.music-container {
 		height: 80vh;
-		border: solid 3px green;
-		padding-top: 30px;
+		border: solid 3px rgb(73, 128, 0);
+		padding: 20px 50px;
 
 		.player-full-container  {
 			position: absolute;
 			color: white;
-			background-color: darkslategrey;
-			padding-top: 50px;
+			padding-top: 70px;
 			width: 85%;
 			border-radius: 6px;
 			width: 80%;
@@ -62,36 +63,18 @@
 				background-color: darkslategray;
 				padding: 30px;
 				background-color: darkblue;
+				font-family: $font;
 
 				tr {
 					width: 100%;
-				}
-				progress {
-					background-color: #eee;
-					border-radius: 2px;
-					box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
-				}
-
-				.track-seeking {
-					position: absolute;
-					background: transparent;
-					top: 0;
-					left: 0;
-				}
-				.track-progress {
-					position: relative;
-					top: 0;
-					left: 0;
-					width: 100%;
-					height: 8px;					
+					font-size: 14px;
+					line-height: 0;
+					time {
+						float: right;
+						padding: 0 20px;						
+					}
 				}
 
-				.loaded-bar {
-					position: relative;
-					color: red;
-					top: 0;
-					left: 0;
-				}
 				.player-controls {
 					text-align: center;
 					margin: 0 auto;
@@ -109,11 +92,8 @@
 				.fa {
 					font-size: 2em;
 					width: 30px;
-
 				}
-
 			}
-
 		}
 
 		.full-playlist {
