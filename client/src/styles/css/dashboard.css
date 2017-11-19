@@ -19,7 +19,6 @@
     .body-dashboard .music-container .player-full-container {
       position: absolute;
       color: white;
-      padding-top: 70px;
       width: 100%;
       border-radius: 6px;
       min-height: 200px;
@@ -74,7 +73,7 @@
       min-width: 100%;
       overflow: auto;
       padding: 0;
-      margin: 295px 0 0 0;
+      margin: 225px 0 0 0;
       z-index: 1; }
       .body-dashboard .music-container .full-playlist .track-container {
         position: relative;

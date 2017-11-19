@@ -76,14 +76,6 @@ class Controls extends Component {
     const trackURL = currentTrack ? currentTrack.trackHREF : "";
     return (
       <div className="player-full-container">
-        {currentTrack && (
-          <div className="current-song-info">
-            <h2>{currentTrack.name}</h2>
-            <h3>{currentTrack.artist}</h3>
-            <span>{currentTrack.album}</span>
-            <div className="player-image-bg" style={{ backgroundImage: `url(${currentTrack.image})` }}></div>
-          </div>
-        )}
         <ReactPlayer
           ref={this.ref}
           url={trackURL}
@@ -96,93 +88,104 @@ class Controls extends Component {
           onEnded={this.onEnded}
           onDuration={this.onDuration}
         />
-        <table className="current-song-container">
-          <tbody>
-            {/* <tr>
-                <td>
-                  <label>
+        {currentTrack && (
+          <div>
+            <div className="current-song-info">
+              <h2>{currentTrack.name}</h2>
+              <h3>{currentTrack.artist}</h3>
+              <span>{currentTrack.album}</span>
+              <div className="player-image-bg" style={{ backgroundImage: `url(${currentTrack.image})` }}></div>
+            </div>
+
+            <table className="current-song-container">
+              <tbody>
+                {/* <tr>
+                    <td>
+                      <label>
+                        <input
+                          type="checkbox"
+                          checked={loop}
+                          onChange={this.toggleLoop}
+                        />{' '}
+                        Loop
+                      </label>
+                    </td>
+                  </tr> */}
+
+                <tr>
+                  <td>
                     <input
-                      type="checkbox"
-                      checked={loop}
-                      onChange={this.toggleLoop}
-                    />{' '}
-                    Loop
-                  </label>
-                </td>
-              </tr> */}
+                      type="range"
+                      min={0}
+                      max={1}
+                      step="any"
+                      value={played}
+                      onMouseDown={this.onSeekMouseDown}
+                      onChange={this.onSeekChange}
+                      onMouseUp={this.onSeekMouseUp}
+                      className="track-seeking"
+                    />
+                    <progress max={1} value={played} className="track-progress" />
+                    <progress
+                      max={1}
+                      value={loaded}
+                      className="track-progress loaded-bar"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Duration seconds={duration * played} />
+                  </td>
+                </tr>
 
-            <tr>
-              <td>
-                <input
-                  type="range"
-                  min={0}
-                  max={1}
-                  step="any"
-                  value={played}
-                  onMouseDown={this.onSeekMouseDown}
-                  onChange={this.onSeekChange}
-                  onMouseUp={this.onSeekMouseUp}
-                  className="track-seeking"
-                />
-                <progress max={1} value={played} className="track-progress" />
-                <progress
-                  max={1}
-                  value={loaded}
-                  className="track-progress loaded-bar"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Duration seconds={duration * played} />
-              </td>
-            </tr>
+                <tr>
+                  <td className="player-controls">
+                    <button onClick={this.previousTrack}>
+                      <i className="fa fa-angle-double-left" />{" "}
+                    </button>
+                    <button onClick={this.stop}>
+                      <i className="fa fa-stop" />
+                    </button>
+                    <button onClick={this.playPause}>
+                      {playing ? (
+                        <i className="fa fa-pause" />
+                      ) : (
+                        <i className="fa fa-play" />
+                      )}
+                    </button>
+                    <button onClick={this.nextTrack}>
+                      <i className="fa fa-angle-double-right" />{" "}
+                    </button>
+                  </td>
+                </tr>
 
-            <tr>
-              <td className="player-controls">
-                <button onClick={this.previousTrack}>
-                  <i className="fa fa-angle-double-left" />{" "}
-                </button>
-                <button onClick={this.stop}>
-                  <i className="fa fa-stop" />
-                </button>
-                <button onClick={this.playPause}>
-                  {playing ? (
-                    <i className="fa fa-pause" />
-                  ) : (
-                    <i className="fa fa-play" />
-                  )}
-                </button>
-                <button onClick={this.nextTrack}>
-                  <i className="fa fa-angle-double-right" />{" "}
-                </button>
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <th>Volume</th>
-                <input
-                  type="range"
-                  min={0}
-                  max={1}
-                  step="any"
-                  value={volume}
-                  onChange={this.setVolume}
-                  className="volume-control"
-                />
-                {/* <label>
+                <tr>
+                  <td>
+                    <th>Volume</th>
                     <input
-                      type="checkbox"
-                      checked={muted}
-                      onChange={this.toggleMuted}
-                    />{' '}
-                    Muted
-                  </label> */}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                      type="range"
+                      min={0}
+                      max={1}
+                      step="any"
+                      value={volume}
+                      onChange={this.setVolume}
+                      className="volume-control"
+                    />
+                    {/* <label>
+                        <input
+                          type="checkbox"
+                          checked={muted}
+                          onChange={this.toggleMuted}
+                        />{' '}
+                        Muted
+                      </label> */}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     );
   }

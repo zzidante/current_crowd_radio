@@ -31,7 +31,7 @@ $shadow2: rgb(0, 0, 0);
 		.player-full-container  {
 			position: absolute;
 			color: white;
-			padding-top: 70px;
+			// padding-top: 70px;
 			width: 100%;
 			border-radius: 6px;
 			min-height: 200px;
@@ -118,7 +118,7 @@ $shadow2: rgb(0, 0, 0);
 			min-width: 100%;
 			overflow: auto;
 			padding: 0;
-			margin: 295px 0 0 0;
+			margin: 225px 0 0 0;
 			// prevent current playlist shadow from overlapping
 			z-index: 1;
 
