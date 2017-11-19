@@ -12,17 +12,19 @@ class App extends Component {
       <div>
         <Nav location={window.getState().location} />
         <div className="back-img">
-          { window.getState().userId &&
-            <div>
-              <Playlist type={window.getState().type} />
-              <Player tracklist={window.getState().tracklist} />
-              <User />
-            </div>
-          }
-          { window.getState().userId === '' && 
-            <div>
-            </div>
-          }
+          <div className="body-dashboard container">
+            { window.getState().userId &&
+              <div className="row-fluid">
+                <Playlist type={window.getState().type} />
+                <User />
+                <Player tracklist={window.getState().tracklist} />
+              </div>
+            }
+            { window.getState().userId === '' && 
+              <div>
+              </div>
+            }
+          </div>
         </div>
         <Footer />
       </div>
