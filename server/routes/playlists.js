@@ -6,37 +6,31 @@ const router = express.Router()
 // Move knex to DataHelper.js
 
 module.exports = (DataHelpers) => {
-  // Dashboard - guest
-  router.get('/:cityId', (req, res) => {
-    DataHelpers.getPlaylists(req.params.cityId).then( results => {
-
-    })
-    // Display dashboard
-    // Return nothing
-  })
-
-  // Dashboard - logged in
+  // Dashboard
   router.get('/:cityId/users/:id', (req, res) => {
-    DataHelpers.getPlaylists(req.params.cityId, req.params.id).then( results => {
-      
-    })
+    DataHelpers.getPlaylists(user.id).then( playlists => {
+      req.session.playlists = playlists;
+      res.status(200).json(req.session);
+    });
     // Return json playlists 'current', 'archived' for each location user has saved
   })
 
   // Add song to user's playlist
   router.post('/:cityId/users/:id', (req, res) => {
     const { songId, type } = req.body
-    DataHelpers.addSongToPlaylist(req.params.cityId, req.params.id, songId, type).then( results => {
-      
-    })
+    DataHelpers.addSongToPlaylist(req.params.id, type, req.params.cityId, songId).then( userPlaylists => {
+      req.session.playlists = userPlaylists;
+      res.status(200).json(req.session);
+    });
     // Return confirmation response
-  })
+  });
 
   // Move song betweet user's playlist
-  router.post('/:cityId/users/:id', (req, res) => {
-    const { songId, type } = req.body
-    DataHelpers.moveSongToPlaylist(req.params.cityId, req.params.id, songId, type).then( results => {
-      
+  router.put('/:cityId/users/:id', (req, res) => {
+    const { songId, typeFrom, typeTo } = req.body
+    DataHelpers.moveSongToPlaylist(req.params.id, typeTo, typeFrom, req.params.cityId, songId).then( userPlaylists => {
+      req.session.playlists = userPlaylists;
+      res.status(200).json(req.session);
     })
     // Return confirmation response
   })
@@ -44,8 +38,9 @@ module.exports = (DataHelpers) => {
   // Remove single song from user's playlist
   router.delete('/:cityId/users/:id', (req, res) => {
     const { songId, type } = req.body
-    DataHelpers.deleteSongFromPlaylist(req.params.cityId, req.params.id, songId, type).then( results => {
-      
+    DataHelpers.deleteSongFromPlaylist(req.params.id, type, req.params.cityId, songId).then( userPlaylists => {
+      req.session.playlists = userPlaylists;
+      res.status(200).json(req.session);
     })
     // Remove confirmation response
   })
