@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Modal } from 'react-bootstrap';
-import Warning from '../Warning.jsx'
 
 class Login extends Component {
   handleUsernameChange = event =>
@@ -25,29 +23,31 @@ class Login extends Component {
         console.log(res.data);
         const { userId } = res.data;
         if (userId) {
-          window.setState({ userId, password: "" });
+          window.setState({ userId, password: "", warning: "" });
         }
       });
   };
   render() {
     return (
       <div>
-          <form onSubmit={this.login} className="form-group">
+          <form id="login" onSubmit={this.login} className="form-group">
             <input
+              className="form-control"
               type="email"
               placeholder="email"
               value={window.getState().username}
               onChange={this.handleUsernameChange}
             />
             <input
+              className="form-control"
               type="password"
               placeholder="password"
               value={window.getState().password}
               onChange={this.handlePasswordChange}
-            />          
-            <button type="submit" to="/Playlist/">
+            /> 
+            <button className="btn btn-primary" form="login" type="submit" to="/Playlist/">
               Submit
-            </button>
+            </button>         
         </form>
           </div>
 

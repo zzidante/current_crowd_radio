@@ -37,6 +37,9 @@ section {
   align-items: center;
   padding: 100px 100px; }
 
+#register-location {
+  width: 100%; }
+
 @media (max-width: 1000px) {
   section {
     padding: 10px 50px; } }
