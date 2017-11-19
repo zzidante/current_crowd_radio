@@ -10,7 +10,7 @@ class Player extends Component {
     })
     return (
         <section className="music-container col-md-6 col-md-pull-3 col-xs-12">
-          <Controls currentTrack={window.getState().tracklist[window.getState().currentTrackIndex]}/>
+          <Controls key={"controls"} currentTrack={window.getState().tracklist[window.getState().currentTrackIndex]}/>
           <div className="track-container">
             {trackArray}
           </div>

@@ -13,16 +13,19 @@ window.setState = (newState) => {
   ), document.getElementById('root'));
 }
 window.setState({
-  tracklist: [{}],
+  tracklist: [],
   locationBar: '',
   country: '',
   city: '',
   type: '',
   user: '',
   currentTrackIndex: 0,
-  userId: '123',
+  warning: '',
+  userId: '',
   username: '',
   password: '',
+  confirmPassword: '',
+  modal: false,
   playing: false,
   volume: 0.8,
   muted: false,
