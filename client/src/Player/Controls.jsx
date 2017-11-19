@@ -73,6 +73,9 @@ class Controls extends Component {
       const trackURL = currentTrack ? currentTrack.trackHREF : '';
       return (
         <div className="player-full-container">
+          <h2>Song</h2>
+          <h3>Artist</h3>
+          <span>Album</span>
           <ReactPlayer
             ref={this.ref}
             url={trackURL}
@@ -137,7 +140,7 @@ class Controls extends Component {
 
               <tr>
                 <td>
-                  <th>Volumme</th>
+                  <th>Volume</th>
                   <input
                     type="range"
                     min={0}

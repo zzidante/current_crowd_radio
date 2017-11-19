@@ -26,6 +26,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 input[type=range] {
   /* fix for FF unable to apply focus style bug  */
   border: 0px solid transparent;
+  margin-bottom: 20px;
   /*required for proper track sizing in FF*/
   width: 80%; }
 
@@ -63,10 +64,12 @@ input[type=range]::-ms-track {
   color: transparent; }
 
 input[type=range]::-ms-fill-lower {
+  margin-bottom: 20px;
   background: transparent;
   border-radius: 10px; }
 
 input[type=range]::-ms-fill-upper {
+  margin-bottom: 20px;
   background: transparent;
   border-radius: 10px; }
 
@@ -78,9 +81,11 @@ input[type=range]::-ms-thumb {
   background: #51a1c0; }
 
 input[type=range]:focus::-ms-fill-lower {
+  margin-bottom: 20px;
   background: transparent; }
 
 input[type=range]:focus::-ms-fill-upper {
+  margin-bottom: 20px;
   background: transparent; }
 
 progress::-moz-progress-bar {

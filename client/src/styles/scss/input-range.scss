@@ -4,6 +4,8 @@ $loading: rgba(109, 1, 119, 0.226);
 $width: 80% ;
 $slideheight: 8px;
 $gray: darkslategray;
+$thumbsize: 16px;
+$volumemargin: 20px; 
 
 // Webkit
 
@@ -22,8 +24,8 @@ input[type=range]::-webkit-slider-runnable-track {
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: none;
-  height: 16px;
-  width: 16px;
+  height: $thumbsize;
+  width: $thumbsize;
   border-radius: 50%;
   background: $ball;
   margin-top: -4px;
@@ -42,6 +44,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 input[type=range]{
   /* fix for FF unable to apply focus style bug  */
   border: 0px solid $slide; 
+  margin-bottom: $volumemargin;
 
   /*required for proper track sizing in FF*/
   width: $width;
@@ -57,8 +60,8 @@ input[type=range]::-moz-range-track {
 
 input[type=range]::-moz-range-thumb {
   border: none;
-  height: 16px;
-  width: 16px;
+  height: $thumbsize;
+  width: $thumbsize;
   border-radius: 50%;
   background: $ball;
 }
@@ -91,28 +94,32 @@ input[type=range]::-ms-track {
 }
 
 input[type=range]::-ms-fill-lower {
+  margin-bottom: $volumemargin;
   background: $slide;
   border-radius: 10px;
 }
 
 input[type=range]::-ms-fill-upper {
+  margin-bottom: $volumemargin;
   background: $slide;
   border-radius: 10px;
 }
 
 input[type=range]::-ms-thumb {
   border: none;
-  height: 16px;
-  width: 16px;
+  height: $thumbsize;
+  width: $thumbsize;
   border-radius: 50%;
   background: $ball;
 }
 
 input[type=range]:focus::-ms-fill-lower {
+  margin-bottom: $volumemargin;
   background: $slide;
 }
 
 input[type=range]:focus::-ms-fill-upper {
+  margin-bottom: $volumemargin;
   background: $slide;
 }
 
