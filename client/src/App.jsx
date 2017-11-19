@@ -15,8 +15,8 @@ class App extends Component {
           <div className="body-dashboard container">
             { window.getState().userId &&
               <div className="row-fluid">
-                <Playlist type={window.getState().type} />
                 <User />
+                <Playlist type={window.getState().type} />
                 <Player tracklist={window.getState().tracklist} />
               </div>
             }
