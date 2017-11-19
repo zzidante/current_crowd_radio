@@ -25,17 +25,15 @@ $shadow2: rgb(0, 0, 0);
 	}
 
 	.music-container {
-		height: 80vh;
+		min-height: 76vh;
 		padding: 20px 50px;
 
 		.player-full-container  {
 			position: absolute;
 			color: white;
-			// padding-top: 70px;
 			width: 100%;
 			border-radius: 6px;
 			min-height: 200px;
-			box-shadow: 0px 5px 20px 2px rgba(0, 0, 0, 0.6);
 			overflow: hidden;
 			z-index: 1;
 
@@ -57,6 +55,8 @@ $shadow2: rgb(0, 0, 0);
 		
 			.audio-player {
 				display: none;
+				width: 0px;
+				height: 0px;
 			} 
 
 			.player-image-bg {
@@ -94,7 +94,6 @@ $shadow2: rgb(0, 0, 0);
 				.player-controls {
 					text-align: center;
 					margin: 0 auto;
-					// width: 100%;
 				}
 			}
 
@@ -118,7 +117,10 @@ $shadow2: rgb(0, 0, 0);
 			min-width: 100%;
 			overflow: auto;
 			padding: 0;
-			margin: 225px 0 0 0;
+			margin: 225px 0 5px 0;
+			border: 2px black solid;
+			border-bottom-left-radius: 11px;
+			border-bottom-right-radius: 11px;
 			// prevent current playlist shadow from overlapping
 			z-index: 1;
 
@@ -127,7 +129,6 @@ $shadow2: rgb(0, 0, 0);
 				color: #dbdfe1;
 				background-color: #1f1f1f;
 				min-width: 100%;
-				min-height: 10px;
 				max-height: 40vh;
 
 				.fa-play {
@@ -138,10 +139,6 @@ $shadow2: rgb(0, 0, 0);
 					border: 0px transparent solid;
 					width: 30px;
 				}
-			}
-
-			.track-art {
-				max-width: 50px;
 			}
 		}
 	}

@@ -89,13 +89,11 @@ class Controls extends Component {
           onDuration={this.onDuration}
         />
         {currentTrack && (
-          <div>
-            <div className="current-song-info">
-              <h2>{currentTrack.name}</h2>
-              <h3>{currentTrack.artist}</h3>
-              <span>{currentTrack.album}</span>
-              <div className="player-image-bg" style={{ backgroundImage: `url(${currentTrack.image})` }}></div>
-            </div>
+          <div className="current-song-info">
+            <h2>{currentTrack.name}</h2>
+            <h3>{currentTrack.artist}</h3>
+            <span>{currentTrack.album}</span>
+            <div className="player-image-bg" style={{ backgroundImage: `url(${currentTrack.image})` }}></div>
 
             <table className="current-song-container">
               <tbody>

@@ -1,0 +1,11 @@
+.full-playlist ::-webkit-scrollbar {
+  width: 14px; }
+
+.full-playlist ::-webkit-scrollbar-track {
+  border-radius: 10px;
+  border-bottom-left-radius: 0; }
+
+.full-playlist ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  border-radius: 10px;
+  border-bottom-left-radius: 0; }
