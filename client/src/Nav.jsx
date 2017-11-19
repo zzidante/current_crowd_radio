@@ -4,14 +4,17 @@ import Register from "./User/Register.jsx";
 import Warning from "./Warning.jsx";
 import { Modal } from "react-bootstrap";
 import PlacesAutocomplete from "react-places-autocomplete";
-import api from './api'
+import api from "./api";
 class Nav extends Component {
   guest = () => window.setState({ userId: "guest" });
+
   closeModal = () => window.setState({ modal: false });
+
   openModal = event => {
     event.preventDefault();
     window.setState({ modal: event.target.value });
   };
+
   logout = () => window.setState({ userId: "" });
 
   onChange = locationBar => window.setState({ locationBar });
@@ -19,8 +22,7 @@ class Nav extends Component {
   setLocation = event => {
     event.preventDefault();
     api.setLocation();
-  }
-            
+  };
 
   render() {
     const myStyles = {
