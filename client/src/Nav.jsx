@@ -10,7 +10,6 @@ class Nav extends Component {
   guest = () => window.setState({ userId: "guest" });
   closeModal = ()=> window.setState({ modal: false });
   openModal = (event) => { 
-    console.log(event.target.value);
     event.preventDefault(); 
     window.setState({ modal: event.target.value }); 
   }
@@ -110,7 +109,7 @@ class Nav extends Component {
             <form id="register">
               <button className="btn btn-primary" name="type" value="register" onClick={this.openModal}>Register</button>
             </form>
-              <Modal show={modal} onHide={this.closeModal}>
+              <Modal show={!!modal} onHide={this.closeModal}>
                 <Modal.Header closeButton>
                   <Modal.Title>
                   {modal === "login" && "Login"}
@@ -122,6 +121,9 @@ class Nav extends Component {
                   { modal === "register" && <Register />}
                 </Modal.Body>
                 <Modal.Footer>
+                  <button form="login register" type="submit" to="/Playlist/">
+                    Submit
+                   </button>
                   {warning && (
                     <Warning warning={warning} />
                   )}

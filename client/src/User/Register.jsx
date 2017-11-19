@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Modal } from "react-bootstrap";
-
+import PlacesAutocomplete from "react-places-autocomplete";
 class Login extends Component {
   handleUsernameChange = event =>
     window.setState({ username: event.target.value });
@@ -10,7 +9,7 @@ class Login extends Component {
   handleConfirmPasswordChange = event =>
     window.setState({ confirmPassword: event.target.value });
   handleEmailChange = event => window.setState({ email: event.target.value });
-
+  onChange = locationBar => window.setState({ locationBar });
   register = event => {
     event.preventDefault();
     const { username, email, password, confirmPassword } = window.getState();
@@ -40,33 +39,55 @@ class Login extends Component {
   };
 
   render() {
+    const myStyles = {
+      input: {
+        display: 'inline-block',
+        width: '100%',
+        color: "black",
+        fontFamily: "'Open Sans', 'sans-serif'"
+      }
+    };
+    const inputProps = {
+      value: window.getState().locationBar,
+      onChange: this.onChange
+    };
     const { email, username, password, confirmPassword } = window.getState();
     return (
-      <div>
-        <form onSubmit={this.register} autoComplete="off">
+      <div className="form-group">
+        <form id="register" onSubmit={this.register} autoComplete="off">
           <input
+            className="form-control"
             type="email"
             placeholder="email"
             value={email}
             onChange={this.handleEmailChange}
           />
           <input
+            className="form-control"
             type="text"
             placeholder="username"
             value={username}
             onChange={this.handleUsernameChange}
           />
           <input
+            className="form-control"
             type="password"
             placeholder="password"
             value={password}
             onChange={this.handlePasswordChange}
           />
           <input
+            className="form-control"
             type="password"
             placeholder="confirm password"
             value={confirmPassword}
             onChange={this.handleConfirmPasswordChange}
+          />
+          <PlacesAutocomplete
+            className="form-control"
+            id="location-search"
+            inputProps={inputProps}
+            styles={myStyles}
           />
           <button type="submit">
             Submit

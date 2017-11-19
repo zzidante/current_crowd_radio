@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Modal } from 'react-bootstrap';
-import Warning from '../Warning.jsx'
 
 class Login extends Component {
   handleUsernameChange = event =>
@@ -32,7 +30,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-          <form onSubmit={this.login} className="form-group">
+          <form id="login" onSubmit={this.login} className="form-group">
             <input
               type="email"
               placeholder="email"
@@ -45,9 +43,6 @@ class Login extends Component {
               value={window.getState().password}
               onChange={this.handlePasswordChange}
             />          
-            <button type="submit" to="/Playlist/">
-              Submit
-            </button>
         </form>
           </div>
 
