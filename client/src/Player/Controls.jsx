@@ -85,10 +85,11 @@ class Controls extends Component {
             onEnded={this.onEnded}
             onDuration={this.onDuration}
           />
+          <div className="player-image-bg"></div>
           <table className="current-song-container">
             <tbody>
               <tr>
-                <th>MP Controls</th>
+                <th>Controls</th>
                 <td>
                   <button onClick={this.previousTrack}><i className="fa fa-angle-double-left"></i> </button>
                   <button onClick={this.stop}><i className="fa fa-stop"></i></button>
