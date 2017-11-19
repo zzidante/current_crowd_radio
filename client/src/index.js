@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import Routes from './Routes.jsx';
 import registerServiceWorker from './registerServiceWorker';
 
-
 let state = {}
 window.getState = () => state;
 window.setState = (newState) => {
@@ -18,7 +17,8 @@ window.setState({
   country: '',
   city: '',
   type: '',
-  user: '',
+  locations: ['Vancouver, BC, Canada', 'Lisbon, Portugal', 'Madrid, Spain'],
+  playlists: [],
   currentTrackIndex: 0,
   warning: '',
   userId: '',
@@ -31,6 +31,6 @@ window.setState({
   muted: false,
   duration: 0,
   loop: false,
-  apikey: 'b48755b6'
+  apikey: process.env.REACT_APP_JAMENDO_API
 })
 registerServiceWorker();

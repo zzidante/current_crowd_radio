@@ -32,6 +32,7 @@
         display: none; }
       .body-dashboard .music-container .player-full-container .player-image-bg {
         position: absolute;
+        background-color: black;
         top: 0;
         left: 0;
         width: 100%;
@@ -39,8 +40,8 @@
         border-radius: 6px;
         background-position: center;
         background-size: cover;
-        -webkit-filter: blur(2px);
-        filter: blur(2px);
+        -webkit-filter: blur(3px);
+        filter: blur(3px);
         z-index: -1; }
       .body-dashboard .music-container .player-full-container .current-song-container {
         width: 100%;
