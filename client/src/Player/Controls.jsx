@@ -39,7 +39,7 @@ class Controls extends Component {
   onProgress = state => {
     // Progress only if not seeking
     if (!window.getState().seeking) {
-      window.setState(state);
+      window.setState({state});
     }
   }
   ref = player => {
