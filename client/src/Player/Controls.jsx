@@ -71,11 +71,17 @@ class Controls extends Component {
     } = window.getState();
     const { currentTrack } = this.props
       const trackURL = currentTrack ? currentTrack.trackHREF : '';
+      console.log({currentTrack})
       return (
         <div className="player-full-container">
-          <h2>Song</h2>
-          <h3>Artist</h3>
-          <span>Album</span>
+          {currentTrack && (
+            <div className="current-song-info">
+              <h2>{currentTrack.name}</h2>
+              <h3>{currentTrack.artist}</h3>
+              <span>{currentTrack.album}</span>
+              <div className="player-image-bg" style={{ backgroundImage: `url(${currentTrack.image})` }}></div>
+            </div>
+          )}
           <ReactPlayer
             ref={this.ref}
             url={trackURL}
@@ -88,7 +94,6 @@ class Controls extends Component {
             onEnded={this.onEnded}
             onDuration={this.onDuration}
           />
-          <div className="player-image-bg"></div>
           <table className="current-song-container">
             <tbody>
               
