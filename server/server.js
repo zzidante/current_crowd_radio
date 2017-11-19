@@ -2,7 +2,7 @@
 
 require('dotenv').config()
 
-const PORT = process.env.PORT || 8081
+const PORT = process.env.PORT || 8080
 const ENV = process.env.ENV || 'development';
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -16,7 +16,7 @@ const knex = require('knex')(knexConfig[ENV])
 const morgan = require('morgan')
 const knexLogger = require('knex-logger')
 
-const DataHelpers = require('./db/datahelpers.js')(knex)
+const DataHelpers = require('./db/helpers/datahelpers.js')(knex)
 
 // Seperated Routes for each Resource
 const playlistsRoutes = require('./routes/playlists')(DataHelpers)
@@ -40,7 +40,7 @@ app.use('/playlists/', playlistsRoutes)
 app.use('/users', usersRoutes)
 
 app.get("/", (req, res) => {
-
+  
 });
 
 app.listen(PORT, () => {

@@ -22,16 +22,17 @@ module.exports = function makeDataHelpers (knex) {
         if (existing[0]) {
           return null;
         }
-        knex('users').insert(user).returning('id').then( userId => {
-          return this.getPlaylists(userId[0]);
-        });
+        return knex('users').insert(user).returning('id');
       });
     },
 
     // Returns promise to delete user
-    deleteUser: function (id) {
-      return knex('users').where({id: id}).del().then( result => {
-        return result;
+    deleteUser: function (id, password) {
+      return knex('users').where({id: id}).then( user => {
+        if (user[0] && bcrypt.compareSync(password, user[0].password_digest)) {
+          return knex('users').where({id: id}).del();
+        }
+        return null;
       });
     },
 
