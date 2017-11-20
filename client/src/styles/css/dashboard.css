@@ -3,7 +3,7 @@
   left: 0;
   margin-top: 110px;
   background-size: cover;
-  background-image: url("https://previews.123rf.com/images/nikkytok/nikkytok1506/nikkytok150600052/41504664-metal-mesh-of-speaker-grill-texture-Stock-Photo-honeycomb.jpg");
+  background-image: url("https://www.hdwallpaperswizard.com/wp-content/uploads/2017/03/Black-Music-Wallpaper-HD-1366x768.jpg");
   overflow: auto;
   z-index: -2; }
 
@@ -24,9 +24,10 @@
 .body-dashboard .username-heading {
   padding: 50px;
   margin-top: 20px;
-  background-color: rgba(33, 34, 34, 0.8);
   min-height: 200px;
   max-height: 76vh; }
+  .body-dashboard .username-heading h2 {
+    color: #b0ffe4; }
 
 .body-dashboard .music-container {
   min-height: 76vh;

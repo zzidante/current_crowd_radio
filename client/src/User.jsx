@@ -25,6 +25,7 @@ class User extends Component {
     return (
       <section className="username-heading col-md-3 col-xs-6">
         <h2>Username</h2>
+        <button className ="btn btn-sm">Edit Profile</button>
         <ul>{locations}</ul>
       </section>
     );
