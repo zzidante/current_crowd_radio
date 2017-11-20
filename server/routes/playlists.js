@@ -8,7 +8,7 @@ module.exports = (DataHelpers) => {
   // Dashboard
   router.get('/:cityId/users/:id', (req, res) => {
     DataHelpers.getPlaylists(user.id).then( userPlaylists => {
-      res.status(200).json(req.session);
+      res.status(200).json(userPlaylists);
     });
   });
 
@@ -19,7 +19,7 @@ module.exports = (DataHelpers) => {
     console.log(req.body);
     console.log(id, cityId, songId, type);
     DataHelpers.addSongToPlaylist(id, type, cityId, songId).then( userPlaylists => {
-      res.status(200).json(req.session);
+      res.status(200).json(userPlaylists);
     });
   });
 
@@ -28,7 +28,7 @@ module.exports = (DataHelpers) => {
     const { id, cityId } = req.params;
     const { songId, typeFrom, typeTo } = req.body;
     DataHelpers.moveSongToPlaylist(id, typeTo, typeFrom, cityId, songId).then( userPlaylists => {
-      res.status(200).json(req.session);
+      res.status(200).json(userPlaylists);
     });
   });
 
@@ -37,7 +37,7 @@ module.exports = (DataHelpers) => {
     const { id, cityId } = req.params;
     const { songId, type } = req.body;
     DataHelpers.deleteSongFromPlaylist(id, type, cityId, songId).then( userPlaylists => {
-      res.status(200).json(req.session);
+      res.status(200).json(userPlaylists);
     });
   });
 

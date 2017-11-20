@@ -3,7 +3,12 @@ import api from './api'
 
 class Playlist extends Component {
   setPlaylistType = event => {
-    window.setState({playlistType: event.currentTarget.value})
+    const { value } = event.currentTarget
+    window.setState({playlistType: value})
+    if (value === ""){
+      api.getTracksByLocation()
+      return
+    }
     api.getTracksById()
   }
   render() {

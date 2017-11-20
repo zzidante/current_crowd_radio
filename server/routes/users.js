@@ -13,8 +13,7 @@ module.exports = (DataHelpers) => {
       if(user) {
         req.session.user_id = user.id;
         DataHelpers.getPlaylists(user.id).then( playlists => {
-          req.session.playlists = playlists;
-          res.status(200).json(req.session);
+          res.status(200).json({playlists, user});
         });
       } else {
         res.sendStatus(401);

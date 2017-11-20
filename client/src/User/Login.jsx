@@ -8,25 +8,21 @@ class Login extends Component {
     window.setState({ password: event.target.value });
 
   login = event => {
-    console.log("The function")
     event.preventDefault();
     const { email, password } = window.getState();
-    console.log(email);
     if (!email || !password) {
       window.setState({ warning: "Please fill out all forms" });
       return;
     }
-    console.log(window.getState().email);
     axios
       .put("http://localhost:8080/users", {
         email: window.getState().email,
         password: window.getState().password
       })
       .then(res => {
-        console.log(res.data);
-        const { user_id, playlists } = res.data;
-        if (user_id) {
-          window.setState({ userId: user_id, playlists, password: "", warning: "" });
+        const {id, username} = res.data.user
+        if (id) {
+          window.setState({ userId: id, username, playlists: res.data.playlists, password: "", warning: "" });
         }
       });
   };

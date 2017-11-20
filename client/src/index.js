@@ -18,7 +18,7 @@ window.setState({
   country: '',
   city: '',
   type: '',
-  playlists: [],
+  playlists: {},
   playlistType: '',
   warning: '',
   userId: '',

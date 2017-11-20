@@ -6,12 +6,11 @@ class User extends Component {
     event.preventDefault();
     window.setState({ locationBar: event.target.value });
     api.setLocation();
+    api.getTracksByLocation();
   };
 
   render() {
-    const locations = window.getState().playlists.map(playlist => {
-      console.log(playlist.location);
-      const {location} = playlist
+    const locations = Object.keys(window.getState().playlists).map(location => {
       return (
         <li key={location}>
           <button
@@ -26,7 +25,7 @@ class User extends Component {
     });
     return (
       <section className="username-heading col-md-3 col-xs-6">
-        <h2>Username</h2>
+        <h2>{window.getState().username}</h2>
         <button className ="btn btn-sm">Edit Profile</button>
         <ul>{locations}</ul>
       </section>

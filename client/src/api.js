@@ -59,19 +59,26 @@ const getTracksById = () => {
     `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${apikey}&format=jsonpretty&limit=40&track_id=${trackArray.join(
       "+"
     )}`
-  )
+  ).then( res => {
+    console.log(res);
+    window.setState({tracklist: res.data.results})
+  })
 }
 
 const addToPlaylist = (songId, type) => {
   console.log("client", songId);
-  axios.post(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {songId, type})
+  axios.post(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {songId, type}).then (res => {
+    if (res.data) {
+      window.setState({playlists: res.data})
+    }
+  })
 }
 const moveToPlaylist = (songId, type) => {
   const typeFrom = type === "archive" ? "current" : "archive";
-  axios.put(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {songId, typeFrom, typeTo: type})
+  axios.put(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {songId, typeFrom, typeTo: type}).then(playlists => window.setState({playlists}))
 }
 const deleteFromPlaylist = (songId, type) => {
-  axios.delete(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {songId, type})
+  axios.delete(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {songId, type}).then(playlists => window.setState({playlists}))
 }
 module.exports = {
   setLocation,
