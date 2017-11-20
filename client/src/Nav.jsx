@@ -39,13 +39,19 @@ class Nav extends Component {
     };
     const { modal, warning, userId } = window.getState();
     return (
-      <header>
+      <header className="navbar-wrapper">
         <nav className="navbar navbar-nav navbar-expand-lg">
-            <img className="brand-icon" src="https://www.honoryoga.com/wp-content/uploads/2016/05/icon-50x50.png" />
 
-          <h3>
-            <a href="#">Current Crowd Radio</a>
-          </h3>
+          <div className="container">
+            <div className="navbar-header">
+              <button type="button" className="navbar-toggle hamburger-menu" data-toggle="collapse" data-target=".navbar-collapse">
+                <span className="sr-only">Toggle navigation</span>
+                <span className="icon-bar"></span>  
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+              </button>
+              <a className="navbar-brand" href="#">Current Crowd Radio</a>
+            </div>
 
           <form onSubmit={this.setLocation}>
             <PlacesAutocomplete
@@ -59,34 +65,35 @@ class Nav extends Component {
           </form>
 
           {userId === "" && (
-            <nav>
-              <li id="login">
-                <button
-                  className="btn btn-primary"
-                  name="type"
-                  value="login"
-                  onClick={this.openModal}
-                >
-                  Login
-                </button>
-              </li>
+            <nav className="collapse navbar-collapse">
+              <ul className="nav navbar-nav navbar-right">
+                <li id="login">
+                  <button
+                    className="btn btn-primary navbar-btn"
+                    name="type"
+                    value="login"
+                    onClick={this.openModal}
+                  >
+                    Login
+                  </button>
+                </li>
 
-              <li id="register">
-                <button
-                  className="btn btn-primary"
-                  name="type"
-                  value="register"
-                  onClick={this.openModal}
-                >
-                  Register
-                </button>
-              </li>
-              <li>
-                <button className="btn btn-primary" onClick={this.guest}>
-                  Guest
-                </button>
-              </li>
-
+                <li id="register">
+                  <button
+                    className="btn btn-primary navbar-btn"
+                    name="type"
+                    value="register"
+                    onClick={this.openModal}
+                  >
+                    Register
+                  </button>
+                </li>
+                <li>
+                  <button className="btn btn-primary navbar-btn" onClick={this.guest}>
+                    Guest
+                  </button>
+                </li>
+              </ul>
               <Modal show={!!modal} onHide={this.closeModal}>
                 <Modal.Header closeButton>
                   <Modal.Title>
@@ -105,10 +112,11 @@ class Nav extends Component {
             </nav>
           )}
           {userId && (
-              <li>
-                <button className="btn btn-primary" onClick={this.logout}>Logout</button>
-              </li>
+            <li>
+              <button className="btn btn-primary" onClick={this.logout}>Logout</button>
+            </li>
           )}
+          </div>
         </nav>
       </header>
     );

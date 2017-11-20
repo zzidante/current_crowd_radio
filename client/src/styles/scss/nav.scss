@@ -19,6 +19,14 @@ header{
 	padding: 35px 100px 25px 0;
 	font-family: $fontContent;
 
+	.hamburger-menu {
+		z-index: 2;
+		background-color: rebeccapurple;
+		span {
+			background-color: fuchsia;
+		}
+	}
+
 
 	h3 {
 		font-family: $fontLogo;
