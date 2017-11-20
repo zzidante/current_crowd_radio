@@ -4,12 +4,17 @@ import PlacesAutocomplete from "react-places-autocomplete";
 class Login extends Component {
   handleUsernameChange = event =>
     window.setState({ username: event.target.value });
+
   handlePasswordChange = event =>
     window.setState({ password: event.target.value });
+
   handleConfirmPasswordChange = event =>
     window.setState({ confirmPassword: event.target.value });
+
   handleEmailChange = event => window.setState({ email: event.target.value });
+
   onChange = locationBar => window.setState({ locationBar });
+
   register = event => {
     event.preventDefault();
     const {
@@ -52,13 +57,13 @@ class Login extends Component {
         width: "100%",
         height: "34px",
         padding: "6px 12px",
-        "font-size": "14px",
-        "line-height": "1.42857143",
+        fontSize: "14px",
+        lineHeight: "1.42857143",
         color: "#555",
-        "background-color": "#fff",
-        "background-image": "none",
-        "border": "1px solid #ccc",
-        "border-radius": "4px"
+        backgroundColor: "#fff",
+        backgroundImage: "none",
+        border: "1px solid #ccc",
+        borderRadius: "4px"
       }
     };
     const inputProps = {
@@ -99,11 +104,10 @@ class Login extends Component {
             value={confirmPassword}
             onChange={this.handleConfirmPasswordChange}
           />
-          <PlacesAutocomplete
-            inputProps={inputProps}
-            styles={myStyles}
-          />
-          <button className="btn btn-primary" type="submit">Submit</button>
+          <PlacesAutocomplete inputProps={inputProps} styles={myStyles} />
+          <button className="btn btn-primary" type="submit">
+            Submit
+          </button>
         </form>
       </div>
     );

@@ -1,0 +1,198 @@
+$ball: rgb(81, 161, 192);
+$slide: transparent;
+$loading: rgba(109, 1, 119, 0.226);
+$width: 80% ;
+$slideheight: 8px;
+$gray: darkslategray;
+$thumbsize: 16px;
+$volumemargin: 20px; 
+
+// Webkit
+
+input[type=range]{
+  -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: $width;
+  height: $slideheight;
+  background: $slide;
+  border: none;
+  border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: $thumbsize;
+  width: $thumbsize;
+  border-radius: 50%;
+  background: $ball;
+  margin-top: -4px;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: $slide;
+}
+
+// Firefox
+
+input[type=range]{
+  /* fix for FF unable to apply focus style bug  */
+  border: 0px solid $slide; 
+  margin-bottom: $volumemargin;
+
+  /*required for proper track sizing in FF*/
+  width: $width;
+}
+
+input[type=range]::-moz-range-track {
+  width: $width;
+  height: $slideheight;
+  background: $slide;
+  border: none;
+  border-radius: 3px;
+}
+
+input[type=range]::-moz-range-thumb {
+  border: none;
+  height: $thumbsize;
+  width: $thumbsize;
+  border-radius: 50%;
+  background: $ball;
+}
+
+/*hide the outline behind the border*/
+input[type=range]:-moz-focusring{
+  outline: 1px solid $slide;
+  outline-offset: -1px;
+}
+
+input[type=range]:focus::-moz-range-track {
+  background: $slide;
+}
+
+// IE
+
+input[type=range]::-ms-track {
+  width: $width;
+  height: $slideheight;
+  
+  /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+  background: transparent;
+  
+  /*leave room for the larger thumb to overflow with a transparent border */
+  border-color: transparent;
+  border-width: 6px 0;
+
+  /*remove default tick marks*/
+  color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+  margin-bottom: $volumemargin;
+  background: $slide;
+  border-radius: 10px;
+}
+
+input[type=range]::-ms-fill-upper {
+  margin-bottom: $volumemargin;
+  background: $slide;
+  border-radius: 10px;
+}
+
+input[type=range]::-ms-thumb {
+  border: none;
+  height: $thumbsize;
+  width: $thumbsize;
+  border-radius: 50%;
+  background: $ball;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+  margin-bottom: $volumemargin;
+  background: $slide;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+  margin-bottom: $volumemargin;
+  background: $slide;
+}
+
+// Progress
+
+progress::-moz-progress-bar { 
+  background: $loading; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+progress::-webkit-progress-value { 
+  background: $loading; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+progress { 
+  color: $loading; 
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+// Dev Settings
+
+.track-seeking {
+  position: absolute;
+  background: transparent;
+  left: 0;
+  z-index: 2;
+}
+
+.track-progress {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 8px;	
+  z-index: 1;				
+}
+
+.loaded-bar {
+  position: relative;
+  top: -8px;
+  left: 0;
+}
+
+.volume-control {
+  float: right;
+  background: $gray;
+
+  // WebKit
+  input[type=range]::-webkit-slider-runnable-track {
+    background: $gray;
+  }
+
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: $gray;
+  }
+
+  // Mozilla
+  input[type=range]::-moz-range-track {
+    background: $gray;
+  }
+
+  input[type=range]:focus::-moz-range-track {
+    background: $gray;
+  }
+  
+  // IE
+  input[type=range]:focus::-ms-fill-lower {
+    background: $gray;
+  }
+  
+  input[type=range]:focus::-ms-fill-upper {
+    background: $gray;
+  }
+}
