@@ -130,8 +130,8 @@ $body-min-height: 76vh;
 				border-radius: 6px;
 				background-position: center;
 				background-size: cover;
-				-webkit-filter: blur(3px);
-				filter: blur(3px);
+				-webkit-filter: blur(10px);
+				filter: blur(10px);
 				z-index: -1;
 			}
 
