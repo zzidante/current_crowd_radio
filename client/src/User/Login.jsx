@@ -8,6 +8,7 @@ class Login extends Component {
     window.setState({ password: event.target.value });
 
   login = event => {
+    console.log("The function")
     event.preventDefault();
     const { username, password } = window.getState();
     if (!username || !password) {
@@ -30,7 +31,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-          <form id="login" onSubmit={this.login} className="form-group">
+          <form id="login" onSubmit={this.login.bind(this)} className="form-group">
             <input
               className="form-control"
               type="email"
@@ -45,7 +46,7 @@ class Login extends Component {
               value={window.getState().password}
               onChange={this.handlePasswordChange}
             /> 
-            <button className="btn btn-primary" form="login" type="submit" to="/Playlist/">
+            <button className="btn btn-primary" form="login" type="submit" to="/users/">
               Submit
             </button>         
         </form>

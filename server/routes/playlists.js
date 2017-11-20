@@ -1,54 +1,47 @@
-
 'use strict'
 
 const express = require('express')
 const router = express.Router()
-// Move knex to DataHelper.js
 
 module.exports = (DataHelpers) => {
-  // Dashboard - guest
-  router.get('/:cityId', (req, res) => {
-    DataHelpers.getPlaylists(req.params.cityId).then( results => {
-
-    })
-    // Display dashboard
-    // Return nothing
-  })
-
-  // Dashboard - logged in
+  
+  // Dashboard
   router.get('/:cityId/users/:id', (req, res) => {
-    DataHelpers.getPlaylists(req.params.cityId, req.params.id).then( results => {
-      
-    })
-    // Return json playlists 'current', 'archived' for each location user has saved
-  })
+    DataHelpers.getPlaylists(user.id).then( userPlaylists => {
+      req.session.playlists = userPlaylists;
+      res.status(200).json(req.session);
+    });
+  });
 
   // Add song to user's playlist
   router.post('/:cityId/users/:id', (req, res) => {
-    const { songId, type } = req.body
-    DataHelpers.addSongToPlaylist(req.params.cityId, req.params.id, songId, type).then( results => {
-      
-    })
-    // Return confirmation response
-  })
+    const { id, cityId } = req.params;
+    const { songId, type } = req.body;
+    DataHelpers.addSongToPlaylist(id, type, cityId, songId).then( userPlaylists => {
+      req.session.playlists = userPlaylists;
+      res.status(200).json(req.session);
+    });
+  });
 
-  // Move song betweet user's playlist
-  router.post('/:cityId/users/:id', (req, res) => {
-    const { songId, type } = req.body
-    DataHelpers.moveSongToPlaylist(req.params.cityId, req.params.id, songId, type).then( results => {
-      
-    })
-    // Return confirmation response
-  })
+  // Move song between user's playlists
+  router.put('/:cityId/users/:id', (req, res) => {
+    const { id, cityId } = req.params;
+    const { songId, typeFrom, typeTo } = req.body;
+    DataHelpers.moveSongToPlaylist(id, typeTo, typeFrom, cityId, songId).then( userPlaylists => {
+      req.session.playlists = userPlaylists;
+      res.status(200).json(req.session);
+    });
+  });
 
   // Remove single song from user's playlist
   router.delete('/:cityId/users/:id', (req, res) => {
-    const { songId, type } = req.body
-    DataHelpers.deleteSongFromPlaylist(req.params.cityId, req.params.id, songId, type).then( results => {
-      
-    })
-    // Remove confirmation response
-  })
+    const { id, cityId } = req.params;
+    const { songId, type } = req.body;
+    DataHelpers.deleteSongFromPlaylist(id, type, cityId, songId).then( userPlaylists => {
+      req.session.playlists = userPlaylists;
+      res.status(200).json(req.session);
+    });
+  });
 
-  return router
+  return router;
 }
