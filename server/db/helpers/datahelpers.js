@@ -126,10 +126,10 @@ module.exports = function makeDataHelpers (knex) {
           if (playlistResult[0]) {
             return this.playlistTracksInsert(playlistResult[0].id, songId);
           } else {
-            return knex('users').where({id: userId}).then( user => {
-              return this.addPlaylist(userId, type, location).then( newPlaylist => {
-                return this.playlistTracksInsert(newPlaylist[0].id, songId);
-              });
+
+            // Create new playlist for user if none matching the supplied criteria exist
+            return this.addPlaylist(userId, type, location).then( newPlaylist => {
+              return this.playlistTracksInsert(newPlaylist[0].id, songId);
             });
           }
         });

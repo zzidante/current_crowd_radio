@@ -1,4 +1,3 @@
-
 'use strict'
 
 const express = require('express')
@@ -6,6 +5,7 @@ const router = express.Router()
 const bcrypt = require("bcrypt");
 
 module.exports = (DataHelpers) => {
+  
   // Login
   router.put('/', (req, res) => {
     DataHelpers.login(req.body.email, req.body.password).then( user => {
@@ -19,11 +19,8 @@ module.exports = (DataHelpers) => {
         res.sendStatus(401);
       }
     });
-    // req.session.userId = "9234582345asdfa1"
-    // res.json(req.session)
-    // Return confirmation response
-    // Redirect to dashboard
   });
+
   // Register
   router.post('/', (req, res) => {
     const { username, email, defaultLocation } = req.body
@@ -37,16 +34,12 @@ module.exports = (DataHelpers) => {
           res.sendStatus(401);
         }
       });
-    // Return confrimation response
-    // Redirect to dashboard
   });
 
   // Logout
   router.delete('/', (req, res) => {
     req.session = null;
     res.sendStatus(200);
-    // Return confirmation response
-    // Redirect to landing
   });
 
   // User profile
@@ -58,7 +51,6 @@ module.exports = (DataHelpers) => {
         res.sendStatus(404);
       }
     });
-    // Return user as json file
   });
 
   // Edit profile
@@ -74,7 +66,6 @@ module.exports = (DataHelpers) => {
           res.sendStatus(401);
         }
       });
-    // Return confirmation response
   });
 
   // Delete account
@@ -87,9 +78,7 @@ module.exports = (DataHelpers) => {
         res.sendStatus(401);
       }
     });
-    // Return confirmation response
-    // Redirect to landing
   });
 
-  return router
+  return router;
 }
