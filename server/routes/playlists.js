@@ -17,6 +17,8 @@ module.exports = (DataHelpers) => {
   router.post('/:cityId/users/:id', (req, res) => {
     const { id, cityId } = req.params;
     const { songId, type } = req.body;
+    console.log(req.body);
+    console.log(id, cityId, songId, type);
     DataHelpers.addSongToPlaylist(id, type, cityId, songId).then( userPlaylists => {
       req.session.playlists = userPlaylists;
       res.status(200).json(req.session);

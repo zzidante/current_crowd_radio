@@ -22,6 +22,7 @@ class Nav extends Component {
   setLocation = event => {
     event.preventDefault();
     api.setLocation();
+    api.getTracksByLocation();
   };
 
   render() {

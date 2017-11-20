@@ -8,6 +8,7 @@ module.exports = (DataHelpers) => {
   
   // Login
   router.put('/', (req, res) => {
+    console.log(req.body);
     DataHelpers.login(req.body.email, req.body.password).then( user => {
       if(user) {
         req.session.user_id = user.id;
