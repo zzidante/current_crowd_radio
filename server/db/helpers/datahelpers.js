@@ -22,16 +22,17 @@ module.exports = function makeDataHelpers (knex) {
         if (existing[0]) {
           return null;
         }
-        knex('users').insert(user).returning('id').then( userId => {
-          return this.getPlaylists(userId[0]);
-        });
+        return knex('users').insert(user).returning('id');
       });
     },
 
     // Returns promise to delete user
-    deleteUser: function (id) {
-      return knex('users').where({id: id}).del().then( result => {
-        return result;
+    deleteUser: function (id, password) {
+      return knex('users').where({id: id}).then( user => {
+        if (user[0] && bcrypt.compareSync(password, user[0].password_digest)) {
+          return knex('users').where({id: id}).del();
+        }
+        return null;
       });
     },
 
@@ -104,29 +105,31 @@ module.exports = function makeDataHelpers (knex) {
     },
 
     // Returns promise to get all playlists for specified user after inserting new track to playlist
-    playlistTracksInsert: function (playlistId, trackId) {
-      return knex('playlist_tracks').insert({playlist_id: playlistId, track_id: trackId})
-        .returning('playlist_id').then( playlistId => {
-          return knex('playlists').where({id: playlistId[0]}).then( playlist => {
-            return this.getPlaylists(playlist[0].user_id);
+    playlistTracksInsert: function (playlistId, songId) {
+      return this.addTrack(songId).then( trackId => {
+        return knex('playlist_tracks').insert({playlist_id: playlistId, track_id: trackId})
+          .returning('playlist_id').then( playlistId => {
+            return knex('playlists').where({id: playlistId[0]}).then( playlist => {
+              return this.getPlaylists(playlist[0].user_id);
+            });
+          }).catch(error => {
+            console.log("Playlist Tracks Insert error: ", error.detail);
           });
-        }).catch(error => {
-          console.log("Playlist Tracks Insert error: ", error.detail);
-        });;
+      });
     },
 
     // Returns promise to insert new track to playlist
     // If playlist does not exist, inserts new playlist before returning same promise
-    addSongToPlaylist: function (userId, type, location, trackId) {
+    addSongToPlaylist: function (userId, type, location, songId) {
       return knex('playlists').where({user_id: userId, type: type, location: location})
         .then( playlistResult => {
           if (playlistResult[0]) {
-            return this.playlistTracksInsert(playlistResult[0].id, trackId);
+            return this.playlistTracksInsert(playlistResult[0].id, songId);
           } else {
-            return knex('users').where({id: userId}).then( user => {
-              return this.addPlaylist(userId, type, location).then( newPlaylist => {
-                return this.playlistTracksInsert(newPlaylist[0].id, trackId);
-              });
+
+            // Create new playlist for user if none matching the supplied criteria exist
+            return this.addPlaylist(userId, type, location).then( newPlaylist => {
+              return this.playlistTracksInsert(newPlaylist[0].id, songId);
             });
           }
         });
@@ -134,28 +137,43 @@ module.exports = function makeDataHelpers (knex) {
 
     // Returns promise to get all playlists for specified user after deleting track from playlist
     // If playlist does not exist, skips delete and returns same promise
-    deleteSongFromPlaylist: function (userId, type, location, trackId) {
+    deleteSongFromPlaylist: function (userId, type, location, songId) {
       let playlistId = 0;
-      return knex('playlists').where({user_id: userId, type: type, location: location})
-        .then( playlistResult => {
-          if (playlistResult[0]) {
-            playlistId = playlistResult[0].id;
-            return knex('playlist_tracks').where({playlist_id: playlistId, track_id: trackId}).del()
-          }
-        }).then( data => {
-          return knex('playlist_tracks').where({playlist_id: playlistId}).first()
-        }).then( playlistTracks => {
-          if (!playlistTracks) {
-            return this.deletePlaylist(playlistId, userId);
-          }
-          return this.getPlaylists(userId);
-        });
+      let trackId = 0;
+      // Query for track that matches songId
+      return knex('tracks').where({href_id: songId}).then( trackResult => {
+        if (trackResult[0]) {
+          trackId = trackResult[0].id;
+          
+          // Query for playlist that matches user, type, location
+          return knex('playlists').where({user_id: userId, type: type, location: location})
+        }
+      })
+      .then( playlistResult => {
+        if (playlistResult[0]) {
+          playlistId = playlistResult[0].id;
+
+          // Delete playlist track matching trackId and playlistId
+          return knex('playlist_tracks').where({playlist_id: playlistId, track_id: trackId}).del()
+        }
+      }).then( data => {
+
+        // Query for other tracks in same playlist
+        return knex('playlist_tracks').where({playlist_id: playlistId}).first()
+      }).then( playlistTracks => {
+        if (!playlistTracks) {
+
+          // Delete playlist if no other tracks are found
+          return this.deletePlaylist(playlistId, userId);
+        }
+        return this.getPlaylists(userId);
+      });
     },
 
     // Returns promise to delete track from playlistFrom after inserting track to playlistTo
-    moveSongToPlaylist: function (userId, typeTo, typeFrom, location, trackId) {
-      return this.addSongToPlaylist(userId, typeTo, location, trackId).then( data => {
-        return this.deleteSongFromPlaylist(userId, typeFrom, location, trackId);
+    moveSongToPlaylist: function (userId, typeTo, typeFrom, location, songId) {
+      return this.addSongToPlaylist(userId, typeTo, location, songId).then( data => {
+        return this.deleteSongFromPlaylist(userId, typeFrom, location, songId);
       });
     }
   };
