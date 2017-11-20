@@ -59,9 +59,9 @@ module.exports = function makeDataHelpers (knex) {
     // Returns promise to insert new track, returning track_id
     // If track already exists, skips insert and returns track_id directly
     addTrack: function (hrefId) {
-      return knex('tracks').where({href_id: hrefId}).then( track => {
-        if (track[0]) {
-          return track[0].id;
+      return knex('tracks').where({href_id: hrefId}).first().then( track => {
+        if (track) {
+          return [track.id];
         }
         return knex('tracks').insert({href_id: hrefId}).returning('id');
       }).catch(error => {
@@ -72,11 +72,26 @@ module.exports = function makeDataHelpers (knex) {
     // Returns promise to get all playlists for specified user
     // If user does not exist, returns null
     getPlaylists: function (userId) {
-      return knex('users').where({id: userId}).then( user => {
-        if (user[0]) {
-          return knex('playlists').where({user_id: userId});
+      return knex('users').where({id: userId}).first().then( user => {
+        if (user) {
+          return knex('playlists').where({user_id: userId})
+          .innerJoin('playlist_tracks', 'playlists.id', 'playlist_tracks.playlist_id')
+          .innerJoin('tracks', 'playlist_tracks.track_id', 'tracks.id');
         }
         return null;
+      }).then( playlistTracks => {
+        const userPlaylists = {};
+        playlistTracks.forEach( track => {
+          const {location, type, href_id} = track;
+          if(!userPlaylists[location]) {
+            userPlaylists[location] = {};
+          }
+          if(!userPlaylists[location][type]) {
+            userPlaylists[location][type] = [];
+          }
+          userPlaylists[location][type].push(href_id);
+        });
+        return userPlaylists;
       });
     },
 
@@ -107,7 +122,7 @@ module.exports = function makeDataHelpers (knex) {
     // Returns promise to get all playlists for specified user after inserting new track to playlist
     playlistTracksInsert: function (playlistId, songId) {
       return this.addTrack(songId).then( trackId => {
-        return knex('playlist_tracks').insert({playlist_id: playlistId, track_id: trackId})
+        return knex('playlist_tracks').insert({playlist_id: playlistId, track_id: trackId[0]})
           .returning('playlist_id').then( playlistId => {
             return knex('playlists').where({id: playlistId[0]}).then( playlist => {
               return this.getPlaylists(playlist[0].user_id);
