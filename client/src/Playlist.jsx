@@ -7,9 +7,9 @@ class Playlist extends Component {
         <article className="playlist-box">
           <div className="current-track-player">
           </div>
-          <div className="random-tracks-box">
-            <button className="btn btn-primary">Current Playlist</button>
+          <div className="playlist-selection-buttons">
             <button className="btn btn-primary">Randomize</button>
+            <button className="btn btn-primary">Current Playlist</button>
             <button className="btn btn-primary">Archive Playlist</button>
           </div>
         </article>

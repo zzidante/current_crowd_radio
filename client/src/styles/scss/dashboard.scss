@@ -1,6 +1,10 @@
 $font: 'Open Sans', sans-serif;
 $shadow1: rgb(41, 41, 41); 
 $shadow2: rgb(0, 0, 0);
+$gray1: #191E24; 
+$graytransparent: rgba(33, 34, 34, 0.8);
+$teal2:  #b0ffe4;
+$body-min-height: 76vh;
 
 .back-img {
 	top: 0;
@@ -13,19 +17,37 @@ $shadow2: rgb(0, 0, 0);
 }
 
 .body-dashboard {
-	border: solid 3px rebeccapurple;
-
 
 	.playlist-heading {
-		border: solid 3px yellow;
+		padding: 5px 50px;
+		margin-top: 20px;
+		min-height: 200px;
+		max-height: $body-min-height;
+
+		.playlist-selection-buttons {
+			padding-top: 36px;
+			flex-flow: column;
+
+			button {
+				background-color: #51a1c0;
+				margin: 15px;
+				width: 180px;
+				font-size: 1.6em;
+
+			}
+		}
 	}
 
 	.username-heading {
-		border: solid 3px orange;
+		padding: 50px;
+		margin-top: 20px;		
+		background-color: $graytransparent;
+		min-height: 200px;
+		max-height: $body-min-height;
 	}
 
 	.music-container {
-		min-height: 76vh;
+		min-height: $body-min-height;
 		padding: 20px 50px;
 
 		.player-full-container  {
@@ -78,7 +100,7 @@ $shadow2: rgb(0, 0, 0);
 				width: 100%;
 				background-color: darkslategray;
 				padding: 30px;
-				background-color: rgb(25, 30, 36);
+				background-color: $gray1;
 				font-family: $font;
 
 				tr {
@@ -107,11 +129,14 @@ $shadow2: rgb(0, 0, 0);
 				.fa {
 					font-size: 2em;
 					width: 30px;
+					color: $gray1;
 				}
 			}
 		}
+		
 		.add-border {
 			border: 2px black solid;
+			background-color: $gray1;
 		}
 
 		.full-playlist {
@@ -128,18 +153,31 @@ $shadow2: rgb(0, 0, 0);
 
 			.track-container {
 				position: relative;
+				padding-left: 5px;
 				color: #dbdfe1;
 				background-color: #1f1f1f;
 				min-width: 100%;
 				max-height: 40vh;
 
-				.fa-play {
-					font-size: 1.4em;
-					background: white;
-					padding: 5px;
-					color: #262424;
-					border: 0px transparent solid;
-					width: 30px;
+				.track-name {
+					padding-left: 5px;
+				}
+
+				button {
+					// get rid of default border
+					border: 0px solid transparent;
+					background: $gray1;
+
+					.fa-play {
+						font-size: 1.4em;
+						background: $teal2;
+						margin: 2px;
+						padding: 5px;
+						color: $gray1;
+						border: 0px transparent solid;
+						width: 30px;
+						display: block ;
+					}
 				}
 			}
 		}
