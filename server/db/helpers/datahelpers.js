@@ -59,11 +59,19 @@ module.exports = function makeDataHelpers (knex) {
     // Returns promise to insert new track, returning track_id
     // If track already exists, skips insert and returns track_id directly
     addTrack: function (hrefId) {
+<<<<<<< HEAD
       return knex('tracks').where({href_id: hrefId}).first().then( track => {
         if (track) {
           return [track.id];
+=======
+      console.log("ADD TRACK HREF", hrefId);
+      return knex('tracks').where({href_id: hrefId}).then( track => {
+        console.log("Addtrac -- TRACK", track);
+        if (track[0]) {
+          return track[0].id;
+>>>>>>> feature/sidebars
         }
-        return knex('tracks').insert({href_id: hrefId}).returning('id');
+        return knex('tracks').insertOne({href_id: hrefId}).returning('id');
       }).catch(error => {
         console.log("Track add error: ", error.detail);
       });
@@ -122,9 +130,16 @@ module.exports = function makeDataHelpers (knex) {
     // Returns promise to get all playlists for specified user after inserting new track to playlist
     playlistTracksInsert: function (playlistId, songId) {
       return this.addTrack(songId).then( trackId => {
+<<<<<<< HEAD
         return knex('playlist_tracks').insert({playlist_id: playlistId, track_id: trackId[0]})
+=======
+        console.log("INSERT TRACKID", trackId);
+        return knex('playlist_tracks').insert({playlist_id: playlistId, track_id: trackId})
+>>>>>>> feature/sidebars
           .returning('playlist_id').then( playlistId => {
+            console.log("INSERT PLAYLISTID", playlistId);
             return knex('playlists').where({id: playlistId[0]}).then( playlist => {
+              console.log("GETBACK PLAYLIST" , playlist);
               return this.getPlaylists(playlist[0].user_id);
             });
           }).catch(error => {

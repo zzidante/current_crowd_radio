@@ -7,14 +7,13 @@ const setLocation = () => {
   const city = loc.match(/^\w+[a-z]?/i)[0];
   const isoCodes = iso.whereCountry(loc.match(/(\w+\s)?\w+.?$/)[0]);
   if (isoCodes) {
-    window.setState({ county: isoCodes.alpha3, city });
-    getTracks(isoCodes.alpha3, city);
+    window.setState({ country: isoCodes.alpha3, city });
   }
 };
 
 // given a country and city loads random list of songs
-const getTracks = (country, city) => {
-  const { apikey } = window.getState();
+const getTracksByLocation = () => {
+  const { apikey, country, city } = window.getState();
   axios
     .get(
       `https://api.jamendo.com/v3.0/artists/locations/?client_id=${apikey}&format=jsonpretty&limit=40&haslocation=true&location_country=${country}&location_city=${city}`
@@ -51,7 +50,34 @@ const getTracks = (country, city) => {
         });
     });
 };
+
+const getTracksById = () => {
+  const { playlists, playlistType, locationBar, apikey } = window.getState()
+  const trackArray = playlists[locationBar][playlistType]
+  axios
+  .get(
+    `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${apikey}&format=jsonpretty&limit=40&track_id=${trackArray.join(
+      "+"
+    )}`
+  )
+}
+
+const addToPlaylist = (songId, type) => {
+  console.log("client", songId);
+  axios.post(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {songId, type})
+}
+const moveToPlaylist = (songId, type) => {
+  const typeFrom = type === "archive" ? "current" : "archive";
+  axios.put(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {songId, typeFrom, typeTo: type})
+}
+const deleteFromPlaylist = (songId, type) => {
+  axios.delete(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {songId, type})
+}
 module.exports = {
   setLocation,
-  getTracks
+  getTracksByLocation,
+  getTracksById,
+  addToPlaylist,
+  moveToPlaylist,
+  deleteFromPlaylist
 };

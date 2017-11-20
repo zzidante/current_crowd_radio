@@ -9,7 +9,9 @@ class User extends Component {
   };
 
   render() {
-    const locations = window.getState().locations.map(location => {
+    const locations = window.getState().playlists.map(playlist => {
+      console.log(playlist.location);
+      const {location} = playlist
       return (
         <li key={location}>
           <button

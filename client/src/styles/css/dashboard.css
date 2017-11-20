@@ -130,6 +130,8 @@
       max-height: 40vh; }
       .body-dashboard .music-container .full-playlist .track-container .track-name {
         padding-left: 5px; }
+      .body-dashboard .music-container .full-playlist .track-container .track-btns {
+        float: right; }
       .body-dashboard .music-container .full-playlist .track-container button {
         border: 0px solid transparent;
         background: #191E24; }

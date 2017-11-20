@@ -32,7 +32,7 @@ app.use(cookieSession({
   keys: ['secretOne', 'secretTwo'],
   maxAge: 24 * 60 *60 * 1000
 }));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static("./build/"));
 
 app.use(cors());
