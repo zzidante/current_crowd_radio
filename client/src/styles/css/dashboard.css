@@ -22,12 +22,35 @@
       font-size: 1.6em; }
 
 .body-dashboard .username-heading {
-  padding: 50px;
+  padding: 20px;
   margin-top: 20px;
   min-height: 200px;
   max-height: 76vh; }
   .body-dashboard .username-heading h2 {
     color: #b0ffe4; }
+  .body-dashboard .username-heading button {
+    color: #191E24; }
+  .body-dashboard .username-heading button:hover {
+    color: #b0ffe4;
+    background-color: #191E24;
+    border: none; }
+  .body-dashboard .username-heading ul {
+    position: relative;
+    top: 20px;
+    right: 20px;
+    overflow: scroll;
+    margin: 10px;
+    padding: 0;
+    min-height: 100px;
+    max-height: 120px; }
+  .body-dashboard .username-heading li {
+    padding: 10px 20px; }
+    .body-dashboard .username-heading li:last-child {
+      border-bottom: none; }
+    .body-dashboard .username-heading li:nth-child(even) {
+      background: #191E24; }
+    .body-dashboard .username-heading li button {
+      color: white; }
 
 .body-dashboard .music-container {
   min-height: 76vh;
