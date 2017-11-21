@@ -1,6 +1,6 @@
 {
   "name": "current-crowd-radio",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The only radio for the current crowd!",
   "main": "index.js",
   "scripts": {
