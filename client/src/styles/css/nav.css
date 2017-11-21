@@ -13,43 +13,23 @@ header {
   color: #fff;
   padding: 35px 100px 25px 0;
   font-family: "Magra", sans-serif; }
-  header .hamburger-menu {
-    z-index: 3;
-    background-color: rebeccapurple; }
-    header .hamburger-menu span {
-      background-color: fuchsia; }
   header h3 {
-    font-family: "Skranji", cursive; }
+    font-family: "Skranji", cursive;
+    font-size: 1rem; }
   header textarea {
     color: black;
-    width: 20vw; }
+    width: 20vw;
+    min-width: 100px;
+    margin-right: 5px; }
   header nav {
     display: flex; }
-    header nav li {
-      margin: 0 15px; }
-    header nav li:first-child {
-      margin-left: 0; }
-    header nav li:last-child {
-      margin-right: 0; }
+    header nav #mini-brand-icon {
+      width: 50px;
+      height: 50px; }
+    header nav .lg-size-btn {
+      margin: 5px; }
   header #location-search {
     color: black; }
-
-@media (max-width: 1000px) {
-  header {
-    padding: 20px 30px;
-    flex-direction: row;
-    flex-wrap: wrap; }
-    header #PlacesAutocomplete__root {
-      float: right;
-      flex-direction: row;
-      flex-wrap: wrap; } }
-
-@media (max-width: 700px) {
-  header {
-    flex-direction: row;
-    flex-wrap: wrap; }
-  header h2 {
-    margin-bottom: 15px; } }
 
 .main-btn {
   background-color: #85babe;
@@ -58,4 +38,46 @@ header {
   padding: 6px 24px; }
 
 #PlacesAutocomplete__root {
-  float: left; }
+  float: left;
+  margin-left: 15px; }
+
+.dropdown-toggle {
+  display: none; }
+
+@media (max-width: 1000px) {
+  header {
+    padding: 20px 30px;
+    flex-direction: row;
+    flex-wrap: wrap; }
+    header #PlacesAutocomplete__root {
+      float: left;
+      flex-direction: row;
+      flex-wrap: wrap; } }
+
+@media (max-width: 867px) {
+  header {
+    flex-direction: row;
+    flex-wrap: wrap; }
+    header #mini-brand-icon {
+      width: 50px;
+      height: 50px;
+      display: none; }
+    header .dropdown-toggle {
+      display: block; }
+    header .lg-size-btn {
+      display: none; }
+  header h2 {
+    margin-bottom: 15px; } }
+
+@media (max-width: 600px) {
+  #PlacesAutocomplete__root {
+    float: right; }
+  .location-search-form {
+    width: 40%;
+    min-width: 100px; }
+  textarea {
+    width: 30vw;
+    min-width: 100px;
+    margin-right: 10px; }
+  main-btn {
+    padding-left: 10px; } }
