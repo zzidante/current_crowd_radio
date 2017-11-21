@@ -20,7 +20,13 @@ const getTracksByLocation = () => {
         .REACT_APP_JAMENDO_API}&format=jsonpretty&limit=40&haslocation=true&location_country=${country}&location_city=${city}`
     )
     .then(response => {
-      if (response.data.results[0].locations[0].country === country) {
+      if (response.data.results[0].locations[0].country !== country) {
+          window.setState({
+            searchWarning:
+              "We're sorry, we could not find any artists for that city."
+          });
+          console.log("No results");
+        } else {
         let artistArray = [];
         response.data.results.forEach(artist => {
           artistArray.push(artist.id);
@@ -50,14 +56,8 @@ const getTracksByLocation = () => {
                 duration: track.duration
               });
             });
-            window.setState({ tracklist: trackArray });
+            window.setState({ tracklist: trackArray, searchWarning: '' });
           });
-      } else {
-        window.setState({
-          searchWarning:
-            "We're sorry, we could not find any artists for that city."
-        });
-        console.log("No results");
       }
     });
 };
