@@ -9,9 +9,10 @@ class User extends Component {
   };
 
   render() {
+    const { playlists, userId, username } = window.getState()
     let locations = []
-    if (window.getState().playlists){
-        locations = Object.keys(window.getState().playlists).map(location => {
+    if (playlists){
+        locations = Object.keys(playlists).map(location => {
         return (
           <li key={location}>
             <button
@@ -27,8 +28,8 @@ class User extends Component {
     }
     return (
       <section className="username-heading col-md-3 col-xs-6">
-        <h2>{window.getState().username}</h2>
-        <button className ="btn btn-sm">Edit Profile</button>
+        <h2>{username}</h2>
+        {userId !== "guest" && <button className ="btn btn-sm">Edit Profile</button> }
         <ul>{locations}</ul>
       </section>
     );

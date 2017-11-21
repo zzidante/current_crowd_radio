@@ -23,7 +23,6 @@ class Tracklist extends Component {
   }
 
   deleteFromPlaylist = () => {
-    console.log(this.props.track.id, window.getState().playlistType);
     api.deleteFromPlaylist(this.props.track.id, window.getState().playlistType)
   }
   render() {

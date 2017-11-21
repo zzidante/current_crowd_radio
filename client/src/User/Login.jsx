@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import api from '../api';
 
 class Login extends Component {
@@ -15,18 +14,7 @@ class Login extends Component {
       window.setState({ warning: "Please fill out all forms" });
       return;
     }
-    axios
-      .put("http://localhost:8080/users", {
-        email: window.getState().email,
-        password: window.getState().password
-      })
-      .then(res => {
-        const {id, username, default_location} = res.data.user
-        if (id) {
-          window.setState({ userId: id, username, locationBar: default_location, playlists: res.data.playlists, password: "", warning: "" });
-          api.getTracksByLocation();
-        }
-      });
+    api.loginUser( email, password );
   };
   render() {
     return (

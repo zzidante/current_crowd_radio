@@ -8,7 +8,7 @@ import api from "./api";
 class Nav extends Component {
   guest = () => window.setState({ userId: "guest" });
 
-  closeModal = () => window.setState({ modal: false });
+  closeModal = () => window.setState({ modal: false, warning: "" });
 
   openModal = event => {
     event.preventDefault();
