@@ -13,8 +13,8 @@ const cookieSession = require('cookie-session');
 
 const knexConfig = require('./knexfile');
 const knex = require('knex')(knexConfig[ENV]);
-const morgan = require('morgan');
-const knexLogger = require('knex-logger');
+// const morgan = require('morgan');
+// const knexLogger = require('knex-logger');
 
 const DataHelpers = require('./db/helpers/datahelpers.js')(knex);
 
@@ -23,10 +23,10 @@ const playlistsRoutes = require('./routes/playlists')(DataHelpers);
 const usersRoutes = require('./routes/users.js')(DataHelpers);
 
 // HTTP Logger
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 
 // Log knex SQL queries to STDOUT as well
-app.use(knexLogger(knex));
+// app.use(knexLogger(knex));
 app.use(cookieSession({
   name: 'session',
   keys: ['secretOne', 'secretTwo'],
