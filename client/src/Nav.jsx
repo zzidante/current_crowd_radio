@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Login from "./User/Login.jsx";
 import Register from "./User/Register.jsx";
 import Warning from "./Warning.jsx";
-import { Modal } from "react-bootstrap";
+import { Modal, DropdownButton, MenuItem } from "react-bootstrap";
 import PlacesAutocomplete from "react-places-autocomplete";
 import api from "./api";
 class Nav extends Component {
@@ -32,27 +32,31 @@ class Nav extends Component {
         fontFamily: "'Open Sans', 'sans-serif'"
       }
     };
+
     const inputProps = {
       value: window.getState().locationBar,
       onChange: this.onChange,
       onSelect: this.onDropdownSelect
     };
+
     const { modal, warning, userId } = window.getState();
+
     return (
       <header>
         <nav className="navbar">
-          <img className="brand-icon" src="https://www.honoryoga.com/wp-content/uploads/2016/05/icon-50x50.png" />
+          <img id="mini-brand-icon" src="https://www.honoryoga.com/wp-content/uploads/2016/05/icon-50x50.png" />
           <h3>
             <a href="#">Current Crowd Radio</a>
           </h3>
 
-          <form onSubmit={this.setLocation}>
+          <form className="location-search-form" onSubmit={this.setLocation}>
             <PlacesAutocomplete
               id="location-search"
               inputProps={inputProps}
               styles={myStyles}
+              className="col-sm-push-6"
             />
-            <button type="submit" className="btn btn-secondary main-btn">
+            <button type="submit" className="btn btn-primary main-btn col-sm-pull-6">
               Submit
             </button>
           </form>
@@ -61,7 +65,7 @@ class Nav extends Component {
             <nav>
               <form id="login">
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-primary lg-size-btn"
                   name="type"
                   value="login"
                   onClick={this.openModal}
@@ -72,7 +76,7 @@ class Nav extends Component {
 
               <form id="register">
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-primary lg-size-btn"
                   name="type"
                   value="register"
                   onClick={this.openModal}
@@ -80,18 +84,62 @@ class Nav extends Component {
                   Register
                 </button>
                 
-                <button className="btn btn-primary" onClick={this.guest}>
+                <button className="btn btn-primary lg-size-btn" onClick={this.guest}>
                   Guest
                 </button>
               </form>
             </nav>
           )}
-          
+
           {userId && (
             <li>
-              <button className="btn btn-primary" onClick={this.logout}>Logout</button>
+              <button className="btn btn-primary lg-size-btn" onClick={this.logout}>Logout</button>
             </li>
           )}
+
+          {/* Small Screen: If user not logged in */}
+          {userId === "" && (
+            <DropdownButton pullRight title={<i><span className="fa fa-bars"></span></i>}>
+              <MenuItem>
+                  <button
+                    className="btn"
+                    name="type"
+                    value="login"
+                    onClick={this.openModal}
+                  >
+                    Login
+                  </button>
+              </MenuItem>
+              <MenuItem>
+                <button
+                  className="btn"
+                  name="type"
+                  value="register"
+                  onClick={this.openModal}
+                >
+                  Register
+                </button>
+              </MenuItem>
+              <MenuItem>
+                <button className="btn" onClick={this.guest}>
+                    Guest
+                </button>
+              </MenuItem>
+
+            </DropdownButton>
+          )}
+
+          {/* Small Screen:  If user is already logged in, only show logout */}
+          {userId && (
+            <DropdownButton pullRight title={<i><span className="fa fa-bars"></span></i>}>
+              <MenuItem>
+                <li>
+                  <button className="btn" onClick={this.logout}>Logout</button>
+                </li>
+              </MenuItem>
+            </DropdownButton>
+          )}
+          
           <Modal show={!!modal} onHide={this.closeModal}>
             <Modal.Header closeButton>
               <Modal.Title>
