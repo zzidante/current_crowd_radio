@@ -117,7 +117,7 @@
   },
   "eslintConfig": {
     "extends": "react-app",
-    "rules" : {
+    "rules": {
       "no-debugger": "warn"
     }
   }

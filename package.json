@@ -22,5 +22,8 @@
     "url": "https://github.com/bgk-/current_crowd_radio/issues"
   },
   "homepage": "https://github.com/bgk-/current_crowd_radio#readme",
-  "cacheDirectories": ["client/node_modules", "server/node_modules"]
+  "cacheDirectories": [
+    "client/node_modules",
+    "server/node_modules"
+  ]
 }
