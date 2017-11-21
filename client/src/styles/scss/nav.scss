@@ -19,69 +19,45 @@ header{
 	padding: 35px 100px 25px 0;
 	font-family: $fontContent;
 
-	.hamburger-menu {
-		z-index: 3;
-		background-color: rebeccapurple;
-		span {
-			background-color: fuchsia;
-		}
-	}
-
-
 	h3 {
 		font-family: $fontLogo;
+		font-size: 1rem;
 	}
 
 	textarea {
 		color: black;
 		width: 20vw;
+		min-width: 100px;
+		margin-right: 5px;
 	}
 	
 	nav{
 		display: flex;
 
-		li{
-			margin: 0 15px;
+		#mini-brand-icon {
+			width: 50px;
+			height: 50px;
 		}
+
+		.lg-size-btn {
+			margin: 5px;			
+		}
+
+		// li{
+		// 	margin: 0 15px;
+		// }
 		
-		li:first-child{
-			margin-left: 0;	
-		}
+		// li:first-child{
+		// 	margin-left: 0;	
+		// }
 		
-		li:last-child{
-			margin-right: 0;	
-		}
+		// li:last-child{
+		// 	margin-right: 0;	
+		// }
 	}
 
 	#location-search {
 		color:black;
-	}
-}
-
-@media (max-width: 1000px){
-	header{
-		padding: 20px 30px;
-		flex-direction: row;
-		flex-wrap: wrap;		
-
-		#PlacesAutocomplete__root {
-			float: right;
-			flex-direction: row;
-			flex-wrap: wrap;		
-		}
-	}
-
-	
-}
-
-@media (max-width: 700px){
-	header{
-		flex-direction: row;
-		flex-wrap: wrap;		
-	}
-
-	header h2{
-		margin-bottom: 15px;
 	}
 }
 
@@ -94,5 +70,71 @@ header{
 
 #PlacesAutocomplete__root {
 	float: left;
+	margin-left: 15px;
 }
 
+.dropdown-toggle {
+	display: none;
+}
+
+
+@media (max-width: 1000px){
+	header{
+		padding: 20px 30px;
+		flex-direction: row;
+		flex-wrap: wrap;		
+
+		#PlacesAutocomplete__root {
+			float: left;
+			flex-direction: row;
+			flex-wrap: wrap;		
+		}
+	}	
+}
+
+@media (max-width: 867px) {
+	header{
+		flex-direction: row;
+		flex-wrap: wrap;
+
+		#mini-brand-icon {
+			width: 50px;
+			height: 50px;
+			display: none;
+		}
+
+		.dropdown-toggle {
+			display: block;
+		}
+
+		.lg-size-btn {
+			display: none;
+		}
+	}		
+
+	header h2{
+		margin-bottom: 15px;
+	}
+}
+
+@media (max-width: 600px) { 
+
+	#PlacesAutocomplete__root {
+		float: right;	
+	}
+
+	.location-search-form {
+		width: 40%;
+		min-width: 100px;		
+	}
+
+	textarea {
+		width: 30vw;
+		min-width: 100px;
+		margin-right: 10px;
+	}
+	
+	main-btn {
+		padding-left: 10px;
+	}
+}

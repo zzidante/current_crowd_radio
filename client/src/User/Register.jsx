@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import api from "../api";
 import PlacesAutocomplete from "react-places-autocomplete";
+import validation from '../validation'
 class Login extends Component {
   handleUsernameChange = event =>
     window.setState({ username: event.target.value });
@@ -24,15 +25,9 @@ class Login extends Component {
       confirmPassword,
       locationBar
     } = window.getState();
-    if (!username || !email || !password || !confirmPassword || !locationBar) {
-      window.setState({ warning: "Please fill out all forms" });
-      return;
+    if (validation.register(username, email, password, confirmPassword, locationBar)) {
+      api.registerUser(username, email, password, locationBar);
     }
-    if (password !== confirmPassword) {
-      window.setState({ warning: "Passwords must match" });
-      return;
-    }
-    api.registerUser(username, email, password, locationBar);
   };
 
   render() {

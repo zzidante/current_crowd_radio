@@ -51,7 +51,7 @@ const getTracksByLocation = () => {
                 duration: track.duration
               });
             });
-            window.setState({ tracklist: trackArray });
+            window.setState({ tracklist: trackArray, warning: '' });
           });
       } else {
         window.setState({
@@ -64,8 +64,7 @@ const getTracksByLocation = () => {
 };
 
 const getTracksById = () => {
-  const { playlists, playlistType, locationBar
-   } = window.getState();
+  const { playlists, playlistType, locationBar } = window.getState();
   const trackArray = playlists[locationBar][playlistType];
   if (trackArray) {
     axios
@@ -88,7 +87,7 @@ const getTracksById = () => {
             duration: info.duration
           });
         });
-        window.setState({ tracklist: trackArray });
+        window.setState({ tracklist: trackArray, warning: '' });
       });
   } else {
     window.setState({ tracklist: [] });
@@ -135,7 +134,10 @@ const deleteFromPlaylist = (songId, type) => {
         window.setState({ playlists: res.data });
         getTracksById();
       }
-    });
+    })
+    .catch( () => {
+      window.setState({searchWarning: "We're sorry, something went wrong, please try again later."});
+    })
 };
 
 const registerUser = (username, email, password, loc) => {
@@ -150,15 +152,17 @@ const registerUser = (username, email, password, loc) => {
       window.setState({ warning: "" });
       const { userId } = res.data;
       if (userId) {
-        window.setState({ 
-          userId, 
-          password: "", 
+        window.setState({
+          userId,
+          password: "",
           confirmPassword: "",
-          warning: "" });
+          warning: "",
+          modal: false
+        });
       }
     })
-    .catch( () => {
-      window.setState({warning: "Email already exists."})
+    .catch(() => {
+      window.setState({ warning: "Email already exists." });
     });
 };
 
