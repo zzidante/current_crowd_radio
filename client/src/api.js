@@ -16,6 +16,9 @@ const setLocation = () => {
 // given a country and city loads random list of songs
 const getTracksByLocation = () => {
   const { country, city } = window.getState();
+  console.log(JAMENDO);
+  console.log(process.env.REACT_APP_JAMENDO_API);
+  console.log(process.env.JAMENDO_API);
   axios
     .get(
       `https://api.jamendo.com/v3.0/artists/locations/?client_id=${JAMENDO}&format=jsonpretty&limit=40&haslocation=true&location_country=${country}&location_city=${city}`
