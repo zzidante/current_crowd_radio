@@ -1,6 +1,8 @@
 import axios from "axios";
 import iso from "iso-3166-1";
 
+require('dotenv').config();
+
 // Converts text to city/county codes, sets state, and loads new tracklist.
 const setLocation = () => {
   const loc = window.getState().locationBar;
