@@ -17,10 +17,26 @@ class Nav extends Component {
 
   logout = () => window.setState({ userId: "" });
 
-  onChange = locationBar => window.setState({ locationBar });
+  onChange = locationBar => {
+    const loc = locationBar.replace(/^ +/, '');
+    console.log(loc);
+    window.setState({ locationBar: loc })
+  };
 
   setLocation = event => {
     event.preventDefault();
+    const loc  = window.getState().locationBar
+    if ( !loc.trim ){
+      window.setState({searchWarning: "City cannot be blank."})
+      return
+    } else if (/\d+/.test(loc))  {
+      window.setState({searchWarning: "City must not contain an address"})
+      return
+    } else if ( !/,/.test(loc)) {
+      window.setState({searchWarning: "Must have city and country."})
+      return
+    }
+    console.log("happened");
     api.setLocation();
     api.getTracksByLocation();
   };

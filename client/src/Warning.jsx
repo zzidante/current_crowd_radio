@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Warning({warning}){
+function Warning({warning, searchWarning}){
   return (
     <div id="warning-message" className="alert alert-danger">
-     {warning}
+     {warning || searchWarning}
     </div>
   )
 }
