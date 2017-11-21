@@ -50,7 +50,7 @@ const getTracksByLocation = () => {
                 duration: track.duration
               });
             });
-            window.setState({ tracklist: trackArray });
+            window.setState({ tracklist: trackArray, warning: '' });
           });
       } else {
         window.setState({
@@ -87,7 +87,7 @@ const getTracksById = () => {
             duration: info.duration
           });
         });
-        window.setState({ tracklist: trackArray });
+        window.setState({ tracklist: trackArray, warning: '' });
       });
   } else {
     window.setState({ tracklist: [] });
