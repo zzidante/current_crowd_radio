@@ -156,7 +156,8 @@ const registerUser = (username, email, password, loc) => {
           userId,
           password: "",
           confirmPassword: "",
-          warning: ""
+          warning: "",
+          modal: false
         });
       }
     })
