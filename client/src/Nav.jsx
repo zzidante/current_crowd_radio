@@ -12,7 +12,7 @@ class Nav extends Component {
 
   openModal = event => {
     event.preventDefault();
-    window.setState({ modal: event.target.value });
+    window.setState({ modal: event.currentTarget.value });
   };
 
   logout = () => window.setState({ userId: "" });
@@ -40,73 +40,74 @@ class Nav extends Component {
     const { modal, warning, userId } = window.getState();
     return (
       <header>
-        <h3>
-          <img className="brand-icon" src="" />
-        </h3>
-        <h3>
-          <a href="#">Current Crowd Radio</a>
-        </h3>
+        <nav className="navbar">
+          <img className="brand-icon" src="https://www.honoryoga.com/wp-content/uploads/2016/05/icon-50x50.png" />
+          <h3>
+            <a href="#">Current Crowd Radio</a>
+          </h3>
 
-        <form onSubmit={this.setLocation}>
-          <PlacesAutocomplete
-            id="location-search"
-            inputProps={inputProps}
-            styles={myStyles}
-          />
-          <button type="submit" className="btn btn-secondary main-btn">
-            Submit
-          </button>
-        </form>
+          <form onSubmit={this.setLocation}>
+            <PlacesAutocomplete
+              id="location-search"
+              inputProps={inputProps}
+              styles={myStyles}
+            />
+            <button type="submit" className="btn btn-secondary main-btn">
+              Submit
+            </button>
+          </form>
 
-        {userId === "" && (
-          <nav>
-            <form id="login">
-              <button
-                className="btn btn-primary"
-                name="type"
-                value="login"
-                onClick={this.openModal}
-              >
-                Login
-              </button>
-            </form>
-            <form id="register">
-              <button
-                className="btn btn-primary"
-                name="type"
-                value="register"
-                onClick={this.openModal}
-              >
-                Register
-              </button>
-            </form>
-            <Modal show={!!modal} onHide={this.closeModal}>
-              <Modal.Header closeButton>
-                <Modal.Title>
-                  {modal === "login" && "Login"}
-                  {modal === "register" && "Register"}
-                </Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                {modal === "login" && <Login />}
-                {modal === "register" && <Register />}
-              </Modal.Body>
-              <Modal.Footer>
-                {warning && <Warning warning={warning} />}
-              </Modal.Footer>
-            </Modal>
-            <a className="btn btn-primary" onClick={this.guest}>
-              Guest
-            </a>
-          </nav>
-        )}
-        {userId && (
-          <nav>
+          {userId === "" && (
+            <nav>
+              <form id="login">
+                <button
+                  className="btn btn-primary"
+                  name="type"
+                  value="login"
+                  onClick={this.openModal}
+                >
+                  Login
+                </button>
+              </form>
+
+              <form id="register">
+                <button
+                  className="btn btn-primary"
+                  name="type"
+                  value="register"
+                  onClick={this.openModal}
+                >
+                  Register
+                </button>
+                
+                <button className="btn btn-primary" onClick={this.guest}>
+                  Guest
+                </button>
+              </form>
+            </nav>
+          )}
+          
+          {userId && (
             <li>
-              <a onClick={this.logout}>Logout</a>
+              <button className="btn btn-primary" onClick={this.logout}>Logout</button>
             </li>
-          </nav>
-        )}
+          )}
+          <Modal show={!!modal} onHide={this.closeModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>
+                {modal === "login" && "Login"}
+                {modal === "register" && "Register"}
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {modal === "login" && <Login />}
+              {modal === "register" && <Register />}
+            </Modal.Body>
+            <Modal.Footer>
+              {warning && <Warning warning={warning} />}
+            </Modal.Footer>
+          </Modal>
+        </nav>
       </header>
     );
   }
