@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import api from "../api";
 import PlacesAutocomplete from "react-places-autocomplete";
 class Login extends Component {
   handleUsernameChange = event =>
@@ -32,20 +32,7 @@ class Login extends Component {
       window.setState({ warning: "Passwords must match" });
       return;
     }
-    axios
-      .post("http://localhost:8080/users", {
-        username,
-        email,
-        password,
-        defaultLocation: locationBar
-      })
-      .then(res => {
-        window.setState({ warning: "" });
-        const { userId } = res.data;
-        if (userId) {
-          window.setState({ userId, password: "" });
-        }
-      });
+    api.registerUser(username, email, password, locationBar);
   };
 
   render() {

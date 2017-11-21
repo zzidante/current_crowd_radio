@@ -31,6 +31,9 @@ window.setState({
   muted: false,
   duration: 0,
   loop: false,
-  apikey: process.env.REACT_APP_JAMENDO_API
+  loaded: 0,
+  loadedSeconds: 0,
+  played: 0,
+  playedSeconds: 0
 })
 registerServiceWorker();

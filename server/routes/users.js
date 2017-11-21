@@ -8,7 +8,6 @@ module.exports = (DataHelpers) => {
   
   // Login
   router.put('/', (req, res) => {
-    console.log(req.body);
     DataHelpers.login(req.body.email, req.body.password).then( user => {
       if(user) {
         req.session.user_id = user.id;
@@ -27,7 +26,7 @@ module.exports = (DataHelpers) => {
     const password = bcrypt.hashSync(req.body.password, 10);
     DataHelpers.registerUser({username: username, email: email, password_digest: password, default_location: defaultLocation})
       .then ( userId => {
-        if(userId[0]) {
+        if( userId && userId[0]) {
           req.session.user_id = userId[0];
           res.status(200).json({userId: userId[0]});
         } else {

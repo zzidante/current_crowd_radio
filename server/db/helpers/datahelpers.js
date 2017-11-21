@@ -18,8 +18,8 @@ module.exports = function makeDataHelpers (knex) {
     // Returns promise to get all playlists for specified user after inserting new user
     // If user already exists, returns null
     registerUser: function (user) {
-      return knex('users').where({email: user.email}).then( existing => {
-        if (existing[0]) {
+      return knex('users').where({email: user.email}).first().then( existing => {
+        if (existing) {
           return null;
         }
         return knex('users').insert(user).returning('id');
@@ -142,7 +142,6 @@ module.exports = function makeDataHelpers (knex) {
 
             // Create new playlist for user if none matching the supplied criteria exist
             return this.addPlaylist(userId, type, location).then( newPlaylist => {
-              console.log("NEW PLAYLIST", newPlaylist);
               return this.playlistTracksInsert(newPlaylist[0], songId);
             });
           }
