@@ -30,6 +30,10 @@ window.setState({
   volume: 0.8,
   muted: false,
   duration: 0,
-  loop: false
+  loop: false,
+  loaded: 0,
+  loadedSeconds: 0,
+  played: 0,
+  playedSeconds: 0
 })
 registerServiceWorker();
