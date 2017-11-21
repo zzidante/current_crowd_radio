@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PlacesAutocomplete from "react-places-autocomplete";
 import api from "../api";
-
+import Warning from "../Warning.jsx";
+import validation from '../validation'
 
 class LocationSearch extends Component {
   
@@ -14,18 +15,11 @@ class LocationSearch extends Component {
   setLocation = event => {
     event.preventDefault();
     const loc  = window.getState().locationBar
-    if ( !loc.trim ){
-      window.setState({searchWarning: "City cannot be blank."})
-      return
-    } else if (/\d+/.test(loc))  {
-      window.setState({searchWarning: "City must not contain an address"})
-      return
-    } else if ( !/,/.test(loc)) {
-      window.setState({searchWarning: "Must have city and country."})
-      return
+
+    if (validation.locationSearch(loc)) {
+      api.setLocation();
+      api.getTracksByLocation();
     }
-    api.setLocation();
-    api.getTracksByLocation();
   };
   
 
@@ -55,6 +49,8 @@ class LocationSearch extends Component {
         <button type="submit" className="btn btn-primary main-btn col-sm-pull-6">
           Submit
         </button>
+        {!window.getState().modal && window.getState().warning && <Warning warning={window.getState().warning} />}
+
       </form>
     )
   }
