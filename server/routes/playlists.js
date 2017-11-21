@@ -16,8 +16,7 @@ module.exports = (DataHelpers) => {
   router.post('/:cityId/users/:id', (req, res) => {
     const { id, cityId } = req.params;
     const { songId, type } = req.body;
-    console.log(req.body);
-    console.log(id, cityId, songId, type);
+
     DataHelpers.addSongToPlaylist(id, type, cityId, songId).then( userPlaylists => {
       res.status(200).json(userPlaylists);
     });
@@ -27,15 +26,17 @@ module.exports = (DataHelpers) => {
   router.put('/:cityId/users/:id', (req, res) => {
     const { id, cityId } = req.params;
     const { songId, typeFrom, typeTo } = req.body;
+    console.log(req.body);
     DataHelpers.moveSongToPlaylist(id, typeTo, typeFrom, cityId, songId).then( userPlaylists => {
+      console.log("RESPONSE", userPlaylists);
       res.status(200).json(userPlaylists);
     });
   });
 
   // Remove single song from user's playlist
   router.delete('/:cityId/users/:id', (req, res) => {
-    const { id, cityId } = req.params;
-    const { songId, type } = req.body;
+    const { id, cityId} = req.params;
+    const { songId, type } = req.query;
     DataHelpers.deleteSongFromPlaylist(id, type, cityId, songId).then( userPlaylists => {
       res.status(200).json(userPlaylists);
     });

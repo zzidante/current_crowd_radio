@@ -54,19 +54,34 @@ const getTracksByLocation = () => {
 const getTracksById = () => {
   const { playlists, playlistType, locationBar, apikey } = window.getState()
   const trackArray = playlists[locationBar][playlistType]
-  axios
-  .get(
-    `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${apikey}&format=jsonpretty&limit=40&track_id=${trackArray.join(
-      "+"
-    )}`
-  ).then( res => {
-    console.log(res);
-    window.setState({tracklist: res.data.results})
-  })
+  if (trackArray) {
+    axios
+    .get(
+      `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${apikey}&format=jsonpretty&limit=40&track_id=${trackArray.join(
+        "+"
+      )}`
+    ).then( res => {
+      const trackArray = []
+      res.data.results.forEach( track => {
+        const info = track.tracks[0]
+        trackArray.push({
+          id: info.id,
+          name: info.name,
+          trackHREF: info.audio,
+          artist: track.name,
+          album: info.album_name,
+          image: info.image,
+          duration: info.duration
+        });
+      });
+      window.setState({tracklist: trackArray})
+    })
+  } else {
+    window.setState({tracklist: []})
+  }
 }
 
 const addToPlaylist = (songId, type) => {
-  console.log("client", songId);
   axios.post(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {songId, type}).then (res => {
     if (res.data) {
       window.setState({playlists: res.data})
@@ -75,10 +90,20 @@ const addToPlaylist = (songId, type) => {
 }
 const moveToPlaylist = (songId, type) => {
   const typeFrom = type === "archive" ? "current" : "archive";
-  axios.put(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {songId, typeFrom, typeTo: type}).then(playlists => window.setState({playlists}))
+  axios.put(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {songId, typeFrom, typeTo: type}).then (res => {
+    if (res.data) {
+      window.setState({playlists: res.data})
+      getTracksById()
+    }
+  })
 }
 const deleteFromPlaylist = (songId, type) => {
-  axios.delete(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {songId, type}).then(playlists => window.setState({playlists}))
+  axios.delete(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {params: {songId, type}}).then (res => {
+    if (res.data) {
+      window.setState({playlists: res.data})
+      getTracksById()
+    }
+  })
 }
 module.exports = {
   setLocation,

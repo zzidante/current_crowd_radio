@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import api from '../api';
 
 class Login extends Component {
   handleEmailChange = event =>
@@ -20,9 +21,10 @@ class Login extends Component {
         password: window.getState().password
       })
       .then(res => {
-        const {id, username} = res.data.user
+        const {id, username, default_location} = res.data.user
         if (id) {
-          window.setState({ userId: id, username, playlists: res.data.playlists, password: "", warning: "" });
+          window.setState({ userId: id, username, locationBar: default_location, playlists: res.data.playlists, password: "", warning: "" });
+          api.getTracksByLocation();
         }
       });
   };

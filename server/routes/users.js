@@ -29,7 +29,7 @@ module.exports = (DataHelpers) => {
       .then ( userId => {
         if(userId[0]) {
           req.session.user_id = userId[0];
-          res.status(200).json(req.session);
+          res.status(200).json({userId: userId[0]});
         } else {
           res.sendStatus(401);
         }
