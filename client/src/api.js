@@ -16,7 +16,8 @@ const getTracksByLocation = () => {
   const { country, city } = window.getState();
   axios
     .get(
-      `https://api.jamendo.com/v3.0/artists/locations/?client_id=${process.env.REACT_APP_JAMENDO_API}&format=jsonpretty&limit=40&haslocation=true&location_country=${country}&location_city=${city}`
+      `https://api.jamendo.com/v3.0/artists/locations/?client_id=${process.env
+        .REACT_APP_JAMENDO_API}&format=jsonpretty&limit=40&haslocation=true&location_country=${country}&location_city=${city}`
     )
     .then(response => {
       if (response.data.results[0].locations[0].country === country) {
@@ -26,7 +27,9 @@ const getTracksByLocation = () => {
         });
         axios
           .get(
-            `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${process.env.REACT_APP_JAMENDO_API}&format=jsonpretty&limit=40&id=${artistArray.join(
+            `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${process
+              .env
+              .REACT_APP_JAMENDO_API}&format=jsonpretty&limit=40&id=${artistArray.join(
               "+"
             )}`
           )
@@ -60,13 +63,13 @@ const getTracksByLocation = () => {
 };
 
 const getTracksById = () => {
-  const { playlists, playlistType, locationBar
-   } = window.getState();
+  const { playlists, playlistType, locationBar } = window.getState();
   const trackArray = playlists[locationBar][playlistType];
   if (trackArray) {
     axios
       .get(
-        `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${process.env.REACT_APP_JAMENDO_API}&format=jsonpretty&limit=40&track_id=${trackArray.join(
+        `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${process.env
+          .REACT_APP_JAMENDO_API}&format=jsonpretty&limit=40&track_id=${trackArray.join(
           "+"
         )}`
       )
@@ -131,7 +134,10 @@ const deleteFromPlaylist = (songId, type) => {
         window.setState({ playlists: res.data });
         getTracksById();
       }
-    });
+    })
+    .catch( () => {
+      window.setState({searchWarning: "We're sorry, something went wrong, please try again later."});
+    })
 };
 
 const registerUser = (username, email, password, loc) => {
@@ -146,15 +152,16 @@ const registerUser = (username, email, password, loc) => {
       window.setState({ warning: "" });
       const { userId } = res.data;
       if (userId) {
-        window.setState({ 
-          userId, 
-          password: "", 
+        window.setState({
+          userId,
+          password: "",
           confirmPassword: "",
-          warning: "" });
+          warning: ""
+        });
       }
     })
-    .catch( () => {
-      window.setState({warning: "Email already exists."})
+    .catch(() => {
+      window.setState({ warning: "Email already exists." });
     });
 };
 
