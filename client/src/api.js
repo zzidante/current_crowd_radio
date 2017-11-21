@@ -7,14 +7,13 @@ const setLocation = () => {
   const city = loc.match(/^\w+[a-z]?/i)[0];
   const isoCodes = iso.whereCountry(loc.match(/(\w+\s)?\w+.?$/)[0]);
   if (isoCodes) {
-    window.setState({ county: isoCodes.alpha3, city });
-    getTracks(isoCodes.alpha3, city);
+    window.setState({ country: isoCodes.alpha3, city });
   }
 };
 
 // given a country and city loads random list of songs
-const getTracks = (country, city) => {
-  const { apikey } = window.getState();
+const getTracksByLocation = () => {
+  const { apikey, country, city } = window.getState();
   axios
     .get(
       `https://api.jamendo.com/v3.0/artists/locations/?client_id=${apikey}&format=jsonpretty&limit=40&haslocation=true&location_country=${country}&location_city=${city}`
@@ -51,7 +50,66 @@ const getTracks = (country, city) => {
         });
     });
 };
+
+const getTracksById = () => {
+  const { playlists, playlistType, locationBar, apikey } = window.getState()
+  const trackArray = playlists[locationBar][playlistType]
+  if (trackArray) {
+    axios
+    .get(
+      `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${apikey}&format=jsonpretty&limit=40&track_id=${trackArray.join(
+        "+"
+      )}`
+    ).then( res => {
+      const trackArray = []
+      res.data.results.forEach( track => {
+        const info = track.tracks[0]
+        trackArray.push({
+          id: info.id,
+          name: info.name,
+          trackHREF: info.audio,
+          artist: track.name,
+          album: info.album_name,
+          image: info.image,
+          duration: info.duration
+        });
+      });
+      window.setState({tracklist: trackArray})
+    })
+  } else {
+    window.setState({tracklist: []})
+  }
+}
+
+const addToPlaylist = (songId, type) => {
+  axios.post(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {songId, type}).then (res => {
+    if (res.data) {
+      window.setState({playlists: res.data})
+    }
+  })
+}
+const moveToPlaylist = (songId, type) => {
+  const typeFrom = type === "archive" ? "current" : "archive";
+  axios.put(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {songId, typeFrom, typeTo: type}).then (res => {
+    if (res.data) {
+      window.setState({playlists: res.data})
+      getTracksById()
+    }
+  })
+}
+const deleteFromPlaylist = (songId, type) => {
+  axios.delete(`http://localhost:8080/playlists/${window.getState().locationBar}/users/${window.getState().userId}`, {params: {songId, type}}).then (res => {
+    if (res.data) {
+      window.setState({playlists: res.data})
+      getTracksById()
+    }
+  })
+}
 module.exports = {
   setLocation,
-  getTracks
+  getTracksByLocation,
+  getTracksById,
+  addToPlaylist,
+  moveToPlaylist,
+  deleteFromPlaylist
 };

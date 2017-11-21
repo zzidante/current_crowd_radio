@@ -104,12 +104,10 @@ module.exports = function makeDataHelpers (knex) {
             return this.getPlaylists(playlistResult[0].user_id);
           }
           return knex('playlists').insert({user_id: userId, type: type, location: location})
-            .returning('user_id').then( userId => {
-              return this.getPlaylists(userId[0]);
-            }).catch(error => {
-              console.log("Playlist add error: ", error.detail);
-            });;
-        });
+            .returning('id')
+        }).catch(error => {
+          console.log("Playlist add error: ", error.detail);
+          });
     },
 
     // Returns promise to get all playlists for specified user after deleting specified playlist
@@ -144,7 +142,8 @@ module.exports = function makeDataHelpers (knex) {
 
             // Create new playlist for user if none matching the supplied criteria exist
             return this.addPlaylist(userId, type, location).then( newPlaylist => {
-              return this.playlistTracksInsert(newPlaylist[0].id, songId);
+              console.log("NEW PLAYLIST", newPlaylist);
+              return this.playlistTracksInsert(newPlaylist[0], songId);
             });
           }
         });

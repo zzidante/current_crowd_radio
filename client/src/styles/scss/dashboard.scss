@@ -116,7 +116,7 @@ $body-min-height: 76vh;
 				5px 6px 1px $shadow1, 
 				7px 6px 1px $shadow2;
 			}
-		
+			
 			.audio-player {
 				display: none;
 				width: 0px;
@@ -204,7 +204,9 @@ $body-min-height: 76vh;
 				.track-name {
 					padding-left: 5px;
 				}
-
+				.track-btns {
+					float: right;
+				}
 				button {
 					// get rid of default border
 					border: 0px solid transparent;

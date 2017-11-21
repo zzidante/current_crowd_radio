@@ -33,17 +33,15 @@ class Login extends Component {
       return;
     }
     axios
-      .post("http://localhost:8081/users", {
+      .post("http://localhost:8080/users", {
         username,
         email,
         password,
-        detaultLocation: locationBar
+        defaultLocation: locationBar
       })
       .then(res => {
         window.setState({ warning: "" });
-        console.log(res.data);
         const { userId } = res.data;
-        console.log(userId);
         if (userId) {
           window.setState({ userId, password: "" });
         }

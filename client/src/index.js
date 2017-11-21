@@ -13,13 +13,13 @@ window.setState = (newState) => {
 }
 window.setState({
   tracklist: [],
+  currentTrackIndex: 0,
   locationBar: '',
   country: '',
   city: '',
   type: '',
-  locations: ['Vancouver, BC, Canada', 'Lisbon, Portugal', 'Madrid, Spain'],
-  playlists: [],
-  currentTrackIndex: 0,
+  playlists: {},
+  playlistType: '',
   warning: '',
   userId: '',
   username: '',

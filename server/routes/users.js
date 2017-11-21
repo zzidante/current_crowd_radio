@@ -8,12 +8,12 @@ module.exports = (DataHelpers) => {
   
   // Login
   router.put('/', (req, res) => {
+    console.log(req.body);
     DataHelpers.login(req.body.email, req.body.password).then( user => {
       if(user) {
         req.session.user_id = user.id;
         DataHelpers.getPlaylists(user.id).then( playlists => {
-          req.session.playlists = playlists;
-          res.status(200).json(req.session);
+          res.status(200).json({playlists, user});
         });
       } else {
         res.sendStatus(401);
@@ -29,7 +29,7 @@ module.exports = (DataHelpers) => {
       .then ( userId => {
         if(userId[0]) {
           req.session.user_id = userId[0];
-          res.status(200).json(req.session);
+          res.status(200).json({userId: userId[0]});
         } else {
           res.sendStatus(401);
         }
