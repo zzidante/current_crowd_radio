@@ -1,7 +1,7 @@
 import axios from "axios";
 import iso from "iso-3166-1";
 
-const JAMENDO = process.env.REACT_APP_JAMENDO_API ? process.env.REACT_APP_JAMENDO_API : process.env.JAMENDO_API;
+let JAMENDO = process.env.REACT_APP_JAMENDO_API ? process.env.REACT_APP_JAMENDO_API : process.env.JAMENDO_API;
 
 // Converts text to city/county codes, sets state, and loads new tracklist.
 const setLocation = () => {
