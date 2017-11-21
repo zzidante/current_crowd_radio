@@ -1,9 +1,7 @@
 import axios from "axios";
 import iso from "iso-3166-1";
 
-const JAMENDO = process.env.REACT_APP_JAMENDO_API;
-
-// Converts text to city/county codes, sets state, and loads new tracklist.
+// Converts text to city/county codes, sets state, and loads new tracklist. :)
 const setLocation = () => {
   const loc = window.getState().locationBar;
   const city = loc.match(/^\w+[a-z]?/i)[0];
@@ -18,7 +16,7 @@ const getTracksByLocation = () => {
   const { country, city } = window.getState();
   axios
     .get(
-      `https://api.jamendo.com/v3.0/artists/locations/?client_id=${JAMENDO}&format=jsonpretty&limit=40&haslocation=true&location_country=${country}&location_city=${city}`
+      `https://api.jamendo.com/v3.0/artists/locations/?client_id=${process.env.REACT_APP_JAMENDO_API}&format=jsonpretty&limit=40&haslocation=true&location_country=${country}&location_city=${city}`
     )
     .then(response => {
       if (response.data.results[0].locations[0].country === country) {
@@ -28,7 +26,7 @@ const getTracksByLocation = () => {
         });
         axios
           .get(
-            `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${JAMENDO}&format=jsonpretty&limit=40&id=${artistArray.join(
+            `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${process.env.REACT_APP_JAMENDO_API}&format=jsonpretty&limit=40&id=${artistArray.join(
               "+"
             )}`
           )
@@ -68,7 +66,7 @@ const getTracksById = () => {
   if (trackArray) {
     axios
       .get(
-        `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${JAMENDO}&format=jsonpretty&limit=40&track_id=${trackArray.join(
+        `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${process.env.REACT_APP_JAMENDO_API}&format=jsonpretty&limit=40&track_id=${trackArray.join(
           "+"
         )}`
       )
