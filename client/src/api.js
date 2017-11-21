@@ -16,7 +16,6 @@ const API_KEY = process.env.REACT_APP_JAMENDO_API;
 // given a country and city loads random list of songs
 const getTracksByLocation = () => {
   const { country, city } = window.getState();
-  debugger
   axios
     .get(
       `https://api.jamendo.com/v3.0/artists/locations/?client_id=${API_KEY}&format=jsonpretty&limit=40&haslocation=true&location_country=${country}&location_city=${city}`
