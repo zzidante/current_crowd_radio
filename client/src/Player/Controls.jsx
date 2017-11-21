@@ -39,14 +39,18 @@ class Controls extends Component {
   onProgress = state => {
     // Progress only if not seeking
     if (!window.getState().seeking) {
-      window.setState( { ...state } );
+      window.setState({ ...state });
     }
   };
   ref = player => {
     this.player = player;
   };
   onEnded = () => {
+    const { currentTrackIndex, tracklist } = window.getState();
     window.setState({ playing: window.getState().loop });
+    if ( currentTrackIndex < tracklist.length - 1 ) {
+      this.nextTrack()
+    }
   };
   onDuration = duration => {
     window.setState({ duration });
@@ -93,7 +97,10 @@ class Controls extends Component {
             <h2>{currentTrack.name}</h2>
             <h3>{currentTrack.artist}</h3>
             <span>{currentTrack.album}</span>
-            <div className="player-image-bg" style={{ backgroundImage: `url(${currentTrack.image})` }}></div>
+            <div
+              className="player-image-bg"
+              style={{ backgroundImage: `url(${currentTrack.image})` }}
+            />
 
             <table className="current-song-container">
               <tbody>
@@ -123,7 +130,11 @@ class Controls extends Component {
                       onMouseUp={this.onSeekMouseUp}
                       className="track-seeking"
                     />
-                    <progress max={1} value={played} className="track-progress" />
+                    <progress
+                      max={1}
+                      value={played}
+                      className="track-progress"
+                    />
                     <progress
                       max={1}
                       value={loaded}
@@ -132,9 +143,9 @@ class Controls extends Component {
                   </td>
                 </tr>
                 <tr>
-                    <td>
-                      <Duration seconds={duration * played} />
-                    </td>
+                  <td>
+                    <Duration seconds={duration * played} />
+                  </td>
                 </tr>
 
                 <tr>

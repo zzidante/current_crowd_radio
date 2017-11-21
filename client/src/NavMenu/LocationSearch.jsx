@@ -1,27 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import PlacesAutocomplete from "react-places-autocomplete";
 import api from "../api";
 import Warning from "../Warning.jsx";
-import validation from '../validation'
+import validation from "../validation";
 
 class LocationSearch extends Component {
-  
-
   onChange = locationBar => {
-    const loc = locationBar.replace(/^ +/, '');
-    window.setState({ locationBar: loc })
+    const loc = locationBar.replace(/^ +/, "");
+    window.setState({ locationBar: loc });
   };
 
   setLocation = event => {
     event.preventDefault();
-    const loc  = window.getState().locationBar
+    const loc = window.getState().locationBar;
 
     if (validation.locationSearch(loc)) {
       api.setLocation();
       api.getTracksByLocation();
     }
   };
-  
 
   render() {
     const myStyles = {
@@ -46,14 +43,19 @@ class LocationSearch extends Component {
           styles={myStyles}
           className="col-sm-push-6"
         />
-        <button type="submit" className="btn btn-primary main-btn col-sm-pull-6">
+        <button
+          type="submit"
+          className="btn btn-primary main-btn col-sm-pull-6"
+        >
           Submit
         </button>
-        {!window.getState().modal && window.getState().warning && <Warning warning={window.getState().warning} />}
-
+        {!window.getState().modal &&
+          window.getState().warning && (
+            <Warning warning={window.getState().warning} />
+          )}
       </form>
-    )
+    );
   }
 }
 
-export default LocationSearch
+export default LocationSearch;

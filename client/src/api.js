@@ -21,12 +21,12 @@ const getTracksByLocation = () => {
     )
     .then(response => {
       if (response.data.results[0].locations[0].country !== country) {
-          window.setState({
-            searchWarning:
-              "We're sorry, we could not find any artists for that city."
-          });
-          console.log("No results");
-        } else {
+        window.setState({
+          searchWarning:
+            "We're sorry, we could not find any artists for that city."
+        });
+        console.log("No results");
+      } else {
         let artistArray = [];
         response.data.results.forEach(artist => {
           artistArray.push(artist.id);
@@ -56,7 +56,7 @@ const getTracksByLocation = () => {
                 duration: track.duration
               });
             });
-            window.setState({ tracklist: trackArray, searchWarning: '' });
+            window.setState({ tracklist: trackArray, searchWarning: "" });
           });
       }
     });
@@ -135,9 +135,12 @@ const deleteFromPlaylist = (songId, type) => {
         getTracksById();
       }
     })
-    .catch( () => {
-      window.setState({searchWarning: "We're sorry, something went wrong, please try again later."});
-    })
+    .catch(() => {
+      window.setState({
+        searchWarning:
+          "We're sorry, something went wrong, please try again later."
+      });
+    });
 };
 
 const registerUser = (username, email, password, loc) => {
