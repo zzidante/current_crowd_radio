@@ -14,7 +14,7 @@ header {
   padding: 35px 100px 25px 0;
   font-family: "Magra", sans-serif; }
   header .hamburger-menu {
-    z-index: 2;
+    z-index: 3;
     background-color: rebeccapurple; }
     header .hamburger-menu span {
       background-color: fuchsia; }
