@@ -1,0 +1,25 @@
+{
+  "name": "current-crowd-radio",
+  "version": "1.0.0",
+  "description": "The only radio for the current crowd!",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd client && npm install && cd ../server && npm install",
+    "heroku-postbuild": "cd client && npm build",
+    "start": "cd server && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "6.9.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bgk-/current_crowd_radio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bgk-/current_crowd_radio/issues"
+  },
+  "homepage": "https://github.com/bgk-/current_crowd_radio#readme"
+}
