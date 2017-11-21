@@ -7,12 +7,14 @@ import Profile from './User/Profile.jsx';
 class Routes extends Component{
   render(){
     return (
+      <div>
       <Router history={browserHistory}>
-          <Switch>
+        <Switch>
             <Route path="/" component={App}/>
             <Route path="/User" component={Profile}/>
           </Switch>
       </Router>
+      </div>
     )
   }
 }

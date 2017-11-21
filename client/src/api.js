@@ -60,7 +60,8 @@ const getTracksByLocation = () => {
 };
 
 const getTracksById = () => {
-  const { playlists, playlistType, locationBar, apikey } = window.getState();
+  const { playlists, playlistType, locationBar
+   } = window.getState();
   const trackArray = playlists[locationBar][playlistType];
   if (trackArray) {
     axios
