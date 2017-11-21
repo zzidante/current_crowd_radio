@@ -115,7 +115,7 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-              
+              rules: require(paths.appPackageJson).eslintConfig.rules,
             },
             loader: require.resolve('eslint-loader'),
           },
