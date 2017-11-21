@@ -33,7 +33,7 @@ app.use(cookieSession({
   maxAge: 24 * 60 *60 * 1000
 }));
 app.use(bodyParser.json());
-app.use(express.static("./build/"));
+app.use(express.static("../client/build/"));
 
 app.use(cors());
 app.use('/playlists/', playlistsRoutes);
