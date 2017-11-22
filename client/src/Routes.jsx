@@ -10,7 +10,7 @@ class Routes extends Component{
       <div>
       <Router history={browserHistory}>
         <Switch>
-            <Route path="/" component={App}/>
+            <Route exact path="/" component={App}/>
             <Route path="/User" component={Profile}/>
           </Switch>
       </Router>
