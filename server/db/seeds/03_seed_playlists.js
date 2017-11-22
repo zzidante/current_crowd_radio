@@ -9,10 +9,10 @@ exports.seed = function(knex, Promise) {
     .then((queryResult) => {
       // Inserts seed entries
       return knex('playlists').insert([
-        {user_id: queryResult[0].id, type: 'current', location:'1038'},
-        {user_id: queryResult[0].id, type: 'archive', location:'1038'},
-        {user_id: queryResult[1].id, type: 'current', location:'1038'},
-        {user_id: queryResult[1].id, type: 'archive', location:'1038'}
+        {user_id: queryResult[0].id, type: 'current', location:'Vancouver, BC, Canada'},
+        {user_id: queryResult[0].id, type: 'archive', location:'Vancouver, BC, Canada'},
+        {user_id: queryResult[1].id, type: 'current', location:'Vancouver, BC, Canada'},
+        {user_id: queryResult[1].id, type: 'archive', location:'Vancouver, BC, Canada'}
       ]);
     });
 };
