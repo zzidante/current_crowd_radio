@@ -263,6 +263,25 @@ const updatePassword = ( oldPassword, newPassword ) => {
     }
   })
 }
+const getUser = () => {
+  return axios.get(`http://localhost:8080/users/${window.getState().userId}`)
+  .then(res => { 
+    const {username, email, default_location} = res.data.user;
+    window.setState({ username, email, defaultLocation: default_location })
+    return true
+  })
+  .catch((err) => {
+    if (!err.response) {
+      window.setState({ warning: "Server error: Please try again later."})
+      return 
+    } else if (err.response.status === 401) {
+      window.setState({ warning: "You are not authorized." });
+      return
+    } else if (err.response.status === 404) {
+      window.setState({ warning: "User not found."})
+    }
+  });
+}
 module.exports = {
   setLocation,
   getTracksByLocation,
