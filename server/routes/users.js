@@ -62,8 +62,7 @@ module.exports = (DataHelpers) => {
   // Edit profile
   router.put('/:id', (req, res) => {
     const { username, email, location } = req.body
-    const password = bcrypt.hashSync(req.body.password, 10);
-    DataHelpers.editProfile(req.params.id, {username, email, password_digest: password, default_location: location})
+    DataHelpers.editProfile(req.params.id, {username, email, default_location: location})
       .then ( userId => {
         if(userId[0]) {
           req.session.user_id = userId[0];
@@ -72,6 +71,18 @@ module.exports = (DataHelpers) => {
           res.sendStatus(401);
         }
       });
+  });
+
+  // Edit password
+  router.put('/:id/password/', (req, res) => {
+    const { oldPassword, newPassword } = req.body
+    DataHelpers.editPassword(req.params.id, { oldPassword, newPassword}).then( userId => {
+      if(userId[0]) {
+        res.sendStatus("200")
+      } else {
+        res.sendStatus(401)
+      }
+    })
   });
 
   // Delete account

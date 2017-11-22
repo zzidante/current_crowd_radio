@@ -225,6 +225,44 @@ const loginUser = (email, password) => {
       }
     });
 };
+
+const updateUser = ( username, email, defaultLocation) => {
+  axios.put(`http://localhost:8080/users/${window.getState().userId}`, {username, email, defaultLocation})
+  .then( res => {
+    window.setState({
+      email: '',
+      warning: ''
+    })
+  })
+  .catch( err => {
+    if (!err.response){
+      window.setState({warning: "Server error: Please try again later."})
+      return
+    } else if (err.response.status === 401) {
+      window.setState({ warning: "You are not authorized to do that." });
+      return
+    }
+  })
+}
+
+const updatePassword = ( oldPassword, newPassword ) => {
+  axios.put(`http://localhost:8080/users/${window.getState().userId}/password`, {oldPassword, newPassword})
+  .then( res => {
+    window.setState({
+      password: '',
+      confirmPassword: '',
+    })
+  })
+  .catch( err => {
+    if (!err.response){
+      window.setState({warning: "Server error: Please try again later."})
+      return
+    } else if (err.response.status === 401) {
+      window.setState({ warning: "You are not authorized to do that." });
+      return
+    }
+  })
+}
 module.exports = {
   setLocation,
   getTracksByLocation,
