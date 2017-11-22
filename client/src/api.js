@@ -2,8 +2,8 @@ import axios from "axios";
 import iso from "iso-3166-1";
 
 const API_KEY = process.env.REACT_APP_JAMENDO_API;
-const HOST = process.env.HOST;
-const PORT = process.env.PORT;
+const HOST = process.env.HOST || "http://localhost";
+const PORT = process.env.PORT || "8080";
 
 // Converts text to city/county codes, sets state, and loads new tracklist.
 const setLocation = () => {
