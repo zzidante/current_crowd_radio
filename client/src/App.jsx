@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import Nav from './Nav.jsx';
-import Player from './Player/Player.jsx';
-import User from './User.jsx';
-import Playlist from './Playlist.jsx';
-import Footer from './Footer.jsx';
-import './styles/css/index.css';
+import React, { Component } from "react";
+import Nav from "./Nav.jsx";
+import Player from "./Player/Player.jsx";
+import User from "./User.jsx";
+import Playlist from "./Playlist.jsx";
+import Footer from "./Footer.jsx";
+import "./styles/css/index.css";
 
 class App extends Component {
   render() {
@@ -13,17 +13,14 @@ class App extends Component {
         <Nav location={window.getState().location} />
         <div className="back-img">
           <div className="body-dashboard container">
-            { window.getState().userId &&
+            {window.getState().userId && (
               <div className="row-fluid">
                 <User />
                 <Playlist type={window.getState().type} />
                 <Player tracklist={window.getState().tracklist} />
               </div>
-            }
-            { window.getState().userId === '' && 
-              <div>
-              </div>
-            }
+            )}
+            {window.getState().userId === "" && <div />}
           </div>
         </div>
         <Footer />

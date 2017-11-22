@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Route } from 'react-router-dom';
 import api from "./api";
 
 class User extends Component {
@@ -7,6 +8,12 @@ class User extends Component {
     api.setLocation();
     api.getTracksByLocation();
   };
+
+   getUser = (history) => {
+    if (api.getUser()) {
+      history.push('/User')
+    }
+  }
 
   render() {
     const { playlists, userId, username } = window.getState()
@@ -29,7 +36,17 @@ class User extends Component {
     return (
       <section className="username-heading col-md-3 col-xs-6">
         <h2>{username}</h2>
-        {userId !== "guest" && <button className ="btn btn-sm">Edit Profile</button> }
+
+          {userId !== "guest" && <Route render={({ history }) => (
+            <button                   
+              type='button'
+              className ="btn btn-sm"
+              onClick={ this.getUser(history)}
+            >
+              Click Me!
+            </button>
+          )} /> }
+
         <ul>{locations}</ul>
       </section>
     );

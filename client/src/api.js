@@ -21,7 +21,13 @@ const getTracksByLocation = () => {
       `https://api.jamendo.com/v3.0/artists/locations/?client_id=${API_KEY}&format=jsonpretty&limit=40&haslocation=true&location_country=${country}&location_city=${city}`
     )
     .then(response => {
-      if (response.data.results[0].locations[0].country === country) {
+      if (response.data.results[0].locations[0].country !== country) {
+        window.setState({
+          warning:
+            "We're sorry, we could not find any artists for that city."
+        });
+        console.log("No results");
+      } else {
         let artistArray = [];
         response.data.results.forEach(artist => {
           artistArray.push(artist.id);
@@ -51,12 +57,6 @@ const getTracksByLocation = () => {
             });
             window.setState({ tracklist: trackArray, warning: '' });
           });
-      } else {
-        window.setState({
-          searchWarning:
-            "We're sorry, we could not find any artists for that city."
-        });
-        console.log("No results");
       }
     });
 };
@@ -85,7 +85,13 @@ const getTracksById = () => {
             duration: info.duration
           });
         });
-        window.setState({ tracklist: trackArray, warning: '' });
+        window.setState({ tracklist: trackArray });
+      })
+      .catch(() => {
+        window.setState({
+          warning:
+            "We're sorry, something went wrong, please try again later."
+        });
       });
   } else {
     window.setState({ tracklist: [] });
@@ -103,6 +109,12 @@ const addToPlaylist = (songId, type) => {
       if (res.data) {
         window.setState({ playlists: res.data });
       }
+    })
+    .catch(() => {
+      window.setState({
+        warning:
+          "We're sorry, something went wrong, please try again later."
+      });
     });
 };
 const moveToPlaylist = (songId, type) => {
@@ -118,6 +130,12 @@ const moveToPlaylist = (songId, type) => {
         window.setState({ playlists: res.data });
         getTracksById();
       }
+    })
+    .catch(() => {
+      window.setState({
+        warning:
+          "We're sorry, something went wrong, please try again later."
+      });
     });
 };
 const deleteFromPlaylist = (songId, type) => {
@@ -133,9 +151,12 @@ const deleteFromPlaylist = (songId, type) => {
         getTracksById();
       }
     })
-    .catch( () => {
-      window.setState({searchWarning: "We're sorry, something went wrong, please try again later."});
-    })
+    .catch(() => {
+      window.setState({
+        warning:
+          "We're sorry, something went wrong, please try again later."
+      });
+    });
 };
 
 const registerUser = (username, email, password, loc) => {
@@ -159,16 +180,24 @@ const registerUser = (username, email, password, loc) => {
         });
       }
     })
-    .catch(() => {
-      window.setState({ warning: "Email already exists." });
+    .catch((err) => {
+      if (!err.response) {
+        window.setState({ warning: "Server error: Please try again later."})
+        return 
+      } else if (err.response.status === 401) {
+        window.setState({ warning: "Email already exists." });
+        return
+      }
     });
 };
 
 const loginUser = (email, password) => {
   axios
-    .put(`/users`, {
-      email,
-      password
+    .put("http://localhost:8080/users", {
+      auth: { 
+        email,
+        password
+      }
     })
     .then(res => {
       console.log(res);
@@ -186,10 +215,73 @@ const loginUser = (email, password) => {
         getTracksByLocation();
       }
     })
-    .catch(() => {
-      window.setState({ warning: "Incorrect email and password combination." });
+    .catch((err) => {
+      if (!err.response) {
+        window.setState({ warning: "Server error: Please try again later."})
+        return 
+      } else if (err.response.status === 401) {
+        window.setState({ warning: "Incorrect email and password combination." });
+        return
+      }
     });
 };
+
+const updateUser = ( username, email, defaultLocation) => {
+  axios.put(`http://localhost:8080/users/${window.getState().userId}`, {username, email, defaultLocation})
+  .then( res => {
+    window.setState({
+      email: '',
+      warning: ''
+    })
+  })
+  .catch( err => {
+    if (!err.response){
+      window.setState({warning: "Server error: Please try again later."})
+      return
+    } else if (err.response.status === 401) {
+      window.setState({ warning: "You are not authorized to do that." });
+      return
+    }
+  })
+}
+
+const updatePassword = ( oldPassword, newPassword ) => {
+  axios.put(`http://localhost:8080/users/${window.getState().userId}/password`, {oldPassword, newPassword})
+  .then( res => {
+    window.setState({
+      password: '',
+      confirmPassword: '',
+    })
+  })
+  .catch( err => {
+    if (!err.response){
+      window.setState({warning: "Server error: Please try again later."})
+      return
+    } else if (err.response.status === 401) {
+      window.setState({ warning: "You are not authorized to do that." });
+      return
+    }
+  })
+}
+const getUser = () => {
+  return axios.get(`http://localhost:8080/users/${window.getState().userId}`)
+  .then(res => { 
+    const {username, email, default_location} = res.data.user;
+    window.setState({ username, email, defaultLocation: default_location })
+    return true
+  })
+  .catch((err) => {
+    if (!err.response) {
+      window.setState({ warning: "Server error: Please try again later."})
+      return 
+    } else if (err.response.status === 401) {
+      window.setState({ warning: "You are not authorized." });
+      return
+    } else if (err.response.status === 404) {
+      window.setState({ warning: "User not found."})
+    }
+  });
+}
 module.exports = {
   setLocation,
   getTracksByLocation,
@@ -198,5 +290,6 @@ module.exports = {
   moveToPlaylist,
   deleteFromPlaylist,
   registerUser,
-  loginUser
+  loginUser,
+  getUser
 };

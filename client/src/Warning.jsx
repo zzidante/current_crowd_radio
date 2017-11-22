@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-function Warning({warning}){
+function Warning({ warning }) {
   return (
     <div id="warning-message" className="alert alert-danger">
-     {warning}
+      {warning}
     </div>
-  )
+  );
 }
 
-export default Warning
+export default Warning;

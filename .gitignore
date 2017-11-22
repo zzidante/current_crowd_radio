@@ -1,4 +1,5 @@
 .DS_Store
 .sass-cache
 .env
-npm-debug.log
+/npm-debug.log
+.vscode/

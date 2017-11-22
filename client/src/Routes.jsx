@@ -2,6 +2,7 @@ import React , {Component} from 'react';
 import { BrowserRouter as Router, Route, browserHistory, Switch } from 'react-router-dom';
 import App from './App.jsx'
 import Profile from './User/Profile.jsx';
+import NotFound from './NotFound.jsx'
 
 
 class Routes extends Component{
@@ -10,8 +11,9 @@ class Routes extends Component{
       <div>
       <Router history={browserHistory}>
         <Switch>
-            <Route path="/" component={App}/>
+            <Route exact path="/" component={App}/>
             <Route path="/User" component={Profile}/>
+            <Route path="/*" component={NotFound}/>
           </Switch>
       </Router>
       </div>

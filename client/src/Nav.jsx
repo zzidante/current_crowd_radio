@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import Guest from './NavMenu/Guest.jsx';
-import LocationSearch from './NavMenu/LocationSearch.jsx';
-import BrandDeclaration from './NavMenu/BrandDeclaration.jsx';
-import LogoutButton from './NavMenu/LogoutButton.jsx';
-import Modals from './NavMenu/Modals.jsx';
+import Guest from "./NavMenu/Guest.jsx";
+import LocationSearch from "./NavMenu/LocationSearch.jsx";
+import BrandDeclaration from "./NavMenu/BrandDeclaration.jsx";
+import LogoutButton from "./NavMenu/LogoutButton.jsx";
+import Modals from "./NavMenu/Modals.jsx";
 
 class Nav extends Component {
-
   render() {
-
     const { userId } = window.getState();
 
     return (
@@ -17,18 +15,12 @@ class Nav extends Component {
           <BrandDeclaration />
           <LocationSearch />
           <Modals />
-          
+
           {/* if user is not authenticated, show auth options */}
-          {userId === "" && (
-            <Guest />
-          )}
+          {userId === "" && <Guest />}
 
           {/* if user is authenticated, show logout */}
-          {userId && (
-            <LogoutButton />
-          )}
-
-
+          {userId && <LogoutButton />}
         </nav>
       </header>
     );

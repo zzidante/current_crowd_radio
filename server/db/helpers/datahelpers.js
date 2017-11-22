@@ -28,8 +28,8 @@ module.exports = function makeDataHelpers (knex) {
 
     // Returns promise to delete user
     deleteUser: function (id, password) {
-      return knex('users').where({id: id}).then( user => {
-        if (user[0] && bcrypt.compareSync(password, user[0].password_digest)) {
+      return knex('users').where({id: id}).first().then( user => {
+        if (user && bcrypt.compareSync(password, user.password_digest)) {
           return knex('users').where({id: id}).del();
         }
         return null;
@@ -52,6 +52,20 @@ module.exports = function makeDataHelpers (knex) {
       });
     },
 
+    editPassword: function(id, passwords) {
+      return knex('users').where({id}).first().then( user => {
+        if (bcrypt.compareSync(passwords.oldPassword, user.password_digest)) {
+          const password = bcrypt.hashSync(passwords.newPassword, 10)
+          return knex('users').where({id}).update({password_digest:password}).returning('id').then( userId => {
+            return userId
+          })
+        } else {
+          return "Passwords did not match"
+        }
+      }).catch(err => {
+        console.log("Password edit error: ", error.details)
+      })
+    },
 
 
     // Playlist functions
