@@ -7,6 +7,7 @@
     "install": "cd client && npm install && cd ../server && npm install",
     "heroku-postbuild": "cd client && npm run build",
     "start": "cd server && npm start",
+    "latest": "cd server && npm run knex migrate:latest",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
