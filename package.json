@@ -29,5 +29,11 @@
   "cacheDirectories": [
     "client/node_modules",
     "server/node_modules"
-  ]
+  ],
+  "eslintConfig": {
+    "extends": "react-app",
+    "rules": {
+      "no-debugger": "off"
+    }
+  }
 }
