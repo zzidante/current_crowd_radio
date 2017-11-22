@@ -166,6 +166,7 @@ const registerUser = (username, email, password, loc) => {
 };
 
 const loginUser = (email, password) => {
+  debugger
   axios
     .put(`${HOST}:${PORT}/users`, {
       email,
