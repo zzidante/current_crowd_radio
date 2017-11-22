@@ -116,9 +116,6 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app",
-    "rules": {
-      "no-debugger": "warn"
-    }
+    "extends": "react-app"
   }
 }

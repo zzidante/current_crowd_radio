@@ -2,7 +2,8 @@ import axios from "axios";
 import iso from "iso-3166-1";
 
 const API_KEY = process.env.REACT_APP_JAMENDO_API;
-const {HOST, PORT} = process.env;
+const HOST = process.env.HOST;
+const PORT = process.env.PORT;
 
 // Converts text to city/county codes, sets state, and loads new tracklist.
 const setLocation = () => {
@@ -166,7 +167,6 @@ const registerUser = (username, email, password, loc) => {
 };
 
 const loginUser = (email, password) => {
-  debugger
   axios
     .put(`${HOST}:${PORT}/users`, {
       email,
