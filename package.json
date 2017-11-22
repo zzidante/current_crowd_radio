@@ -29,10 +29,5 @@
   "cacheDirectories": [
     "client/node_modules",
     "server/node_modules"
-  ],
-  "eslintConfig": {
-    "rules": {
-      "no-debugger": "warn"
-    }
-  }
+  ]
 }
