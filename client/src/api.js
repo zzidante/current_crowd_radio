@@ -2,8 +2,6 @@ import axios from "axios";
 import iso from "iso-3166-1";
 
 const API_KEY = process.env.REACT_APP_JAMENDO_API;
-const HOST = process.env.HOST || "http://localhost";
-const PORT = process.env.PORT || "8080";
 
 // Converts text to city/county codes, sets state, and loads new tracklist.
 const setLocation = () => {
@@ -97,7 +95,7 @@ const getTracksById = () => {
 const addToPlaylist = (songId, type) => {
   axios
     .post(
-      `${HOST}:${PORT}/playlists/${window.getState()
+      `/playlists/${window.getState()
         .locationBar}/users/${window.getState().userId}`,
       { songId, type }
     )
@@ -111,7 +109,7 @@ const moveToPlaylist = (songId, type) => {
   const typeFrom = type === "archive" ? "current" : "archive";
   axios
     .put(
-      `${HOST}:${PORT}/playlists/${window.getState()
+      `/playlists/${window.getState()
         .locationBar}/users/${window.getState().userId}`,
       { songId, typeFrom, typeTo: type }
     )
@@ -125,7 +123,7 @@ const moveToPlaylist = (songId, type) => {
 const deleteFromPlaylist = (songId, type) => {
   axios
     .delete(
-      `${HOST}:${PORT}/playlists/${window.getState()
+      `/playlists/${window.getState()
         .locationBar}/users/${window.getState().userId}`,
       { params: { songId, type } }
     )
@@ -142,7 +140,7 @@ const deleteFromPlaylist = (songId, type) => {
 
 const registerUser = (username, email, password, loc) => {
   axios
-    .post(`${HOST}:${PORT}/users`, {
+    .post(`/users`, {
       username,
       email,
       password,
@@ -168,7 +166,7 @@ const registerUser = (username, email, password, loc) => {
 
 const loginUser = (email, password) => {
   axios
-    .put(`${HOST}:${PORT}/users`, {
+    .put(`/users`, {
       email,
       password
     })
