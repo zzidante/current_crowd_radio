@@ -1,6 +1,8 @@
 import axios from "axios";
 import iso from "iso-3166-1";
 
+require('dotenv').config();
+
 const API_KEY = process.env.REACT_APP_JAMENDO_API;
 const HOST = process.env.HOST || "http://localhost";
 const PORT = process.env.PORT || "8080";
