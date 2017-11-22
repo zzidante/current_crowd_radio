@@ -1,7 +1,8 @@
 import axios from "axios";
 import iso from "iso-3166-1";
 
-let JAMENDO = process.env.REACT_APP_JAMENDO_API ? process.env.REACT_APP_JAMENDO_API : process.env.JAMENDO_API;
+const API_KEY = process.env.REACT_APP_JAMENDO_API;
+const {HOST, PORT} = process.env;
 
 // Converts text to city/county codes, sets state, and loads new tracklist.
 const setLocation = () => {
@@ -12,8 +13,6 @@ const setLocation = () => {
     window.setState({ country: isoCodes.alpha3, city });
   }
 };
-
-const API_KEY = process.env.REACT_APP_JAMENDO_API;
 
 // given a country and city loads random list of songs
 const getTracksByLocation = () => {
@@ -97,7 +96,7 @@ const getTracksById = () => {
 const addToPlaylist = (songId, type) => {
   axios
     .post(
-      `http://localhost:8080/playlists/${window.getState()
+      `${HOST}:${PORT}/playlists/${window.getState()
         .locationBar}/users/${window.getState().userId}`,
       { songId, type }
     )
@@ -111,7 +110,7 @@ const moveToPlaylist = (songId, type) => {
   const typeFrom = type === "archive" ? "current" : "archive";
   axios
     .put(
-      `http://localhost:8080/playlists/${window.getState()
+      `${HOST}:${PORT}/playlists/${window.getState()
         .locationBar}/users/${window.getState().userId}`,
       { songId, typeFrom, typeTo: type }
     )
@@ -125,7 +124,7 @@ const moveToPlaylist = (songId, type) => {
 const deleteFromPlaylist = (songId, type) => {
   axios
     .delete(
-      `http://localhost:8080/playlists/${window.getState()
+      `${HOST}:${PORT}/playlists/${window.getState()
         .locationBar}/users/${window.getState().userId}`,
       { params: { songId, type } }
     )
@@ -142,7 +141,7 @@ const deleteFromPlaylist = (songId, type) => {
 
 const registerUser = (username, email, password, loc) => {
   axios
-    .post("http://localhost:8080/users", {
+    .post(`${HOST}:${PORT}/users`, {
       username,
       email,
       password,
@@ -168,7 +167,7 @@ const registerUser = (username, email, password, loc) => {
 
 const loginUser = (email, password) => {
   axios
-    .put("http://localhost:8080/users", {
+    .put(`${HOST}:${PORT}/users`, {
       email,
       password
     })
