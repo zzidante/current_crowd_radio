@@ -1,6 +1,8 @@
 import axios from "axios";
 import iso from "iso-3166-1";
 
+const API_KEY = process.env.REACT_APP_JAMENDO_API;
+
 // Converts text to city/county codes, sets state, and loads new tracklist.
 const setLocation = () => {
   const loc = window.getState().locationBar;
@@ -10,8 +12,6 @@ const setLocation = () => {
     window.setState({ country: isoCodes.alpha3, city });
   }
 };
-
-const API_KEY = process.env.REACT_APP_JAMENDO_API;
 
 // given a country and city loads random list of songs
 const getTracksByLocation = () => {
@@ -101,7 +101,7 @@ const getTracksById = () => {
 const addToPlaylist = (songId, type) => {
   axios
     .post(
-      `http://localhost:8080/playlists/${window.getState()
+      `/playlists/${window.getState()
         .locationBar}/users/${window.getState().userId}`,
       { songId, type }
     )
@@ -117,11 +117,12 @@ const addToPlaylist = (songId, type) => {
       });
     });
 };
+
 const moveToPlaylist = (songId, type) => {
   const typeFrom = type === "archive" ? "current" : "archive";
   axios
     .put(
-      `http://localhost:8080/playlists/${window.getState()
+      `/playlists/${window.getState()
         .locationBar}/users/${window.getState().userId}`,
       { songId, typeFrom, typeTo: type }
     )
@@ -138,10 +139,11 @@ const moveToPlaylist = (songId, type) => {
       });
     });
 };
+
 const deleteFromPlaylist = (songId, type) => {
   axios
     .delete(
-      `http://localhost:8080/playlists/${window.getState()
+      `/playlists/${window.getState()
         .locationBar}/users/${window.getState().userId}`,
       { params: { songId, type } }
     )
@@ -161,7 +163,7 @@ const deleteFromPlaylist = (songId, type) => {
 
 const registerUser = (username, email, password, loc) => {
   axios
-    .post("http://localhost:8080/users", {
+    .post(`/users`, {
       username,
       email,
       password,
@@ -193,7 +195,7 @@ const registerUser = (username, email, password, loc) => {
 
 const loginUser = (email, password) => {
   axios
-    .put("http://localhost:8080/users", {
+    .put("/users", {
       auth: { 
         email,
         password
@@ -227,7 +229,7 @@ const loginUser = (email, password) => {
 };
 
 const updateUser = ( username, email, defaultLocation) => {
-  axios.put(`http://localhost:8080/users/${window.getState().userId}`, {username, email, defaultLocation})
+  axios.put(`/users/${window.getState().userId}`, {username, email, defaultLocation})
   .then( res => {
     window.setState({
       email: '',
@@ -246,7 +248,7 @@ const updateUser = ( username, email, defaultLocation) => {
 }
 
 const updatePassword = ( oldPassword, newPassword ) => {
-  axios.put(`http://localhost:8080/users/${window.getState().userId}/password`, {oldPassword, newPassword})
+  axios.put(`/users/${window.getState().userId}/password`, {oldPassword, newPassword})
   .then( res => {
     window.setState({
       password: '',
@@ -264,7 +266,7 @@ const updatePassword = ( oldPassword, newPassword ) => {
   })
 }
 const getUser = () => {
-  return axios.get(`http://localhost:8080/users/${window.getState().userId}`)
+  return axios.get(`/users/${window.getState().userId}`)
   .then(res => { 
     const {username, email, default_location} = res.data.user;
     window.setState({ username, email, defaultLocation: default_location })

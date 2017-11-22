@@ -1,16 +1,20 @@
 {
   "name": "current-crowd-radio",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The only radio for the current crowd!",
   "main": "index.js",
   "scripts": {
     "install": "cd client && npm install && cd ../server && npm install",
-    "heroku-postbuild": "cd client && npm build",
+    "heroku-postbuild": "cd client && npm run build",
     "start": "cd server && npm start",
+    "latest": "cd server && npm run knex migrate:latest",
+    "rollback": "cd server && npm run knex migrate:rollback",
+    "seed": "cd server && npm run knex seed:run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-    "node": "6.9.5"
+    "node": "6.9.5",
+    "npm": "3.10.10"
   },
   "repository": {
     "type": "git",
@@ -21,5 +25,9 @@
   "bugs": {
     "url": "https://github.com/bgk-/current_crowd_radio/issues"
   },
-  "homepage": "https://github.com/bgk-/current_crowd_radio#readme"
+  "homepage": "https://github.com/bgk-/current_crowd_radio#readme",
+  "cacheDirectories": [
+    "client/node_modules",
+    "server/node_modules"
+  ]
 }
