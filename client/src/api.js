@@ -1,13 +1,14 @@
 import axios from "axios";
 import iso from "iso-3166-1";
+import { setState, getState } from './index'
 
 // Converts text to city/county codes, sets state, and loads new tracklist.
 const setLocation = () => {
-  const loc = window.getState().locationBar;
+  const loc = getState().locationBar;
   const city = loc.match(/^\w+[a-z]?/i)[0];
   const isoCodes = iso.whereCountry(loc.match(/(\w+\s)?\w+.?$/)[0]);
   if (isoCodes) {
-    window.setState({ country: isoCodes.alpha3, city });
+    setState({ country: isoCodes.alpha3, city });
   }
 };
 
@@ -15,14 +16,14 @@ const API_KEY = process.env.REACT_APP_JAMENDO_API;
 
 // given a country and city loads random list of songs
 const getTracksByLocation = () => {
-  const { country, city } = window.getState();
+  const { country, city } = getState();
   axios
     .get(
       `https://api.jamendo.com/v3.0/artists/locations/?client_id=${API_KEY}&format=jsonpretty&limit=40&haslocation=true&location_country=${country}&location_city=${city}`
     )
     .then(response => {
       if (response.data.results[0].locations[0].country !== country) {
-        window.setState({
+        setState({
           warning:
             "We're sorry, we could not find any artists for that city."
         });
@@ -55,14 +56,14 @@ const getTracksByLocation = () => {
                 duration: track.duration
               });
             });
-            window.setState({ tracklist: trackArray, warning: '' });
+            setState({ tracklist: trackArray, warning: '' });
           });
       }
     });
 };
 
 const getTracksById = () => {
-  const { playlists, playlistType, locationBar } = window.getState();
+  const { playlists, playlistType, locationBar } = getState();
   const trackArray = playlists[locationBar][playlistType];
   if (trackArray) {
     axios
@@ -85,33 +86,33 @@ const getTracksById = () => {
             duration: info.duration
           });
         });
-        window.setState({ tracklist: trackArray });
+        setState({ tracklist: trackArray });
       })
       .catch(() => {
-        window.setState({
+        setState({
           warning:
             "We're sorry, something went wrong, please try again later."
         });
       });
   } else {
-    window.setState({ tracklist: [] });
+    setState({ tracklist: [] });
   }
 };
 
 const addToPlaylist = (songId, type) => {
   axios
     .post(
-      `http://localhost:8080/playlists/${window.getState()
-        .locationBar}/users/${window.getState().userId}`,
+      `http://localhost:8080/playlists/${getState()
+        .locationBar}/users/${getState().userId}`,
       { songId, type }
     )
     .then(res => {
       if (res.data) {
-        window.setState({ playlists: res.data });
+        setState({ playlists: res.data });
       }
     })
     .catch(() => {
-      window.setState({
+      setState({
         warning:
           "We're sorry, something went wrong, please try again later."
       });
@@ -121,18 +122,18 @@ const moveToPlaylist = (songId, type) => {
   const typeFrom = type === "archive" ? "current" : "archive";
   axios
     .put(
-      `http://localhost:8080/playlists/${window.getState()
-        .locationBar}/users/${window.getState().userId}`,
+      `http://localhost:8080/playlists/${getState()
+        .locationBar}/users/${getState().userId}`,
       { songId, typeFrom, typeTo: type }
     )
     .then(res => {
       if (res.data) {
-        window.setState({ playlists: res.data });
+        setState({ playlists: res.data });
         getTracksById();
       }
     })
     .catch(() => {
-      window.setState({
+      setState({
         warning:
           "We're sorry, something went wrong, please try again later."
       });
@@ -141,18 +142,18 @@ const moveToPlaylist = (songId, type) => {
 const deleteFromPlaylist = (songId, type) => {
   axios
     .delete(
-      `http://localhost:8080/playlists/${window.getState()
-        .locationBar}/users/${window.getState().userId}`,
+      `http://localhost:8080/playlists/${getState()
+        .locationBar}/users/${getState().userId}`,
       { params: { songId, type } }
     )
     .then(res => {
       if (res.data) {
-        window.setState({ playlists: res.data });
+        setState({ playlists: res.data });
         getTracksById();
       }
     })
     .catch(() => {
-      window.setState({
+      setState({
         warning:
           "We're sorry, something went wrong, please try again later."
       });
@@ -168,10 +169,10 @@ const registerUser = (username, email, password, loc) => {
       defaultLocation: loc
     })
     .then(res => {
-      window.setState({ warning: "" });
+      setState({ warning: "" });
       const { userId } = res.data;
       if (userId) {
-        window.setState({
+        setState({
           userId,
           password: "",
           confirmPassword: "",
@@ -182,10 +183,10 @@ const registerUser = (username, email, password, loc) => {
     })
     .catch((err) => {
       if (!err.response) {
-        window.setState({ warning: "Server error: Please try again later."})
+        setState({ warning: "Server error: Please try again later."})
         return 
       } else if (err.response.status === 401) {
-        window.setState({ warning: "Email already exists." });
+        setState({ warning: "Email already exists." });
         return
       }
     });
@@ -203,7 +204,7 @@ const loginUser = (email, password) => {
       console.log(res);
       const { id, username, default_location } = res.data.user;
       if (id) {
-        window.setState({
+        setState({
           userId: id,
           username,
           locationBar: default_location,
@@ -217,68 +218,68 @@ const loginUser = (email, password) => {
     })
     .catch((err) => {
       if (!err.response) {
-        window.setState({ warning: "Server error: Please try again later."})
+        setState({ warning: "Server error: Please try again later."})
         return 
       } else if (err.response.status === 401) {
-        window.setState({ warning: "Incorrect email and password combination." });
+        setState({ warning: "Incorrect email and password combination." });
         return
       }
     });
 };
 
 const updateUser = ( username, email, defaultLocation) => {
-  axios.put(`http://localhost:8080/users/${window.getState().userId}`, {username, email, defaultLocation})
+  axios.put(`http://localhost:8080/users/${getState().userId}`, {username, email, defaultLocation})
   .then( res => {
-    window.setState({
+    setState({
       email: '',
       warning: ''
     })
   })
   .catch( err => {
     if (!err.response){
-      window.setState({warning: "Server error: Please try again later."})
+      setState({warning: "Server error: Please try again later."})
       return
     } else if (err.response.status === 401) {
-      window.setState({ warning: "You are not authorized to do that." });
+      setState({ warning: "You are not authorized to do that." });
       return
     }
   })
 }
 
 const updatePassword = ( oldPassword, newPassword ) => {
-  axios.put(`http://localhost:8080/users/${window.getState().userId}/password`, {oldPassword, newPassword})
+  axios.put(`http://localhost:8080/users/${getState().userId}/password`, {oldPassword, newPassword})
   .then( res => {
-    window.setState({
+    setState({
       password: '',
       confirmPassword: '',
     })
   })
   .catch( err => {
     if (!err.response){
-      window.setState({warning: "Server error: Please try again later."})
+      setState({warning: "Server error: Please try again later."})
       return
     } else if (err.response.status === 401) {
-      window.setState({ warning: "You are not authorized to do that." });
+      setState({ warning: "You are not authorized to do that." });
       return
     }
   })
 }
 const getUser = () => {
-  return axios.get(`http://localhost:8080/users/${window.getState().userId}`)
+  return axios.get(`http://localhost:8080/users/${getState().userId}`)
   .then(res => { 
     const {username, email, default_location} = res.data.user;
-    window.setState({ username, email, defaultLocation: default_location })
+    setState({ username, email, defaultLocation: default_location })
     return true
   })
   .catch((err) => {
     if (!err.response) {
-      window.setState({ warning: "Server error: Please try again later."})
+      setState({ warning: "Server error: Please try again later."})
       return 
     } else if (err.response.status === 401) {
-      window.setState({ warning: "You are not authorized." });
+      setState({ warning: "You are not authorized." });
       return
     } else if (err.response.status === 404) {
-      window.setState({ warning: "User not found."})
+      setState({ warning: "User not found."})
     }
   });
 }
@@ -291,5 +292,7 @@ module.exports = {
   deleteFromPlaylist,
   registerUser,
   loginUser,
-  getUser
+  getUser,
+  updateUser,
+  updatePassword
 };

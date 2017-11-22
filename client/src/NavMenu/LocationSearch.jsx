@@ -3,16 +3,17 @@ import PlacesAutocomplete from "react-places-autocomplete";
 import api from "../api";
 import Warning from "../Warning.jsx";
 import validation from "../validation";
+import { setState, getState } from '../index'
 
 class LocationSearch extends Component {
   onChange = locationBar => {
     const loc = locationBar.replace(/^ +/, "");
-    window.setState({ locationBar: loc });
+    setState({ locationBar: loc });
   };
 
   setLocation = event => {
     event.preventDefault();
-    const loc = window.getState().locationBar;
+    const loc = getState().locationBar;
 
     if (validation.locationSearch(loc)) {
       api.setLocation();
@@ -30,7 +31,7 @@ class LocationSearch extends Component {
     };
 
     const inputProps = {
-      value: window.getState().locationBar,
+      value: getState().locationBar,
       onChange: this.onChange,
       onSelect: this.onDropdownSelect
     };
@@ -49,9 +50,9 @@ class LocationSearch extends Component {
         >
           Submit
         </button>
-        {!window.getState().modal &&
-          window.getState().warning && (
-            <Warning warning={window.getState().warning} />
+        {!getState().modal &&
+          getState().warning && (
+            <Warning warning={getState().warning} />
           )}
       </form>
     );

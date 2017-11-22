@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { DropdownButton, MenuItem } from "react-bootstrap";
-
+import { resetState } from '../index'
 class LogoutButton extends Component {
 
   logout = () => {
-    console.log(window.defaultState);
-    window.setState(window.defaultState);  
+    resetState()
   }
   
   render() {

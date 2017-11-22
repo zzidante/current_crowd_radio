@@ -1,22 +1,16 @@
 import React, { Component } from "react";
-import { Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import api from "./api";
-
+import { setState, getState } from './index'
 class User extends Component {
   setLocation = event => {
-    window.setState({ locationBar: event.target.value });
+    setState({ locationBar: event.target.value });
     api.setLocation();
     api.getTracksByLocation();
   };
 
-   getUser = (history) => {
-    if (api.getUser()) {
-      history.push('/User')
-    }
-  }
-
   render() {
-    const { playlists, userId, username } = window.getState()
+    const { playlists, userId, username } = getState()
     let locations = []
     if (playlists){
         locations = Object.keys(playlists).map(location => {
@@ -37,15 +31,15 @@ class User extends Component {
       <section className="username-heading col-md-3 col-xs-6">
         <h2>{username}</h2>
 
-          {userId !== "guest" && <Route render={({ history }) => (
-            <button                   
+          {userId !== "guest" && 
+            <Link                   
               type='button'
               className ="btn btn-sm"
-              onClick={ this.getUser(history)}
+              to="/Profile"
             >
               Click Me!
-            </button>
-          )} /> }
+            </Link>
+           }
 
         <ul>{locations}</ul>
       </section>
