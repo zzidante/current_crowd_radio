@@ -10,9 +10,7 @@ class User extends Component {
   };
 
    getUser = (history) => {
-     console.log("in get User")
     if (api.getUser()) {
-      console.log('ture')
       history.push('/User')
     }
   }
@@ -40,14 +38,14 @@ class User extends Component {
         <h2>{username}</h2>
 
           {userId !== "guest" && <Route render={({ history }) => (
-      <button                   
-        type='button'
-        className ="btn btn-sm"
-        onClick={ this.getUser(history)}
-      >
-        Click Me!
-      </button>
-    )} /> }
+            <button                   
+              type='button'
+              className ="btn btn-sm"
+              onClick={ this.getUser(history)}
+            >
+              Click Me!
+            </button>
+          )} /> }
 
         <ul>{locations}</ul>
       </section>
