@@ -8,11 +8,11 @@ module.exports = (DataHelpers) => {
   
   // Login
   router.put('/', (req, res) => {
-    DataHelpers.login(req.body.email, req.body.password).then( user => {
+    DataHelpers.login(req.body.auth.email, req.body.auth.password).then( user => {
       if(user) {
         req.session.user_id = user.id;
         DataHelpers.getPlaylists(user.id).then( playlists => {
-          res.status(200).json({playlists, user});
+          res.status(200).json({playlists, user:{ id: user.id, username: user.username }});
         });
       } else {
         res.sendStatus(401);
@@ -35,6 +35,13 @@ module.exports = (DataHelpers) => {
       });
   });
 
+  router.use('/', (req, res, next) => {
+    if (req.params.id !== req.session.user_id ) {
+      res.sendStatus(401)
+    }
+    next()
+  })
+
   // Logout
   router.delete('/', (req, res) => {
     req.session = null;
@@ -45,7 +52,7 @@ module.exports = (DataHelpers) => {
   router.get('/:id', (req, res) => {
     DataHelpers.getProfile(req.params.id).then ( user => {
       if(user) {
-        res.status(200).json(user);
+        res.status(200).json({user: {id: user.id, username: user.username, email: user.email}});
       } else {
         res.sendStatus(404);
       }
@@ -56,11 +63,11 @@ module.exports = (DataHelpers) => {
   router.put('/:id', (req, res) => {
     const { username, email, location } = req.body
     const password = bcrypt.hashSync(req.body.password, 10);
-    DataHelpers.editProfile(req.params.id, {username: username, email: email, password_digest: password, default_location: location})
+    DataHelpers.editProfile(req.params.id, {username, email, password_digest: password, default_location: location})
       .then ( userId => {
         if(userId[0]) {
           req.session.user_id = userId[0];
-          res.status(200).json(req.session);
+          res.status(200).json({user: {id: user.id, username: user.username}});
         } else {
           res.sendStatus(401);
         }

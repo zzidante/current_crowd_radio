@@ -2,3 +2,4 @@
 .sass-cache
 .env
 /npm-debug.log
+.vscode/

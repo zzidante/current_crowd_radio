@@ -21,9 +21,7 @@
     "no-unused-vars": 1
   },
   "plugins": [
-    "react",
-    "jax-ally",
-    "import"
+    "react"
   ],
   "extends": ["eslint:recommended", "plugin:react/recommended"]
 }

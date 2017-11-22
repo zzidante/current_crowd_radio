@@ -22,7 +22,7 @@ const getTracksByLocation = () => {
     .then(response => {
       if (response.data.results[0].locations[0].country !== country) {
         window.setState({
-          searchWarning:
+          warning:
             "We're sorry, we could not find any artists for that city."
         });
         console.log("No results");
@@ -56,7 +56,7 @@ const getTracksByLocation = () => {
                 duration: track.duration
               });
             });
-            window.setState({ tracklist: trackArray, searchWarning: "" });
+            window.setState({ tracklist: trackArray, warning: "" });
           });
       }
     });
@@ -88,6 +88,12 @@ const getTracksById = () => {
           });
         });
         window.setState({ tracklist: trackArray });
+      })
+      .catch(() => {
+        window.setState({
+          warning:
+            "We're sorry, something went wrong, please try again later."
+        });
       });
   } else {
     window.setState({ tracklist: [] });
@@ -105,6 +111,12 @@ const addToPlaylist = (songId, type) => {
       if (res.data) {
         window.setState({ playlists: res.data });
       }
+    })
+    .catch(() => {
+      window.setState({
+        warning:
+          "We're sorry, something went wrong, please try again later."
+      });
     });
 };
 const moveToPlaylist = (songId, type) => {
@@ -120,6 +132,12 @@ const moveToPlaylist = (songId, type) => {
         window.setState({ playlists: res.data });
         getTracksById();
       }
+    })
+    .catch(() => {
+      window.setState({
+        warning:
+          "We're sorry, something went wrong, please try again later."
+      });
     });
 };
 const deleteFromPlaylist = (songId, type) => {
@@ -137,7 +155,7 @@ const deleteFromPlaylist = (songId, type) => {
     })
     .catch(() => {
       window.setState({
-        searchWarning:
+        warning:
           "We're sorry, something went wrong, please try again later."
       });
     });
@@ -164,16 +182,24 @@ const registerUser = (username, email, password, loc) => {
         });
       }
     })
-    .catch(() => {
-      window.setState({ warning: "Email already exists." });
+    .catch((err) => {
+      if (!err.response) {
+        window.setState({ warning: "Server error: Please try again later."})
+        return 
+      } else if (err.response.status === 401) {
+        window.setState({ warning: "Email already exists." });
+        return
+      }
     });
 };
 
 const loginUser = (email, password) => {
   axios
     .put("http://localhost:8080/users", {
-      email,
-      password
+      auth: { 
+        email,
+        password
+      }
     })
     .then(res => {
       console.log(res);
@@ -191,8 +217,14 @@ const loginUser = (email, password) => {
         getTracksByLocation();
       }
     })
-    .catch(() => {
-      window.setState({ warning: "Incorrect email and password combination." });
+    .catch((err) => {
+      if (!err.response) {
+        window.setState({ warning: "Server error: Please try again later."})
+        return 
+      } else if (err.response.status === 401) {
+        window.setState({ warning: "Incorrect email and password combination." });
+        return
+      }
     });
 };
 module.exports = {

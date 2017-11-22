@@ -3,7 +3,10 @@ import { DropdownButton, MenuItem } from "react-bootstrap";
 
 class LogoutButton extends Component {
 
-  logout = () => window.setState({ userId: "" });  
+  logout = () => {
+    console.log(window.defaultState);
+    window.setState(window.defaultState);  
+  }
   
   render() {
     return (
