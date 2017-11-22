@@ -11,13 +11,14 @@ const setLocation = () => {
   }
 };
 
+const API_KEY = process.env.REACT_APP_JAMENDO_API;
+
 // given a country and city loads random list of songs
 const getTracksByLocation = () => {
   const { country, city } = window.getState();
   axios
     .get(
-      `https://api.jamendo.com/v3.0/artists/locations/?client_id=${process.env
-        .REACT_APP_JAMENDO_API}&format=jsonpretty&limit=40&haslocation=true&location_country=${country}&location_city=${city}`
+      `https://api.jamendo.com/v3.0/artists/locations/?client_id=${API_KEY}&format=jsonpretty&limit=40&haslocation=true&location_country=${country}&location_city=${city}`
     )
     .then(response => {
       if (response.data.results[0].locations[0].country !== country) {
@@ -33,9 +34,7 @@ const getTracksByLocation = () => {
         });
         axios
           .get(
-            `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${process
-              .env
-              .REACT_APP_JAMENDO_API}&format=jsonpretty&limit=40&id=${artistArray.join(
+            `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${API_KEY}&format=jsonpretty&limit=40&id=${artistArray.join(
               "+"
             )}`
           )
@@ -56,7 +55,7 @@ const getTracksByLocation = () => {
                 duration: track.duration
               });
             });
-            window.setState({ tracklist: trackArray, warning: "" });
+            window.setState({ tracklist: trackArray, warning: '' });
           });
       }
     });
@@ -68,8 +67,7 @@ const getTracksById = () => {
   if (trackArray) {
     axios
       .get(
-        `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${process.env
-          .REACT_APP_JAMENDO_API}&format=jsonpretty&limit=40&track_id=${trackArray.join(
+        `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${API_KEY}&format=jsonpretty&limit=40&track_id=${trackArray.join(
           "+"
         )}`
       )

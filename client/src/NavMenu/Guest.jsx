@@ -39,7 +39,7 @@ class Guest extends Component {
           </button>
         </form>
 
-        <DropdownButton pullRight title={<i><span className="fa fa-bars"></span></i>}>
+        <DropdownButton id="dropdown" pullRight title={<i><span className="fa fa-bars"></span></i>}>
           <MenuItem>
             <button
               className="btn"
