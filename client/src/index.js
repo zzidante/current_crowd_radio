@@ -14,6 +14,8 @@ window.defaultState = {
     playlistType: '',
     warning: '',
     userId: '',
+    email: '',
+    defaultLocation: '',
     username: '',
     password: '',
     confirmPassword: '',

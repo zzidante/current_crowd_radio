@@ -9,27 +9,11 @@ class User extends Component {
     api.getTracksByLocation();
   };
 
-  //   goToProfile = withRouter(({history}) => {
-  //     console.log(history)
-  //     console.log("Profile button clicked")
-  //     const { email, userId, username } = window.getState();
-  //     console.log(userId, email, username);      
-  //     history.push('/User')
-  //     // api.editUser( email, password );
-  // });
-
-   Button = () => (
-    <Route render={({ history }) => (
-      <button                   
-        type='button'
-        className ="btn btn-sm"
-        onClick={() => { history.push('/User') }}
-      >
-        Click Me!
-      </button>
-    )} />
-  )
-
+   getUser = (history) => {
+    if (api.getUser()) {
+      history.push('/User')
+    }
+  }
 
   render() {
     const { playlists, userId, username } = window.getState()
@@ -52,9 +36,17 @@ class User extends Component {
     return (
       <section className="username-heading col-md-3 col-xs-6">
         <h2>{username}</h2>
-        <Route>
-          {userId !== "guest" && this.Button }
-        </Route>
+
+          {userId !== "guest" && <Route render={({ history }) => (
+            <button                   
+              type='button'
+              className ="btn btn-sm"
+              onClick={ this.getUser(history)}
+            >
+              Click Me!
+            </button>
+          )} /> }
+
         <ul>{locations}</ul>
       </section>
     );

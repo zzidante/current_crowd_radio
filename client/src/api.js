@@ -226,6 +226,7 @@ const loginUser = (email, password) => {
     });
 };
 
+<<<<<<< HEAD
 const updateUser = ( username, email, defaultLocation) => {
   axios.put(`http://localhost:8080/users/${window.getState().userId}`, {username, email, defaultLocation})
   .then( res => {
@@ -263,6 +264,28 @@ const updatePassword = ( oldPassword, newPassword ) => {
     }
   })
 }
+=======
+  const getUser = () => {
+    return axios.get(`http://localhost:8080/users/${window.getState().userId}`)
+    .then(res => { 
+      const {username, email, default_location} = res.data.user;
+      window.setState({ username, email, defaultLocation: default_location })
+      return true
+    })
+    .catch((err) => {
+      if (!err.response) {
+        window.setState({ warning: "Server error: Please try again later."})
+        return 
+      } else if (err.response.status === 401) {
+        window.setState({ warning: "You are not authorized." });
+        return
+      } else if (err.response.status === 404) {
+        window.setState({ warning: "User not found."})
+      }
+    });
+  }
+
+>>>>>>> 20e9b61f7bd6ae4a0a3e14d4f1d40a5404074a3d
 module.exports = {
   setLocation,
   getTracksByLocation,
@@ -271,5 +294,6 @@ module.exports = {
   moveToPlaylist,
   deleteFromPlaylist,
   registerUser,
-  loginUser
+  loginUser,
+  getUser
 };
