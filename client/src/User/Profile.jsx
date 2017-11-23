@@ -3,35 +3,12 @@ import api from '../api';
 import validation from '../validation'
 import { setState, getState } from '../index';
 import PlacesAutocomplete from 'react-places-autocomplete';
+import Warning from '../Warning.jsx';
 
 class Profile extends Component {
   constructor(props) {
     super(props)
-    api.getUser().then( user => {
-      console.log(user)
-      setState( {email: user.email, defaultLocation: user.default_location})
-    })
-    this.myStyles = {
-      input: {
-        display: "block",
-        width: "100%",
-        height: "34px",
-        padding: "6px 12px",
-        fontSize: "14px",
-        lineHeight: "1.42857143",
-        color: "#555",
-        backgroundColor: "#fff",
-        backgroundImage: "none",
-        border: "1px solid #ccc",
-        borderRadius: "4px"
-      }
-    };
-    this.inputProps = {
-      value: getState().defaultLocation,
-      onChange: this.onChange,
-      placeholder: "City",
-      id: "register-location"
-    };
+    api.getUser()
   }
 
   handleUsernameChange = event =>
@@ -49,14 +26,15 @@ class Profile extends Component {
   handleEmailChange = event => 
     setState({ email: event.target.value });
 
-  onChange = locationBar => 
-    setState({ locationBar });
+  onChange = defaultLocation => 
+    setState({ defaultLocation });
 
   updateUser = event => {
     event.preventDefault();
-    const { username, email, locationBar } = getState();
-    if (validation.updateUser(username, email, locationBar)) {
-      api.updateUser(username, email, locationBar)
+    const { username, email, defaultLocation } = getState();
+    console.log(defaultLocation);
+    if (validation.updateUser(username, email, defaultLocation)) {
+      api.updateUser(username, email, defaultLocation)
     }
   }
 
@@ -69,12 +47,32 @@ class Profile extends Component {
   }
 
   render() {
+    const myStyles = {
+      input: {
+        display: "block",
+        width: "100%",
+        height: "34px",
+        padding: "6px 12px",
+        fontSize: "14px",
+        lineHeight: "1.42857143",
+        color: "#555",
+        backgroundColor: "#fff",
+        backgroundImage: "none",
+        border: "1px solid #ccc",
+        borderRadius: "4px"
+      }
+    };
+    const inputProps = {
+      value:getState().defaultLocation,
+      onChange: this.onChange,
+      placeholder: "City",
+      id: "register-location"
+    };
   return (
   <section className="row">
-  <div className="col-xs-2 col-sm-4 col-xl-5">
-    Left
-  </div>
-  <section className="col-xs-8 col-sm-4 col-xl-2 form-row">
+  { getState().warning && <Warning warning={getState().warning}/> }
+
+  <section className="form-row">
 
     <section>
       <form id="edit-account-form" onSubmit={this.updateUser}>
@@ -91,7 +89,8 @@ class Profile extends Component {
 
         <div className="col-auto">
           <label className="default-location"></label>            
-          <PlacesAutocomplete inputProps={this.inputProps} onChange={this.onChange} styles={this.myStyles} />
+          <PlacesAutocomplete inputProps={inputProps} onChange={this.onChange} styles={myStyles} />
+          <p> {getState().defaultLocation}</p>
         </div>
   
         <div className="col-auto">
@@ -126,10 +125,11 @@ class Profile extends Component {
     </section>    
   </section>
 
-  <div className="col-xs-2 col-sm-3 col-xl-5">
+  <div className="col-xs-1">
     Right
   </div >
 </section>)}
+
 }
 
 export default Profile

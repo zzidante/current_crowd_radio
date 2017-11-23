@@ -23,6 +23,7 @@
   "dependencies": {
     "autoprefixer": "7.1.6",
     "axios": "^0.17.1",
+    "axios-cookiejar-support": "^0.1.4",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
@@ -63,6 +64,7 @@
     "simple-react-player": "0.0.2",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
+    "tough-cookie": "^2.3.3",
     "url-loader": "0.6.2",
     "webpack": "3.8.1",
     "webpack-dev-server": "2.9.4",
@@ -117,7 +119,7 @@
   },
   "eslintConfig": {
     "extends": "react-app",
-    "rules" : {
+    "rules": {
       "no-debugger": "warn"
     }
   }

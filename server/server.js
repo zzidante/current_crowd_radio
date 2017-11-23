@@ -35,7 +35,11 @@ app.use(cookieSession({
 app.use(bodyParser.json());
 app.use(express.static("./build/"));
 
-app.use(cors());
+app.use(cors({
+  origin:['http://localhost:3000'],
+  methods:['GET','POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 app.use('/playlists/', playlistsRoutes);
 app.use('/users', usersRoutes);
 

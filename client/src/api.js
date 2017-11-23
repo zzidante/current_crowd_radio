@@ -1,7 +1,12 @@
 import axios from "axios";
+import axiosCookieJarSupport from 'axios-cookiejar-support';
+import tough from 'tough-cookie';
 import iso from "iso-3166-1";
-import { setState, getState } from './index'
+import { setState, getState } from './index';
 
+axios.defaults.withCredentials = true;
+
+const cookieJar = new tough.CookieJar()
 // Converts text to city/county codes, sets state, and loads new tracklist.
 const setLocation = () => {
   const loc = getState().locationBar;
@@ -201,7 +206,6 @@ const loginUser = (email, password) => {
       }
     })
     .then(res => {
-      console.log(res);
       const { id, username, default_location } = res.data.user;
       if (id) {
         setState({
@@ -228,10 +232,12 @@ const loginUser = (email, password) => {
 };
 
 const updateUser = ( username, email, defaultLocation) => {
-  axios.put(`http://localhost:8080/users/${getState().userId}`, {username, email, defaultLocation})
+  axios.put(`http://localhost:8080/users/${getState().userId}`, {
+    data: {username, email, defaultLocation}, 
+    jar: cookieJar
+  })
   .then( res => {
     setState({
-      email: '',
       warning: ''
     })
   })
@@ -247,7 +253,10 @@ const updateUser = ( username, email, defaultLocation) => {
 }
 
 const updatePassword = ( oldPassword, newPassword ) => {
-  axios.put(`http://localhost:8080/users/${getState().userId}/password`, {oldPassword, newPassword})
+  axios.put(`http://localhost:8080/users/${getState().userId}/password`, {
+    data: {oldPassword, newPassword},
+    jar: cookieJar
+  })
   .then( res => {
     setState({
       password: '',
@@ -265,11 +274,12 @@ const updatePassword = ( oldPassword, newPassword ) => {
   })
 }
 const getUser = () => {
-  return axios.get(`http://localhost:8080/users/${getState().userId}`)
+  return axios.get(`http://localhost:8080/users/${getState().userId}`,  {
+    jar: cookieJar
+  })
   .then(res => { 
-    const {username, email, default_location} = res.data.user;
-    setState({ username, email, defaultLocation: default_location })
-    return true
+    const {username, email, defaultLocation} = res.data.user;
+    setState({ username, email, defaultLocation }) // I work now
   })
   .catch((err) => {
     if (!err.response) {
