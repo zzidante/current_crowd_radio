@@ -13,7 +13,7 @@ export default {
       return true
     }
   },
-  register(username, email, password, confirmPassword, locationBar) {
+  register(username, email, password, confirmPassword, defaultLocation) {
     if (!username || !email || !password || !confirmPassword) {
       window.setState({ warning: "Please fill out all forms" });
       return;
@@ -22,8 +22,29 @@ export default {
       window.setState({ warning: "Passwords must match" });
       return ;
     } 
-    if(this.locationSearch(locationBar)) {
+    if(this.locationSearch(defaultLocation)) {
       return true
     }
+  },
+  updateUser(username, email, defaultLocation) {
+    console.log("VALID -- ", defaultLocation);
+    if (!username || !email) {
+      window.setState({ warning: "Please fill out all forms" });
+      return;
+    }
+    if(this.locationSearch(defaultLocation)) {
+      return true
+    }
+  },
+  updatePassword(password, confirmPassword) {
+    if (!password || !confirmPassword) {
+      window.setState({ warning: "Please fill out all forms" });
+      return;
+    }
+    if (password !== confirmPassword) {
+      window.setState({ warning: "New password must match Confirm Password" });
+      return;
+    }
+    return true
   }
 }

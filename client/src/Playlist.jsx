@@ -1,9 +1,9 @@
 import React , {Component} from 'react';
-import api from './api'
-
+import api from './api/jamendo'
+import { setState, getState } from './index'
 class Playlist extends Component {
   setPlaylistType = ({ currentTarget: { value }}) => {
-    window.setState({playlistType: value})
+    setState({playlistType: value})
     if (value === ""){
       api.getTracksByLocation()
       return
@@ -11,7 +11,7 @@ class Playlist extends Component {
     api.getTracksById()
   }
   render() {
-    const { playlists, locationBar, userId } = window.getState()
+    const { playlists, locationBar, userId } = getState()
     const loc = playlists[locationBar]
     return (
       <section className="playlist-heading col-md-3 col-md-push-6 col-xs-6">

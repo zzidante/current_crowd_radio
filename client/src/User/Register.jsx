@@ -1,20 +1,21 @@
 import React, { Component } from "react";
-import api from "../api";
+import api from "../api/internal";
 import PlacesAutocomplete from "react-places-autocomplete";
 import validation from '../validation'
+import { setState, getState } from '../index'
 class Login extends Component {
   handleUsernameChange = event =>
-    window.setState({ username: event.target.value });
+    setState({ username: event.target.value });
 
   handlePasswordChange = event =>
-    window.setState({ password: event.target.value });
+    setState({ password: event.target.value });
 
   handleConfirmPasswordChange = event =>
-    window.setState({ confirmPassword: event.target.value });
+    setState({ confirmPassword: event.target.value });
 
-  handleEmailChange = event => window.setState({ email: event.target.value });
+  handleEmailChange = event => setState({ email: event.target.value });
 
-  onChange = locationBar => window.setState({ locationBar });
+  onChange = locationBar => setState({ locationBar });
 
   register = event => {
     event.preventDefault();
@@ -24,7 +25,7 @@ class Login extends Component {
       password,
       confirmPassword,
       locationBar
-    } = window.getState();
+    } = getState();
     if (validation.register(username, email, password, confirmPassword, locationBar)) {
       api.registerUser(username, email, password, locationBar);
     }
@@ -47,12 +48,12 @@ class Login extends Component {
       }
     };
     const inputProps = {
-      value: window.getState().locationBar,
+      value: getState().locationBar,
       onChange: this.onChange,
       placeholder: "default city",
       id: "register-location"
     };
-    const { email, username, password, confirmPassword } = window.getState();
+    const { email, username, password, confirmPassword } = getState();
     return (
       <div className="form-group">
         <form id="register" onSubmit={this.register} autoComplete="off">

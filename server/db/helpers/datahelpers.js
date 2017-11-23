@@ -7,7 +7,9 @@ module.exports = function makeDataHelpers (knex) {
     // Returns user object if credentials are vaild
     // If credentials are not valid, returns null
     login: function (email, password) {
+      console.log("DATAHELPER", email, password);
       return knex('users').where({email: email}).then( user => {
+        console.log("FIND USER KNEX");
         if (user[0] && bcrypt.compareSync(password, user[0].password_digest)) {
           return user[0];
         }
@@ -38,6 +40,7 @@ module.exports = function makeDataHelpers (knex) {
 
     // Returns promise to get user
     getProfile: function (id) {
+      console.log(id);
       return knex('users').where({id: id}).then( result => {
         return result[0];
       });
@@ -46,7 +49,7 @@ module.exports = function makeDataHelpers (knex) {
     // Returns promise to update user with specified attributes
     editProfile: function (id, user) {
       return knex('users').where({id: id}).update(user).returning('id').then( userId => {
-        return userId;
+        return this.getProfile(userId[0]);
       }).catch(error => {
         console.log("Profile edit error: ", error.detail);
       });

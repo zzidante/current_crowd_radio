@@ -4,23 +4,24 @@ import Player from "./Player/Player.jsx";
 import User from "./User.jsx";
 import Playlist from "./Playlist.jsx";
 import Footer from "./Footer.jsx";
+import { getState } from './index';
 import "./styles/css/index.css";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Nav location={window.getState().location} />
+        <Nav location={getState().location} />
         <div className="back-img">
           <div className="body-dashboard container">
-            {window.getState().userId && (
+            {getState().userId && (
               <div className="row-fluid">
                 <User />
-                <Playlist type={window.getState().type} />
-                <Player tracklist={window.getState().tracklist} />
+                <Playlist type={getState().type} />
+                <Player tracklist={getState().tracklist} />
               </div>
             )}
-            {window.getState().userId === "" && <div />}
+            {getState().userId === "" && <div />}
           </div>
         </div>
         <Footer />

@@ -9,14 +9,18 @@ module.exports = (DataHelpers) => {
   // Login
   router.put('/', (req, res) => {
     DataHelpers.login(req.body.auth.email, req.body.auth.password).then( user => {
+      console.log("USER", user);
       if(user) {
         req.session.user_id = user.id;
         DataHelpers.getPlaylists(user.id).then( playlists => {
-          res.status(200).json({playlists, user:{ id: user.id, username: user.username }});
+          console.log("SUCCESS");
+          res.status(200).json({playlists, user:{ id: user.id, username: user.username, defaultLocation: user.default_location }});
         });
       } else {
         res.sendStatus(401);
       }
+    }).catch( err => {
+      console.log(err);
     });
   });
 
@@ -35,10 +39,14 @@ module.exports = (DataHelpers) => {
       });
   });
 
-  router.use('/', (req, res, next) => {
-    if (req.params.id !== req.session.user_id ) {
+  router.use('/:id', (req, res, next) => {
+    console.log(req.session);
+    if (Number(req.params.id) !== req.session.user_id ) {
+      console.log("DOESN'T MATCH");
       res.sendStatus(401)
+      return
     }
+    console.log(req.params.id);
     next()
   })
 
@@ -52,7 +60,7 @@ module.exports = (DataHelpers) => {
   router.get('/:id', (req, res) => {
     DataHelpers.getProfile(req.params.id).then ( user => {
       if(user) {
-        res.status(200).json({user: {id: user.id, username: user.username, email: user.email}});
+        res.status(200).json({user: {id: user.id, username: user.username, email: user.email, defaultLocation: user.default_location}});
       } else {
         res.sendStatus(404);
       }
@@ -61,12 +69,11 @@ module.exports = (DataHelpers) => {
 
   // Edit profile
   router.put('/:id', (req, res) => {
-    const { username, email, location } = req.body
-    DataHelpers.editProfile(req.params.id, {username, email, default_location: location})
-      .then ( userId => {
-        if(userId[0]) {
-          req.session.user_id = userId[0];
-          res.status(200).json({user: {id: user.id, username: user.username}});
+    const { username, email, defaultLocation } = req.body.data;
+    DataHelpers.editProfile(req.params.id, {username, email, default_location: defaultLocation})
+      .then ( user => {
+        if(user) {
+          res.sendStatus(200);
         } else {
           res.sendStatus(401);
         }
@@ -75,12 +82,12 @@ module.exports = (DataHelpers) => {
 
   // Edit password
   router.put('/:id/password/', (req, res) => {
-    const { oldPassword, newPassword } = req.body
+    const { oldPassword, newPassword } = req.body.data;
     DataHelpers.editPassword(req.params.id, { oldPassword, newPassword}).then( userId => {
       if(userId[0]) {
-        res.sendStatus("200")
+        res.sendStatus(200);
       } else {
-        res.sendStatus(401)
+        res.sendStatus(401);
       }
     })
   });

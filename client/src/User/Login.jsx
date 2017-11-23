@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-import api from '../api';
-
+import api from '../api/internal';
+import { setState, getState } from '../index'
 class Login extends Component {
   handleEmailChange = event =>
-    window.setState({ email: event.target.value });
+    setState({ email: event.target.value });
   handlePasswordChange = event =>
-    window.setState({ password: event.target.value });
+    setState({ password: event.target.value });
 
   login = event => {
     event.preventDefault();
-    const { email, password } = window.getState();
+    const { email, password } = getState();
     if (!email || !password) {
-      window.setState({ warning: "Please fill out all forms" });
+      setState({ warning: "Please fill out all forms" });
       return;
     }
     api.loginUser( email, password );
@@ -24,14 +24,14 @@ class Login extends Component {
               className="form-control"
               type="email"
               placeholder="email"
-              value={window.getState().email}
+              value={getState().email}
               onChange={this.handleEmailChange}
             />
             <input
               className="form-control"
               type="password"
               placeholder="password"
-              value={window.getState().password}
+              value={getState().password}
               onChange={this.handlePasswordChange}
             /> 
             <button className="btn btn-primary" type="submit">
