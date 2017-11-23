@@ -77,7 +77,9 @@ const getTracksByLocation = () => {
         });
         for (var i = trackArray.length - 1; i > 0; i--) {
           var j = Math.floor(Math.random() * (i + 1));
-          [trackArray[i], trackArray[j]] = [trackArray[j], trackArray[i]];
+          let temp = trackArray[i];
+          trackArray[i] = trackArray[j];
+          trackArray[j] = temp;
         }
         setState({ tracklist: trackArray, warning: '' });
       });
