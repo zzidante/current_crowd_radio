@@ -8,16 +8,16 @@ header{
 	background: rgb(20, 46, 58);
 	top: 0;
 	left: 0;
-	z-index: 2;
 	width: 100%;
-	max-height: 135px;
 	display: flex;
 	flex-flow: row; 
 	justify-content: space-between;
+	max-height: 135px;
 	align-items: center;
+	font-family: $fontContent;
 	color: #fff;
 	padding: 35px 100px 25px 0;
-	font-family: $fontContent;
+	z-index: 2;
 
 	h3 {
 		font-family: $fontLogo;
@@ -44,17 +44,17 @@ header{
 			margin: 5px;			
 		}
 
-		li{
-			margin: 0 15px;
-		}
+		// li{
+		// 	margin: 0 15px;
+		// }
 		
-		li:first-child{
-			margin-left: 0;	
-		}
+		// li:first-child{
+		// 	margin-left: 0;	
+		// }
 		
-		li:last-child{
-			margin-right: 0;	
-		}
+		// li:last-child{
+		// 	margin-right: 0;	
+		// }
 	}
 
 	#location-search {

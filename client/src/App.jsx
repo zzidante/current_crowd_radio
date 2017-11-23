@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Splash from "./Splash.jsx";
 import Nav from "./Nav.jsx";
 import Player from "./Player/Player.jsx";
 import User from "./User.jsx";
@@ -20,6 +21,9 @@ class App extends Component {
         <Nav />
         <div className="back-img">
           <div className="body-dashboard container">
+            {!getState().token && (
+              <Splash />
+            )}
             {getState().token && (
               <div className="row-fluid">
                 <User />
