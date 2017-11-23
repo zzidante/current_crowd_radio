@@ -5,23 +5,28 @@ import User from "./User.jsx";
 import Playlist from "./Playlist.jsx";
 import Footer from "./Footer.jsx";
 import { getState } from './index';
+import api from './api/internal'
 import "./styles/css/index.css";
 
 class App extends Component {
+  componentDidMount() {
+    if (localStorage.token){
+      api.loginUser()
+    }
+  }
   render() {
     return (
       <div>
-        <Nav location={getState().location} />
+        <Nav />
         <div className="back-img">
           <div className="body-dashboard container">
-            {getState().userId && (
+            {getState().token && (
               <div className="row-fluid">
                 <User />
                 <Playlist type={getState().type} />
                 <Player tracklist={getState().tracklist} />
               </div>
             )}
-            {getState().userId === "" && <div />}
           </div>
         </div>
         <Footer />
