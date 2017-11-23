@@ -11,7 +11,7 @@ class Playlist extends Component {
     api.getTracksById()
   }
   render() {
-    const { playlists, locationBar, userId } = getState()
+    const { playlists, locationBar, token } = getState()
     const loc = playlists[locationBar]
     return (
       <section className="playlist-heading col-md-3 col-md-push-6 col-xs-6">
@@ -19,7 +19,7 @@ class Playlist extends Component {
           <div className="current-track-player">
           </div>
           <div className="playlist-selection-buttons">
-            {userId && <button onClick={this.setPlaylistType} className="btn btn-primary" value="">Randomize</button>}
+            {token && <button onClick={this.setPlaylistType} className="btn btn-primary" value="">Randomize</button>}
             {loc && loc.current && <button onClick={this.setPlaylistType} className="btn btn-primary" value="current">Current Playlist</button> }
             {loc && loc.archive && <button onClick={this.setPlaylistType} className="btn btn-primary" value="archive">Archive Playlist</button> }
           </div>

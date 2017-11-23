@@ -11,7 +11,7 @@ const addToPlaylist = (songId, type) => {
   axios
     .post(
       `/playlists/${getState()
-        .locationBar}/users/${getState().userId}`,
+        .locationBar}/users/${getState().token}`,
       { songId, type }
     )
     .then(res => {
@@ -32,7 +32,7 @@ const moveToPlaylist = (songId, type) => {
   axios
     .put(
       `/playlists/${getState()
-        .locationBar}/users/${getState().userId}`,
+        .locationBar}/users/${getState().token}`,
       { songId, typeFrom, typeTo: type }
     )
     .then(res => {
@@ -53,7 +53,7 @@ const deleteFromPlaylist = (songId, type) => {
   axios
     .delete(
       `/playlists/${getState()
-        .locationBar}/users/${getState().userId}`,
+        .locationBar}/users/${getState().token}`,
       { params: { songId, type } }
     )
     .then(res => {
@@ -80,12 +80,11 @@ const registerUser = (username, email, password, loc) => {
     })
     .then(res => {
       setState({ warning: "" });
-      const { userId } = res.data;
-      if (userId) {
-
-        localStorage.userId = userId;
+      const { token } = res.data;
+      if (token) {
+        localStorage.token = token;
         setState({
-          userId,
+          token,
           password: "",
           confirmPassword: "",
           warning: "",
@@ -109,15 +108,17 @@ const loginUser = (email, password) => {
     .put("/users", {
       auth: { 
         email,
-        password
+        password,
+        token: localStorage.token
       }
     })
     .then(res => {
-      const { id, username, defaultLocation } = res.data.user;
-      if (id) {
-        localStorage.userId = id;
+      const { username, defaultLocation } = res.data.user;
+      const { token } = res.data
+      if (token) {
+        localStorage.token = token;
         setState({
-          userId: id,
+          token,
           username,
           locationBar: defaultLocation,
           playlists: res.data.playlists,
@@ -140,13 +141,14 @@ const loginUser = (email, password) => {
 };
 
 const updateUser = ( username, email, defaultLocation) => {
-  axios.put(`/users/${getState().userId}`, {
+  axios.put(`/users/${getState().token}`, {
     data: {username, email, defaultLocation}, 
     jar: cookieJar
   })
   .then( res => {
     setState({
-      warning: ''
+      warning: '',
+      success: 'Profile updated.'
     })
   })
   .catch( err => {
@@ -161,7 +163,7 @@ const updateUser = ( username, email, defaultLocation) => {
 }
 
 const updatePassword = ( oldPassword, newPassword ) => {
-  axios.put(`/users/${getState().userId}/password`, {
+  axios.put(`/users/${getState().token}/password`, {
     data: {oldPassword, newPassword},
     jar: cookieJar
   })
@@ -169,6 +171,8 @@ const updatePassword = ( oldPassword, newPassword ) => {
     setState({
       password: '',
       confirmPassword: '',
+      warning: '',
+      success: 'Password updated.'
     })
   })
   .catch( err => {
@@ -182,12 +186,14 @@ const updatePassword = ( oldPassword, newPassword ) => {
   })
 }
 const getUser = () => {
-  return axios.get(`/users/${getState().userId}`,  {
+  return axios.get(`/users/${getState().token}`,  {
     jar: cookieJar
   })
   .then(res => { 
     const {username, email, defaultLocation} = res.data.user;
-    setState({ username, email, defaultLocation }) // I work now
+    setState({ username, email, defaultLocation })
+    console.log(defaultLocation);
+    jamendo.getTracksByLocation();
   })
   .catch((err) => {
     if (!err.response) {
@@ -201,6 +207,10 @@ const getUser = () => {
     }
   });
 }
+
+const logout = () => {
+  axios.delete('/users/')
+}
 module.exports = {
   addToPlaylist,
   moveToPlaylist,
@@ -209,5 +219,6 @@ module.exports = {
   loginUser,
   getUser,
   updateUser,
-  updatePassword
+  updatePassword,
+  logout
 };

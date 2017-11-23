@@ -9,7 +9,7 @@ import { Modal } from "react-bootstrap";
 
 class Modals extends Component {
 
-  logout = () => setState({ userId: "" });  
+  logout = () => setState({ token: "" });  
   closeModal = () => setState({ modal: false, warning: "" });
   
   

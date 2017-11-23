@@ -28,15 +28,15 @@ class Tracklist extends Component {
   }
   render() {
     const {name, artist, duration} = this.props.track
-    const { userId, playlistType } = getState()
+    const { token, playlistType } = getState()
     return (
       <div className="track-container">
         <span className="track-play-btn"> <button onClick={this.setCurrentTrack}><i className="fa fa-play"></i></button></span>
         <span className="track-name">{name} by </span>
         <span className="track-artist">{artist} - </span> 
         <span className="track-duration"><Duration seconds = {duration} /> </span>
-        { userId && 
-          userId !== "guest" && 
+        { token && 
+          token !== "guest" && 
           <span className="track-btns">
             { playlistType !== "current" && <button onClick={this.addToPlaylist} value="current"><i className="fa fa-star"></i></button> }
             { playlistType === "current" && <button onClick={this.addToPlaylist} value="archive"><i className="fa fa-archive"></i></button> }
