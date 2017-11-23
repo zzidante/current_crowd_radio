@@ -4,7 +4,6 @@ import tough from 'tough-cookie';
 import { setState, getState } from '../index';
 import jamendo from './jamendo'
 
-
 const cookieJar = new tough.CookieJar()
 // Converts text to city/county codes, sets state, and loads new tracklist.
 
