@@ -1,6 +1,6 @@
 
 const defaultState = {
-  token: localStorage.token,
+  token: localStorage.token || '',
   tracklist: [],
   currentTrackIndex: 0,
   locationBar: "",
