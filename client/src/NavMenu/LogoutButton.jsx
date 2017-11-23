@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { DropdownButton, MenuItem } from "react-bootstrap";
-import { resetState, setState } from '../index'
+import { resetState, getState } from '../index'
 import api from '../api/internal'
 class LogoutButton extends Component {
 
   logout = () => {
     localStorage.token = ''
-    setState({token: ''})
     api.logout()
     resetState()
+    console.log(getState());
   }
   
   render() {
