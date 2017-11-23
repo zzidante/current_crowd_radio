@@ -4,7 +4,7 @@ import { setState, getState } from '../index';
 
 
 const API_KEY = process.env.REACT_APP_JAMENDO_API || 'b48755b6';
-const MAX_ARTISTS = 100;
+const MAX_ARTISTS = 50;
 // Converts text to city/county codes, sets state, and loads new tracklist.
 const setLocation = () => {
   const loc = getState().locationBar;
@@ -17,7 +17,6 @@ const setLocation = () => {
 
 // given a country and city loads random list of songs
 const getTracksByLocation = () => {
-  console.log(process);
   const { country, city } = getState();
   axios.get(
     `https://api.jamendo.com/v3.0/artists/locations/?client_id=${API_KEY}&format=jsonpretty&limit=1&haslocation=true&location_country=${country}&location_city=${city}&fullcount=true`

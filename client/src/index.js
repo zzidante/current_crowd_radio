@@ -17,8 +17,8 @@ export const resetState = () => {
 }
 
 resetState();
-if (getState().userId) {
-  api.getUser(getState().userId)
+if (getState().token) {
+  api.getUser(getState().token)
 }
 
 registerServiceWorker();

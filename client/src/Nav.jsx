@@ -4,11 +4,11 @@ import LocationSearch from "./NavMenu/LocationSearch.jsx";
 import BrandDeclaration from "./NavMenu/BrandDeclaration.jsx";
 import LogoutButton from "./NavMenu/LogoutButton.jsx";
 import Modals from "./NavMenu/Modals.jsx";
-import { getState } from './index'
+import { getState } from './index';
 
 class Nav extends Component {
   render() {
-    const { userId } = getState();
+    const { token } = getState();
 
     return (
       <header>
@@ -18,10 +18,10 @@ class Nav extends Component {
           <Modals />
 
           {/* if user is not authenticated, show auth options */}
-          {!userId && <Guest />}
+          {!token && <Guest />}
 
           {/* if user is authenticated, show logout */}
-          {userId && <LogoutButton />}
+          {token && <LogoutButton />}
         </nav>
       </header>
     );

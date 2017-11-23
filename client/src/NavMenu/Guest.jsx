@@ -8,7 +8,7 @@ class Guest extends Component {
     setState({ modal: event.currentTarget.value });
   };
 
-  guest = () => setState({ userId: "guest" });
+  guest = () => setState({ username: "guest" , token: 'guest'});
   
   render() {
     return (
