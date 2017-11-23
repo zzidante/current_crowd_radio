@@ -1,5 +1,6 @@
 
 const defaultState = {
+  token: localStorage.token,
   tracklist: [],
   currentTrackIndex: 0,
   locationBar: "",
@@ -9,7 +10,7 @@ const defaultState = {
   playlists: {},
   playlistType: "",
   warning: "",
-  userId: "",
+  success: "",
   email: "",
   defaultLocation: "",
   username: "",
