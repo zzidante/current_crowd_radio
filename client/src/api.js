@@ -7,6 +7,8 @@ import { setState, getState } from './index';
 axios.defaults.withCredentials = true;
 
 const cookieJar = new tough.CookieJar()
+const API_KEY = process.env.REACT_APP_JAMENDO_API || 'b48755b6';
+const MAX_ARTISTS = 100;
 // Converts text to city/county codes, sets state, and loads new tracklist.
 const setLocation = () => {
   const loc = getState().locationBar;
@@ -17,54 +19,64 @@ const setLocation = () => {
   }
 };
 
-const API_KEY = process.env.REACT_APP_JAMENDO_API;
-
 // given a country and city loads random list of songs
 const getTracksByLocation = () => {
-  const { country, city } = getState();
-  axios
-    .get(
-      `https://api.jamendo.com/v3.0/artists/locations/?client_id=${API_KEY}&format=jsonpretty&limit=40&haslocation=true&location_country=${country}&location_city=${city}`
-    )
-    .then(response => {
-      if (response.data.results[0].locations[0].country !== country) {
-        setState({
-          warning:
-            "We're sorry, we could not find any artists for that city."
-        });
-        console.log("No results");
-      } else {
-        let artistArray = [];
-        response.data.results.forEach(artist => {
-          artistArray.push(artist.id);
-        });
-        axios
-          .get(
-            `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${API_KEY}&format=jsonpretty&limit=40&id=${artistArray.join(
-              "+"
-            )}`
-          )
-          .then(artistTracks => {
-            let trackArray = [];
-            artistTracks.data.results.forEach(tracklist => {
-              const track =
-                tracklist.tracks[
-                  Math.floor(Math.random() * tracklist.tracks.length)
-                ];
-              trackArray.push({
-                id: track.id,
-                name: track.name,
-                trackHREF: track.audio,
-                artist: tracklist.name,
-                album: track.album_name,
-                image: track.image,
-                duration: track.duration
-              });
-            });
-            setState({ tracklist: trackArray, warning: '' });
+  console.log(process);
+  const { country, city } = window.getState();
+  axios.get(
+    `https://api.jamendo.com/v3.0/artists/locations/?client_id=${API_KEY}&format=jsonpretty&limit=1&haslocation=true&location_country=${country}&location_city=${city}&fullcount=true`
+  ).then( artistCount => {
+    if (artistCount.data.headers.results_fullcount < 1) {
+      window.setState({
+        warning:
+          "We're sorry, we could not find any artists for that city."
+      });
+      console.log("No results");
+      return;
+    }
+    const offset = Math.floor((Math.random() * artistCount.data.headers.results_fullcount + 1));
+    axios.get(
+      `https://api.jamendo.com/v3.0/artists/locations/?client_id=${API_KEY}&format=jsonpretty&limit=${MAX_ARTISTS}&haslocation=true&location_country=${country}&location_city=${city}&offset=${offset}`
+    ).then( artists => {
+      let artistArray = [];
+      artists.data.results.forEach( artist => {
+        artistArray.push(artist.id);
+      });
+      if(artistArray.length < MAX_ARTISTS) {
+        const artistArrayFill = MAX_ARTISTS - artistArray.length;
+        axios.get(
+          `https://api.jamendo.com/v3.0/artists/locations/?client_id=${API_KEY}&format=jsonpretty&limit=${artistArrayFill}&haslocation=true&location_country=${country}&location_city=${city}`
+        ).then( artists => {
+          artists.data.results.forEach( artist => {
+            artistArray.push(artist.id);
           });
+        });
       }
+      return artistArray;
+    }).then( artistArray => {
+      axios.get(
+        `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${API_KEY}&format=jsonpretty&limit=40&id=${artistArray.join("+")}`
+      ).then( artistTracks => {
+        let trackArray = [];
+        artistTracks.data.results.forEach(tracklist => {
+          const track =
+            tracklist.tracks[
+              Math.floor(Math.random() * tracklist.tracks.length)
+            ];
+          trackArray.push({
+            id: track.id,
+            name: track.name,
+            trackHREF: track.audio,
+            artist: tracklist.name,
+            album: track.album_name,
+            image: track.image,
+            duration: track.duration
+          });
+        });
+        window.setState({ tracklist: trackArray, warning: '' });
+      });
     });
+  });
 };
 
 const getTracksById = () => {
@@ -107,7 +119,7 @@ const getTracksById = () => {
 const addToPlaylist = (songId, type) => {
   axios
     .post(
-      `http://localhost:8080/playlists/${getState()
+      `/playlists/${getState()
         .locationBar}/users/${getState().userId}`,
       { songId, type }
     )
@@ -123,11 +135,12 @@ const addToPlaylist = (songId, type) => {
       });
     });
 };
+
 const moveToPlaylist = (songId, type) => {
   const typeFrom = type === "archive" ? "current" : "archive";
   axios
     .put(
-      `http://localhost:8080/playlists/${getState()
+      `/playlists/${getState()
         .locationBar}/users/${getState().userId}`,
       { songId, typeFrom, typeTo: type }
     )
@@ -144,10 +157,11 @@ const moveToPlaylist = (songId, type) => {
       });
     });
 };
+
 const deleteFromPlaylist = (songId, type) => {
   axios
     .delete(
-      `http://localhost:8080/playlists/${getState()
+      `/playlists/${getState()
         .locationBar}/users/${getState().userId}`,
       { params: { songId, type } }
     )
@@ -167,7 +181,7 @@ const deleteFromPlaylist = (songId, type) => {
 
 const registerUser = (username, email, password, loc) => {
   axios
-    .post("http://localhost:8080/users", {
+    .post(`/users`, {
       username,
       email,
       password,
@@ -199,7 +213,7 @@ const registerUser = (username, email, password, loc) => {
 
 const loginUser = (email, password) => {
   axios
-    .put("http://localhost:8080/users", {
+    .put("/users", {
       auth: { 
         email,
         password
@@ -232,7 +246,7 @@ const loginUser = (email, password) => {
 };
 
 const updateUser = ( username, email, defaultLocation) => {
-  axios.put(`http://localhost:8080/users/${getState().userId}`, {
+  axios.put(`/users/${getState().userId}`, {
     data: {username, email, defaultLocation}, 
     jar: cookieJar
   })
@@ -253,7 +267,7 @@ const updateUser = ( username, email, defaultLocation) => {
 }
 
 const updatePassword = ( oldPassword, newPassword ) => {
-  axios.put(`http://localhost:8080/users/${getState().userId}/password`, {
+  axios.put(`/users/${getState().userId}/password`, {
     data: {oldPassword, newPassword},
     jar: cookieJar
   })
@@ -274,7 +288,7 @@ const updatePassword = ( oldPassword, newPassword ) => {
   })
 }
 const getUser = () => {
-  return axios.get(`http://localhost:8080/users/${getState().userId}`,  {
+  return axios.get(`/users/${getState().userId}`,  {
     jar: cookieJar
   })
   .then(res => { 
