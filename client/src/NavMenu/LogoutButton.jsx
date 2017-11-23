@@ -15,7 +15,7 @@ class LogoutButton extends Component {
     return (
       <li>
         <button className="btn btn-primary lg-size-btn" onClick={this.logout}>Logout</button>
-        <DropdownButton pullRight title={<i><span className="fa fa-bars"></span></i>}>
+        <DropdownButton id="logout-dropdown" pullRight title={<i><span className="fa fa-bars"></span></i>}>
           <MenuItem>
           <button className="btn" onClick={this.logout}>Logout</button>
           </MenuItem>
