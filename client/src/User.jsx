@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import api from "./api";
+import api from "./api/jamendo";
 import { setState, getState } from './index'
 class User extends Component {
   setLocation = event => {

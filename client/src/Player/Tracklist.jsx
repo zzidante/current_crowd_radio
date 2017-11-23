@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Duration from './Duration';
-import api from '../api'
+import api from '../api/internal'
 import { setState, getState } from '../index'
 class Tracklist extends Component {
   setCurrentTrack= () => {

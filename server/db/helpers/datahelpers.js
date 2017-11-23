@@ -7,7 +7,9 @@ module.exports = function makeDataHelpers (knex) {
     // Returns user object if credentials are vaild
     // If credentials are not valid, returns null
     login: function (email, password) {
+      console.log("DATAHELPER", email, password);
       return knex('users').where({email: email}).then( user => {
+        console.log("FIND USER KNEX");
         if (user[0] && bcrypt.compareSync(password, user[0].password_digest)) {
           return user[0];
         }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import api from '../api';
+import api from '../api/internal';
 import validation from '../validation'
 import { setState, getState } from '../index';
 import PlacesAutocomplete from 'react-places-autocomplete';
@@ -32,7 +32,6 @@ class Profile extends Component {
   updateUser = event => {
     event.preventDefault();
     const { username, email, defaultLocation } = getState();
-    console.log(defaultLocation);
     if (validation.updateUser(username, email, defaultLocation)) {
       api.updateUser(username, email, defaultLocation)
     }

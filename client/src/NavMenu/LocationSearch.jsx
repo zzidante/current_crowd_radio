@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PlacesAutocomplete from "react-places-autocomplete";
-import api from "../api";
+import api from "../api/jamendo";
 import Warning from "../Warning.jsx";
 import validation from "../validation";
 import { setState, getState } from '../index'

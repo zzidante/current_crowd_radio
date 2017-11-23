@@ -9,14 +9,18 @@ module.exports = (DataHelpers) => {
   // Login
   router.put('/', (req, res) => {
     DataHelpers.login(req.body.auth.email, req.body.auth.password).then( user => {
+      console.log("USER", user);
       if(user) {
         req.session.user_id = user.id;
         DataHelpers.getPlaylists(user.id).then( playlists => {
+          console.log("SUCCESS");
           res.status(200).json({playlists, user:{ id: user.id, username: user.username, defaultLocation: user.default_location }});
         });
       } else {
         res.sendStatus(401);
       }
+    }).catch( err => {
+      console.log(err);
     });
   });
 

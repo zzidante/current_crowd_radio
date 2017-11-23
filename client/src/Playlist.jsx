@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-import api from './api'
+import api from './api/jamendo'
 import { setState, getState } from './index'
 class Playlist extends Component {
   setPlaylistType = ({ currentTarget: { value }}) => {

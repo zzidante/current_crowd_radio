@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import api from "../api";
+import api from "../api/internal";
 import PlacesAutocomplete from "react-places-autocomplete";
 import validation from '../validation'
 import { setState, getState } from '../index'

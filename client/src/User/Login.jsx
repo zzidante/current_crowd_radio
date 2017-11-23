@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import api from '../api';
+import api from '../api/internal';
 import { setState, getState } from '../index'
 class Login extends Component {
   handleEmailChange = event =>
