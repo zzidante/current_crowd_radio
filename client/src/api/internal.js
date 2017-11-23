@@ -4,7 +4,6 @@ import tough from 'tough-cookie';
 import { setState, getState } from '../index';
 import jamendo from './jamendo'
 
-axios.defaults.withCredentials = true;
 
 const cookieJar = new tough.CookieJar()
 // Converts text to city/county codes, sets state, and loads new tracklist.
@@ -84,6 +83,8 @@ const registerUser = (username, email, password, loc) => {
       setState({ warning: "" });
       const { userId } = res.data;
       if (userId) {
+
+        localStorage.userId = userId;
         setState({
           userId,
           password: "",
@@ -105,7 +106,6 @@ const registerUser = (username, email, password, loc) => {
 };
 
 const loginUser = (email, password) => {
-  console.log(email, password);
   axios
     .put("/users", {
       auth: { 
@@ -114,12 +114,13 @@ const loginUser = (email, password) => {
       }
     })
     .then(res => {
-      const { id, username, default_location } = res.data.user;
+      const { id, username, defaultLocation } = res.data.user;
       if (id) {
+        localStorage.userId = id;
         setState({
           userId: id,
           username,
-          locationBar: default_location,
+          locationBar: defaultLocation,
           playlists: res.data.playlists,
           password: "",
           warning: "",

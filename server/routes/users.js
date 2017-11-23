@@ -9,11 +9,9 @@ module.exports = (DataHelpers) => {
   // Login
   router.put('/', (req, res) => {
     DataHelpers.login(req.body.auth.email, req.body.auth.password).then( user => {
-      console.log("USER", user);
       if(user) {
         req.session.user_id = user.id;
         DataHelpers.getPlaylists(user.id).then( playlists => {
-          console.log("SUCCESS");
           res.status(200).json({playlists, user:{ id: user.id, username: user.username, defaultLocation: user.default_location }});
         });
       } else {
@@ -40,13 +38,10 @@ module.exports = (DataHelpers) => {
   });
 
   router.use('/:id', (req, res, next) => {
-    console.log(req.session);
     if (Number(req.params.id) !== req.session.user_id ) {
-      console.log("DOESN'T MATCH");
       res.sendStatus(401)
       return
     }
-    console.log(req.params.id);
     next()
   })
 

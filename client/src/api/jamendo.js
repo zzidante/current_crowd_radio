@@ -2,6 +2,7 @@ import axios from "axios";
 import iso from "iso-3166-1";
 import { setState, getState } from '../index';
 
+
 const API_KEY = process.env.REACT_APP_JAMENDO_API || 'b48755b6';
 const MAX_ARTISTS = 100;
 // Converts text to city/county codes, sets state, and loads new tracklist.
@@ -17,12 +18,12 @@ const setLocation = () => {
 // given a country and city loads random list of songs
 const getTracksByLocation = () => {
   console.log(process);
-  const { country, city } = window.getState();
+  const { country, city } = getState();
   axios.get(
     `https://api.jamendo.com/v3.0/artists/locations/?client_id=${API_KEY}&format=jsonpretty&limit=1&haslocation=true&location_country=${country}&location_city=${city}&fullcount=true`
   ).then( artistCount => {
     if (artistCount.data.headers.results_fullcount < 1) {
-      window.setState({
+      setState({
         warning:
           "We're sorry, we could not find any artists for that city."
       });
@@ -68,7 +69,7 @@ const getTracksByLocation = () => {
             duration: track.duration
           });
         });
-        window.setState({ tracklist: trackArray, warning: '' });
+        setState({ tracklist: trackArray, warning: '' });
       });
     });
   });

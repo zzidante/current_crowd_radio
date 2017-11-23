@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Nav location={getState().location} />
+        <Nav />
         <div className="back-img">
           <div className="body-dashboard container">
             {getState().userId && (

@@ -9,7 +9,7 @@ const defaultState = {
   playlists: {},
   playlistType: "",
   warning: "",
-  userId: "",
+  userId: localStorage.userId,
   email: "",
   defaultLocation: "",
   username: "",

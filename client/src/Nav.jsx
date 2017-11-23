@@ -18,7 +18,7 @@ class Nav extends Component {
           <Modals />
 
           {/* if user is not authenticated, show auth options */}
-          {userId === "" && <Guest />}
+          {!userId && <Guest />}
 
           {/* if user is authenticated, show logout */}
           {userId && <LogoutButton />}
