@@ -1,7 +1,8 @@
 import axios from "axios";
 import iso from "iso-3166-1";
 
-const API_KEY = process.env.REACT_APP_JAMENDO_API;
+const API_KEY = process.env.REACT_APP_JAMENDO_API || 'b48755b6';
+const MAX_ARTISTS = 100;
 
 // Converts text to city/county codes, sets state, and loads new tracklist.
 const setLocation = () => {
@@ -15,50 +16,62 @@ const setLocation = () => {
 
 // given a country and city loads random list of songs
 const getTracksByLocation = () => {
+  console.log(process);
   const { country, city } = window.getState();
-  axios
-    .get(
-      `https://api.jamendo.com/v3.0/artists/locations/?client_id=${API_KEY}&format=jsonpretty&limit=40&haslocation=true&location_country=${country}&location_city=${city}`
-    )
-    .then(response => {
-      if (response.data.results[0].locations[0].country !== country) {
-        window.setState({
-          warning:
-            "We're sorry, we could not find any artists for that city."
-        });
-        console.log("No results");
-      } else {
-        let artistArray = [];
-        response.data.results.forEach(artist => {
-          artistArray.push(artist.id);
-        });
-        axios
-          .get(
-            `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${API_KEY}&format=jsonpretty&limit=40&id=${artistArray.join(
-              "+"
-            )}`
-          )
-          .then(artistTracks => {
-            let trackArray = [];
-            artistTracks.data.results.forEach(tracklist => {
-              const track =
-                tracklist.tracks[
-                  Math.floor(Math.random() * tracklist.tracks.length)
-                ];
-              trackArray.push({
-                id: track.id,
-                name: track.name,
-                trackHREF: track.audio,
-                artist: tracklist.name,
-                album: track.album_name,
-                image: track.image,
-                duration: track.duration
-              });
-            });
-            window.setState({ tracklist: trackArray, warning: '' });
+  axios.get(
+    `https://api.jamendo.com/v3.0/artists/locations/?client_id=${API_KEY}&format=jsonpretty&limit=1&haslocation=true&location_country=${country}&location_city=${city}&fullcount=true`
+  ).then( artistCount => {
+    if (artistCount.data.headers.results_fullcount < 1) {
+      window.setState({
+        warning:
+          "We're sorry, we could not find any artists for that city."
+      });
+      console.log("No results");
+      return;
+    }
+    const offset = Math.floor((Math.random() * artistCount.data.headers.results_fullcount + 1));
+    axios.get(
+      `https://api.jamendo.com/v3.0/artists/locations/?client_id=${API_KEY}&format=jsonpretty&limit=${MAX_ARTISTS}&haslocation=true&location_country=${country}&location_city=${city}&offset=${offset}`
+    ).then( artists => {
+      let artistArray = [];
+      artists.data.results.forEach( artist => {
+        artistArray.push(artist.id);
+      });
+      if(artistArray.length < MAX_ARTISTS) {
+        const artistArrayFill = MAX_ARTISTS - artistArray.length;
+        axios.get(
+          `https://api.jamendo.com/v3.0/artists/locations/?client_id=${API_KEY}&format=jsonpretty&limit=${artistArrayFill}&haslocation=true&location_country=${country}&location_city=${city}`
+        ).then( artists => {
+          artists.data.results.forEach( artist => {
+            artistArray.push(artist.id);
           });
+        });
       }
+      return artistArray;
+    }).then( artistArray => {
+      axios.get(
+        `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${API_KEY}&format=jsonpretty&limit=40&id=${artistArray.join("+")}`
+      ).then( artistTracks => {
+        let trackArray = [];
+        artistTracks.data.results.forEach(tracklist => {
+          const track =
+            tracklist.tracks[
+              Math.floor(Math.random() * tracklist.tracks.length)
+            ];
+          trackArray.push({
+            id: track.id,
+            name: track.name,
+            trackHREF: track.audio,
+            artist: tracklist.name,
+            album: track.album_name,
+            image: track.image,
+            duration: track.duration
+          });
+        });
+        window.setState({ tracklist: trackArray, warning: '' });
+      });
     });
+  });
 };
 
 const getTracksById = () => {
