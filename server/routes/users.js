@@ -13,7 +13,7 @@ module.exports = (DataHelpers) => {
   // Login
   router.put('/', (req, res) => {
     if (req.body.auth.token === req.session.token) {
-      req.session.token = rnd()
+      req.session.token = rnd() // TODO: make me random in name
       DataHelpers.getProfile(req.session.user_id).then ( user => {
         if(user) {
           return DataHelpers.getPlaylists(req.session.user_id).then( playlists => {

@@ -5,7 +5,9 @@ class Splash extends Component {
   render() {
     
     return (
-      <h1>I R SPLASH</h1>
+      <section className="col-xs-12">
+        {<h1>I R SPLASH</h1>}
+      </section>
     );
   }
 }

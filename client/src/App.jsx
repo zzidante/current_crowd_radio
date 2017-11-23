@@ -21,16 +21,20 @@ class App extends Component {
         <Nav />
         <div className="back-img">
           <div className="body-dashboard container">
-            {!getState().token && (
-              <Splash />
-            )}
-            {getState().token && (
+
               <div className="row-fluid">
-                <User />
-                <Playlist type={getState().type} />
-                <Player tracklist={getState().tracklist} />
+                {!getState().token && (
+                  <Splash />
+                )}
+                
+                {getState().token && (
+                  <div>
+                    <User />
+                    <Playlist type={getState().type} />
+                    <Player tracklist={getState().tracklist} />
+                  </div>
+                )}
               </div>
-            )}
           </div>
         </div>
         <Footer />
