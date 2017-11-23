@@ -14,7 +14,7 @@ class Routes extends Component {
       <div>
         <Router history={browserHistory}>
           <Switch>
-            <Route exact path="/"component={App} />
+            <Route exact path="/" render={() => <App/>} />
             <Route path="/Profile" component={Profile} />
             <Route path="/*" component={NotFound} />
           </Switch>

@@ -12,7 +12,7 @@ module.exports = (DataHelpers) => {
   
   // Login
   router.put('/', (req, res) => {
-    if (req.body.auth.token === req.session.token) {
+    if (req.session.token && req.body.auth.token === req.session.token) {
       req.session.token = rnd()
       DataHelpers.getProfile(req.session.user_id).then ( user => {
         if(user) {
