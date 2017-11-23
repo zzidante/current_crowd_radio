@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { DropdownButton, MenuItem } from "react-bootstrap";
-
+import { setState } from '../index'
 class Guest extends Component {
 
   openModal = event => {
     event.preventDefault();
-    window.setState({ modal: event.currentTarget.value });
+    setState({ modal: event.currentTarget.value });
   };
 
-  guest = () => window.setState({ userId: "guest" });
+  guest = () => setState({ userId: "guest" });
   
   render() {
     return (

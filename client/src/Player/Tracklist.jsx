@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Duration from './Duration';
-import api from '../api'
+import api from '../api/internal'
+import { setState, getState } from '../index'
 class Tracklist extends Component {
   setCurrentTrack= () => {
-    window.setState({currentTrackIndex: this.props.index})
+    setState({currentTrackIndex: this.props.index})
   }
 
   addToPlaylist = ({ currentTarget: { value }}) => {
@@ -12,7 +13,7 @@ class Tracklist extends Component {
       api.moveToPlaylist(songId, value)
       return
     }
-    if (value === "current" && window.getState().playlistType === "archive") {
+    if (value === "current" && getState().playlistType === "archive") {
       api.moveToPlaylist(songId, value)
       return
     }
@@ -23,11 +24,11 @@ class Tracklist extends Component {
   }
 
   deleteFromPlaylist = () => {
-    api.deleteFromPlaylist(this.props.track.id, window.getState().playlistType)
+    api.deleteFromPlaylist(this.props.track.id, getState().playlistType)
   }
   render() {
     const {name, artist, duration} = this.props.track
-    const { userId, playlistType } = window.getState()
+    const { userId, playlistType } = getState()
     return (
       <div className="track-container">
         <span className="track-play-btn"> <button onClick={this.setCurrentTrack}><i className="fa fa-play"></i></button></span>

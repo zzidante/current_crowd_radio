@@ -1,4 +1,13 @@
+import axios from "axios";
+import axiosCookieJarSupport from 'axios-cookiejar-support';
+import tough from 'tough-cookie';
+import { setState, getState } from '../index';
+import jamendo from './jamendo'
 
+axios.defaults.withCredentials = true;
+
+const cookieJar = new tough.CookieJar()
+// Converts text to city/county codes, sets state, and loads new tracklist.
 
 const addToPlaylist = (songId, type) => {
   axios
@@ -31,7 +40,7 @@ const moveToPlaylist = (songId, type) => {
     .then(res => {
       if (res.data) {
         setState({ playlists: res.data });
-        getTracksById();
+        jamendo.getTracksById();
       }
     })
     .catch(() => {
@@ -52,7 +61,7 @@ const deleteFromPlaylist = (songId, type) => {
     .then(res => {
       if (res.data) {
         setState({ playlists: res.data });
-        getTracksById();
+        jamendo.getTracksById();
       }
     })
     .catch(() => {
@@ -96,6 +105,7 @@ const registerUser = (username, email, password, loc) => {
 };
 
 const loginUser = (email, password) => {
+  console.log(email, password);
   axios
     .put("/users", {
       auth: { 
@@ -115,7 +125,7 @@ const loginUser = (email, password) => {
           warning: "",
           modal: false
         });
-        getTracksByLocation();
+        jamendo.getTracksByLocation();
       }
     })
     .catch((err) => {
@@ -192,9 +202,6 @@ const getUser = () => {
   });
 }
 module.exports = {
-  setLocation,
-  getTracksByLocation,
-  getTracksById,
   addToPlaylist,
   moveToPlaylist,
   deleteFromPlaylist,

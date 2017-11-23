@@ -13,10 +13,10 @@ const cookieSession = require('cookie-session');
 const knexConfig = require('./knexfile');
 const knex = require('knex')(knexConfig[ENV]);
 
+
 if(ENV !== 'production') {
   const morgan = require('morgan');
   const knexLogger = require('knex-logger');
-  
   // HTTP Logger
   app.use(morgan('dev'));
   
@@ -40,7 +40,11 @@ app.use(cookieSession({
 app.use(bodyParser.json());
 app.use(express.static("../client/build/"));
 
-app.use(cors());
+app.use(cors({
+  origin:['http://localhost:3000'],
+  methods:['GET','POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 app.use('/playlists/', playlistsRoutes);
 app.use('/users', usersRoutes);
 

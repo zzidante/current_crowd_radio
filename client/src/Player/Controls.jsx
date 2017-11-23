@@ -1,68 +1,68 @@
 import React, { Component } from "react";
 import ReactPlayer from "react-player";
 import Duration from "./Duration";
-
+import { setState, getState } from '../index'
 class Controls extends Component {
   playPause = () => {
-    window.setState({ playing: !window.getState().playing });
+    setState({ playing: !getState().playing });
   };
 
   stop = () => {
-    window.setState({ currentTrack: null, playing: false });
+    setState({ currentTrack: null, playing: false });
   };
 
   toggleLoop = () => {
-    window.setState({ loop: !window.getState().loop });
+    setState({ loop: !getState().loop });
   };
 
   setVolume = event => {
-    window.setState({ volume: parseFloat(event.target.value) });
+    setState({ volume: parseFloat(event.target.value) });
   };
 
   toggleMuted = () => {
-    window.setState({ muted: !window.getState().muted });
+    setState({ muted: !getState().muted });
   };
 
   onSeekMouseDown = () => {
-    window.setState({ seeking: true });
+    setState({ seeking: true });
   };
 
   onSeekChange = event => {
-    window.setState({ played: parseFloat(event.target.value) });
+    setState({ played: parseFloat(event.target.value) });
   };
 
   onSeekMouseUp = event => {
-    window.setState({ seeking: false });
+    setState({ seeking: false });
     this.player.seekTo(parseFloat(event.target.value));
   };
 
   onProgress = state => {
     // Progress only if not seeking
-    if (!window.getState().seeking) {
-      window.setState({ ...state });
+    if (!getState().seeking) {
+      setState({ ...state });
     }
   };
   ref = player => {
     this.player = player;
   };
   onEnded = () => {
-    const { currentTrackIndex, tracklist } = window.getState();
-    window.setState({ playing: window.getState().loop });
+    const { currentTrackIndex, tracklist } = getState();
+    setState({ playing: getState().loop });
     if ( currentTrackIndex < tracklist.length - 1 ) {
       this.nextTrack()
     }
   };
   onDuration = duration => {
-    window.setState({ duration });
+    setState({ duration });
   };
   nextTrack = () => {
-    window.setState({
-      currentTrackIndex: window.getState().currentTrackIndex + 1
+    setState({
+      currentTrackIndex: getState().currentTrackIndex + 1
     });
   };
   previousTrack = () => {
-    window.setState({
-      currentTrackIndex: window.getState().currentTrackIndex - 1
+    setState({
+      currentTrackIndex: getState().currentTrackIndex - 1
     });
   };
 
@@ -75,7 +75,7 @@ class Controls extends Component {
       played,
       loaded,
       duration
-    } = window.getState();
+    } = getState();
     const { currentTrack } = this.props;
     const trackURL = currentTrack ? currentTrack.trackHREF : "";
     return (
