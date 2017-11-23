@@ -22,6 +22,7 @@ header{
 	h3 {
 		font-family: $fontLogo;
 		font-size: 1rem;
+		margin: 0 auto;
 	}
 
 	textarea {
@@ -43,17 +44,17 @@ header{
 			margin: 5px;			
 		}
 
-		// li{
-		// 	margin: 0 15px;
-		// }
+		li{
+			margin: 0 15px;
+		}
 		
-		// li:first-child{
-		// 	margin-left: 0;	
-		// }
+		li:first-child{
+			margin-left: 0;	
+		}
 		
-		// li:last-child{
-		// 	margin-right: 0;	
-		// }
+		li:last-child{
+			margin-right: 0;	
+		}
 	}
 
 	#location-search {
