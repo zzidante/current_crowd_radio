@@ -1,51 +1,65 @@
-import { setState } from './index'
+import { setState } from "./index";
+
+const style = "danger";
+const fillAllForms = {
+  userMessage: { message: "Please fill out all forms", style }
+};
 
 export default {
   locationSearch(loc) {
-    if ( !loc ){
-      setState({warning: "City cannot be blank."})
-      return
-    } else if (/\d+/.test(loc))  {
-      setState({warning: "City must not contain an address"})
-      return
-    } else if ( !/,/.test(loc)) {
-      setState({warning: "Must have city and country."})
-      return
+    if (!loc) {
+      setState({ userMessage: { message: "City cannot be blank.", style } });
+      return;
+    } else if (/\d+/.test(loc)) {
+      setState({
+        userMessage: { message: "City must not contain an address", style }
+      });
+      return;
+    } else if (!/,/.test(loc)) {
+      setState({
+        userMessage: { message: "Must have city and country.", style }
+      });
+      return;
     } else {
-      return true
+      return true;
     }
   },
   register(username, email, password, confirmPassword, defaultLocation) {
     if (!username || !email || !password || !confirmPassword) {
-      setState({ warning: "Please fill out all forms" });
+      setState(fillAllForms);
       return;
     }
     if (password !== confirmPassword) {
-      setState({ warning: "Passwords must match" });
-      return ;
-    } 
-    if(this.locationSearch(defaultLocation)) {
-      return true
+      setState({ userMessage: { message: "Passwords must match", style } });
+      return;
+    }
+    if (this.locationSearch(defaultLocation)) {
+      return true;
     }
   },
   updateUser(username, email, defaultLocation) {
     if (!username || !email) {
-      setState({ warning: "Please fill out all forms" });
+      setState(fillAllForms);
       return;
     }
-    if(this.locationSearch(defaultLocation)) {
-      return true
+    if (this.locationSearch(defaultLocation)) {
+      return true;
     }
   },
   updatePassword(password, confirmPassword) {
     if (!password || !confirmPassword) {
-      setState({ warning: "Please fill out all forms" });
+      setState(fillAllForms);
       return;
     }
     if (password !== confirmPassword) {
-      setState({ warning: "New password must match Confirm Password" });
+      setState({
+        userMessage: {
+          message: "New password must match Confirm Password",
+          style
+        }
+      });
       return;
     }
-    return true
+    return true;
   }
-}
+};

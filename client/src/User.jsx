@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import api from "./api/jamendo";
-import { setState, getState } from './index'
+import { setState, getState } from "./index";
 class User extends Component {
   setLocation = event => {
     setState({ locationBar: event.target.value });
@@ -10,10 +10,10 @@ class User extends Component {
   };
 
   render() {
-    const { playlists, username } = getState()
-    let locations = []
-    if (playlists){
-        locations = Object.keys(playlists).map(location => {
+    const { playlists, username } = getState();
+    let locations = [];
+    if (playlists) {
+      locations = Object.keys(playlists).map(location => {
         return (
           <li key={location}>
             <button
@@ -31,15 +31,11 @@ class User extends Component {
       <section className="username-heading col-md-3 col-xs-6">
         <h2>{username}</h2>
 
-          {username !== "guest" && 
-            <Link                   
-              type='button'
-              className ="btn btn-sm"
-              to="/Profile"
-            >
-              Profile
-            </Link>
-           }
+        {username !== "guest" && (
+          <Link type="button" className="btn btn-sm" to="/Profile">
+            Profile
+          </Link>
+        )}
 
         <ul>{locations}</ul>
       </section>

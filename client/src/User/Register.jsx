@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import api from "../api/internal";
 import PlacesAutocomplete from "react-places-autocomplete";
-import validation from '../validation'
-import { setState, getState } from '../index'
+import validation from "../validation";
+import { setState, getState } from "../index";
 class Login extends Component {
-  handleUsernameChange = event =>
-    setState({ username: event.target.value });
+  handleUsernameChange = event => setState({ username: event.target.value });
 
-  handlePasswordChange = event =>
-    setState({ password: event.target.value });
+  handlePasswordChange = event => setState({ password: event.target.value });
 
   handleConfirmPasswordChange = event =>
     setState({ confirmPassword: event.target.value });
@@ -26,7 +24,15 @@ class Login extends Component {
       confirmPassword,
       locationBar
     } = getState();
-    if (validation.register(username, email, password, confirmPassword, locationBar)) {
+    if (
+      validation.register(
+        username,
+        email,
+        password,
+        confirmPassword,
+        locationBar
+      )
+    ) {
       api.registerUser(username, email, password, locationBar);
     }
   };

@@ -1,16 +1,13 @@
 $font: 'Open Sans', sans-serif;
 $fontLogo: 'Skranji', cursive;
 $fontContent: 'Magra', sans-serif;
+
 $shadow1: rgb(41, 41, 41); 
 $shadow2: rgb(0, 0, 0);
 $gray1: #191E24; 
 $graytransparent: rgba(33, 34, 34, 0.8);
 $teal2:  #b0ffe4;
 $body-min-height: 76vh;
-
-.body-dashboard {
-	height: 80vh;
-}
 
 .back-img {
 	top: 0;
@@ -20,211 +17,243 @@ $body-min-height: 76vh;
 	background-image: url("https://www.hdwallpaperswizard.com/wp-content/uploads/2017/03/Black-Music-Wallpaper-HD-1366x768.jpg");
 	overflow: auto;
 	z-index: -2;
+}
 
-	.body-dashboard {
-		height: 80vh;
+.body-dashboard {
 
-		.playlist-heading {
-			padding: 5px 50px;
-			margin-top: 20px;
-			min-height: 200px;
-			max-height: $body-min-height;
+	.playlist-heading {
+		padding: 5px 50px;
+		margin-top: 20px;
+		min-height: 200px;
+		max-height: $body-min-height;
 
-			.playlist-selection-buttons {
-				padding-top: 36px;
-				flex-flow: column;
+		.playlist-selection-buttons {
+			padding-top: 36px;
+			flex-flow: column;
 
-				button {
-					background-color: #51a1c0;
-					margin: 15px;
-					width: 180px;
-					font-size: 1.6em;
-				}
+			button {
+				background-color: #51a1c0;
+				margin: 15px;
+				width: 180px;
+				font-size: 1.6em;
 			}
 		}
+	}
 
-		.username-heading {
-			padding: 20px;
-			margin-top: 20px;		
+	.username-heading {
+		padding: 20px;
+		margin-top: 20px;		
+		min-height: 200px;
+		max-height: $body-min-height;
+
+		h2 {
+			color: $teal2;
+		}
+
+		button {
+			color: $gray1;
+		}
+
+		button:hover {
+			color: $teal2;			
+			background-color: $gray1;
+			border: none;
+		}
+
+		ul {
+			position: relative;
+			top: 20px;
+			right: 20px;
+			overflow: scroll;
+			margin: 10px;
+			padding: 0;
+			min-height: 100px;
+			max-height: 120px;
+		}
+
+		li {
+				padding: 10px 20px;
+				
+				&:last-child {
+					border-bottom: none;
+				}
+				
+				&:nth-child(even) {
+					background: $gray1;
+				}
+				button {
+					color: white;
+				}
+		}
+
+	}
+	.table {
+		border: none;
+		padding-top: 0;
+		margin-top: 0;
+	}
+	.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+		background-color: rgb(80,80,80);
+	}
+	.table-striped>tbody>tr:nth-child(odd)>td, 
+	.table-striped>tbody>tr:nth-child(odd)>th {
+		 background-color: $shadow1;
+		 border: none;
+	 }
+	 .table-striped>tbody>tr:nth-child(even)>td, 
+	 .table-striped>tbody>tr:nth-child(even)>th {
+			background-color: $shadow2;
+			border: none;
+		}
+		
+		.track-play-btn {
+			visibility: hidden;
+		}
+		tr:hover .track-play-btn{
+			visibility: visible;
+		}
+		
+	.music-container {
+		min-height: $body-min-height;
+		padding: 20px 50px;
+
+		.player-full-container  {
+			position: absolute;
+			color: white;
+			width: 100%;
+			border-radius: 6px;
 			min-height: 200px;
-			max-height: $body-min-height;
+			overflow: hidden;
+			z-index: 1;
 
-			h2 {
-				color: $teal2;
+			.current-song-info {
+				text-shadow:  1px 0px 1px #ccc, 
+				0px 1px 1px $shadow1, 
+				2px 1px 1px $shadow2, 
+				1px 2px 1px $shadow1, 
+				3px 2px 1px $shadow2, 
+				2px 3px 1px $shadow1, 
+				4px 3px 1px $shadow2, 
+				3px 4px 1px $shadow1, 
+				5px 4px 1px $shadow2, 
+				4px 5px 1px $shadow1, 
+				6px 5px 1px $shadow2, 
+				5px 6px 1px $shadow1, 
+				7px 6px 1px $shadow2;
+			}
+			
+			.audio-player {
+				display: none;
+				width: 0px;
+				height: 0px;
+			} 
+
+			.player-image-bg {
+				position: absolute;
+				background-color: rgb(0, 0, 0);
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				border-radius: 6px;
+				background-position: center;
+				background-size: cover;
+				-webkit-filter: blur(10px);
+				filter: blur(10px);
+				z-index: -1;
+			}
+
+			.current-song-container {
+				width: 100%;
+				background-color: darkslategray;
+				padding: 30px;
+				background-color: $gray1;
+				font-family: $font;
+
+				tr {
+					width: 100%;
+					font-size: 14px;
+					line-height: 0;
+					time {
+						float: right;
+						padding: 0 20px;
+					}
+				}
+
+				.player-controls {
+					text-align: center;
+					margin: 0 auto;
+				}
 			}
 
 			button {
-				color: $gray1;
-			}
-
-			button:hover {
-				color: $teal2;			
-				background-color: $gray1;
+				background: aquamarine;
 				border: none;
-			}
-
-			ul {
-				position: relative;
-				top: 20px;
-				right: 20px;
-				overflow: scroll;
+				border-radius: 10%;
+				padding: 2px;					
 				margin: 10px;
-				padding: 0;
-				min-height: 100px;
-				max-height: 120px;
+				
+				.fa {
+					font-size: 2em;
+					width: 30px;
+					color: $gray1;
+				}
 			}
-
-			li {
-					padding: 10px 20px;
-					
-					&:last-child {
-						border-bottom: none;
-					}
-					
-					&:nth-child(even) {
-						background: $gray1;
-					}
-					button {
-						color: white;
-					}
-			}
-
+		}
+		
+		.add-border {
+			border: 2px black solid;
+			background-color: $gray1;
 		}
 
-		.music-container {
-			min-height: $body-min-height;
-			padding: 20px 50px;
+		.full-playlist {
+			position: absolute;
+			max-height: 40vh;
+			min-width: 100%;
+			overflow: auto;
+			padding: 0;
+			margin: 225px 0 5px 0;
+			border-bottom-left-radius: 11px;
+			border-bottom-right-radius: 11px;
+			// prevent current playlist shadow from overlapping
+			z-index: 1;
 
-			.player-full-container  {
-				position: absolute;
-				color: white;
-				width: 100%;
-				border-radius: 6px;
-				min-height: 200px;
-				overflow: hidden;
-				z-index: 1;
 
-				.current-song-info {
-					text-shadow:  1px 0px 1px #ccc, 
-					0px 1px 1px $shadow1, 
-					2px 1px 1px $shadow2, 
-					1px 2px 1px $shadow1, 
-					3px 2px 1px $shadow2, 
-					2px 3px 1px $shadow1, 
-					4px 3px 1px $shadow2, 
-					3px 4px 1px $shadow1, 
-					5px 4px 1px $shadow2, 
-					4px 5px 1px $shadow1, 
-					6px 5px 1px $shadow2, 
-					5px 6px 1px $shadow1, 
-					7px 6px 1px $shadow2;
-				}
-				
-				.audio-player {
-					display: none;
-					width: 0px;
-					height: 0px;
-				} 
 
-				.player-image-bg {
-					position: absolute;
-					background-color: rgb(0, 0, 0);
-					top: 0;
-					left: 0;
-					width: 100%;
-					height: 100%;
-					border-radius: 6px;
-					background-position: center;
-					background-size: cover;
-					-webkit-filter: blur(10px);
-					filter: blur(10px);
-					z-index: -1;
-				}
-
-				.current-song-container {
-					width: 100%;
-					background-color: darkslategray;
-					padding: 30px;
-					background-color: $gray1;
-					font-family: $font;
-
-					tr {
-						width: 100%;
-						font-size: 14px;
-						line-height: 0;
-						time {
-							float: right;
-							padding: 0 20px;
-						}
-					}
-
-					.player-controls {
-						text-align: center;
-						margin: 0 auto;
-					}
-				}
-
-				button {
-					background: aquamarine;
-					border: none;
-					border-radius: 10%;
-					padding: 2px;					
-					margin: 10px;
-					
-					.fa {
-						font-size: 2em;
-						width: 30px;
-						color: $gray1;
-					}
-				}
-			}
-			
-			.add-border {
-				border: 2px black solid;
-				background-color: $gray1;
-			}
-
-			.full-playlist {
-				position: absolute;
-				max-height: 40vh;
+			.track-container {
+				position: relative;
+				padding-left: 5px;
+				color: #dbdfe1;
+				background-color: #1f1f1f;
 				min-width: 100%;
-				overflow: auto;
-				padding: 0;
-				margin: 225px 0 5px 0;
-				border-bottom-left-radius: 11px;
-				border-bottom-right-radius: 11px;
-				// prevent current playlist shadow from overlapping
-				z-index: 1;
+				max-height: 40vh;
 
-				.track-container {
-					position: relative;
+				.track-name {
 					padding-left: 5px;
-					color: #dbdfe1;
-					background-color: #1f1f1f;
-					min-width: 100%;
-					max-height: 40vh;
+				}
 
-					.track-name {
-						padding-left: 5px;
-					}
-					.track-btns {
-						float: right;
-					}
-					button {
-						// get rid of default border
-						border: 0px solid transparent;
-						background: $gray1;
 
-						.fa-play {
-							font-size: 1.4em;
-							background: $teal2;
-							margin: 2px;
-							padding: 5px;
-							color: $gray1;
-							border: 0px transparent solid;
-							width: 30px;
-							display: block ;
-						}
+				.track-btns {
+					display: flex;
+					right: 0;
+					margin: 5px 10px;
+
+				}
+				button {
+					// get rid of default border
+					padding: 0 0.1em;
+					border: 0px solid transparent;
+					background: none;
+
+					.fa-play {
+						font-size: 1.4em;
+						background: $teal2;
+						margin: 2px;
+						padding: 5px;
+						color: $gray1;
+						border: 0px transparent solid;
+						width: 30px;
+						display: block ;
 					}
 				}
 			}

@@ -5,8 +5,8 @@ import Player from "./Player/Player.jsx";
 import User from "./User.jsx";
 import Playlist from "./Playlist.jsx";
 import Footer from "./Footer.jsx";
-import { getState } from './index';
-import api from './api/internal'
+import { getState } from "./index";
+import api from "./api/internal";
 import "./styles/css/index.css";
     
 
@@ -14,12 +14,12 @@ import "./styles/css/index.css";
 class App extends Component {
   componentDidMount() {
     if (localStorage.token) {
-      api.loginUser()
+      api.loginUser();
     }
   }
 
   render() {
-
+    const { token, loading, type, tracklist } = getState();
     return (
       <div id="main-content-spread">
         <Nav />
@@ -28,21 +28,22 @@ class App extends Component {
             <Splash />
           </div>
         )}
-
-        {getState().token && (
-          <div className="back-img">
-            <div className="body-dashboard container">
-              <div className="row-fluid">
-                <div>
-                  <User />
-                  <Playlist type={getState().type} />
-                  <Player tracklist={getState().tracklist} />
-                </div>
-              </div>
-            </div>
+        {loading && (
+          <div className="loader-underlay">
+            <div className="loader" />
           </div>
         )}
-
+        <div className="back-img">
+          <div className="body-dashboard container">
+            {token && (
+              <div className="row-fluid">
+                <User />
+                <Playlist type={type} />
+                <Player tracklist={tracklist} />
+              </div>
+            )}
+            </div>
+          </div>
         <Footer />
       </div>
     );

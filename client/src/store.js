@@ -1,5 +1,6 @@
 
 const defaultState = {
+  loading: false,
   token: localStorage.token || '',
   tracklist: [],
   currentTrackIndex: 0,
@@ -9,8 +10,7 @@ const defaultState = {
   type: "",
   playlists: {},
   playlistType: "",
-  warning: "",
-  success: "",
+  userMessage: "",
   email: "",
   defaultLocation: "",
   username: "",
@@ -19,9 +19,7 @@ const defaultState = {
   modal: false,
   playing: false,
   volume: 0.8,
-  muted: false,
   duration: 0,
-  loop: false,
   loaded: 0,
   loadedSeconds: 0,
   played: 0,

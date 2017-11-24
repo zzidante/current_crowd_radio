@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PlacesAutocomplete from "react-places-autocomplete";
 import api from "../api/jamendo";
-import Warning from "../Warning.jsx";
+import UserMessage from "../UserMessage.jsx";
 import validation from "../validation";
-import { setState, getState } from '../index'
+import { setState, getState } from "../index";
 
 class LocationSearch extends Component {
   onChange = locationBar => {
@@ -22,6 +22,7 @@ class LocationSearch extends Component {
   };
 
   render() {
+    const { modal, locationBar, userMessage } = getState();
     const myStyles = {
       input: {
         color: "black",
@@ -31,9 +32,10 @@ class LocationSearch extends Component {
     };
 
     const inputProps = {
-      value: getState().locationBar,
+      value: locationBar,
       onChange: this.onChange,
-      onSelect: this.onDropdownSelect
+      onSelect: this.onDropdownSelect,
+      options: { types: ['(cities)']}
     };
 
     return (
@@ -50,10 +52,7 @@ class LocationSearch extends Component {
         >
           Submit
         </button>
-        {!getState().modal &&
-          getState().warning && (
-            <Warning warning={getState().warning} />
-          )}
+        {!modal && userMessage && <UserMessage userMessage={userMessage} />}
       </form>
     );
   }
