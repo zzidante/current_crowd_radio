@@ -70,6 +70,12 @@
   background-color: black;
   border: none; }
 
+.body-dashboard .track-play-btn {
+  visibility: hidden; }
+
+.body-dashboard tr:hover .track-play-btn {
+  visibility: visible; }
+
 .body-dashboard .music-container {
   min-height: 76vh;
   padding: 20px 50px; }
@@ -149,11 +155,13 @@
       .body-dashboard .music-container .full-playlist .track-container .track-name {
         padding-left: 5px; }
       .body-dashboard .music-container .full-playlist .track-container .track-btns {
-        float: right;
+        display: flex;
+        right: 0;
         margin: 5px 10px; }
       .body-dashboard .music-container .full-playlist .track-container button {
+        padding: 0 0.1em;
         border: 0px solid transparent;
-        background: #191E24; }
+        background: none; }
         .body-dashboard .music-container .full-playlist .track-container button .fa-play {
           font-size: 1.4em;
           background: #b0ffe4;

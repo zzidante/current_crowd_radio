@@ -31,7 +31,7 @@ class Tracklist extends Component {
     const { name, artist, duration } = this.props.track;
     const { token, playlistType } = getState();
     return (
-      <tr>
+      <tr onDoubleClick={this.setCurrentTrack} className="track-single">
         <td>
           <div className="track-play-btn">
             {" "}
@@ -54,19 +54,19 @@ class Tracklist extends Component {
             token !== "guest" && (
               <span className="track-btns">
                 {playlistType !== "current" && (
-                  <a onClick={this.addToPlaylist} value="current">
+                  <button className="btn-link"  onClick={this.addToPlaylist} value="current">
                     <i className="fa fa-star" />
-                  </a>
+                  </button>
                 )}
                 {playlistType === "current" && (
-                  <a onClick={this.addToPlaylist} value="archive">
+                  <button className="btn-link" onClick={this.addToPlaylist} value="archive">
                     <i className="fa fa-archive" />
-                  </a>
+                  </button>
                 )}
                 {playlistType !== "" && (
-                  <a onClick={this.deleteFromPlaylist}>
+                  <button className="btn-link" onClick={this.deleteFromPlaylist}>
                     <i className="fa fa-trash" />
-                  </a>
+                  </button>
                 )}
               </span>
             )}

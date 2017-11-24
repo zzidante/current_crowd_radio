@@ -34,7 +34,8 @@ class LocationSearch extends Component {
     const inputProps = {
       value: locationBar,
       onChange: this.onChange,
-      onSelect: this.onDropdownSelect
+      onSelect: this.onDropdownSelect,
+      options: { types: ['(cities)']}
     };
 
     return (

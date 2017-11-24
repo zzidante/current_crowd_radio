@@ -16,7 +16,7 @@ const notAuthorized = {
   userMessage: { message: "You are not authorized to do that", style: "danger" }
 };
 
-const addToPlaylist = (songId, type, currentTarget) => {
+const addToPlaylist = (songId, type) => {
   axios
     .post(`/playlists/${getState().locationBar}/users/${getState().token}`, {
       songId,
@@ -25,7 +25,6 @@ const addToPlaylist = (songId, type, currentTarget) => {
     .then(res => {
       if (res.data) {
         setState({ playlists: res.data });
-        console.log(currentTarget);
       }
     })
     .catch(() => {
