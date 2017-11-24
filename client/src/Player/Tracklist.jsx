@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import Duration from "./Duration";
 import api from "../api/internal";
-import { setState, getState } from "../index";
+import { setState, getState} from "../index";
 class Tracklist extends Component {
+  constructor(){
+    super()
+    this.state = {
+      fav: 'fa fa-star-o'
+    }
+  }
+
   setCurrentTrack = () => {
     setState({ currentTrackIndex: this.props.index });
   };
@@ -19,12 +26,15 @@ class Tracklist extends Component {
     }
     if (value === "current") {
       api.addToPlaylist(songId, value);
+      this.setState({fav: "fa fa-star"})
       return;
     }
   };
 
   deleteFromPlaylist = () => {
-    api.deleteFromPlaylist(this.props.track.id, getState().playlistType);
+    let from = getState().playlistType
+    from ? from : "current"
+    api.deleteFromPlaylist(this.props.track.id, from);
   };
 
   render() {
@@ -53,11 +63,10 @@ class Tracklist extends Component {
           {token &&
             token !== "guest" && (
               <span className="track-btns">
-                {playlistType !== "current" && (
-                  <button className="btn-link"  onClick={this.addToPlaylist} value="current">
-                    <i className="fa fa-star" />
-                  </button>
-                )}
+                {playlistType !== "current" && 
+                <button className="btn-link"  onClick={this.addToPlaylist} value="current">
+                  <i className={this.state.fav} />
+                 </button> }
                 {playlistType === "current" && (
                   <button className="btn-link" onClick={this.addToPlaylist} value="archive">
                     <i className="fa fa-archive" />

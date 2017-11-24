@@ -1,7 +1,7 @@
 import axios from "axios";
 require("promise.prototype.finally").shim();
 import tough from "tough-cookie";
-import { setState, getState } from "../index";
+import { setState, getState, createFavouritedSet } from "../index";
 import jamendo from "./jamendo";
 
 const cookieJar = new tough.CookieJar();
@@ -25,6 +25,7 @@ const addToPlaylist = (songId, type) => {
     .then(res => {
       if (res.data) {
         setState({ playlists: res.data });
+        createFavouritedSet();
       }
     })
     .catch(() => {
