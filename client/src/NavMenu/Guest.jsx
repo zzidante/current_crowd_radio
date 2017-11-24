@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { DropdownButton, MenuItem } from "react-bootstrap";
-import { setState } from '../index'
+import { setState } from "../index";
 class Guest extends Component {
-
   openModal = event => {
     event.preventDefault();
     setState({ modal: event.currentTarget.value });
   };
 
-  guest = () => setState({ username: "guest" , token: 'guest'});
-  
+  guest = () => setState({ username: "guest", token: "guest" });
+
   render() {
     return (
       <nav>
@@ -33,13 +32,21 @@ class Guest extends Component {
           >
             Register
           </button>
-          
+
           <button className="btn btn-primary lg-size-btn" onClick={this.guest}>
             Guest
           </button>
         </form>
 
-        <DropdownButton id="dropdown" pullRight title={<i><span className="fa fa-bars"></span></i>}>
+        <DropdownButton
+          id="dropdown"
+          pullRight
+          title={
+            <i>
+              <span className="fa fa-bars" />
+            </i>
+          }
+        >
           <MenuItem>
             <button
               className="btn"
@@ -67,8 +74,8 @@ class Guest extends Component {
           </MenuItem>
         </DropdownButton>
       </nav>
-    )
+    );
   }
 }
 
-export default Guest
+export default Guest;

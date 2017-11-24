@@ -87,7 +87,32 @@ $body-min-height: 76vh;
 		}
 
 	}
-
+	.table {
+		border: none;
+		padding-top: 0;
+		margin-top: 0;
+	}
+	.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+		background-color: rgb(80,80,80);
+	}
+	.table-striped>tbody>tr:nth-child(odd)>td, 
+	.table-striped>tbody>tr:nth-child(odd)>th {
+		 background-color: $shadow1;
+		 border: none;
+	 }
+	 .table-striped>tbody>tr:nth-child(even)>td, 
+	 .table-striped>tbody>tr:nth-child(even)>th {
+			background-color: $shadow2;
+			border: none;
+		}
+		
+		.track-play-btn {
+			visibility: hidden;
+		}
+		tr:hover .track-play-btn{
+			visibility: visible;
+		}
+		
 	.music-container {
 		min-height: $body-min-height;
 		padding: 20px 50px;
@@ -193,6 +218,8 @@ $body-min-height: 76vh;
 			// prevent current playlist shadow from overlapping
 			z-index: 1;
 
+
+
 			.track-container {
 				position: relative;
 				padding-left: 5px;
@@ -204,13 +231,19 @@ $body-min-height: 76vh;
 				.track-name {
 					padding-left: 5px;
 				}
+
+
 				.track-btns {
-					float: right;
+					display: flex;
+					right: 0;
+					margin: 5px 10px;
+
 				}
 				button {
 					// get rid of default border
+					padding: 0 0.1em;
 					border: 0px solid transparent;
-					background: $gray1;
+					background: none;
 
 					.fa-play {
 						font-size: 1.4em;

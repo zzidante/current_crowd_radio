@@ -7,6 +7,10 @@ html {
   font-size: 16px;
   background-color: #142e3a; }
 
+body {
+  background-color: #a1e8ee;
+  color: #e4ffef; }
+
 ul, nav {
   list-style: none; }
 

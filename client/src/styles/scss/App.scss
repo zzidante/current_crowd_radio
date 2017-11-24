@@ -1,23 +1,30 @@
 // colors
 $mainC: rgb(20, 46, 58);
 $hoverC: #e4ffef;
+$teal1: #85babe;
+$teal2:  #b0ffe4;
+$tealBright: #a1e8ee;
 $font: 'Open Sans', sans-serif;
 $fontLogo: 'Skranji', cursive;
 $fontContent: 'Magra', sans-serif;
 
-*{
+* {
 	margin: 0;
 	padding: 0;
-	// box-sizing: border-box;
 }
 
-html{
+html {
 	font-family: $font;
 	font-size: 16px;
 	background-color: $mainC;
 }
 
-ul, nav{
+body {
+	background-color: $tealBright;
+	color: $hoverC;
+}
+
+ul, nav {
 	list-style: none;
 }
 
@@ -28,13 +35,13 @@ a {
 	opacity: 0.85;
 }
 
-a:hover{
+a:hover {
 	text-decoration: none;	
 	color: $hoverC;
 	opacity: 1;
 }
 
-a.btn{
+a.btn {
 	color: #fff;
 	border-radius: 4px;
 	text-transform: uppercase;
@@ -43,7 +50,7 @@ a.btn{
 	text-align: center;
 	padding: 5px;
 }
-section{
+section {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -55,14 +62,14 @@ section{
 
 @media (max-width: 1000px){
 
-	section{
+	section {
 		padding: 10px 50px;
 	}
 }
 
 @media (max-width: 600px){
 
-	section{
+	section {
 		padding: 40px 30px;
 	}
 }

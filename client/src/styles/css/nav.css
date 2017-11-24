@@ -3,19 +3,20 @@ header {
   background: #142e3a;
   top: 0;
   left: 0;
-  z-index: 2;
   width: 100%;
-  max-height: 135px;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
+  max-height: 135px;
   align-items: center;
+  font-family: "Magra", sans-serif;
   color: #fff;
   padding: 35px 100px 25px 0;
-  font-family: "Magra", sans-serif; }
+  z-index: 2; }
   header h3 {
     font-family: "Skranji", cursive;
-    font-size: 1rem; }
+    font-size: 1rem;
+    margin: 0 auto; }
   header textarea {
     color: black;
     width: 20vw;

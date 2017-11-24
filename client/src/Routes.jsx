@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   browserHistory,
-  Switch,
+  Switch
 } from "react-router-dom";
 import App from "./App.jsx";
 import Profile from "./User/Profile.jsx";
@@ -14,7 +14,7 @@ class Routes extends Component {
       <div>
         <Router history={browserHistory}>
           <Switch>
-            <Route exact path="/" render={() => <App/>} />
+            <Route exact path="/" render={() => <App />} />
             <Route path="/Profile" component={Profile} />
             <Route path="/*" component={NotFound} />
           </Switch>

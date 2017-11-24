@@ -4,8 +4,7 @@ import api from "../api/internal";
 import validation from "../validation";
 import { setState, getState } from "../index";
 import PlacesAutocomplete from "react-places-autocomplete";
-import Warning from "../Warning.jsx";
-import Success from "../Success.jsx";
+import UserMessage from "../UserMessage.jsx";
 
 class Profile extends Component {
   constructor(props) {
@@ -66,12 +65,11 @@ class Profile extends Component {
       id: "register-location"
     };
 
-    const { email, username, newPassword, oldPassword, confirmPassword, warning, success } = getState();
+    const { email, username, newPassword, oldPassword, confirmPassword, userMessage } = getState();
     return (
       <section className="row">
         <Link to="/" type="button" className="btn btn-sm">Back</Link>
-        {warning && <Warning warning={warning} />}
-        {success && <Success success={success} />}
+        {userMessage && <UserMessage userMessage={userMessage} />}
         <section className="form-row">
           <section>
             <form id="edit-account-form" onSubmit={this.updateUser}>

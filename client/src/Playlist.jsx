@@ -1,14 +1,13 @@
 import React , {Component} from 'react';
 import api from './api/jamendo'
-import { setState, getState } from './index'
+import { getState } from './index'
 class Playlist extends Component {
   setPlaylistType = ({ currentTarget: { value }}) => {
-    setState({playlistType: value})
     if (value === ""){
       api.getTracksByLocation()
       return
     }
-    api.getTracksById()
+    api.getTracksById(value)
   }
   render() {
     const { playlists, locationBar, token } = getState()
@@ -19,9 +18,16 @@ class Playlist extends Component {
           <div className="current-track-player">
           </div>
           <div className="playlist-selection-buttons">
-            {token && <button onClick={this.setPlaylistType} className="btn btn-primary" value="">Randomize</button>}
-            {loc && loc.current && <button onClick={this.setPlaylistType} className="btn btn-primary" value="current">Current Playlist</button> }
-            {loc && loc.archive && <button onClick={this.setPlaylistType} className="btn btn-primary" value="archive">Archive Playlist</button> }
+            {token && 
+            <button onClick={this.setPlaylistType} className="btn btn-primary" value="">Randomize</button>}
+
+            {loc && 
+            loc.current && 
+            <button onClick={this.setPlaylistType} className="btn btn-primary" value="current">Current Playlist</button> }
+            
+            {loc && 
+            loc.archive && 
+            <button onClick={this.setPlaylistType} className="btn btn-primary" value="archive">Archive Playlist</button> }
           </div>
         </article>
       </section>
