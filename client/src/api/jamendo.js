@@ -8,6 +8,11 @@ import { setState, getState } from "../index";
 const API_KEY = process.env.REACT_APP_JAMENDO_API;
 const MAX_AMOUNT = 50;
 
+// Checks if song from random playlist is already in the current location's playlist
+function isFavourited(id, location){
+    return location.current.includes(id)
+}
+
 // Converts text to city/county codes, sets state, and loads new tracklist.
 const setLocation = () => {
   const loc = getState().locationBar;
@@ -96,6 +101,8 @@ const getTracksByLocation = () => {
             )
             .then(artistTracks => {
               let tracks = [];
+              const { playlists, locationBar } = getState()
+              const location = playlists[locationBar]
               artistTracks.data.results.forEach(tracklist => {
                 const track =
                   tracklist.tracks[
@@ -108,16 +115,18 @@ const getTracksByLocation = () => {
                   artist: tracklist.name,
                   album: track.album_name,
                   image: track.image,
-                  duration: track.duration
+                  duration: track.duration,
+                  favourited: location ? isFavourited(track.id, location) : false,
                 });
               });
-              for (var i = tracks.length - 1; i > 0; i--) {
-                var j = Math.floor(Math.random() * (i + 1));
+              for (let i = tracks.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                // [ tracks[i], tracks[j] ] = [ tracks[j], tracks[i] ];
                 let temp = tracks[i];
                 tracks[i] = tracks[j];
                 tracks[j] = temp;
               }
-              setState({ tracklist: tracks, userMessage: {} });
+              setState({ tracklist: tracks, userMessage: {}, playlistType: '' });
             })
             .finally(() => {
               setState({ loading: false });
@@ -166,7 +175,7 @@ const getTracksById = playlistType => {
         setState({ loading: false });
       });
   } else {
-    setState({ tracklist: [] });
+    setState({ tracklist: [] , loading: false});
   }
 };
 module.exports = {

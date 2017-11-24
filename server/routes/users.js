@@ -12,18 +12,18 @@ module.exports = (DataHelpers) => {
   
   // Login
   router.put('/', (req, res) => {
-    if (req.session.token && req.body.auth.token === req.session.token) {
+    let { session , body: { auth: {token, email, password} } } = req
+    if (session.token && token === session.token) {
       req.session.token = rnd()
-      DataHelpers.getProfile(req.session.user_id).then ( user => {
-        if(user) {
-          return DataHelpers.getPlaylists(req.session.user_id).then( playlists => {
+      DataHelpers.getProfile(session.user_id).then( user => {
+          if (user){
+          DataHelpers.getPlaylists(session.user_id).then( playlists => {
             res.status(200).json({playlists, token: req.session.token, user:{username: user.username, defaultLocation: user.default_location }});
-            return
-          })  
+          })
         }
-      });
-    } else {
-      DataHelpers.login(req.body.auth.email, req.body.auth.password).then( user => {
+      })
+    } else if(email){
+      DataHelpers.login(email, password).then( user => {
         if(user) {
           req.session.user_id = user.id;
           req.session.token = rnd()
@@ -65,7 +65,7 @@ module.exports = (DataHelpers) => {
 
   // Logout
   router.delete('/', (req, res) => {
-    req.session = null;
+    req.session.destroy();
     res.sendStatus(200);
   });
 

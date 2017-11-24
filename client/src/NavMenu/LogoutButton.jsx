@@ -7,7 +7,6 @@ class LogoutButton extends Component {
     localStorage.token = "";
     api.logout();
     resetState();
-    console.log(getState());
   };
 
   render() {

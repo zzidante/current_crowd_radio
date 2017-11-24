@@ -1,7 +1,7 @@
 import axios from "axios";
 require("promise.prototype.finally").shim();
 import tough from "tough-cookie";
-import { setState, getState, createFavouritedSet } from "../index";
+import { setState, getState } from "../index";
 import jamendo from "./jamendo";
 
 const cookieJar = new tough.CookieJar();
@@ -16,16 +16,28 @@ const notAuthorized = {
   userMessage: { message: "You are not authorized to do that", style: "danger" }
 };
 
-const addToPlaylist = (songId, type) => {
+
+Array.prototype.spliced = function () {
+  Array.prototype.splice.apply(this, arguments)
+  return(this)
+}
+
+function toggleFavouriteTrack(index){
+  const tracklistCopy = getState().tracklist
+  tracklistCopy[index].favourited = !tracklistCopy[index].favourited
+  return tracklistCopy
+}
+
+const addToPlaylist = (songId, index, type) => {
+  const { playlists, locationBar, token, tracklist } = getState()
   axios
-    .post(`/playlists/${getState().locationBar}/users/${getState().token}`, {
+    .post(`/playlists/${locationBar}/users/${token}`, {
       songId,
       type
     })
     .then(res => {
       if (res.data) {
-        setState({ playlists: res.data });
-        createFavouritedSet();
+        setState({ playlists: res.data, tracklist: toggleFavouriteTrack(index)});
       }
     })
     .catch(() => {
@@ -33,18 +45,18 @@ const addToPlaylist = (songId, type) => {
     });
 };
 
-const moveToPlaylist = (songId, type) => {
+const moveToPlaylist = (songId, index, type) => {
+  const { locationBar, tracklist, token} = getState()
   const typeFrom = type === "archive" ? "current" : "archive";
   axios
-    .put(`/playlists/${getState().locationBar}/users/${getState().token}`, {
+    .put(`/playlists/${locationBar}/users/${token}`, {
       songId,
       typeFrom,
       typeTo: type
     })
     .then(res => {
       if (res.data) {
-        setState({ playlists: res.data });
-        jamendo.getTracksById();
+        setState({ playlists: res.data, tracklist: tracklist.spliced(index, 1) });
       }
     })
     .catch(() => {
@@ -52,15 +64,20 @@ const moveToPlaylist = (songId, type) => {
     });
 };
 
-const deleteFromPlaylist = (songId, type) => {
+const deleteFromPlaylist = (songId, index, type) => {
+  const { locationBar, tracklist, token, playlistType } = getState()
   axios
-    .delete(`/playlists/${getState().locationBar}/users/${getState().token}`, {
+    .delete(`/playlists/${locationBar}/users/${token}`, {
       params: { songId, type }
     })
     .then(res => {
       if (res.data) {
-        setState({ playlists: res.data });
-        jamendo.getTracksById();
+        setState({ playlists: res.data});
+        if (playlistType){
+          setState({tracklist: tracklist.spliced(index, 1)})
+        } else {
+          setState({ playlists: res.data, tracklist: toggleFavouriteTrack(index) });
+        }
       }
     })
     .catch(() => {
@@ -118,7 +135,7 @@ const loginUser = (email, password) => {
         localStorage.token = token;
         setState({
           token,
-          username,
+          username: username,
           locationBar: defaultLocation,
           playlists: res.data.playlists,
           password: "",
@@ -198,7 +215,6 @@ const getUser = () => {
     .then(res => {
       const { username, email, defaultLocation } = res.data.user;
       setState({ username, email, defaultLocation });
-      console.log(defaultLocation);
       jamendo.getTracksByLocation();
     })
     .catch(err => {

@@ -12,16 +12,8 @@ export const setState = newState => {
 };
 export const resetState = () => {
   setState(store.defaultState);
+  setState({token : ''})
 };
-
-export const createFavouritedSet = () => {
-  const { playlists, locationBar, tracklist, currentTrackIndex } = getState();
-  if (playlists[locationBar]){
-    const tracks = playlists[locationBar]["current"];
-    // Create set of intersecting user's current tracklist and random tracklist
-    setState({favouritedSet: new Set(tracklist.filter(x => tracks.includes(x)))})
-  }
-}
 
 resetState();
 if (getState().token) {
