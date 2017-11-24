@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactPlayer from "react-player";
 import Duration from "./Duration";
-import { setState, getState } from '../index'
+import { setState, getState } from "../index";
 class Controls extends Component {
   playPause = () => {
     setState({ playing: !getState().playing });
@@ -11,16 +11,8 @@ class Controls extends Component {
     setState({ currentTrack: null, playing: false });
   };
 
-  toggleLoop = () => {
-    setState({ loop: !getState().loop });
-  };
-
   setVolume = event => {
     setState({ volume: parseFloat(event.target.value) });
-  };
-
-  toggleMuted = () => {
-    setState({ muted: !getState().muted });
   };
 
   onSeekMouseDown = () => {
@@ -42,24 +34,28 @@ class Controls extends Component {
       setState({ ...state });
     }
   };
+
   ref = player => {
     this.player = player;
   };
+
   onEnded = () => {
     const { currentTrackIndex, tracklist } = getState();
-    setState({ playing: getState().loop });
-    if ( currentTrackIndex < tracklist.length - 1 ) {
-      this.nextTrack()
+    if (currentTrackIndex < tracklist.length - 1) {
+      this.nextTrack();
     }
   };
+
   onDuration = duration => {
     setState({ duration });
   };
+
   nextTrack = () => {
     setState({
       currentTrackIndex: getState().currentTrackIndex + 1
     });
   };
+
   previousTrack = () => {
     setState({
       currentTrackIndex: getState().currentTrackIndex - 1
@@ -76,8 +72,10 @@ class Controls extends Component {
       loaded,
       duration
     } = getState();
+
     const { currentTrack } = this.props;
     const trackURL = currentTrack ? currentTrack.trackHREF : "";
+
     return (
       <div className="player-full-container">
         <ReactPlayer
@@ -104,19 +102,6 @@ class Controls extends Component {
 
             <table className="current-song-container">
               <tbody>
-                {/* <tr>
-                    <td>
-                      <label>
-                        <input
-                          type="checkbox"
-                          checked={loop}
-                          onChange={this.toggleLoop}
-                        />{' '}
-                        Loop
-                      </label>
-                    </td>
-                  </tr> */}
-
                 <tr>
                   <td>
                     <input
@@ -181,14 +166,6 @@ class Controls extends Component {
                       onChange={this.setVolume}
                       className="volume-control"
                     />
-                    {/* <label>
-                        <input
-                          type="checkbox"
-                          checked={muted}
-                          onChange={this.toggleMuted}
-                        />{' '}
-                        Muted
-                      </label> */}
                   </td>
                 </tr>
               </tbody>

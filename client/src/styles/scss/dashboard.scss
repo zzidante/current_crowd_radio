@@ -87,7 +87,25 @@ $body-min-height: 76vh;
 		}
 
 	}
-
+	.table {
+		border: none;
+		padding-top: 0;
+		margin-top: 0;
+	}
+	.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+		background-color: rgb(80,80,80);
+	}
+	.table-striped>tbody>tr:nth-child(odd)>td, 
+	.table-striped>tbody>tr:nth-child(odd)>th {
+		 background-color: $shadow1;
+		 border: none;
+	 }
+	 .table-striped>tbody>tr:nth-child(even)>td, 
+	 .table-striped>tbody>tr:nth-child(even)>th {
+			background-color: $shadow2;
+			border: none;
+		}
+		
 	.music-container {
 		min-height: $body-min-height;
 		padding: 20px 50px;
@@ -206,6 +224,8 @@ $body-min-height: 76vh;
 				}
 				.track-btns {
 					float: right;
+					margin: 5px 10px;
+
 				}
 				button {
 					// get rid of default border
