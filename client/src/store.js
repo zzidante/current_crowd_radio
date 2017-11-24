@@ -9,7 +9,6 @@ const defaultState = {
   city: "",
   type: "",
   playlists: {},
-  favouritedSet: new Set(),
   playlistType: "",
   userMessage: "",
   email: "",
