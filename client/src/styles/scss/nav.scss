@@ -11,12 +11,12 @@ header{
 	width: 100%;
 	display: flex;
 	flex-flow: row; 
-	justify-content: space-between;
 	max-height: 135px;
 	align-items: center;
+  justify-content: center;
 	font-family: $fontContent;
 	color: #fff;
-	padding: 35px 100px 25px 0;
+	padding: 35px 100px 20px 0;
 	z-index: 2;
 
 	h3 {
@@ -43,18 +43,6 @@ header{
 		.lg-size-btn {
 			margin: 5px;			
 		}
-
-		// li{
-		// 	margin: 0 15px;
-		// }
-		
-		// li:first-child{
-		// 	margin-left: 0;	
-		// }
-		
-		// li:last-child{
-		// 	margin-right: 0;	
-		// }
 	}
 
 	#location-search {
