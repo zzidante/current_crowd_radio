@@ -1,0 +1,14 @@
+  $darkGray: #272e31;
+  $accent: #85babe;
+  $font: 'Open Sans', sans-serif;
+  $fontLogo: 'Skranji', cursive;
+  $fontContent: 'Magra', sans-serif;
+
+  h1 {
+    font-family: $fontLogo;
+  }
+  
+  .shadow-stroke {
+    color: white;
+    text-shadow: -3px 2px 0 $darkGray, -2px -2px 0 $darkGray, 4px 2px 0 $darkGray, 2px -1px 0 $darkGray;    
+  }

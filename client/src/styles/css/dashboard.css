@@ -1,3 +1,6 @@
+.body-dashboard {
+  height: 80vh; }
+
 .back-img {
   top: 0;
   left: 0;
@@ -6,141 +9,140 @@
   background-image: url("https://www.hdwallpaperswizard.com/wp-content/uploads/2017/03/Black-Music-Wallpaper-HD-1366x768.jpg");
   overflow: auto;
   z-index: -2; }
-
-.body-dashboard .playlist-heading {
-  padding: 5px 50px;
-  margin-top: 20px;
-  min-height: 200px;
-  max-height: 76vh; }
-  .body-dashboard .playlist-heading .playlist-selection-buttons {
-    padding-top: 36px;
-    flex-flow: column; }
-    .body-dashboard .playlist-heading .playlist-selection-buttons button {
-      background-color: #51a1c0;
-      margin: 15px;
-      width: 180px;
-      font-size: 1.6em; }
-
-.body-dashboard .username-heading {
-  padding: 20px;
-  margin-top: 20px;
-  min-height: 200px;
-  max-height: 76vh; }
-  .body-dashboard .username-heading h2 {
-    color: #b0ffe4; }
-  .body-dashboard .username-heading button {
-    color: #191E24; }
-  .body-dashboard .username-heading button:hover {
-    color: #b0ffe4;
-    background-color: #191E24;
-    border: none; }
-  .body-dashboard .username-heading ul {
-    position: relative;
-    top: 20px;
-    right: 20px;
-    overflow: scroll;
-    margin: 10px;
-    padding: 0;
-    min-height: 100px;
-    max-height: 120px; }
-  .body-dashboard .username-heading li {
-    padding: 10px 20px; }
-    .body-dashboard .username-heading li:last-child {
-      border-bottom: none; }
-    .body-dashboard .username-heading li:nth-child(even) {
-      background: #191E24; }
-    .body-dashboard .username-heading li button {
-      color: white; }
-
-.body-dashboard .music-container {
-  min-height: 76vh;
-  padding: 20px 50px; }
-  .body-dashboard .music-container .player-full-container {
-    position: absolute;
-    color: white;
-    width: 100%;
-    border-radius: 6px;
-    min-height: 200px;
-    overflow: hidden;
-    z-index: 1; }
-    .body-dashboard .music-container .player-full-container .current-song-info {
-      text-shadow: 1px 0px 1px #ccc, 0px 1px 1px #292929, 2px 1px 1px black, 1px 2px 1px #292929, 3px 2px 1px black, 2px 3px 1px #292929, 4px 3px 1px black, 3px 4px 1px #292929, 5px 4px 1px black, 4px 5px 1px #292929, 6px 5px 1px black, 5px 6px 1px #292929, 7px 6px 1px black; }
-    .body-dashboard .music-container .player-full-container .audio-player {
-      display: none;
-      width: 0px;
-      height: 0px; }
-    .body-dashboard .music-container .player-full-container .player-image-bg {
-      position: absolute;
-      background-color: black;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 6px;
-      background-position: center;
-      background-size: cover;
-      -webkit-filter: blur(10px);
-      filter: blur(10px);
-      z-index: -1; }
-    .body-dashboard .music-container .player-full-container .current-song-container {
-      width: 100%;
-      background-color: darkslategray;
-      padding: 30px;
-      background-color: #191E24;
-      font-family: "Open Sans", sans-serif; }
-      .body-dashboard .music-container .player-full-container .current-song-container tr {
-        width: 100%;
-        font-size: 14px;
-        line-height: 0; }
-        .body-dashboard .music-container .player-full-container .current-song-container tr time {
-          float: right;
-          padding: 0 20px; }
-      .body-dashboard .music-container .player-full-container .current-song-container .player-controls {
-        text-align: center;
-        margin: 0 auto; }
-    .body-dashboard .music-container .player-full-container button {
-      background: aquamarine;
-      border: none;
-      border-radius: 10%;
-      padding: 2px;
-      margin: 10px; }
-      .body-dashboard .music-container .player-full-container button .fa {
-        font-size: 2em;
-        width: 30px;
+  .back-img .body-dashboard {
+    height: 80vh; }
+    .back-img .body-dashboard .playlist-heading {
+      padding: 5px 50px;
+      margin-top: 20px;
+      min-height: 200px;
+      max-height: 76vh; }
+      .back-img .body-dashboard .playlist-heading .playlist-selection-buttons {
+        padding-top: 36px;
+        flex-flow: column; }
+        .back-img .body-dashboard .playlist-heading .playlist-selection-buttons button {
+          background-color: #51a1c0;
+          margin: 15px;
+          width: 180px;
+          font-size: 1.6em; }
+    .back-img .body-dashboard .username-heading {
+      padding: 20px;
+      margin-top: 20px;
+      min-height: 200px;
+      max-height: 76vh; }
+      .back-img .body-dashboard .username-heading h2 {
+        color: #b0ffe4; }
+      .back-img .body-dashboard .username-heading button {
         color: #191E24; }
-  .body-dashboard .music-container .add-border {
-    border: 2px black solid;
-    background-color: #191E24; }
-  .body-dashboard .music-container .full-playlist {
-    position: absolute;
-    max-height: 40vh;
-    min-width: 100%;
-    overflow: auto;
-    padding: 0;
-    margin: 225px 0 5px 0;
-    border-bottom-left-radius: 11px;
-    border-bottom-right-radius: 11px;
-    z-index: 1; }
-    .body-dashboard .music-container .full-playlist .track-container {
-      position: relative;
-      padding-left: 5px;
-      color: #dbdfe1;
-      background-color: #1f1f1f;
-      min-width: 100%;
-      max-height: 40vh; }
-      .body-dashboard .music-container .full-playlist .track-container .track-name {
-        padding-left: 5px; }
-      .body-dashboard .music-container .full-playlist .track-container .track-btns {
-        float: right; }
-      .body-dashboard .music-container .full-playlist .track-container button {
-        border: 0px solid transparent;
-        background: #191E24; }
-        .body-dashboard .music-container .full-playlist .track-container button .fa-play {
-          font-size: 1.4em;
-          background: #b0ffe4;
-          margin: 2px;
-          padding: 5px;
-          color: #191E24;
-          border: 0px transparent solid;
-          width: 30px;
-          display: block; }
+      .back-img .body-dashboard .username-heading button:hover {
+        color: #b0ffe4;
+        background-color: #191E24;
+        border: none; }
+      .back-img .body-dashboard .username-heading ul {
+        position: relative;
+        top: 20px;
+        right: 20px;
+        overflow: scroll;
+        margin: 10px;
+        padding: 0;
+        min-height: 100px;
+        max-height: 120px; }
+      .back-img .body-dashboard .username-heading li {
+        padding: 10px 20px; }
+        .back-img .body-dashboard .username-heading li:last-child {
+          border-bottom: none; }
+        .back-img .body-dashboard .username-heading li:nth-child(even) {
+          background: #191E24; }
+        .back-img .body-dashboard .username-heading li button {
+          color: white; }
+    .back-img .body-dashboard .music-container {
+      min-height: 76vh;
+      padding: 20px 50px; }
+      .back-img .body-dashboard .music-container .player-full-container {
+        position: absolute;
+        color: white;
+        width: 100%;
+        border-radius: 6px;
+        min-height: 200px;
+        overflow: hidden;
+        z-index: 1; }
+        .back-img .body-dashboard .music-container .player-full-container .current-song-info {
+          text-shadow: 1px 0px 1px #ccc, 0px 1px 1px #292929, 2px 1px 1px black, 1px 2px 1px #292929, 3px 2px 1px black, 2px 3px 1px #292929, 4px 3px 1px black, 3px 4px 1px #292929, 5px 4px 1px black, 4px 5px 1px #292929, 6px 5px 1px black, 5px 6px 1px #292929, 7px 6px 1px black; }
+        .back-img .body-dashboard .music-container .player-full-container .audio-player {
+          display: none;
+          width: 0px;
+          height: 0px; }
+        .back-img .body-dashboard .music-container .player-full-container .player-image-bg {
+          position: absolute;
+          background-color: black;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 6px;
+          background-position: center;
+          background-size: cover;
+          -webkit-filter: blur(10px);
+          filter: blur(10px);
+          z-index: -1; }
+        .back-img .body-dashboard .music-container .player-full-container .current-song-container {
+          width: 100%;
+          background-color: darkslategray;
+          padding: 30px;
+          background-color: #191E24;
+          font-family: "Open Sans", sans-serif; }
+          .back-img .body-dashboard .music-container .player-full-container .current-song-container tr {
+            width: 100%;
+            font-size: 14px;
+            line-height: 0; }
+            .back-img .body-dashboard .music-container .player-full-container .current-song-container tr time {
+              float: right;
+              padding: 0 20px; }
+          .back-img .body-dashboard .music-container .player-full-container .current-song-container .player-controls {
+            text-align: center;
+            margin: 0 auto; }
+        .back-img .body-dashboard .music-container .player-full-container button {
+          background: aquamarine;
+          border: none;
+          border-radius: 10%;
+          padding: 2px;
+          margin: 10px; }
+          .back-img .body-dashboard .music-container .player-full-container button .fa {
+            font-size: 2em;
+            width: 30px;
+            color: #191E24; }
+      .back-img .body-dashboard .music-container .add-border {
+        border: 2px black solid;
+        background-color: #191E24; }
+      .back-img .body-dashboard .music-container .full-playlist {
+        position: absolute;
+        max-height: 40vh;
+        min-width: 100%;
+        overflow: auto;
+        padding: 0;
+        margin: 225px 0 5px 0;
+        border-bottom-left-radius: 11px;
+        border-bottom-right-radius: 11px;
+        z-index: 1; }
+        .back-img .body-dashboard .music-container .full-playlist .track-container {
+          position: relative;
+          padding-left: 5px;
+          color: #dbdfe1;
+          background-color: #1f1f1f;
+          min-width: 100%;
+          max-height: 40vh; }
+          .back-img .body-dashboard .music-container .full-playlist .track-container .track-name {
+            padding-left: 5px; }
+          .back-img .body-dashboard .music-container .full-playlist .track-container .track-btns {
+            float: right; }
+          .back-img .body-dashboard .music-container .full-playlist .track-container button {
+            border: 0px solid transparent;
+            background: #191E24; }
+            .back-img .body-dashboard .music-container .full-playlist .track-container button .fa-play {
+              font-size: 1.4em;
+              background: #b0ffe4;
+              margin: 2px;
+              padding: 5px;
+              color: #191E24;
+              border: 0px transparent solid;
+              width: 30px;
+              display: block; }

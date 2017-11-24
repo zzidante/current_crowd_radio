@@ -8,35 +8,41 @@ import Footer from "./Footer.jsx";
 import { getState } from './index';
 import api from './api/internal'
 import "./styles/css/index.css";
+    
+
 
 class App extends Component {
   componentDidMount() {
-    if (localStorage.token){
+    if (localStorage.token) {
       api.loginUser()
     }
   }
-  render() {
-    return (
-      <div>
-        <Nav />
-        <div className="back-img">
-          <div className="body-dashboard container">
 
-              <div className="row-fluid">
-                {!getState().token && (
-                  <Splash />
-                )}
-                
-                {getState().token && (
-                  <div>
-                    <User />
-                    <Playlist type={getState().type} />
-                    <Player tracklist={getState().tracklist} />
-                  </div>
-                )}
-              </div>
+  render() {
+
+    return (
+      <div id="main-content-spread">
+        <Nav />
+        {!getState().token && (
+          <div className="body-dashboard container">
+            <Splash />
           </div>
-        </div>
+        )}
+
+        {getState().token && (
+          <div className="back-img">
+            <div className="body-dashboard container">
+              <div className="row-fluid">
+                <div>
+                  <User />
+                  <Playlist type={getState().type} />
+                  <Player tracklist={getState().tracklist} />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         <Footer />
       </div>
     );

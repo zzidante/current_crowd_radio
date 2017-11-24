@@ -3,7 +3,7 @@ import panda from './images/sad_panda.png'
 
 function NotFound () {
   const divStyle = {
-    backgroundcolor: '0E2E39',
+    backgroundColor: '#0E2E39',
     margin: "auto",
     width: "100vw"
   }
