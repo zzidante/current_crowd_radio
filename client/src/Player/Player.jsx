@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import Controls from "./Controls.jsx";
 import Tracklist from "./Tracklist.jsx";
-import { getState } from "../index";
+import { getState, createFavouritedSet } from "../index";
 class Player extends Component {
+  componentDidMount(){
+    createFavouritedSet()
+  }
+  
   render() {
-    const trackArray = getState().tracklist.map((track, i) => {
-      return <Tracklist key={track.id} track={track} index={i} />;
+
+    const { tracklist, currentTrackIndex, favouritedSet } = getState();
+    const trackArray = tracklist.map((track, i) => {
+      return <Tracklist key={track.id} track={track} index={i} favourited={ favouritedSet.has(track) }/>;
     });
     return (
       <section className="music-container col-md-6 col-md-pull-3 col-xs-12">
         <Controls
           key={"controls"}
-          currentTrack={getState().tracklist[getState().currentTrackIndex]}
+          currentTrack={tracklist[currentTrackIndex]}
         />
         <section
           className={trackArray.length > 0 ? "full-playlist add-border" : "full-playlist"}>
