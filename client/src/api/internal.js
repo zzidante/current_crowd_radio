@@ -29,7 +29,7 @@ function toggleFavouriteTrack(index){
 }
 
 const addToPlaylist = (songId, index, type) => {
-  const { playlists, locationBar, token, tracklist } = getState()
+  const { locationBar, token } = getState()
   axios
     .post(`/playlists/${locationBar}/users/${token}`, {
       songId,
