@@ -10,7 +10,7 @@ class Guest extends Component {
 
   guest = (event) => {
     event.preventDefault();
-    setState({ username: "Guest", token: "guest" });
+    setState({ token: "guest" });
   }
 
   render() {
