@@ -10,7 +10,7 @@ class User extends Component {
   };
 
   render() {
-    const { playlists, username } = getState();
+    const { playlists, token, username } = getState();
     let locations = [];
     if (playlists) {
       locations = Object.keys(playlists).map(location => {
@@ -31,11 +31,17 @@ class User extends Component {
       <section className="username-heading col-md-3 col-xs-6">
         <h2>{username}</h2>
 
-        {username !== "guest" && (
+        { token !== "guest" && 
           <Link type="button" className="btn btn-sm" to="/Profile">
             Profile
           </Link>
-        )}
+        }
+
+        { token === "guest" && 
+          <h4>
+            Sign in to save your new discoveries!
+          </h4>
+        }
 
         <ul>{locations}</ul>
       </section>

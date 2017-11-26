@@ -73,12 +73,13 @@ class Guest extends Component {
               Register
             </button>
           </MenuItem>
-          {!token &&
-          <MenuItem>
-            <button className="btn" onClick={this.guest}>
-              Guest
-            </button>
-          </MenuItem>}
+          { !token &&
+            <MenuItem>
+              <button className="btn" onClick={this.guest}>
+                Guest
+              </button>
+            </MenuItem>
+          }
         </DropdownButton>
       </nav>
     );
