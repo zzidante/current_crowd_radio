@@ -3,30 +3,27 @@
 -------------*/
 footer {
   display: flex;
+  position: fixed;
   flex-direction: column;
   align-items: center;
   text-align: center;
   color: #fff;
   background-color: #142e3a;
-  padding: 20px 0 0 0; }
-
-footer ul {
-  display: flex;
-  margin-bottom: 0px;
-  font-size: 32px; }
-
-footer ul li {
-  margin: 0 8px; }
-
-footer p {
-  text-transform: uppercase;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 0px; }
-
-footer p a {
-  color: #fff; }
-
-@media (max-width: 700px) {
-  footer {
-    padding: 30px 15px 0px 15px; } }
+  padding: 5px 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1; }
+  footer ul {
+    display: flex;
+    margin-bottom: 0px;
+    font-size: 1em; }
+    footer ul li {
+      margin: 0 8px; }
+  footer a {
+    color: #fff; }
+    footer a span {
+      font-family: "Skranji", cursive;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 0px; }

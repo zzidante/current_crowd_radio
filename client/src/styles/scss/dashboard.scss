@@ -7,24 +7,13 @@ $shadow2: rgb(0, 0, 0);
 $gray1: #191E24; 
 $graytransparent: rgba(33, 34, 34, 0.8);
 $teal2:  #b0ffe4;
-$body-min-height: 76vh;
-
-.back-img {
-	top: 0;
-	left: 0;
-	margin-top: 110px;
-	background-size: cover; 
-	background-image: url("https://www.hdwallpaperswizard.com/wp-content/uploads/2017/03/Black-Music-Wallpaper-HD-1366x768.jpg");
-	overflow: auto;
-	z-index: -2;
-}
+$body-min-height: 100vh;
 
 .body-dashboard {
 
 	.playlist-heading {
 		padding: 5px 50px;
 		margin-top: 20px;
-		min-height: 200px;
 		max-height: $body-min-height;
 
 		.playlist-selection-buttons {
@@ -43,7 +32,6 @@ $body-min-height: 76vh;
 	.username-heading {
 		padding: 20px;
 		margin-top: 20px;		
-		min-height: 200px;
 		max-height: $body-min-height;
 
 		h2 {
@@ -67,7 +55,6 @@ $body-min-height: 76vh;
 			overflow: scroll;
 			margin: 10px;
 			padding: 0;
-			min-height: 100px;
 			max-height: 120px;
 		}
 
@@ -114,7 +101,6 @@ $body-min-height: 76vh;
 		}
 		
 	.music-container {
-		min-height: $body-min-height;
 		padding: 20px 50px;
 
 		.player-full-container  {
@@ -122,7 +108,8 @@ $body-min-height: 76vh;
 			color: white;
 			width: 100%;
 			border-radius: 6px;
-			min-height: 200px;
+			min-height: 225px;
+			min-width: 380px;
 			overflow: hidden;
 			z-index: 1;
 
@@ -208,7 +195,6 @@ $body-min-height: 76vh;
 
 		.full-playlist {
 			position: absolute;
-			max-height: 40vh;
 			min-width: 100%;
 			overflow: auto;
 			padding: 0;
