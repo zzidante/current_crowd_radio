@@ -3,43 +3,41 @@ import Duration from "./Duration";
 import api from "../api/internal";
 import { setState, getState} from "../index";
 class Tracklist extends Component {
-  constructor(){
-    super()
-    this.state = {
-      fav: 'fa fa-star-o'
-    }
-  }
-
   setCurrentTrack = () => {
     setState({ currentTrackIndex: this.props.index });
   };
 
   addToPlaylist = ({ currentTarget: { value } }) => {
     const songId = this.props.track.id;
+    const i = this.props.index
     if (value === "archive") {
-      api.moveToPlaylist(songId, value);
+      api.moveToPlaylist(songId, i, value);
       return;
     }
     if (value === "current" && getState().playlistType === "archive") {
-      api.moveToPlaylist(songId, value);
+      api.moveToPlaylist(songId, i, value);
       return;
     }
     if (value === "current") {
-      api.addToPlaylist(songId, value);
-      this.setState({fav: "fa fa-star"})
+      api.addToPlaylist(songId, i, value);
       return;
     }
   };
 
   deleteFromPlaylist = () => {
-    let from = getState().playlistType
-    from ? from : "current"
-    api.deleteFromPlaylist(this.props.track.id, from);
+    const from = getState().playlistType === "archive" ? "archive" : "current"
+    api.deleteFromPlaylist(this.props.track.id, this.props.index, from);
   };
 
   render() {
-    const { name, artist, duration } = this.props.track;
+    const { name, artist, duration, favourited } = this.props.track;
     const { token, playlistType } = getState();
+    const star = favourited ? (<button className="btn-link"  onClick={this.deleteFromPlaylist} value="current">
+    <i className="fa fa-star" />
+  </button>) :
+   (<button className="btn-link"  onClick={this.addToPlaylist} value="current">
+   <i className="fa fa-star-o" />
+  </button>)
     return (
       <tr onDoubleClick={this.setCurrentTrack} className="track-single">
         <td>
@@ -51,8 +49,8 @@ class Tracklist extends Component {
           </div>
         </td>
         <td>
-          <span className="track-name">{name}</span>
-          <span className="track-artist">{artist}</span>
+          <span className="track-name">{name} - <b>{artist}</b></span>
+          
         </td>
         <td>
           <div className="track-duration">
@@ -64,9 +62,7 @@ class Tracklist extends Component {
             token !== "guest" && (
               <span className="track-btns">
                 {playlistType !== "current" && 
-                <button className="btn-link"  onClick={this.addToPlaylist} value="current">
-                  <i className={this.state.fav} />
-                 </button> }
+                star }
                 {playlistType === "current" && (
                   <button className="btn-link" onClick={this.addToPlaylist} value="archive">
                     <i className="fa fa-archive" />
