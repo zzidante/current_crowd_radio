@@ -49,8 +49,8 @@ class Tracklist extends Component {
           </div>
         </td>
         <td>
-          <span className="track-name">{name}</span>
-          <span className="track-artist">{artist}</span>
+          <span className="track-name">{name} - <b>{artist}</b></span>
+          
         </td>
         <td>
           <div className="track-duration">
