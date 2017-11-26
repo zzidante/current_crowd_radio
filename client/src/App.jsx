@@ -20,6 +20,22 @@ class App extends Component {
 
   render() {
     const { token, loading, type, tracklist } = getState();
+
+    const dashboardBackground = {
+      top: '0',
+      left: '0',
+      marginTop: '110px',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundAttachment: 'fixed',
+      backgroundImage: 'url("https://www.hdwallpaperswizard.com/wp-content/uploads/2017/03/Black-Music-Wallpaper-HD-1366x768.jpg")',
+      // TODO: adds extra scrollbar with vertical-heavy aspect-ratio but removes lack of element problem. 
+      overflow: 'auto',
+      height: '100%',
+      width: '100%',
+      zIndex: '-2',
+    }
+
     return (
       <div id="main-content-spread">
         <Nav />
@@ -28,22 +44,24 @@ class App extends Component {
             <Splash />
           </div>
         )}
+
         {loading && (
           <div className="loader-underlay">
             <div className="loader" />
           </div>
         )}
-        <div className="back-img">
-          <div className="body-dashboard container">
-            {token && (
+
+        {token && (
+          <div style={dashboardBackground}> 
+            <div className="body-dashboard container">
               <div className="row-fluid">
                 <User />
                 <Playlist type={type} />
                 <Player tracklist={tracklist} />
               </div>
-            )}
             </div>
           </div>
+        )}
         <Footer />
       </div>
     );
