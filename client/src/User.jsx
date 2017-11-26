@@ -29,7 +29,7 @@ class User extends Component {
     }
     return (
       <section className="username-heading col-md-3 col-xs-6">
-        <h2>{username}</h2>
+        { token === "guest" ? <h2>Guest</h2> : <h2>{username}</h2> }
 
         { token !== "guest" && 
           <Link type="button" className="btn btn-sm" to="/Profile">
