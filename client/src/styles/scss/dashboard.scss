@@ -6,8 +6,13 @@ $shadow1: rgb(41, 41, 41);
 $shadow2: rgb(0, 0, 0);
 $gray1: #191E24; 
 $graytransparent: rgba(33, 34, 34, 0.8);
+$teal1: #85babe;
 $teal2:  #b0ffe4;
+$tealBright: #a1e8ee;
+$blueMid: #235475;
+$blueBright: #3e93cc;
 $body-min-height: 100vh;
+
 
 .body-dashboard {
 
@@ -21,10 +26,14 @@ $body-min-height: 100vh;
 			flex-flow: column;
 
 			button {
-				background-color: #51a1c0;
+				background-color: $blueMid;
 				margin: 15px;
 				width: 180px;
 				font-size: 1.6em;
+				opacity: 0.9;
+			}
+			button:hover {
+				opacity: 1;
 			}
 		}
 	}
@@ -36,6 +45,8 @@ $body-min-height: 100vh;
 
 		h2 {
 			color: $teal2;
+			font-family: $fontLogo;
+			font-size: 2em;
 		}
 
 		button {
@@ -168,22 +179,32 @@ $body-min-height: 100vh;
 				.player-controls {
 					text-align: center;
 					margin: 0 auto;
+
+					button {
+						background: $teal2;
+						border: none;
+						border-radius: 10%;
+						padding: 2px;					
+						margin: 10px;
+						
+						.fa {
+							font-size: 2em;
+							width: 30px;
+							color: $gray1;
+						}
+					}
+					button:hover {
+						background: $blueBright;
+						-webkit-transform:scale(1.1);
+						-moz-transform:scale(1.1);
+						-ms-transform:scale(1.1);
+						-o-transform:scale(1.1);
+						transform:scale(1.1);
+					}
 				}
 			}
 
-			button {
-				background: aquamarine;
-				border: none;
-				border-radius: 10%;
-				padding: 2px;					
-				margin: 10px;
-				
-				.fa {
-					font-size: 2em;
-					width: 30px;
-					color: $gray1;
-				}
-			}
+			
 		}
 		
 		.add-border {

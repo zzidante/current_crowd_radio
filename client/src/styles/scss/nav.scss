@@ -11,7 +11,6 @@ header{
 	width: 100%;
 	display: flex;
 	flex-flow: row; 
-	max-height: 135px;
 	align-items: center;
   justify-content: center;
 	font-family: $fontContent;
@@ -58,6 +57,7 @@ header{
 }
 
 #PlacesAutocomplete__root {
+	height: inherit;
 	float: left;
 	margin-left: 15px;
 }

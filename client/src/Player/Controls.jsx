@@ -158,6 +158,7 @@ class Controls extends Component {
                   <td>
                     <th>Volume</th>
                     <input
+                      id="volume-controller"
                       type="range"
                       min={0}
                       max={1}

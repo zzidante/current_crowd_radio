@@ -31,7 +31,6 @@ class App extends Component {
       backgroundImage: 'url("https://www.hdwallpaperswizard.com/wp-content/uploads/2017/03/Black-Music-Wallpaper-HD-1366x768.jpg")',
       // TODO: adds extra scrollbar with vertical-heavy aspect-ratio but removes lack of element problem. 
       overflow: 'auto',
-      height: '100%',
       width: '100%',
       zIndex: '-2',
     }

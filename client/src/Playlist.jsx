@@ -31,7 +31,7 @@ class Playlist extends Component {
           </div>
         </article>
       </section>
-    )
+    )  
   }
 }
   

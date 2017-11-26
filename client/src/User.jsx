@@ -32,7 +32,7 @@ class User extends Component {
         <h2>{username}</h2>
 
         {username !== "guest" && (
-          <Link type="button" className="btn btn-sm" to="/Profile">
+          <Link type="button" className="btn btn-primary" to="/Profile">
             Profile
           </Link>
         )}

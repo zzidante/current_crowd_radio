@@ -1,7 +1,7 @@
 $ball: rgb(81, 161, 192);
 $slide: transparent;
 $loading: rgba(109, 1, 119, 0.226);
-$width: 80% ;
+$width: 100% ;
 $slideheight: 8px;
 $gray: darkslategray;
 $thumbsize: 16px;
@@ -143,6 +143,10 @@ progress {
 
 // Dev Settings
 
+#volume-controller {
+  width: 30%;
+}
+
 .track-seeking {
   position: absolute;
   background: transparent;
@@ -154,7 +158,7 @@ progress {
   position: relative;
   top: 0;
   left: 0;
-  width: 80%;
+  width: 100%;
   height: 8px;	
   z-index: 1;				
 }
