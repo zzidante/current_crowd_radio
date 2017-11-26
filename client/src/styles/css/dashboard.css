@@ -148,9 +148,17 @@
       color: #dbdfe1;
       background-color: #1f1f1f;
       min-width: 100%;
-      max-height: 40vh; }
-      .body-dashboard .music-container .full-playlist .track-container .track-name {
-        padding-left: 5px; }
+      max-height: 40vh;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+      .body-dashboard .music-container .full-playlist .track-container .track-name-container {
+        overflow: hidden;
+        max-width: 40vh;
+        text-overflow: ellipsis;
+        transition: 3.3s linear; }
+        .body-dashboard .music-container .full-playlist .track-container .track-name-container .track-name {
+          margin-left: 5px; }
       .body-dashboard .music-container .full-playlist .track-container .track-btns {
         display: flex;
         right: 0;
@@ -168,3 +176,9 @@
           border: 0px transparent solid;
           width: 30px;
           display: block; }
+    .body-dashboard .music-container .full-playlist #trackScroll span {
+      animation: marquee 5s linear; }
+
+@keyframes marquee {
+  100% {
+    margin-left: -130%; } }
