@@ -279,18 +279,25 @@ $playerTextMargin2: 20px;
 				overflow: hidden;
 				text-overflow: ellipsis;
 
+				.track-play-btn {
+					width: 11%;
+				}
 				.track-name-container {
 					overflow: hidden;
 					max-width: 40vh;
+					width: 67%;
 					text-overflow: ellipsis;
 					.track-name {
 						margin-left: 5px;
 					}
 				}
-
+				.track-duration {
+					width:8%;
+				}
 				.track-btns {
 					display: flex;
 					right: 0;
+					width: 14%;
 					margin: 5px 10px;
 
 				}
