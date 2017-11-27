@@ -11,7 +11,10 @@ $teal2:  #b0ffe4;
 $tealBright: #a1e8ee;
 $blueMid: #235475;
 $blueBright: #3e93cc;
+
 $body-min-height: 100vh;
+$playerTextMargin: 8px;
+$playerTextMargin2: 20px;
 
 
 .body-dashboard {
@@ -20,6 +23,7 @@ $body-min-height: 100vh;
 	height: 90%;
 	padding-left: 0px;
 	padding-right: 0px;
+	font-family: $fontContent;
 
 	.playlist-heading {
 		padding: 5px 50px;
@@ -35,7 +39,7 @@ $body-min-height: 100vh;
 				margin: 15px;
 				width: 180px;
 				font-size: 1.6em;
-				opacity: 0.9;
+				opacity: 0.85;
 			}
 			button:hover {
 				opacity: 1;
@@ -50,7 +54,7 @@ $body-min-height: 100vh;
 
 		h2 {
 			color: $teal2;
-			font-family: $fontLogo;
+			text-align: center;
 			font-size: 2em;
 			margin: 0;
 		}
@@ -87,7 +91,6 @@ $body-min-height: 100vh;
 				padding: 5px 0px 0px 15px;
 				direction: ltr;				
 				text-align: left;
-				font-family: $fontLogo;
 				font-size: 1.8em;
 				
 				button {
@@ -149,7 +152,8 @@ $body-min-height: 100vh;
 			z-index: 1;
 
 			.current-song-info {
-				//correct mis-alignment
+				// allow for text to be seen on light backgrounds
+				font-family: $fontContent;
 				text-shadow:  1px 0px 1px #ccc, 
 				0px 1px 1px $shadow1, 
 				2px 1px 1px $shadow2, 
@@ -163,6 +167,21 @@ $body-min-height: 100vh;
 				6px 5px 1px $shadow2, 
 				5px 6px 1px $shadow1, 
 				7px 6px 1px $shadow2;
+
+
+				h3 {
+					margin-left: $playerTextMargin;
+					margin-top: $playerTextMargin2;
+				}
+				h4 {
+					margin-left: $playerTextMargin;
+					margin-top: $playerTextMargin; 
+					margin-bottom: $playerTextMargin2;
+				}
+				h5 {
+					margin-left: $playerTextMargin;
+					margin-bottom: $playerTextMargin2;
+				}
 			}
 			
 			.audio-player {
@@ -191,7 +210,6 @@ $body-min-height: 100vh;
 				background-color: darkslategray;
 				padding: 30px;
 				background-color: $gray1;
-				font-family: $font;
 
 				tr {
 					width: 100%;

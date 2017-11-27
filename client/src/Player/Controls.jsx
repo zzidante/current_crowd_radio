@@ -92,9 +92,9 @@ class Controls extends Component {
         />
         {currentTrack && (
           <div className="current-song-info">
-            <h2>{currentTrack.name}</h2>
-            <h3>{currentTrack.artist}</h3>
-            <span>{currentTrack.album}</span>
+            <h3>{currentTrack.name}</h3>
+            <h4>{currentTrack.artist}</h4>
+            <h5>{currentTrack.album}</h5>
             <div
               className="player-image-bg"
               style={{ backgroundImage: `url(${currentTrack.image})` }}

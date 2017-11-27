@@ -9,7 +9,7 @@ html {
   background-color: #142e3a; }
   html body {
     background-color: #a1e8ee;
-    color: #e4ffef;
+    color: #e4fff8;
     height: 100%; }
     html body div {
       height: 100%; }
@@ -26,7 +26,7 @@ html {
         padding: 5px; }
     html body a:hover {
       text-decoration: none;
-      color: #e4ffef;
+      color: #e4fff8;
       opacity: 1; }
     html body section {
       display: flex;

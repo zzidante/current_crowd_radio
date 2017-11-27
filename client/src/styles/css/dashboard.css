@@ -2,7 +2,8 @@
   margin-top: 55px;
   height: 90%;
   padding-left: 0px;
-  padding-right: 0px; }
+  padding-right: 0px;
+  font-family: "Magra", sans-serif; }
   .body-dashboard .playlist-heading {
     padding: 5px 50px;
     margin-top: 120px;
@@ -15,7 +16,7 @@
         margin: 15px;
         width: 180px;
         font-size: 1.6em;
-        opacity: 0.9; }
+        opacity: 0.85; }
       .body-dashboard .playlist-heading .playlist-selection-buttons button:hover {
         opacity: 1; }
   .body-dashboard .username-heading {
@@ -24,7 +25,7 @@
     max-height: 80%; }
     .body-dashboard .username-heading h2 {
       color: #b0ffe4;
-      font-family: "Skranji", cursive;
+      text-align: center;
       font-size: 2em;
       margin: 0; }
     .body-dashboard .username-heading button {
@@ -53,7 +54,6 @@
         padding: 5px 0px 0px 15px;
         direction: ltr;
         text-align: left;
-        font-family: "Skranji", cursive;
         font-size: 1.8em; }
         .body-dashboard .username-heading ul li button {
           color: white;
@@ -94,7 +94,18 @@
       overflow: hidden;
       z-index: 1; }
       .body-dashboard .music-container .player-full-container .current-song-info {
+        font-family: "Magra", sans-serif;
         text-shadow: 1px 0px 1px #ccc, 0px 1px 1px #292929, 2px 1px 1px black, 1px 2px 1px #292929, 3px 2px 1px black, 2px 3px 1px #292929, 4px 3px 1px black, 3px 4px 1px #292929, 5px 4px 1px black, 4px 5px 1px #292929, 6px 5px 1px black, 5px 6px 1px #292929, 7px 6px 1px black; }
+        .body-dashboard .music-container .player-full-container .current-song-info h3 {
+          margin-left: 8px;
+          margin-top: 20px; }
+        .body-dashboard .music-container .player-full-container .current-song-info h4 {
+          margin-left: 8px;
+          margin-top: 8px;
+          margin-bottom: 20px; }
+        .body-dashboard .music-container .player-full-container .current-song-info h5 {
+          margin-left: 8px;
+          margin-bottom: 20px; }
       .body-dashboard .music-container .player-full-container .audio-player {
         display: none;
         width: 0px;
@@ -116,8 +127,7 @@
         width: 100%;
         background-color: darkslategray;
         padding: 30px;
-        background-color: #191E24;
-        font-family: "Open Sans", sans-serif; }
+        background-color: #191E24; }
         .body-dashboard .music-container .player-full-container .current-song-container tr {
           width: 100%;
           font-size: 14px;

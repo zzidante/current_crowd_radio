@@ -19,7 +19,8 @@ header {
   header nav {
     display: flex; }
     header nav .lg-size-btn {
-      margin: 5px; }
+      background-color: #235475;
+      margin: 9px; }
     header nav .mini-brand-container {
       margin-top: 10px; }
     header nav a {
@@ -62,6 +63,15 @@ header {
       display: none; }
     header .navbar {
       margin-bottom: 0; }
+      header .navbar .dropdown-menu a {
+        margin: 0;
+        padding: 0; }
+        header .navbar .dropdown-menu a button {
+          margin: 0;
+          width: 100%; }
+        header .navbar .dropdown-menu a button:hover {
+          color: #85babe;
+          border: solid #85babe 2px; }
       header .navbar button {
         margin-top: 5px;
         margin-left: 5px; }
