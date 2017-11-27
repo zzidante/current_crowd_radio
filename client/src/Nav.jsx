@@ -18,10 +18,10 @@ class Nav extends Component {
           <Modals />
 
           {/* if user is not authenticated, show auth options */}
-          {!token && <Guest />}
+          {(!token || token === 'guest') && <Guest />}
 
           {/* if user is authenticated, show logout */}
-          {token && <LogoutButton />}
+          {token && token !== 'guest' && <LogoutButton />}
         </nav>
       </header>
     );
