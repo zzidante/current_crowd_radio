@@ -26,7 +26,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 input[type=range] {
   /* fix for FF unable to apply focus style bug  */
   border: 0px solid transparent;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   /*required for proper track sizing in FF*/
   width: 100%; }
 
@@ -64,12 +64,12 @@ input[type=range]::-ms-track {
   color: transparent; }
 
 input[type=range]::-ms-fill-lower {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   background: transparent;
   border-radius: 10px; }
 
 input[type=range]::-ms-fill-upper {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   background: transparent;
   border-radius: 10px; }
 
@@ -81,11 +81,11 @@ input[type=range]::-ms-thumb {
   background: #51a1c0; }
 
 input[type=range]:focus::-ms-fill-lower {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   background: transparent; }
 
 input[type=range]:focus::-ms-fill-upper {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   background: transparent; }
 
 progress::-moz-progress-bar {
@@ -101,8 +101,18 @@ progress {
   border-radius: 2px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; }
 
+#volume-bar-container {
+  height: 28px; }
+
+#volume-title {
+  float: right;
+  margin-right: 34%; }
+  #volume-title i {
+    font-size: 2em; }
+
 #volume-controller {
-  width: 30%; }
+  width: 30%;
+  margin-right: 10px; }
 
 .track-seeking {
   position: absolute;

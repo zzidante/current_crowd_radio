@@ -8,12 +8,10 @@ header {
   left: 0;
   z-index: 2;
   width: 100%;
-  max-height: 110px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #fff;
-  padding: 35px 100px 25px 0; }
+  color: #fff; }
 
 header #city-input {
   color: black; }
@@ -43,8 +41,9 @@ header #location-search {
   header {
     padding: 20px 50px; } }
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
   header {
-    flex-direction: column; }
-  header h2 {
-    margin-bottom: 15px; } }
+    flex-direction: column;
+    padding: 0; }
+    header .main-btn {
+      padding: 1px; } }

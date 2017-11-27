@@ -154,9 +154,9 @@ class Controls extends Component {
                   </td>
                 </tr>
 
-                <tr>
+                <tr id="volume-bar-container">
                   <td>
-                    <th>Volume</th>
+                    <th id="volume-title"><i className="fa fa-volume-up" aria-hidden="true"></i></th>
                     <input
                       id="volume-controller"
                       type="range"

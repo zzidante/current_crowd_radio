@@ -24,7 +24,7 @@ class App extends Component {
     const dashboardBackground = {
       top: '0',
       left: '0',
-      marginTop: '110px',
+      marginTop: '0',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundAttachment: 'fixed',

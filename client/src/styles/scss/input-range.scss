@@ -5,7 +5,7 @@ $width: 100% ;
 $slideheight: 8px;
 $gray: darkslategray;
 $thumbsize: 16px;
-$volumemargin: 20px; 
+$volumemargin: 10px; 
 
 // Webkit
 
@@ -142,10 +142,24 @@ progress {
 }
 
 // Dev Settings
+#volume-bar-container {
+  height: 28px;
+}
+
+#volume-title {
+  float: right;
+  margin-right: 34%;
+  i {
+    font-size: 2em; 
+  }
+}
 
 #volume-controller {
   width: 30%;
+  margin-right: 10px;
 }
+
+// td {vertical-align:bottom;}
 
 .track-seeking {
   position: absolute;

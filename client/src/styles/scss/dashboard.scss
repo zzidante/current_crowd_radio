@@ -15,6 +15,8 @@ $body-min-height: 100vh;
 
 
 .body-dashboard {
+	// make room for the header
+	margin-top: 55px;
 
 	.playlist-heading {
 		padding: 5px 50px;
@@ -47,6 +49,7 @@ $body-min-height: 100vh;
 			color: $teal2;
 			font-family: $fontLogo;
 			font-size: 2em;
+			margin: 0;
 		}
 
 		button {
@@ -118,11 +121,12 @@ $body-min-height: 100vh;
 			width: 100%;
 			border-radius: 6px;
 			min-height: 225px;
-			min-width: 380px;
+			min-width: 340px;
 			overflow: hidden;
 			z-index: 1;
 
 			.current-song-info {
+				//correct mis-alignment
 				text-shadow:  1px 0px 1px #ccc, 
 				0px 1px 1px $shadow1, 
 				2px 1px 1px $shadow2, 
@@ -223,8 +227,6 @@ $body-min-height: 100vh;
 			// prevent current playlist shadow from overlapping
 			z-index: 1;
 
-
-
 			.track-container {
 				position: relative;
 				padding-left: 5px;
@@ -260,6 +262,29 @@ $body-min-height: 100vh;
 						width: 30px;
 						display: block ;
 					}
+				}
+			}
+		}
+
+		@media (max-width: 980px) {
+			
+			.full-playlist {
+				margin: 225px 0 35px 0;
+			}
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.body-dashboard {
+		// make room for the header
+	margin-top: 110px;
+		.playlist-heading {
+			.playlist-selection-buttons {
+				button {				
+					font-size: 1em;
+					padding: 5px 0;
+					width: 120px;
 				}
 			}
 		}
