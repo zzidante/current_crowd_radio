@@ -11,12 +11,11 @@ header{
 	width: 100%;
 	display: flex;
 	flex-flow: row; 
-	max-height: 135px;
 	align-items: center;
   justify-content: center;
 	font-family: $fontContent;
 	color: #fff;
-	padding: 35px 100px 20px 0;
+	// padding: 35px 100px 20px 0;
 	z-index: 2;
 
 	h3 {
@@ -58,6 +57,7 @@ header{
 }
 
 #PlacesAutocomplete__root {
+	height: inherit;
 	float: left;
 	margin-left: 15px;
 }
@@ -69,7 +69,6 @@ header{
 
 @media (max-width: 1000px){
 	header{
-		padding: 20px 30px;
 		flex-direction: row;
 		flex-wrap: wrap;		
 
@@ -101,8 +100,8 @@ header{
 		}
 	}		
 
-	header h2{
-		margin-bottom: 15px;
+	header h2 {
+		margin: 0 0 15px 0;
 	}
 }
 

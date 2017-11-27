@@ -6,12 +6,10 @@ header {
   width: 100%;
   display: flex;
   flex-flow: row;
-  max-height: 135px;
   align-items: center;
   justify-content: center;
   font-family: "Magra", sans-serif;
   color: #fff;
-  padding: 35px 100px 20px 0;
   z-index: 2; }
   header h3 {
     font-family: "Skranji", cursive;
@@ -39,6 +37,7 @@ header {
   padding: 6px 24px; }
 
 #PlacesAutocomplete__root {
+  height: inherit;
   float: left;
   margin-left: 15px; }
 
@@ -47,7 +46,6 @@ header {
 
 @media (max-width: 1000px) {
   header {
-    padding: 20px 30px;
     flex-direction: row;
     flex-wrap: wrap; }
     header #PlacesAutocomplete__root {
@@ -68,7 +66,7 @@ header {
     header .lg-size-btn {
       display: none; }
   header h2 {
-    margin-bottom: 15px; } }
+    margin: 0 0 15px 0; } }
 
 @media (max-width: 600px) {
   #PlacesAutocomplete__root {

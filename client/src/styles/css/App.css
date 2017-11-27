@@ -13,29 +13,25 @@ html {
     height: 100%; }
     html body div {
       height: 100%; }
-  html ul, html nav {
-    list-style: none; }
-  html a {
-    text-decoration: none;
-    color: #fff;
-    cursor: pointer;
-    opacity: 0.85; }
-  html a:hover {
-    text-decoration: none;
-    color: #e4ffef;
-    opacity: 1; }
-  html a.btn {
-    color: #fff;
-    border-radius: 4px;
-    text-transform: uppercase;
-    background-color: #7c1bbd;
-    font-weight: 600;
-    text-align: center;
-    padding: 5px; }
-  html section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 10px; }
-  html #register-location {
-    width: 100%; }
+    html body ul, html body nav {
+      list-style: none; }
+    html body a {
+      text-decoration: none;
+      color: #fff;
+      cursor: pointer;
+      opacity: 0.9; }
+      html body a button {
+        border-radius: 4px;
+        text-align: center;
+        padding: 5px; }
+    html body a:hover {
+      text-decoration: none;
+      color: #e4ffef;
+      opacity: 1; }
+    html body section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 10px; }
+    html body #register-location {
+      width: 100%; }
