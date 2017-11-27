@@ -95,6 +95,7 @@ class Controls extends Component {
             <h3>{currentTrack.name}</h3>
             <h4>{currentTrack.artist}</h4>
             <h5>{currentTrack.album}</h5>
+            {currentTrack.website && <h5 className="artist-website"><a target="_blank" href={currentTrack.website}><i className="fa fa-globe"></i></a></h5>}
             <div
               className="player-image-bg"
               style={{ backgroundImage: `url(${currentTrack.image})` }}

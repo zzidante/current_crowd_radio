@@ -11,7 +11,7 @@ class User extends Component {
   };
 
   render() {
-    const { username } = getState();
+    const { username, token } = getState();
 
     return (
       <section className="username-heading col-md-3 col-xs-6">

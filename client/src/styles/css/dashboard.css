@@ -106,6 +106,15 @@
         .body-dashboard .music-container .player-full-container .current-song-info h5 {
           margin-left: 8px;
           margin-bottom: 20px; }
+        .body-dashboard .music-container .player-full-container .current-song-info .artist-website {
+          font-size: 2em;
+          position: absolute;
+          right: 0px;
+          bottom: 85px;
+          margin: 20px;
+          opacity: 0.8; }
+        .body-dashboard .music-container .player-full-container .current-song-info .artist-website:hover {
+          opacity: 1; }
       .body-dashboard .music-container .player-full-container .audio-player {
         display: none;
         width: 0px;

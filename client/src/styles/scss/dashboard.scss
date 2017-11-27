@@ -182,6 +182,17 @@ $playerTextMargin2: 20px;
 					margin-left: $playerTextMargin;
 					margin-bottom: $playerTextMargin2;
 				}
+				.artist-website {
+					font-size: 2em;
+					position: absolute;
+					right: 0px;
+					bottom: 85px;
+					margin: 20px;
+					opacity: 0.8;
+				}
+				.artist-website:hover {
+					opacity: 1;
+				}
 			}
 			
 			.audio-player {
