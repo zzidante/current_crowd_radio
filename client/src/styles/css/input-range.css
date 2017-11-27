@@ -102,17 +102,19 @@ progress {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; }
 
 #volume-bar-container {
-  height: 28px; }
+  height: 28px;
+  text-shadow: none; }
 
 #volume-title {
   float: right;
-  margin-right: 34%; }
+  margin-right: 2%; }
   #volume-title i {
-    font-size: 2em; }
+    font-size: 2em;
+    color: #51a1c0; }
 
 #volume-controller {
   width: 30%;
-  margin-right: 10px; }
+  margin: 10px 10px 0 0; }
 
 .track-seeking {
   position: absolute;

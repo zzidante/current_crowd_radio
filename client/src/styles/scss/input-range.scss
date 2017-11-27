@@ -144,19 +144,21 @@ progress {
 // Dev Settings
 #volume-bar-container {
   height: 28px;
+  text-shadow: none;
 }
 
 #volume-title {
   float: right;
-  margin-right: 34%;
+  margin-right: 2%;
   i {
-    font-size: 2em; 
+    font-size: 2em;
+    color: $ball;
   }
 }
 
 #volume-controller {
   width: 30%;
-  margin-right: 10px;
+  margin: 10px 10px 0 0;
 }
 
 // td {vertical-align:bottom;}

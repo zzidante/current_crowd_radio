@@ -156,7 +156,6 @@ class Controls extends Component {
 
                 <tr id="volume-bar-container">
                   <td>
-                    <th id="volume-title"><i className="fa fa-volume-up" aria-hidden="true"></i></th>
                     <input
                       id="volume-controller"
                       type="range"
@@ -167,6 +166,7 @@ class Controls extends Component {
                       onChange={this.setVolume}
                       className="volume-control"
                     />
+                    <th id="volume-title"><i className="fa fa-volume-up" aria-hidden="true"></i></th>
                   </td>
                 </tr>
               </tbody>
