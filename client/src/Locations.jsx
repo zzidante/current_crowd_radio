@@ -4,7 +4,7 @@ import { setState, getState } from "./index";
 class Locations extends Component {
 
     setLocation = event => {
-      setState({ locationBar: event.target.value, playing: false, currentTrackIndex: 0 });
+      setState({ locationBar: event.target.value, playing: false });
       api.setLocation();
       api.getTracksByLocation();
     };

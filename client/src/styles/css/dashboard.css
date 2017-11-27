@@ -177,15 +177,21 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis; }
+        .body-dashboard .music-container .full-playlist .track-container .track-play-btn {
+          width: 11%; }
         .body-dashboard .music-container .full-playlist .track-container .track-name-container {
           overflow: hidden;
           max-width: 40vh;
+          width: 67%;
           text-overflow: ellipsis; }
           .body-dashboard .music-container .full-playlist .track-container .track-name-container .track-name {
             margin-left: 5px; }
+        .body-dashboard .music-container .full-playlist .track-container .track-duration {
+          width: 8%; }
         .body-dashboard .music-container .full-playlist .track-container .track-btns {
           display: flex;
           right: 0;
+          width: 14%;
           margin: 5px 10px; }
         .body-dashboard .music-container .full-playlist .track-container button {
           padding: 0 0.1em;
