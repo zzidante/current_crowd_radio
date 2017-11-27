@@ -11,10 +11,6 @@ header {
   font-family: "Magra", sans-serif;
   color: #fff;
   z-index: 2; }
-  header h3 {
-    font-family: "Skranji", cursive;
-    font-size: 1rem;
-    margin: 0 auto; }
   header textarea {
     color: black;
     width: 20vw;
@@ -22,24 +18,29 @@ header {
     margin-right: 5px; }
   header nav {
     display: flex; }
-    header nav #mini-brand-icon {
-      width: 50px;
-      height: 50px; }
     header nav .lg-size-btn {
       margin: 5px; }
+    header nav .mini-brand-container {
+      margin-top: 10px; }
+    header nav a {
+      font-family: "Skranji", cursive;
+      font-size: 2.2vw;
+      margin: 0 2vw 0 2vw;
+      vertical-align: middle; }
   header #location-search {
     color: black; }
 
 .main-btn {
   background-color: #85babe;
-  margin: 5px 20px;
+  margin: 9px 20px 5px 20px;
   float: right;
   padding: 6px 24px; }
 
 #PlacesAutocomplete__root {
   height: inherit;
   float: left;
-  margin-left: 15px; }
+  margin-left: 15px;
+  margin-top: 3px; }
 
 .dropdown-toggle {
   display: none; }
@@ -57,10 +58,13 @@ header {
   header {
     flex-direction: row;
     flex-wrap: wrap; }
-    header #mini-brand-icon {
-      width: 50px;
-      height: 50px;
+    header .mini-brand-container img {
       display: none; }
+    header .navbar {
+      margin-bottom: 0; }
+      header .navbar button {
+        margin-top: 5px;
+        margin-left: 5px; }
     header .dropdown-toggle {
       display: block; }
     header .lg-size-btn {

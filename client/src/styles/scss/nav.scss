@@ -15,14 +15,7 @@ header{
   justify-content: center;
 	font-family: $fontContent;
 	color: #fff;
-	// padding: 35px 100px 20px 0;
 	z-index: 2;
-
-	h3 {
-		font-family: $fontLogo;
-		font-size: 1rem;
-		margin: 0 auto;
-	}
 
 	textarea {
 		color: black;
@@ -34,14 +27,21 @@ header{
 	nav{
 		display: flex;
 
-		#mini-brand-icon {
-			width: 50px;
-			height: 50px;
+		.lg-size-btn {
+			margin: 5px;
 		}
 
-		.lg-size-btn {
-			margin: 5px;			
+		.mini-brand-container {
+			margin-top: 10px;
 		}
+
+		a {
+			font-family: $fontLogo;
+			font-size: 2.2vw;
+			margin: 0 2vw 0 2vw;
+			vertical-align: middle;
+		}
+	
 	}
 
 	#location-search {
@@ -51,7 +51,7 @@ header{
 
 .main-btn {
   background-color: $accent;
-  margin: 5px 20px;
+  margin: 9px 20px 5px 20px;
   float: right;
   padding: 6px 24px;
 }
@@ -60,6 +60,7 @@ header{
 	height: inherit;
 	float: left;
 	margin-left: 15px;
+	margin-top: 3px;
 }
 
 .dropdown-toggle {
@@ -85,11 +86,21 @@ header{
 		flex-direction: row;
 		flex-wrap: wrap;
 
-		#mini-brand-icon {
-			width: 50px;
-			height: 50px;
-			display: none;
+		.mini-brand-container {
+			img {
+				display: none;
+			}
 		}
+
+		.navbar {
+			margin-bottom: 0;
+
+			button {
+				margin-top: 5px;
+				margin-left: 5px;
+			}
+		}
+		
 
 		.dropdown-toggle {
 			display: block;

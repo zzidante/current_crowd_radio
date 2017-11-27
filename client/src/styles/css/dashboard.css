@@ -62,8 +62,6 @@
         .body-dashboard .username-heading ul li button:hover {
           color: #b0ffe4;
           background-color: transparent; }
-      .body-dashboard .username-heading ul ul:first-child {
-        text-decoration: underline; }
       .body-dashboard .username-heading ul .clear {
         clear: both;
         font-size: 0; }
