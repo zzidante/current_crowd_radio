@@ -120,7 +120,8 @@ $body-min-height: 100vh;
 			position: absolute;
 			color: white;
 			width: 100%;
-			border-radius: 6px;
+			border-top-left-radius: 6px;
+			border-top-right-radius: 6px;
 			min-height: 225px;
 			min-width: 340px;
 			overflow: hidden;
@@ -296,7 +297,8 @@ $body-min-height: 100vh;
 @media (max-width: 600px) {
 	.body-dashboard {
 		// make room for the header
-	margin-top: 110px;
+		margin-top: 110px;
+
 		.playlist-heading {
 			.playlist-selection-buttons {
 				button {				
