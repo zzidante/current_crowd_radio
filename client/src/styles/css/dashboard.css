@@ -1,5 +1,5 @@
 .body-dashboard {
-  margin-top: 55px;
+  margin-top: 100px;
   height: 90%;
   padding-left: 0px;
   padding-right: 0px;
@@ -180,8 +180,7 @@
         .body-dashboard .music-container .full-playlist .track-container .track-name-container {
           overflow: hidden;
           max-width: 40vh;
-          text-overflow: ellipsis;
-          transition: 3.3s linear; }
+          text-overflow: ellipsis; }
           .body-dashboard .music-container .full-playlist .track-container .track-name-container .track-name {
             margin-left: 5px; }
         .body-dashboard .music-container .full-playlist .track-container .track-btns {
