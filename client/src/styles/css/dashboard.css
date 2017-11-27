@@ -52,6 +52,7 @@
       .body-dashboard .username-heading ul li {
         padding: 5px 0px 0px 15px;
         direction: ltr;
+        text-align: left;
         font-family: "Skranji", cursive;
         font-size: 1.8em; }
         .body-dashboard .username-heading ul li button {
@@ -61,6 +62,8 @@
         .body-dashboard .username-heading ul li button:hover {
           color: #b0ffe4;
           background-color: transparent; }
+      .body-dashboard .username-heading ul ul:first-child {
+        text-decoration: underline; }
       .body-dashboard .username-heading ul .clear {
         clear: both;
         font-size: 0; }

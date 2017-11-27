@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import api from "./api/jamendo";
 import { setState, getState } from "./index";
+import Locations from './Locations.jsx'
 class User extends Component {
   setLocation = event => {
     setState({ locationBar: event.target.value });
@@ -10,23 +11,8 @@ class User extends Component {
   };
 
   render() {
-    const { playlists, username } = getState();
-    let locations = [];
-    if (playlists) {
-      locations = Object.keys(playlists).map(location => {
-        return (
-          <li key={location}>
-            <button
-              className="btn"
-              onClick={this.setLocation}
-              value={location}
-            >
-            {location}
-            </button>
-          </li>
-        );
-      });
-    }
+    const { username } = getState();
+
     return (
       <section className="username-heading col-md-3 col-xs-6">
         <h2>{username}</h2>
@@ -39,7 +25,7 @@ class User extends Component {
 
         <ul>
         <li>Your Cities</li>
-        {locations}</ul>
+        <Locations /></ul>
         <div className="clear"/>
       </section>
     );
