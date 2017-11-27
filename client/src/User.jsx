@@ -17,11 +17,11 @@ class User extends Component {
         return (
           <li key={location}>
             <button
-              className="btn btn-link"
+              className="btn"
               onClick={this.setLocation}
               value={location}
             >
-              {location}
+            {location}
             </button>
           </li>
         );
@@ -37,7 +37,10 @@ class User extends Component {
           </Link>
         )}
 
-        <ul>{locations}</ul>
+        <ul>
+        <li>Your Cities</li>
+        {locations}</ul>
+        <div className="clear"/>
       </section>
     );
   }

@@ -18,10 +18,12 @@ $body-min-height: 100vh;
 	// make room for the header
 	margin-top: 55px;
 	height: 90%;
+	padding-left: 0px;
+	padding-right: 0px;
 
 	.playlist-heading {
 		padding: 5px 50px;
-		margin-top: 20px;
+		margin-top: 120px;
 		max-height: $body-min-height;
 
 		.playlist-selection-buttons {
@@ -43,8 +45,8 @@ $body-min-height: 100vh;
 
 	.username-heading {
 		padding: 20px;
-		margin-top: 20px;		
-		max-height: $body-min-height;
+		margin-top: 48px;		
+		max-height: 80%;
 
 		h2 {
 			color: $teal2;
@@ -61,31 +63,49 @@ $body-min-height: 100vh;
 			color: $teal2;			
 			background-color: $gray1;
 			border: none;
+			-webkit-transform:scale(1.2);
+			-moz-transform:scale(1.2);
+			-ms-transform:scale(1.2);
+			-o-transform:scale(1.2);
+			transform:scale(1.2);
+			text-decoration: none;	
 		}
 
 		ul {
 			position: relative;
-			top: 20px;
-			right: 20px;
-			overflow: scroll;
-			margin: 10px;
-			padding: 0;
-			max-height: 120px;
-		}
-
-		li {
-				padding: 10px 20px;
+			direction: rtl;
+			overflow: auto;
+			width: 100%;
+			min-height: 20vh;
+			max-height: 900px;
+			margin-top: 45px;
+			border: black solid 2px;
+			background-image: radial-gradient(farthest-corner at 80px 100px,
+      rgba(0, 0, 0, 0.664) 0%, rgba(102, 102, 102, 0.575) 100%);
+			
+			li {
+				padding: 5px 0px 0px 15px;
+				direction: ltr;				
+				font-family: $fontLogo;
+				font-size: 1.8em;
 				
-				&:last-child {
-					border-bottom: none;
-				}
-				
-				&:nth-child(even) {
-					background: $gray1;
-				}
 				button {
 					color: white;
+					background-color: transparent;
+					text-shadow: 1px 1px 5px black; 									
+
 				}
+				button:hover {
+					color: $teal2;
+					background-color: transparent;
+				}
+			}
+
+			.clear {
+				clear: both;
+				font-size:0;				
+			}
+
 		}
 
 	}
@@ -205,7 +225,7 @@ $body-min-height: 100vh;
 						-moz-transform:scale(1.1);
 						-ms-transform:scale(1.1);
 						-o-transform:scale(1.1);
-						transform:scale(1.1);
+						transform:scale(1.1);						
 					}
 				}
 			}

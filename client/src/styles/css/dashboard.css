@@ -1,9 +1,11 @@
 .body-dashboard {
   margin-top: 55px;
-  height: 90%; }
+  height: 90%;
+  padding-left: 0px;
+  padding-right: 0px; }
   .body-dashboard .playlist-heading {
     padding: 5px 50px;
-    margin-top: 20px;
+    margin-top: 120px;
     max-height: 100vh; }
     .body-dashboard .playlist-heading .playlist-selection-buttons {
       padding-top: 36px;
@@ -18,8 +20,8 @@
         opacity: 1; }
   .body-dashboard .username-heading {
     padding: 20px;
-    margin-top: 20px;
-    max-height: 100vh; }
+    margin-top: 48px;
+    max-height: 80%; }
     .body-dashboard .username-heading h2 {
       color: #b0ffe4;
       font-family: "Skranji", cursive;
@@ -30,23 +32,38 @@
     .body-dashboard .username-heading button:hover {
       color: #b0ffe4;
       background-color: #191E24;
-      border: none; }
+      border: none;
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      transform: scale(1.2);
+      text-decoration: none; }
     .body-dashboard .username-heading ul {
       position: relative;
-      top: 20px;
-      right: 20px;
-      overflow: scroll;
-      margin: 10px;
-      padding: 0;
-      max-height: 120px; }
-    .body-dashboard .username-heading li {
-      padding: 10px 20px; }
-      .body-dashboard .username-heading li:last-child {
-        border-bottom: none; }
-      .body-dashboard .username-heading li:nth-child(even) {
-        background: #191E24; }
-      .body-dashboard .username-heading li button {
-        color: white; }
+      direction: rtl;
+      overflow: auto;
+      width: 100%;
+      min-height: 20vh;
+      max-height: 900px;
+      margin-top: 45px;
+      border: black solid 2px;
+      background-image: radial-gradient(farthest-corner at 80px 100px, rgba(0, 0, 0, 0.664) 0%, rgba(102, 102, 102, 0.575) 100%); }
+      .body-dashboard .username-heading ul li {
+        padding: 5px 0px 0px 15px;
+        direction: ltr;
+        font-family: "Skranji", cursive;
+        font-size: 1.8em; }
+        .body-dashboard .username-heading ul li button {
+          color: white;
+          background-color: transparent;
+          text-shadow: 1px 1px 5px black; }
+        .body-dashboard .username-heading ul li button:hover {
+          color: #b0ffe4;
+          background-color: transparent; }
+      .body-dashboard .username-heading ul .clear {
+        clear: both;
+        font-size: 0; }
   .body-dashboard .table {
     border: none;
     padding-top: 0;
