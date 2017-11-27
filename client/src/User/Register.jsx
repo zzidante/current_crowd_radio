@@ -43,14 +43,14 @@ class Login extends Component {
         display: "block",
         width: "100%",
         height: "34px",
-        padding: "6px 12px",
+        padding: "0px 12px",
         fontSize: "14px",
         lineHeight: "1.42857143",
         color: "#555",
         backgroundColor: "#fff",
         backgroundImage: "none",
         border: "1px solid #ccc",
-        borderRadius: "4px"
+        borderRadius: "4px" 
       }
     };
     const inputProps = {
@@ -92,7 +92,7 @@ class Login extends Component {
             onChange={this.handleConfirmPasswordChange}
           />
           <PlacesAutocomplete inputProps={inputProps} styles={myStyles} />
-          <button className="btn btn-primary" type="submit">
+          <button className="btn btn-primary btn-register" type="submit">
             Submit
           </button>
         </form>
