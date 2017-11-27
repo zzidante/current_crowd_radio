@@ -19,7 +19,7 @@ $playerTextMargin2: 20px;
 
 .body-dashboard {
 	// make room for the header
-	margin-top: 55px;
+	margin-top: 100px;
 	height: 90%;
 	padding-left: 0px;
 	padding-right: 0px;
@@ -283,7 +283,6 @@ $playerTextMargin2: 20px;
 					overflow: hidden;
 					max-width: 40vh;
 					text-overflow: ellipsis;
-					transition: 3.3s linear; 
 					.track-name {
 						margin-left: 5px;
 					}

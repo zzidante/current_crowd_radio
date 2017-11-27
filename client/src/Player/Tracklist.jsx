@@ -10,7 +10,7 @@ class Tracklist extends Component {
     }
   }
   setCurrentTrack = () => {
-    setState({ currentTrackIndex: this.props.index });
+    setState({ currentTrackIndex: this.props.index, playing: true });
   };
 
   addToPlaylist = ({ currentTarget: { value } }) => {
@@ -38,7 +38,7 @@ class Tracklist extends Component {
   startScroll = () => {
     const textWidth = document.getElementById(this.props.index).offsetWidth;
     const containerWidth = document.getElementsByClassName("track-name-container")[0].offsetWidth;
-    if (textWidth > containerWidth){
+    if (textWidth > containerWidth - 20){
       this.setState({trackScroll:"trackScroll"})
     }
   }
@@ -57,10 +57,6 @@ class Tracklist extends Component {
    (<button className="btn-link"  onClick={this.addToPlaylist} value="current">
    <i className="fa fa-star-o" />
   </button>)
-
-    const invStyle = {
-      display: "none"
-    }
 
     return (
       <tr onDoubleClick={this.setCurrentTrack} onMouseEnter={this.startScroll} onMouseLeave={this.stopScroll} className="track-single">

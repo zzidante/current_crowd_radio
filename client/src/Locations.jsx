@@ -1,23 +1,20 @@
 import React, { Component } from "react";
-import api from "./api/internal";
+import api from "./api/jamendo";
 import { setState, getState } from "./index";
 class Locations extends Component {
 
     setLocation = event => {
-      setState({ locationBar: event.target.value });
+      setState({ locationBar: event.target.value, playing: false, currentTrackIndex: 0 });
       api.setLocation();
       api.getTracksByLocation();
     };
 
     render() {
-      const { playlists, } = getState();
+      const { playlists } = getState();
       let locations = [];
 
       if (playlists) {
         locations = Object.keys(playlists).map(location => {
-
-          // get only city and country, ignore all other descriptors
-          location = location.split(',')[0] + ", " + (location.split(',')[2] ? location.split(',')[2] : location.split(',')[1])
 
           return (
             <li key={location}>
