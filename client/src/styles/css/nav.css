@@ -4,19 +4,14 @@ header {
   top: 0;
   left: 0;
   width: 100%;
+  height: 115px;
   display: flex;
   flex-flow: row;
-  justify-content: space-between;
-  max-height: 135px;
   align-items: center;
+  justify-content: center;
   font-family: "Magra", sans-serif;
   color: #fff;
-  padding: 35px 100px 25px 0;
   z-index: 2; }
-  header h3 {
-    font-family: "Skranji", cursive;
-    font-size: 1rem;
-    margin: 0 auto; }
   header textarea {
     color: black;
     width: 20vw;
@@ -24,30 +19,36 @@ header {
     margin-right: 5px; }
   header nav {
     display: flex; }
-    header nav #mini-brand-icon {
-      width: 50px;
-      height: 50px; }
     header nav .lg-size-btn {
-      margin: 5px; }
+      background-color: #235475;
+      margin: 9px; }
+    header nav .mini-brand-container {
+      margin-top: 10px; }
+    header nav a {
+      font-family: "Skranji", cursive;
+      font-size: 2.2vw;
+      margin: 0 2vw 0 2vw;
+      vertical-align: middle; }
   header #location-search {
     color: black; }
 
 .main-btn {
   background-color: #85babe;
-  margin: 5px 20px;
+  margin: 9px 20px 5px 20px;
   float: right;
   padding: 6px 24px; }
 
 #PlacesAutocomplete__root {
+  height: inherit;
   float: left;
-  margin-left: 15px; }
+  margin-left: 15px;
+  margin-top: 3px; }
 
 .dropdown-toggle {
   display: none; }
 
 @media (max-width: 1000px) {
   header {
-    padding: 20px 30px;
     flex-direction: row;
     flex-wrap: wrap; }
     header #PlacesAutocomplete__root {
@@ -59,23 +60,32 @@ header {
   header {
     flex-direction: row;
     flex-wrap: wrap; }
-    header #mini-brand-icon {
-      width: 50px;
-      height: 50px;
+    header .mini-brand-container img {
       display: none; }
+    header .navbar {
+      margin-bottom: 0; }
+      header .navbar .dropdown-menu a {
+        margin: 0;
+        padding: 0; }
+        header .navbar .dropdown-menu a button {
+          margin: 0;
+          width: 100%; }
+        header .navbar .dropdown-menu a button:hover {
+          color: #85babe;
+          border: solid #85babe 2px; }
+      header .navbar button {
+        margin-top: 5px;
+        margin-left: 5px; }
     header .dropdown-toggle {
       display: block; }
     header .lg-size-btn {
       display: none; }
   header h2 {
-    margin-bottom: 15px; } }
+    margin: 0 0 15px 0; } }
 
 @media (max-width: 600px) {
   #PlacesAutocomplete__root {
     float: right; }
-  .location-search-form {
-    width: 40%;
-    min-width: 100px; }
   textarea {
     width: 30vw;
     min-width: 100px;

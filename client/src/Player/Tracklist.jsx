@@ -3,8 +3,14 @@ import Duration from "./Duration";
 import api from "../api/internal";
 import { setState, getState} from "../index";
 class Tracklist extends Component {
+  constructor(){
+    super()
+    this.state = {
+      trackScroll: ''
+    }
+  }
   setCurrentTrack = () => {
-    setState({ currentTrackIndex: this.props.index });
+    setState({ currentTrackIndex: this.props.index, playing: true });
   };
 
   addToPlaylist = ({ currentTarget: { value } }) => {
@@ -29,17 +35,31 @@ class Tracklist extends Component {
     api.deleteFromPlaylist(this.props.track.id, this.props.index, from);
   };
 
+  startScroll = () => {
+    const textWidth = document.getElementById(this.props.index).offsetWidth;
+    const containerWidth = document.getElementsByClassName("track-name-container")[0].offsetWidth;
+    if (textWidth > containerWidth - 20){
+      this.setState({trackScroll:"trackScroll"})
+    }
+  }
+
+  stopScroll = () => {
+    this.setState({trackScroll:''})
+  }
+
   render() {
     const { name, artist, duration, favourited } = this.props.track;
     const { token, playlistType } = getState();
+
     const star = favourited ? (<button className="btn-link"  onClick={this.deleteFromPlaylist} value="current">
     <i className="fa fa-star" />
   </button>) :
    (<button className="btn-link"  onClick={this.addToPlaylist} value="current">
    <i className="fa fa-star-o" />
   </button>)
+
     return (
-      <tr onDoubleClick={this.setCurrentTrack} className="track-single">
+      <tr onDoubleClick={this.setCurrentTrack} onMouseEnter={this.startScroll} onMouseLeave={this.stopScroll} className="track-single">
         <td>
           <div className="track-play-btn">
             {" "}
@@ -48,9 +68,8 @@ class Tracklist extends Component {
             </button>
           </div>
         </td>
-        <td>
-          <span className="track-name">{name} - <b>{artist}</b></span>
-          
+        <td id={this.state.trackScroll} className="track-name-container">
+          <span id={this.props.index} className="track-name">{name} - <b>{artist}</b></span>
         </td>
         <td>
           <div className="track-duration">

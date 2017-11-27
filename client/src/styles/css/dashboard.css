@@ -1,173 +1,222 @@
-.back-img {
-  top: 0;
-  left: 0;
-  margin-top: 110px;
-  background-size: cover;
-  background-image: url("https://www.hdwallpaperswizard.com/wp-content/uploads/2017/03/Black-Music-Wallpaper-HD-1366x768.jpg");
-  overflow: auto;
-  z-index: -2; }
-
-.body-dashboard .playlist-heading {
-  padding: 5px 50px;
-  margin-top: 20px;
-  min-height: 200px;
-  max-height: 76vh; }
-  .body-dashboard .playlist-heading .playlist-selection-buttons {
-    padding-top: 36px;
-    flex-flow: column; }
-    .body-dashboard .playlist-heading .playlist-selection-buttons button {
-      background-color: #51a1c0;
-      margin: 15px;
-      width: 180px;
-      font-size: 1.6em; }
-
-.body-dashboard .username-heading {
-  padding: 20px;
-  margin-top: 20px;
-  min-height: 200px;
-  max-height: 76vh; }
-  .body-dashboard .username-heading h2 {
-    color: #b0ffe4; }
-  .body-dashboard .username-heading button {
-    color: #191E24; }
-  .body-dashboard .username-heading button:hover {
-    color: #b0ffe4;
-    background-color: #191E24;
-    border: none; }
-  .body-dashboard .username-heading ul {
-    position: relative;
-    top: 20px;
-    right: 20px;
-    overflow: scroll;
-    margin: 10px;
-    padding: 0;
-    min-height: 100px;
-    max-height: 120px; }
-  .body-dashboard .username-heading li {
-    padding: 10px 20px; }
-    .body-dashboard .username-heading li:last-child {
-      border-bottom: none; }
-    .body-dashboard .username-heading li:nth-child(even) {
-      background: #191E24; }
-    .body-dashboard .username-heading li button {
-      color: white; }
-
-.body-dashboard .table {
-  border: none;
-  padding-top: 0;
-  margin-top: 0; }
-
-.body-dashboard .table-striped > tbody > tr:nth-child(odd) > td,
-.body-dashboard .table-striped > tbody > tr:nth-child(odd) > th {
-  background-color: #292929;
-  border: none; }
-
-.body-dashboard .table-striped > tbody > tr:nth-child(even) > td,
-.body-dashboard .table-striped > tbody > tr:nth-child(even) > th {
-  background-color: black;
-  border: none; }
-
-.body-dashboard .track-play-btn {
-  visibility: hidden; }
-
-.body-dashboard tr:hover .track-play-btn {
-  visibility: visible; }
-
-.body-dashboard .music-container {
-  min-height: 76vh;
-  padding: 20px 50px; }
-  .body-dashboard .music-container .player-full-container {
-    position: absolute;
-    color: white;
-    width: 100%;
-    border-radius: 6px;
-    min-height: 200px;
-    overflow: hidden;
-    z-index: 1; }
-    .body-dashboard .music-container .player-full-container .current-song-info {
-      text-shadow: 1px 0px 1px #ccc, 0px 1px 1px #292929, 2px 1px 1px black, 1px 2px 1px #292929, 3px 2px 1px black, 2px 3px 1px #292929, 4px 3px 1px black, 3px 4px 1px #292929, 5px 4px 1px black, 4px 5px 1px #292929, 6px 5px 1px black, 5px 6px 1px #292929, 7px 6px 1px black; }
-    .body-dashboard .music-container .player-full-container .audio-player {
-      display: none;
-      width: 0px;
-      height: 0px; }
-    .body-dashboard .music-container .player-full-container .player-image-bg {
-      position: absolute;
-      background-color: black;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 6px;
-      background-position: center;
-      background-size: cover;
-      -webkit-filter: blur(10px);
-      filter: blur(10px);
-      z-index: -1; }
-    .body-dashboard .music-container .player-full-container .current-song-container {
-      width: 100%;
-      background-color: darkslategray;
-      padding: 30px;
+.body-dashboard {
+  margin-top: 100px;
+  height: 90%;
+  padding-left: 0px;
+  padding-right: 0px;
+  font-family: "Magra", sans-serif; }
+  .body-dashboard .playlist-heading {
+    padding: 5px 50px;
+    margin-top: 120px;
+    max-height: 100vh; }
+    .body-dashboard .playlist-heading .playlist-selection-buttons {
+      padding-top: 36px;
+      flex-flow: column; }
+      .body-dashboard .playlist-heading .playlist-selection-buttons button {
+        background-color: #235475;
+        margin: 15px;
+        width: 180px;
+        font-size: 1.6em;
+        opacity: 0.85; }
+      .body-dashboard .playlist-heading .playlist-selection-buttons button:hover {
+        opacity: 1; }
+  .body-dashboard .username-heading {
+    padding: 20px;
+    margin-top: 48px;
+    max-height: 80%; }
+    .body-dashboard .username-heading h2 {
+      color: #b0ffe4;
+      text-align: center;
+      font-size: 2em;
+      margin: 0; }
+    .body-dashboard .username-heading button {
+      color: #191E24; }
+    .body-dashboard .username-heading button:hover {
+      color: #b0ffe4;
       background-color: #191E24;
-      font-family: "Open Sans", sans-serif; }
-      .body-dashboard .music-container .player-full-container .current-song-container tr {
-        width: 100%;
-        font-size: 14px;
-        line-height: 0; }
-        .body-dashboard .music-container .player-full-container .current-song-container tr time {
-          float: right;
-          padding: 0 20px; }
-      .body-dashboard .music-container .player-full-container .current-song-container .player-controls {
-        text-align: center;
-        margin: 0 auto; }
-    .body-dashboard .music-container .player-full-container button {
-      background: aquamarine;
       border: none;
-      border-radius: 10%;
-      padding: 2px;
-      margin: 10px; }
-      .body-dashboard .music-container .player-full-container button .fa {
-        font-size: 2em;
-        width: 30px;
-        color: #191E24; }
-  .body-dashboard .music-container .add-border {
-    border: 2px black solid;
-    background-color: #191E24; }
-  .body-dashboard .music-container .full-playlist {
-    position: absolute;
-    max-height: 40vh;
-    min-width: 100%;
-    overflow: auto;
-    padding: 0;
-    margin: 225px 0 5px 0;
-    border-bottom-left-radius: 11px;
-    border-bottom-right-radius: 11px;
-    z-index: 1; }
-    .body-dashboard .music-container .full-playlist .track-container {
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      transform: scale(1.2);
+      text-decoration: none; }
+    .body-dashboard .username-heading ul {
       position: relative;
-      padding-left: 5px;
-      color: #dbdfe1;
-      background-color: #1f1f1f;
+      direction: rtl;
+      overflow: auto;
+      width: 100%;
+      min-height: 20vh;
+      max-height: 900px;
+      margin-top: 45px;
+      border: black solid 2px;
+      background-image: radial-gradient(farthest-corner at 80px 100px, rgba(0, 0, 0, 0.664) 0%, rgba(102, 102, 102, 0.575) 100%); }
+      .body-dashboard .username-heading ul li {
+        padding: 5px 0px 0px 15px;
+        direction: ltr;
+        text-align: left;
+        font-size: 1.8em; }
+        .body-dashboard .username-heading ul li button {
+          color: white;
+          background-color: transparent;
+          text-shadow: 1px 1px 5px black; }
+        .body-dashboard .username-heading ul li button:hover {
+          color: #b0ffe4;
+          background-color: transparent; }
+      .body-dashboard .username-heading ul .clear {
+        clear: both;
+        font-size: 0; }
+  .body-dashboard .table {
+    border: none;
+    padding-top: 0;
+    margin-top: 0; }
+  .body-dashboard .table-striped > tbody > tr:nth-child(odd) > td,
+  .body-dashboard .table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: #292929;
+    border: none; }
+  .body-dashboard .table-striped > tbody > tr:nth-child(even) > td,
+  .body-dashboard .table-striped > tbody > tr:nth-child(even) > th {
+    background-color: black;
+    border: none; }
+  .body-dashboard .track-play-btn {
+    visibility: hidden; }
+  .body-dashboard tr:hover .track-play-btn {
+    visibility: visible; }
+  .body-dashboard .music-container {
+    padding: 20px 50px; }
+    .body-dashboard .music-container .player-full-container {
+      position: absolute;
+      color: white;
+      width: 100%;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      min-height: 225px;
+      min-width: 340px;
+      overflow: hidden;
+      z-index: 1; }
+      .body-dashboard .music-container .player-full-container .current-song-info {
+        font-family: "Magra", sans-serif;
+        text-shadow: 1px 0px 1px #ccc, 0px 1px 1px #292929, 2px 1px 1px black, 1px 2px 1px #292929, 3px 2px 1px black, 2px 3px 1px #292929, 4px 3px 1px black, 3px 4px 1px #292929, 5px 4px 1px black, 4px 5px 1px #292929, 6px 5px 1px black, 5px 6px 1px #292929, 7px 6px 1px black; }
+        .body-dashboard .music-container .player-full-container .current-song-info h3 {
+          margin-left: 8px;
+          margin-top: 20px; }
+        .body-dashboard .music-container .player-full-container .current-song-info h4 {
+          margin-left: 8px;
+          margin-top: 8px;
+          margin-bottom: 20px; }
+        .body-dashboard .music-container .player-full-container .current-song-info h5 {
+          margin-left: 8px;
+          margin-bottom: 20px; }
+      .body-dashboard .music-container .player-full-container .audio-player {
+        display: none;
+        width: 0px;
+        height: 0px; }
+      .body-dashboard .music-container .player-full-container .player-image-bg {
+        position: absolute;
+        background-color: black;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+        background-position: center;
+        background-size: cover;
+        -webkit-filter: blur(10px);
+        filter: blur(10px);
+        z-index: -1; }
+      .body-dashboard .music-container .player-full-container .current-song-container {
+        width: 100%;
+        background-color: darkslategray;
+        padding: 30px;
+        background-color: #191E24; }
+        .body-dashboard .music-container .player-full-container .current-song-container tr {
+          width: 100%;
+          font-size: 14px;
+          line-height: 0; }
+          .body-dashboard .music-container .player-full-container .current-song-container tr time {
+            float: right;
+            padding: 0 20px; }
+        .body-dashboard .music-container .player-full-container .current-song-container .player-controls {
+          text-align: center;
+          margin: 0 auto; }
+          .body-dashboard .music-container .player-full-container .current-song-container .player-controls button {
+            background: #b0ffe4;
+            border: none;
+            border-radius: 10%;
+            padding: 2px;
+            margin: 10px; }
+            .body-dashboard .music-container .player-full-container .current-song-container .player-controls button .fa {
+              font-size: 2em;
+              width: 30px;
+              color: #191E24; }
+          .body-dashboard .music-container .player-full-container .current-song-container .player-controls button:hover {
+            background: #3e93cc;
+            -webkit-transform: scale(1.1);
+            -moz-transform: scale(1.1);
+            -ms-transform: scale(1.1);
+            -o-transform: scale(1.1);
+            transform: scale(1.1); }
+    .body-dashboard .music-container .add-border {
+      border: 2px black solid;
+      background-color: #191E24; }
+    .body-dashboard .music-container .full-playlist {
+      position: absolute;
       min-width: 100%;
-      max-height: 40vh; }
-      .body-dashboard .music-container .full-playlist .track-container .track-name {
-        padding-left: 5px; }
-      .body-dashboard .music-container .full-playlist .track-container .track-btns {
-        display: flex;
-        right: 0;
-        margin: 5px 10px; }
-      .body-dashboard .music-container .full-playlist .track-container button {
-        padding: 0 0.1em;
-        border: 0px solid transparent;
-        background: none; }
-        .body-dashboard .music-container .full-playlist .track-container button .fa-play {
-          font-size: 1.4em;
-          background: #b0ffe4;
-          margin: 2px;
-          padding: 5px;
-          color: #191E24;
-          border: 0px transparent solid;
-          width: 30px;
-          display: block; }
+      overflow: auto;
+      padding: 0;
+      margin: 225px 0 5px 0;
+      border-bottom-left-radius: 11px;
+      border-bottom-right-radius: 11px;
+      z-index: 1; }
+      .body-dashboard .music-container .full-playlist .track-container {
+        position: relative;
+        padding-left: 5px;
+        color: #dbdfe1;
+        background-color: #1f1f1f;
+        min-width: 100%;
+        max-height: 40vh;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+        .body-dashboard .music-container .full-playlist .track-container .track-name-container {
+          overflow: hidden;
+          max-width: 40vh;
+          text-overflow: ellipsis; }
+          .body-dashboard .music-container .full-playlist .track-container .track-name-container .track-name {
+            margin-left: 5px; }
+        .body-dashboard .music-container .full-playlist .track-container .track-btns {
+          display: flex;
+          right: 0;
+          margin: 5px 10px; }
+        .body-dashboard .music-container .full-playlist .track-container button {
+          padding: 0 0.1em;
+          border: 0px solid transparent;
+          background: none; }
+          .body-dashboard .music-container .full-playlist .track-container button .fa-play {
+            font-size: 1.4em;
+            background: #b0ffe4;
+            margin: 2px;
+            padding: 5px;
+            color: #191E24;
+            border: 0px transparent solid;
+            width: 30px;
+            display: block; }
+      .body-dashboard .music-container .full-playlist #trackScroll span {
+        animation: marquee 5s linear; }
+
+@keyframes marquee {
+  100% {
+    margin-left: -130%; } }
+    @media (max-width: 980px) {
+      .body-dashboard .music-container .full-playlist {
+        margin: 225px 0 35px 0; } }
+
+@media (max-width: 600px) {
+  .body-dashboard {
+    margin-top: 110px; }
+    .body-dashboard .playlist-heading .playlist-selection-buttons button {
+      font-size: 1em;
+      padding: 5px 0;
+      width: 120px; } }
 
 .back-button {
   margin: 20px; }

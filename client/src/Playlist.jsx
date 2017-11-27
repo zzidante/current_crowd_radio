@@ -1,8 +1,9 @@
 import React , {Component} from 'react';
 import api from './api/jamendo'
-import { getState } from './index'
+import { getState, setState } from './index'
 class Playlist extends Component {
   setPlaylistType = ({ currentTarget: { value }}) => {
+    setState({currentTrackIndex: 0, playing: false})
     if (value === ""){
       api.getTracksByLocation()
       return
@@ -31,7 +32,7 @@ class Playlist extends Component {
           </div>
         </article>
       </section>
-    )
+    )  
   }
 }
   

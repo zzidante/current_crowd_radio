@@ -1,29 +1,26 @@
-$accent: #85babe;
 $font: 'Open Sans', sans-serif;
 $fontLogo: 'Skranji', cursive;
 $fontContent: 'Magra', sans-serif;
+$mainC: rgb(20, 46, 58);
+$accent: #85babe;
+$blueMid: #235475;
+$blueBright: #3e93cc;
+
 
 header{
 	position: absolute;
-	background: rgb(20, 46, 58);
+	background: $mainC;
 	top: 0;
 	left: 0;
 	width: 100%;
+	height: 115px;
 	display: flex;
 	flex-flow: row; 
-	justify-content: space-between;
-	max-height: 135px;
 	align-items: center;
+  justify-content: center;
 	font-family: $fontContent;
 	color: #fff;
-	padding: 35px 100px 25px 0;
 	z-index: 2;
-
-	h3 {
-		font-family: $fontLogo;
-		font-size: 1rem;
-		margin: 0 auto;
-	}
 
 	textarea {
 		color: black;
@@ -35,26 +32,22 @@ header{
 	nav{
 		display: flex;
 
-		#mini-brand-icon {
-			width: 50px;
-			height: 50px;
-		}
-
 		.lg-size-btn {
-			margin: 5px;			
+			background-color: $blueMid;
+			margin: 9px;
 		}
 
-		// li{
-		// 	margin: 0 15px;
-		// }
-		
-		// li:first-child{
-		// 	margin-left: 0;	
-		// }
-		
-		// li:last-child{
-		// 	margin-right: 0;	
-		// }
+		.mini-brand-container {
+			margin-top: 10px;
+		}
+
+		a {
+			font-family: $fontLogo;
+			font-size: 2.2vw;
+			margin: 0 2vw 0 2vw;
+			vertical-align: middle;
+		}
+	
 	}
 
 	#location-search {
@@ -64,14 +57,16 @@ header{
 
 .main-btn {
   background-color: $accent;
-  margin: 5px 20px;
+  margin: 9px 20px 5px 20px;
   float: right;
   padding: 6px 24px;
 }
 
 #PlacesAutocomplete__root {
+	height: inherit;
 	float: left;
 	margin-left: 15px;
+	margin-top: 3px;
 }
 
 .dropdown-toggle {
@@ -81,7 +76,6 @@ header{
 
 @media (max-width: 1000px){
 	header{
-		padding: 20px 30px;
 		flex-direction: row;
 		flex-wrap: wrap;		
 
@@ -98,12 +92,37 @@ header{
 		flex-direction: row;
 		flex-wrap: wrap;
 
-		#mini-brand-icon {
-			width: 50px;
-			height: 50px;
-			display: none;
+		.mini-brand-container {
+			img {
+				display: none;
+			}
 		}
 
+		.navbar {
+			margin-bottom: 0;
+			// make entire dropdown area clickable
+			.dropdown-menu {
+				a {
+					margin: 0;
+					padding: 0;
+					button {
+						margin: 0;
+						width: 100%;
+					}
+					button:hover {
+						color: $accent;
+						border: solid $accent 2px;
+					}
+				}
+
+			}
+
+			button {
+				margin-top: 5px;
+				margin-left: 5px;
+			}
+		}
+		
 		.dropdown-toggle {
 			display: block;
 		}
@@ -113,8 +132,8 @@ header{
 		}
 	}		
 
-	header h2{
-		margin-bottom: 15px;
+	header h2 {
+		margin: 0 0 15px 0;
 	}
 }
 
@@ -124,10 +143,10 @@ header{
 		float: right;	
 	}
 
-	.location-search-form {
-		width: 40%;
-		min-width: 100px;		
-	}
+	// .location-search-form {
+	// 	width: 40%;
+	// 	min-width: 100px;		
+	// }
 
 	textarea {
 		width: 30vw;
