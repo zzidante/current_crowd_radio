@@ -85,9 +85,6 @@ header {
 @media (max-width: 600px) {
   #PlacesAutocomplete__root {
     float: right; }
-  .location-search-form {
-    width: 40%;
-    min-width: 100px; }
   textarea {
     width: 30vw;
     min-width: 100px;
