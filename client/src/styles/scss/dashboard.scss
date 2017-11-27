@@ -258,3 +258,24 @@ $body-min-height: 76vh;
 		}
 	}
 }
+
+.back-button {
+	margin: 20px;
+}
+
+.row {
+	margin-top: 80px;
+}
+
+.form-row {
+	width: 100%;
+	display: block;
+	padding: 0px 50px;
+
+	section {
+		padding: 10px;
+		display: inline-block;
+		vertical-align: top;
+		width: 50%;
+	}
+}

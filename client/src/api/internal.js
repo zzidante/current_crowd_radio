@@ -235,6 +235,7 @@ const getUser = () => {
 const logout = () => {
   axios.delete("/users/");
 };
+
 module.exports = {
   addToPlaylist,
   moveToPlaylist,

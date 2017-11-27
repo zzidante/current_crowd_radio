@@ -168,3 +168,19 @@
           border: 0px transparent solid;
           width: 30px;
           display: block; }
+
+.back-button {
+  margin: 20px; }
+
+.row {
+  margin-top: 80px; }
+
+.form-row {
+  width: 100%;
+  display: block;
+  padding: 0px 50px; }
+  .form-row section {
+    padding: 10px;
+    display: inline-block;
+    vertical-align: top;
+    width: 50%; }
