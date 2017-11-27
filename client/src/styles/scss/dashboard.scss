@@ -6,25 +6,28 @@ $shadow1: rgb(41, 41, 41);
 $shadow2: rgb(0, 0, 0);
 $gray1: #191E24; 
 $graytransparent: rgba(33, 34, 34, 0.8);
+$teal1: #85babe;
 $teal2:  #b0ffe4;
-$body-min-height: 76vh;
+$tealBright: #a1e8ee;
+$blueMid: #235475;
+$blueBright: #3e93cc;
 
-.back-img {
-	top: 0;
-	left: 0;
-	margin-top: 110px;
-	background-size: cover; 
-	background-image: url("https://www.hdwallpaperswizard.com/wp-content/uploads/2017/03/Black-Music-Wallpaper-HD-1366x768.jpg");
-	overflow: auto;
-	z-index: -2;
-}
+$body-min-height: 100vh;
+$playerTextMargin: 8px;
+$playerTextMargin2: 20px;
+
 
 .body-dashboard {
+	// make room for the header
+	margin-top: 100px;
+	height: 90%;
+	padding-left: 0px;
+	padding-right: 0px;
+	font-family: $fontContent;
 
 	.playlist-heading {
 		padding: 5px 50px;
-		margin-top: 20px;
-		min-height: 200px;
+		margin-top: 120px;
 		max-height: $body-min-height;
 
 		.playlist-selection-buttons {
@@ -32,22 +35,28 @@ $body-min-height: 76vh;
 			flex-flow: column;
 
 			button {
-				background-color: #51a1c0;
+				background-color: $blueMid;
 				margin: 15px;
 				width: 180px;
 				font-size: 1.6em;
+				opacity: 0.85;
+			}
+			button:hover {
+				opacity: 1;
 			}
 		}
 	}
 
 	.username-heading {
 		padding: 20px;
-		margin-top: 20px;		
-		min-height: 200px;
-		max-height: $body-min-height;
+		margin-top: 48px;		
+		max-height: 80%;
 
 		h2 {
 			color: $teal2;
+			text-align: center;
+			font-size: 2em;
+			margin: 0;
 		}
 
 		button {
@@ -58,32 +67,49 @@ $body-min-height: 76vh;
 			color: $teal2;			
 			background-color: $gray1;
 			border: none;
+			-webkit-transform:scale(1.2);
+			-moz-transform:scale(1.2);
+			-ms-transform:scale(1.2);
+			-o-transform:scale(1.2);
+			transform:scale(1.2);
+			text-decoration: none;	
 		}
 
 		ul {
 			position: relative;
-			top: 20px;
-			right: 20px;
-			overflow: scroll;
-			margin: 10px;
-			padding: 0;
-			min-height: 100px;
-			max-height: 120px;
-		}
-
-		li {
-				padding: 10px 20px;
+			direction: rtl;
+			overflow: auto;
+			width: 100%;
+			min-height: 20vh;
+			max-height: 900px;
+			margin-top: 45px;
+			border: black solid 2px;
+			background-image: radial-gradient(farthest-corner at 80px 100px,
+      rgba(0, 0, 0, 0.664) 0%, rgba(102, 102, 102, 0.575) 100%);
+			
+			li {
+				padding: 5px 0px 0px 15px;
+				direction: ltr;				
+				text-align: left;
+				font-size: 1.8em;
 				
-				&:last-child {
-					border-bottom: none;
-				}
-				
-				&:nth-child(even) {
-					background: $gray1;
-				}
 				button {
 					color: white;
+					background-color: transparent;
+					text-shadow: 1px 1px 5px black; 									
+
 				}
+				button:hover {
+					color: $teal2;
+					background-color: transparent;
+				}
+			}
+
+			.clear {
+				clear: both;
+				font-size:0;				
+			}
+
 		}
 
 	}
@@ -112,19 +138,22 @@ $body-min-height: 76vh;
 		}
 		
 	.music-container {
-		min-height: $body-min-height;
 		padding: 20px 50px;
 
 		.player-full-container  {
 			position: absolute;
 			color: white;
 			width: 100%;
-			border-radius: 6px;
-			min-height: 200px;
+			border-top-left-radius: 6px;
+			border-top-right-radius: 6px;
+			min-height: 225px;
+			min-width: 340px;
 			overflow: hidden;
 			z-index: 1;
 
 			.current-song-info {
+				// allow for text to be seen on light backgrounds
+				font-family: $fontContent;
 				text-shadow:  1px 0px 1px #ccc, 
 				0px 1px 1px $shadow1, 
 				2px 1px 1px $shadow2, 
@@ -138,6 +167,21 @@ $body-min-height: 76vh;
 				6px 5px 1px $shadow2, 
 				5px 6px 1px $shadow1, 
 				7px 6px 1px $shadow2;
+
+
+				h3 {
+					margin-left: $playerTextMargin;
+					margin-top: $playerTextMargin2;
+				}
+				h4 {
+					margin-left: $playerTextMargin;
+					margin-top: $playerTextMargin; 
+					margin-bottom: $playerTextMargin2;
+				}
+				h5 {
+					margin-left: $playerTextMargin;
+					margin-bottom: $playerTextMargin2;
+				}
 			}
 			
 			.audio-player {
@@ -166,7 +210,6 @@ $body-min-height: 76vh;
 				background-color: darkslategray;
 				padding: 30px;
 				background-color: $gray1;
-				font-family: $font;
 
 				tr {
 					width: 100%;
@@ -181,22 +224,32 @@ $body-min-height: 76vh;
 				.player-controls {
 					text-align: center;
 					margin: 0 auto;
+
+					button {
+						background: $teal2;
+						border: none;
+						border-radius: 10%;
+						padding: 2px;					
+						margin: 10px;
+						
+						.fa {
+							font-size: 2em;
+							width: 30px;
+							color: $gray1;
+						}
+					}
+					button:hover {
+						background: $blueBright;
+						-webkit-transform:scale(1.1);
+						-moz-transform:scale(1.1);
+						-ms-transform:scale(1.1);
+						-o-transform:scale(1.1);
+						transform:scale(1.1);						
+					}
 				}
 			}
 
-			button {
-				background: aquamarine;
-				border: none;
-				border-radius: 10%;
-				padding: 2px;					
-				margin: 10px;
-				
-				.fa {
-					font-size: 2em;
-					width: 30px;
-					color: $gray1;
-				}
-			}
+			
 		}
 		
 		.add-border {
@@ -206,7 +259,6 @@ $body-min-height: 76vh;
 
 		.full-playlist {
 			position: absolute;
-			max-height: 40vh;
 			min-width: 100%;
 			overflow: auto;
 			padding: 0;
@@ -216,8 +268,6 @@ $body-min-height: 76vh;
 			// prevent current playlist shadow from overlapping
 			z-index: 1;
 
-
-
 			.track-container {
 				position: relative;
 				padding-left: 5px;
@@ -225,11 +275,18 @@ $body-min-height: 76vh;
 				background-color: #1f1f1f;
 				min-width: 100%;
 				max-height: 40vh;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
 
-				.track-name {
-					padding-left: 5px;
+				.track-name-container {
+					overflow: hidden;
+					max-width: 40vh;
+					text-overflow: ellipsis;
+					.track-name {
+						margin-left: 5px;
+					}
 				}
-
 
 				.track-btns {
 					display: flex;
@@ -253,6 +310,39 @@ $body-min-height: 76vh;
 						width: 30px;
 						display: block ;
 					}
+				}
+			}
+		  #trackScroll span{
+				animation: marquee 5s linear;
+			}
+
+			@keyframes marquee {
+				100% {
+					margin-left: -130%;
+				}
+			}
+		}
+
+		@media (max-width: 980px) {
+			
+			.full-playlist {
+				margin: 225px 0 35px 0;
+			}
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.body-dashboard {
+		// make room for the header
+		margin-top: 110px;
+
+		.playlist-heading {
+			.playlist-selection-buttons {
+				button {				
+					font-size: 1em;
+					padding: 5px 0;
+					width: 120px;
 				}
 			}
 		}

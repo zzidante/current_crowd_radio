@@ -1,6 +1,6 @@
 // colors
 $mainC: rgb(20, 46, 58);
-$hoverC: #e4ffef;
+$hoverC: #e4fff8;
 $teal1: #85babe;
 $teal2:  #b0ffe4;
 $tealBright: #a1e8ee;
@@ -14,63 +14,52 @@ $fontContent: 'Magra', sans-serif;
 }
 
 html {
+	height: 100%;
 	font-family: $font;
 	font-size: 16px;
 	background-color: $mainC;
-}
+	
+	body {
+		background-color: $tealBright;
+		color: $hoverC;
+		height: 100%;
+		div {
+			height: 100%;
+		}
 
-body {
-	background-color: $tealBright;
-	color: $hoverC;
-}
-
-ul, nav {
-	list-style: none;
-}
-
-a {
-	text-decoration: none;
-	color: #fff;
-	cursor: pointer;
-	opacity: 0.85;
-}
-
-a:hover {
-	text-decoration: none;	
-	color: $hoverC;
-	opacity: 1;
-}
-
-a.btn {
-	color: #fff;
-	border-radius: 4px;
-	text-transform: uppercase;
-	background-color: rgb(124, 27, 189);
-	font-weight: 600;
-	text-align: center;
-	padding: 5px;
-}
-section {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 100px 100px;
-}
-#register-location {
-	width: 100%;
-}
-
-@media (max-width: 1000px){
-
-	section {
-		padding: 10px 50px;
+		ul, nav {
+			list-style: none;
+		}
+		
+		a {
+			text-decoration: none;
+			color: #fff;
+			cursor: pointer;
+			opacity: 0.9;
+	
+			button {
+				border-radius: 4px;
+				text-align: center;
+				padding: 5px;
+			}
+		}
+		
+		a:hover {
+			text-decoration: none;	
+			color: $hoverC;
+			opacity: 1;
+		}
+		
+		section {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 10px 10px;
+		}
+		#register-location {
+			width: 100%;
+		}
 	}
+	
+	
 }
-
-@media (max-width: 600px){
-
-	section {
-		padding: 40px 30px;
-	}
-}
-

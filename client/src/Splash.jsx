@@ -13,6 +13,7 @@ class Splash extends Component {
       display: 'block',
       lineHeight: '25vw',
       color: 'white',
+      margin: '0',
     }
 
     const sloganStyle = {
@@ -31,7 +32,7 @@ class Splash extends Component {
       backgroundSize: 'contain',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center center',
-      marginTop: '16em',
+      marginTop: '16vh',
       height: '25vw',
       width: '100%'
     }
@@ -39,7 +40,7 @@ class Splash extends Component {
     return (
       <div style={splashStyle}>
         <h1 className="shadow-stroke" style={textStyle}>Current Crowd Radio</h1>        
-        <p className="shadow-stroke" style={sloganStyle}>The Music In Your City</p>
+        <p className="shadow-stroke" style={sloganStyle}>Music of the City</p>
       </div>
     );
   }
