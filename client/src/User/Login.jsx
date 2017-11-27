@@ -34,7 +34,7 @@ class Login extends Component {
             value={getState().password}
             onChange={this.handlePasswordChange}
           />
-          <button className="btn btn-primary" type="submit">
+          <button className="btn btn-primary btn-login" type="submit">
             Submit
           </button>
         </form>

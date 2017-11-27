@@ -40,9 +40,7 @@ header {
 
 #PlacesAutocomplete__root {
   height: inherit;
-  float: left;
-  margin-left: 15px;
-  margin-top: 3px; }
+  float: left; }
 
 .dropdown-toggle {
   display: none; }
@@ -64,6 +62,9 @@ header {
       display: none; }
     header .navbar {
       margin-bottom: 0; }
+      header .navbar button {
+        margin-top: 5px;
+        margin-left: 5px; }
       header .navbar .dropdown-menu a {
         margin: 0;
         padding: 0; }
@@ -73,9 +74,6 @@ header {
         header .navbar .dropdown-menu a button:hover {
           color: #85babe;
           border: solid #85babe 2px; }
-      header .navbar button {
-        margin-top: 5px;
-        margin-left: 5px; }
     header .dropdown-toggle {
       display: block; }
     header .lg-size-btn {
