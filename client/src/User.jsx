@@ -30,10 +30,7 @@ class User extends Component {
             <Link type="button" className="btn btn-primary" to="/Profile">
               Edit Profile
             </Link>
-            <ul>
-              <li>Your Cities</li>
               <Locations />
-            </ul>
             <div className="clear" />
           </div>
         )}

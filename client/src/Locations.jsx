@@ -30,7 +30,7 @@ class Locations extends Component {
         });
       }
     return (
-       <p>{locations}</p>
+       <ul>{locations}</ul>
     );
   }
 }
