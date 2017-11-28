@@ -28,6 +28,11 @@ html {
       text-decoration: none;
       color: #e4fff8;
       opacity: 1; }
+    html body a.btn {
+      color: #fff;
+      border-radius: 4px;
+      text-align: center;
+      padding: 5px; }
     html body section {
       display: flex;
       flex-direction: column;

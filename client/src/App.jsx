@@ -51,7 +51,7 @@ class App extends Component {
         )}
 
         {token && (
-          <div style={dashboardBackground}> 
+          <div style={dashboardBackground}>
             <div className="body-dashboard container">
               <div className="row-fluid">
                 <User />

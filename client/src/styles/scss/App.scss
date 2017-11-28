@@ -49,6 +49,13 @@ html {
 			color: $hoverC;
 			opacity: 1;
 		}
+
+		a.btn {
+			color: #fff;
+			border-radius: 4px;
+			text-align: center;
+			padding: 5px;
+		}
 		
 		section {
 			display: flex;

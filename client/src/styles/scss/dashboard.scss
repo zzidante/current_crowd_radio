@@ -366,3 +366,74 @@ $playerTextMargin2: 20px;
 		}
 	}
 }
+
+.back-button {
+	margin: 40px;
+}
+
+.row {
+	margin-top: 80px;
+}
+
+.update-btn {
+	margin-top: 20px;
+}
+
+input {
+	max-width: 300px;
+}
+
+.flex-outer {
+	div, h3, label {
+		display: flex;
+	}
+	
+	div, h3 {
+		justify-content: center;
+	}
+	
+	h3, label {
+		margin-top: 20px;
+		text-shadow: 1px 1px 5px black;
+	}
+}
+
+.form-row {
+	width: 100%;
+	display: block;
+	padding: 0 15%;
+
+	section {
+		padding: 10px;
+		vertical-align: top;
+	}
+}
+
+spicegirl {
+	width: 100%;
+}
+
+@media (min-width: 851px) {
+	.form-row section {
+		display: inline-block;
+		width: 50%;
+	}
+
+	spicegirl {
+		width: 300px;
+	}
+}
+
+@media (max-width: 850px) {
+	.flex-outer div, h3 {
+		min-width: 300px;
+	}
+
+	.form-row {
+		padding: 0 5%;
+	}
+
+	spicegirl {
+		min-width: 300px;
+	}
+}
