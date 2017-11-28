@@ -15,7 +15,6 @@ class Playlist extends Component {
     const loc = playlists[locationBar]
     return (
       <section className="playlist-heading col-md-3 col-md-push-6 col-xs-6">
-        <article className="playlist-box">
           <div className="current-track-player">
           </div>
           <h3>
@@ -35,7 +34,6 @@ class Playlist extends Component {
             loc.archive && 
             <button onClick={this.setPlaylistType} className="btn btn-primary" value="archive">Archive Playlist</button> }
           </div>
-        </article>
       </section>
     )  
   }

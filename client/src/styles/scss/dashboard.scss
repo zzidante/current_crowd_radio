@@ -87,8 +87,8 @@ $playerTextMargin2: 20px;
 			direction: rtl;
 			overflow: auto;
 			width: 100%;
-			min-height: 20vh;
-			max-height: 400px;
+			min-height: 40vh;
+			max-height: 60vh;
 			margin-top: 45px;
 			border: black solid 2px;
 			background-image: radial-gradient(farthest-corner at 80px 100px,
@@ -357,9 +357,18 @@ $playerTextMargin2: 20px;
 
 @media (max-width: 600px) {
 	.body-dashboard {
-		// make room for the header
-		margin-top: 110px;
-
+		.username-heading {
+			padding: 20px 10px 30px 10px;
+			ul {
+				font-size: 12px;
+				li {
+					font-size: 12px;
+					button {
+						font-size: 12px;
+					}
+				}
+			}
+		}
 		.playlist-heading {
 			.playlist-selection-buttons {
 				button {				
@@ -430,9 +439,6 @@ spicegirl {
 }
 
 @media (max-width: 850px) {
-	.flex-outer div, h3 {
-		min-width: 300px;
-	}
 
 	.form-row {
 		padding: 0 5%;
