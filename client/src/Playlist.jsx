@@ -18,7 +18,11 @@ class Playlist extends Component {
         <article className="playlist-box">
           <div className="current-track-player">
           </div>
-          <h3>{locationBar}</h3>
+          <h3>
+            You are in
+              <br/>
+            {locationBar}
+          </h3>
           <div className="playlist-selection-buttons">
             {token && 
             <button onClick={this.setPlaylistType} className="btn btn-primary" value="">Randomize</button>}

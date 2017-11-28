@@ -30,8 +30,7 @@
     .body-dashboard .username-heading h2 {
       color: #b0ffe4;
       text-align: center;
-      font-size: 2em;
-      margin: 0; }
+      font-size: 2em; }
     .body-dashboard .username-heading button {
       color: #191E24; }
     .body-dashboard .username-heading button:hover {
@@ -50,7 +49,7 @@
       overflow: auto;
       width: 100%;
       min-height: 20vh;
-      max-height: 900px;
+      max-height: 400px;
       margin-top: 45px;
       border: black solid 2px;
       background-image: radial-gradient(farthest-corner at 80px 100px, rgba(0, 0, 0, 0.664) 0%, rgba(102, 102, 102, 0.575) 100%); }
