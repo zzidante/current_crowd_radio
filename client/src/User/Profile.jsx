@@ -194,7 +194,6 @@ class Profile extends Component {
                 </form>
               </section>
             </section>
-            <Link to="/" type="button" className="btn btn-primary back-button">Back</Link>
           </section>
         </div>
         <Footer />

@@ -13,12 +13,11 @@ class BrandDeclaration extends Component {
 
     return (
       <div className="mini-brand-container">
-        <img
+        <a href="/"><img
         src={miniLogo}
         alt="Radio Logo"
         style={imgStyle}
-      />
-        <a href="#">Current Crowd Radio</a>
+        /> Current Crowd Radio</a>
       </div>
     )
   }
