@@ -4,7 +4,8 @@
   padding-right: 0px;
   font-family: "Magra", sans-serif; }
   .body-dashboard .row-fluid {
-    padding-top: 80px; }
+    padding-top: 80px;
+    height: auto; }
   .body-dashboard .playlist-heading {
     padding: 0 50px;
     margin-top: 60px;

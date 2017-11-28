@@ -26,6 +26,7 @@ $playerTextMargin2: 20px;
 	.row-fluid {
 		// make room for the header
 		padding-top: 80px;
+		height: auto;		
 	}
 
 	.playlist-heading {
@@ -111,7 +112,6 @@ $playerTextMargin2: 20px;
 				clear: both;
 				font-size:0;				
 			}
-
 		}
 
 	}
