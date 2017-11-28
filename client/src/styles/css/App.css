@@ -35,3 +35,6 @@ html {
       padding: 10px 10px; }
     html body #register-location {
       width: 100%; }
+    html body .center-a-el {
+      width: 100%;
+      text-align: center; }

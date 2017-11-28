@@ -15,24 +15,28 @@ class User extends Component {
 
     return (
       <section className="username-heading col-md-3 col-xs-6">
-        { token === "guest" ? <h2>Welcome Guest!</h2> : <h2>Welcome {username}!</h2> }
-
-        {username !== "guest" && (
-          <Link type="button" className="btn btn-primary" to="/Profile">
-            Profile
-          </Link>)
+        {token === "guest" &&
+          <div>
+            <h2>Welcome Guest!</h2>
+            <h4>
+              Sign in to save your new discoveries!
+            </h4>
+          </div>
         }
 
-        { token === "guest" && 
-          <h4>
-            Sign in to save your new discoveries!
-          </h4>
-        }
-
-        <ul>
-        <li>Your Cities</li>
-        <Locations /></ul>
-        <div className="clear"/>
+        {token !== "guest" && (
+          <div className="center-a-el">
+            <h2>Welcome {username}!</h2>
+            <Link type="button" className="btn btn-primary" to="/Profile">
+              Edit Profile
+            </Link>
+            <ul>
+              <li>Your Cities</li>
+              <Locations />
+            </ul>
+            <div className="clear" />
+          </div>
+        )}
       </section>
     );
   }

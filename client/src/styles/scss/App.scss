@@ -59,5 +59,11 @@ html {
 		#register-location {
 			width: 100%;
 		}
+
+		// centering <a> tags acting as buttons, use on parent
+		.center-a-el {
+			width: 100%;
+			text-align: center;
+		}
 	}
 }
