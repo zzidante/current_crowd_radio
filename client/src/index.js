@@ -12,7 +12,7 @@ export const setState = newState => {
 };
 export const resetState = () => {
   setState(store.defaultState);
-  setState({token : ''})
+  setState({token : ''});
 };
 
 resetState();

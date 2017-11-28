@@ -65,8 +65,8 @@ module.exports = (DataHelpers) => {
 
   // Logout
   router.delete('/', (req, res) => {
-    req.session.destroy();
-    res.sendStatus(200);
+    req.session = null;
+    res.redirect("/");
   });
 
   // User profile
