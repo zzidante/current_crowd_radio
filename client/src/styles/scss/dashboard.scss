@@ -18,16 +18,19 @@ $playerTextMargin2: 20px;
 
 
 .body-dashboard {
-	// make room for the header
-	margin-top: 100px;
-	height: 90%;
+	height: 100%;
 	padding-left: 0px;
 	padding-right: 0px;
 	font-family: $fontContent;
 
+	.row-fluid {
+		// make room for the header
+		padding-top: 80px;
+	}
+
 	.playlist-heading {
-		padding: 5px 50px;
-		margin-top: 120px;
+		padding: 0 50px;
+		margin-top: 60px;
 		max-height: $body-min-height;
 
 		.playlist-selection-buttons {
@@ -104,7 +107,6 @@ $playerTextMargin2: 20px;
 					background-color: transparent;
 				}
 			}
-
 			.clear {
 				clear: both;
 				font-size:0;				
@@ -138,7 +140,7 @@ $playerTextMargin2: 20px;
 		}
 		
 	.music-container {
-		padding: 20px 50px;
+		padding: 40px 50px;
 
 		.player-full-container  {
 			position: absolute;
