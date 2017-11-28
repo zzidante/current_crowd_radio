@@ -49,6 +49,10 @@ class Profile extends Component {
 
   render() {
     const myStyles = {
+      root: {
+        marginLeft: '0px',
+        width: '100%'
+      },
       input: {
         display: "block",
         width: "100%",
@@ -62,6 +66,7 @@ class Profile extends Component {
         borderRadius: "4px"
       }
     };
+
     const inputProps = {
       value: getState().defaultLocation,
       onChange: this.onChange,
@@ -70,98 +75,128 @@ class Profile extends Component {
     };
 
     const { email, username, newPassword, oldPassword, confirmPassword, userMessage, token } = getState();
+
+    const dashboardBackground = {
+      top: '0',
+      left: '0',
+      marginTop: '0',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundAttachment: 'fixed',
+      backgroundImage: 'url("https://www.hdwallpaperswizard.com/wp-content/uploads/2017/03/Black-Music-Wallpaper-HD-1366x768.jpg")',
+      // TODO: adds extra scrollbar with vertical-heavy aspect-ratio but removes lack of element problem. 
+      overflow: 'auto',
+      width: '100%',
+      zIndex: '-2',
+    }
+
     return (
       <div id="main-content-spread">
         <Nav />
-        <section className="row">
-          {userMessage && <UserMessage userMessage={userMessage} />}
-          <section className="form-row">
-            <section className="account-form">
-              <form id="edit-account-form" onSubmit={this.updateUser}>
-                <h3>Edit Your Account</h3>
-                <div className="col-auto">
-                  <label className="username" />
-                  <input
-                    type="text"
-                    className="form-control"
-                    onChange={this.handleUsernameChange}
-                    value={username}
-                  />
-                </div>
+        <div style={dashboardBackground}>
+          <section className="row">
+            {userMessage && <UserMessage userMessage={userMessage} />}
+            <section className="form-row">
+              <section className="account-form">
+                <form id="edit-account-form" onSubmit={this.updateUser} className="flex-outer">
 
-                <div className="col-auto">
-                  <label className="email" />
-                  <input
-                    type="text"
-                    className="form-control"
-                    onChange={this.handleEmailChange}
-                    value={email}
-                  />
-                </div>
+                  <h3>Edit Your Account</h3>
 
-                <div className="col-auto">
-                  <label className="default-location" />
-                  <PlacesAutocomplete
-                    inputProps={inputProps}
-                    onChange={this.onChange}
-                    styles={myStyles}
-                  />
-                </div>
+                  <div className="col-auto">
+                    <spicegirl>
+                      <label>Username</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={this.handleUsernameChange}
+                        value={username}
+                      />
+                    </spicegirl>
+                  </div>
 
-                <div className="col-auto">
-                  <button type="submit" className="btn btn-primary">
-                    Update
-                  </button>
-                </div>
-              </form>
+                  <div className="col-auto">
+                    <spicegirl>
+                      <label>Email</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={this.handleEmailChange}
+                        value={email}
+                      />
+                    </spicegirl>
+                  </div>
+
+                  <div className="col-auto places-autocomplete">
+                    <spicegirl>
+                      <label>Default Location</label>
+                      <PlacesAutocomplete
+                        inputProps={inputProps}
+                        onChange={this.onChange}
+                        styles={myStyles}
+                      />
+                    </spicegirl>
+                  </div>
+
+                  <div className="col-auto">
+                    <button type="submit" className="btn btn-primary update-btn">
+                      Update
+                    </button>
+                  </div>
+                </form>
+              </section>
+            
+              <section className="password-form">
+                <form id="change-password-form" onSubmit={this.updatePassword} className="flex-outer">
+
+                  <h3>Change Your Password</h3>
+
+                  <div className="col">
+                    <spicegirl>
+                      <label>Current Password</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={this.handleOldPasswordChange}
+                        value={oldPassword}
+                      />
+                    </spicegirl>
+                  </div>
+
+                  <div className="col">
+                    <spicegirl>
+                      <label>New Password</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={this.handleNewPasswordChange}
+                        value={newPassword}
+                      />
+                    </spicegirl>
+                  </div>
+
+                  <div className="col">
+                    <spicegirl>
+                      <label>Confirm New Password</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={this.handleConfirmPasswordChange}
+                        value={confirmPassword}
+                      />
+                    </spicegirl>
+                  </div>
+
+                  <div className="col">
+                    <button type="submit" className="btn btn-primary update-btn">
+                      Update
+                    </button>
+                  </div>
+                </form>
+              </section>
             </section>
-          
-            <section className="password-form">
-              <form id="change-password-form" onSubmit={this.updatePassword}>
-                <h3>Change Your Password</h3>
-                <div className="col-4">
-                  <label className="old-password" />
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Old Password"
-                    onChange={this.handleOldPasswordChange}
-                    value={oldPassword}
-                  />
-                </div>
-
-                <div className="col">
-                  <label className="new-password" />
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="New Password"
-                    onChange={this.handleNewPasswordChange}
-                    value={newPassword}
-                  />
-                </div>
-
-                <div className="col">
-                  <label className="confirm-new-password" />
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Confirm New Password"
-                    onChange={this.handleConfirmPasswordChange}
-                    value={confirmPassword}
-                  />
-                </div>
-
-                <div className="col-auto">
-                  <button type="submit" className="btn btn-primary">
-                    Update
-                  </button>
-                </div>
-              </form>
-            </section>
+            <Link to="/" type="button" className="btn btn-primary back-button">Back</Link>
           </section>
-          <Link to="/" type="button" className="btn btn-sm back-button">Back</Link>
-        </section>
+        </div>
         <Footer />
         {!token && <Redirect to="/" /> }
       </div>

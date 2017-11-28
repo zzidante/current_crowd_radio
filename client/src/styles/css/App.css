@@ -31,9 +31,6 @@ html {
     html body a.btn {
       color: #fff;
       border-radius: 4px;
-      text-transform: uppercase;
-      background-color: #7c1bbd;
-      font-weight: 600;
       text-align: center;
       padding: 5px; }
     html body section {
