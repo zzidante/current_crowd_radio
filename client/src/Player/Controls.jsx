@@ -8,7 +8,8 @@ class Controls extends Component {
   };
 
   stop = () => {
-    setState({ currentTrack: null, playing: false });
+    setState({ playing: false, played: 0});
+    this.player.seekTo(0)
   };
 
   setVolume = event => {
