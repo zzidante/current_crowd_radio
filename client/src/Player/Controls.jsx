@@ -8,7 +8,8 @@ class Controls extends Component {
   };
 
   stop = () => {
-    setState({ currentTrack: null, playing: false });
+    setState({ playing: false, played: 0});
+    this.player.seekTo(0)
   };
 
   setVolume = event => {
@@ -172,7 +173,7 @@ class Controls extends Component {
                       onChange={this.setVolume}
                       className="volume-control"
                     />
-                    <th id="volume-title"><i className="fa fa-volume-up" aria-hidden="true"></i></th>
+                    <p id="volume-title"><i className="fa fa-volume-up" aria-hidden="true"></i></p>
                   </td>
                 </tr>
               </tbody>

@@ -40,6 +40,7 @@ $playerTextMargin2: 20px;
 
 		.playlist-selection-buttons {
 			overflow: auto;
+			width: 100%;
 			min-height: 290px;
 			margin-top: 20px;
 			flex-flow: column;
@@ -252,6 +253,9 @@ $playerTextMargin2: 20px;
 					bottom: 85px;
 					margin: 20px;
 					opacity: 0.8;
+					i:hover {
+						color: $teal2;
+					}
 				}
 				.artist-website:hover {
 					opacity: 1;
@@ -362,6 +366,11 @@ $playerTextMargin2: 20px;
 					text-overflow: ellipsis;
 					.track-name {
 						margin-left: 5px;
+					}
+				}
+				.track-name-container:hover {
+					span {
+						color: $teal2;
 					}
 				}
 				.track-duration {

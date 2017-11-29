@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import splashLogo from './images/Current_Crowd_Radio_Text_resize.png';
+import splashLogo from './images/Current_Crowd_Radio_Text_resize_teal.png';
 
 // import { setState, getState } from './index'
 class Splash extends Component {
@@ -11,7 +11,7 @@ class Splash extends Component {
       verticalAlign: 'middle',
       fontSize: '4vw',
       display: 'block',
-      lineHeight: '25vw',
+      lineHeight: '27vw',
       color: 'white',
       margin: '0',
     }

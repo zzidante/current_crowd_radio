@@ -1,8 +1,16 @@
 # Current Crowd Radio
 
-Location based music discovery web app using Jamendo API. 
+Current City Radio is about discovering local music.
 
-Listen to music from cities all over the world! Signed in user's can add their favourite songs to current or archived playlists for each city.
+Powered by the Jamendo library, it accesses over 500k songs spread far and wide across the world.
+
+Try it by inputing a city and a country in the Search.
+
+Save your favorite tracks from that city to your Current Playlist & impress your friends!
+
+Or, archive your old finds and never lose those references, even as your tastes change.
+
+Made for music adventurists, by music adventurists.
 
 ## See it in action
 
