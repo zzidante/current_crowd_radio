@@ -15,6 +15,7 @@ input[type=range]::-webkit-slider-thumb {
   width: 16px;
   border-radius: 50%;
   background: #51a1c0;
+  cursor: pointer;
   margin-top: -4px; }
 
 input[type=range]:focus {
@@ -42,7 +43,8 @@ input[type=range]::-moz-range-thumb {
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  background: #51a1c0; }
+  background: #51a1c0;
+  cursor: pointer; }
 
 /*hide the outline behind the border*/
 input[type=range]:-moz-focusring {
@@ -78,7 +80,8 @@ input[type=range]::-ms-thumb {
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  background: #51a1c0; }
+  background: #51a1c0;
+  cursor: pointer; }
 
 input[type=range]:focus::-ms-fill-lower {
   margin-bottom: 10px;
@@ -110,7 +113,8 @@ progress {
   margin-right: 2%; }
   #volume-title i {
     font-size: 2em;
-    color: #51a1c0; }
+    color: #51a1c0;
+    cursor: pointer; }
 
 #volume-controller {
   width: 30%;
