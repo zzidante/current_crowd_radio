@@ -3,4 +3,4 @@ h1 {
 
 .shadow-stroke {
   color: white;
-  text-shadow: -3px 2px 0 #272e31, -2px -2px 0 #272e31, 4px 2px 0 #272e31, 2px -1px 0 #272e31; }
+  text-shadow: -3px 2px 0 #272e31, -2px -2px 0 black, 4px 2px 0 black, 2px -1px 0 black; }

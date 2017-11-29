@@ -172,7 +172,7 @@ class Controls extends Component {
                       onChange={this.setVolume}
                       className="volume-control"
                     />
-                    <th id="volume-title"><i className="fa fa-volume-up" aria-hidden="true"></i></th>
+                    <p id="volume-title"><i className="fa fa-volume-up" aria-hidden="true"></i></p>
                   </td>
                 </tr>
               </tbody>
