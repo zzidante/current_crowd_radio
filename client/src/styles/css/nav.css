@@ -12,6 +12,8 @@ header {
   font-family: "Magra", sans-serif;
   color: #fff;
   z-index: 2; }
+  header .navbar {
+    margin-bottom: 0; }
   header textarea {
     color: black;
     width: 20vw;
@@ -60,20 +62,18 @@ header {
     flex-wrap: wrap; }
     header .mini-brand-container img {
       display: none; }
-    header .navbar {
-      margin-bottom: 0; }
-      header .navbar button {
-        margin-top: 5px;
-        margin-left: 5px; }
-      header .navbar .dropdown-menu a {
+    header .navbar button {
+      margin-top: 5px;
+      margin-left: 5px; }
+    header .navbar .dropdown-menu a {
+      margin: 0;
+      padding: 0; }
+      header .navbar .dropdown-menu a button {
         margin: 0;
-        padding: 0; }
-        header .navbar .dropdown-menu a button {
-          margin: 0;
-          width: 100%; }
-        header .navbar .dropdown-menu a button:hover {
-          color: #85babe;
-          border: solid #85babe 2px; }
+        width: 100%; }
+      header .navbar .dropdown-menu a button:hover {
+        color: #85babe;
+        border: solid #85babe 2px; }
     header .dropdown-toggle {
       display: block; }
     header .lg-size-btn {
