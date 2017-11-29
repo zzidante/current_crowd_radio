@@ -160,6 +160,8 @@
           bottom: 85px;
           margin: 20px;
           opacity: 0.8; }
+          .body-dashboard .music-container .player-full-container .current-song-info .artist-website i:hover {
+            color: #b0ffe4; }
         .body-dashboard .music-container .player-full-container .current-song-info .artist-website:hover {
           opacity: 1; }
       .body-dashboard .music-container .player-full-container .audio-player {

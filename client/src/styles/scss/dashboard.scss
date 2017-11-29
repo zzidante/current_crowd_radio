@@ -252,6 +252,9 @@ $playerTextMargin2: 20px;
 					bottom: 85px;
 					margin: 20px;
 					opacity: 0.8;
+					i:hover {
+						color: $teal2;
+					}
 				}
 				.artist-website:hover {
 					opacity: 1;
