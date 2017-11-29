@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import api from "./api/jamendo";
-import { setState, getState } from "./index";
-import Locations from './Locations.jsx'
-class User extends Component {
+import api from "../api/jamendo";
+import { setState, getState } from "../index";
+
+class Name extends Component {
   setLocation = event => {
     setState({ locationBar: event.target.value });
     api.setLocation();
@@ -14,7 +14,7 @@ class User extends Component {
     const { username, token } = getState();
 
     return (
-      <section className="username-heading col-md-3 col-xs-6">
+      <section className="username-heading profile-block ">
         {token === "guest" &&
           <div>
             <h2>Welcome Guest!</h2>
@@ -30,8 +30,6 @@ class User extends Component {
             <Link type="button" className="btn btn-primary" to="/Profile">
               Edit Profile
             </Link>
-              <Locations />
-            <div className="clear" />
           </div>
         )}
       </section>
@@ -39,4 +37,4 @@ class User extends Component {
   }
 }
 
-export default User;
+export default Name;

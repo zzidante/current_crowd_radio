@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import Splash from "./Splash.jsx";
 import Nav from "./Nav.jsx";
 import Player from "./Player/Player.jsx";
-import User from "./User.jsx";
+import LocationList from "./LocationList.jsx";
 import Playlist from "./Playlist.jsx";
 import Footer from "./Footer.jsx";
 import { getState } from "./index";
 import api from "./api/internal";
 import "./styles/css/index.css";
-    
+
 
 
 class App extends Component {
@@ -28,8 +28,9 @@ class App extends Component {
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundAttachment: 'fixed',
-      backgroundImage: 'url("https://www.hdwallpaperswizard.com/wp-content/uploads/2017/03/Black-Music-Wallpaper-HD-1366x768.jpg")',
+      // backgroundImage: 'url("https://www.hdwallpaperswizard.com/wp-content/uploads/2017/03/Black-Music-Wallpaper-HD-1366x768.jpg")',
       // TODO: adds extra scrollbar with vertical-heavy aspect-ratio but removes lack of element problem. 
+      backgroundColor: 'black',
       overflow: 'auto',
       width: '100%',
       zIndex: '-2',
@@ -54,7 +55,7 @@ class App extends Component {
           <div style={dashboardBackground}>
             <div className="body-dashboard container">
               <div className="row-fluid">
-                <User />
+                <LocationList />
                 <Playlist type={type} />
                 <Player tracklist={tracklist} />
               </div>

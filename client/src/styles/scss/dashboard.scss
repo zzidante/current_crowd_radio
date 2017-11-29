@@ -30,8 +30,8 @@ $playerTextMargin2: 20px;
 	}
 
 	.playlist-heading {
-		padding: 0 50px;
-		margin-top: 48px;
+		padding: 0 20px;
+		margin-top: 43px;
 		max-height: $body-min-height;
 
 		h3 {
@@ -39,29 +39,76 @@ $playerTextMargin2: 20px;
 		}
 
 		.playlist-selection-buttons {
-			padding-top: 36px;
+			overflow: auto;
+			min-height: 280px;
+			margin-top: 20px;
 			flex-flow: column;
+			border: black solid 2px;
+			border-radius: 8px;
+			background-image: -webkit-radial-gradient(80px 100px, farthest-corner, rgba(0, 0, 0, 0.664) 0%, rgba(102, 102, 102, 0.575) 100%);
+			background-image: -o-radial-gradient(80px 100px, farthest-corner, rgba(0, 0, 0, 0.664) 0%, rgba(102, 102, 102, 0.575) 100%);
+			background-image: radial-gradient(farthest-corner at 80px 100px, rgba(0, 0, 0, 0.664) 0%, rgba(102, 102, 102, 0.575) 100%);
+
+			h4 {
+				background-color: $gray1;
+				margin: 0 auto;
+				text-align: center;
+				padding: 10px 0;
+				border-bottom: black solid 2px;
+				border-top-left-radius: 6px;
+				border-top-right-radius: 6px;
+				color: white;
+			}
 
 			button {
+				display: block;
 				background-color: $blueMid;
-				margin: 15px;
-				width: 180px;
-				font-size: 1.6em;
+				margin: 15px auto;
+				width: 14vw;
+				font-size: 1.6vw;
 				opacity: 0.85;
 			}
 			button:hover {
 				opacity: 1;
 			}
+
+			@media (max-width: 850px) {
+				button {
+					font-size: 2.6vw;
+					padding: 5px 0;
+					width: 20vw;
+				}
+			}	
+			
+			@media (max-width: 600px) {
+				button {
+					font-size: 3vw;
+					padding: 5px 0;
+					width: 22vw;
+				}
+			}				
 		}
 	}
 
+	.profile-block {
+		width: 95%;
+    display: block;
+	}
+
 	.username-heading {
-		padding: 20px 20px 30px 20px;
-		margin-top: 48px;		
+		min-height: 120px;
+		padding: 18px 20px 0px 20px;
+		margin-top: 0;		
 		max-height: 80%;
 
 		h2 {
-			color: $teal2;
+			background-color: #191E24;
+			border-bottom: black solid 2px;
+			border-top-left-radius: 6px;
+			border-top-right-radius: 6px;
+			padding: 5px 0;
+			color: white;
+			margin: 0 0 10px 0;
 			text-align: center;
 			font-size: 2em;
 		}
@@ -87,13 +134,19 @@ $playerTextMargin2: 20px;
 			direction: rtl;
 			overflow: auto;
 			width: 100%;
-			min-height: 40vh;
+			min-height: 440px;
 			max-height: 60vh;
 			margin-top: 45px;
 			border: black solid 2px;
+			border-radius: 8px;
 			background-image: radial-gradient(farthest-corner at 80px 100px,
       rgba(0, 0, 0, 0.664) 0%, rgba(102, 102, 102, 0.575) 100%);
-			
+
+			li:first-child { 
+				padding: 0;
+				text-align: center;
+			}
+
 			li {
 				padding: 5px 0px 0px 15px;
 				direction: ltr;				
@@ -143,7 +196,7 @@ $playerTextMargin2: 20px;
 		}
 		
 	.music-container {
-		padding: 40px 50px;
+		padding: 66px 50px;
 
 		.player-full-container  {
 			position: absolute;
@@ -218,6 +271,7 @@ $playerTextMargin2: 20px;
 				background-size: cover;
 				-webkit-filter: blur(10px);
 				filter: blur(10px);
+				opacity: 0.8;
 				z-index: -1;
 			}
 
@@ -264,8 +318,6 @@ $playerTextMargin2: 20px;
 					}
 				}
 			}
-
-			
 		}
 		
 		.add-border {
@@ -315,8 +367,8 @@ $playerTextMargin2: 20px;
 					right: 0;
 					width: 14%;
 					margin: 5px 10px;
-
 				}
+
 				button {
 					// get rid of default border
 					padding: 0 0.1em;
@@ -358,7 +410,7 @@ $playerTextMargin2: 20px;
 @media (max-width: 600px) {
 	.body-dashboard {
 		.username-heading {
-			padding: 20px 10px 30px 10px;
+			padding: 20px 10px 0px 10px;
 			ul {
 				font-size: 12px;
 				li {
@@ -369,16 +421,13 @@ $playerTextMargin2: 20px;
 				}
 			}
 		}
-		.playlist-heading {
-			.playlist-selection-buttons {
-				button {				
-					font-size: 1em;
-					padding: 5px 0;
-					width: 100px;
-				}
-			}
-		}
 	}
+}
+
+.title-li {
+	background-color: $gray1;
+	border-bottom: solid black 2px;
+	color: white;
 }
 
 .back-button {
@@ -427,6 +476,7 @@ spicegirl {
 	width: 100%;
 }
 
+
 @media (min-width: 851px) {
 	.form-row section {
 		display: inline-block;
@@ -438,6 +488,7 @@ spicegirl {
 	}
 }
 
+
 @media (max-width: 850px) {
 
 	.form-row {
@@ -448,3 +499,4 @@ spicegirl {
 		min-width: 300px;
 	}
 }
+
