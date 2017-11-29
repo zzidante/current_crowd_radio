@@ -4,7 +4,6 @@ import api from "../api/internal";
 import validation from "../validation";
 import { setState, getState } from "../index";
 import PlacesAutocomplete from "react-places-autocomplete";
-import UserMessage from "../UserMessage.jsx";
 import Nav from "../Nav.jsx";
 import Footer from "../Footer.jsx";
 import "../styles/css/index.css";
@@ -73,7 +72,7 @@ class Profile extends Component {
       id: "register-location"
     };
 
-    const { email, username, newPassword, oldPassword, confirmPassword, userMessage, token } = getState();
+    const { email, username, newPassword, oldPassword, confirmPassword, token } = getState();
 
     const dashboardBackground = {
       top: '0',
@@ -95,7 +94,6 @@ class Profile extends Component {
         <Nav />
         <div style={dashboardBackground}>
           <section className="row">
-            {userMessage && <UserMessage userMessage={userMessage} />}
             <section className="form-row">
               <section className="account-form">
                 <form id="edit-account-form" onSubmit={this.updateUser} className="flex-outer">
