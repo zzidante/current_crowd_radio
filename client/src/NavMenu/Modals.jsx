@@ -26,9 +26,9 @@ class Modals extends Component {
             {modal === "login" && <Login />}
             {modal === "register" && <Register />}
           </Modal.Body>
-          <Modal.Footer>
+
             {userMessage && <UserMessage userMessage={userMessage} />}
-          </Modal.Footer>
+
         </Modal>
       </div>
     );

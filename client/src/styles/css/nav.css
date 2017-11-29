@@ -23,7 +23,7 @@ header {
       background-color: #235475;
       margin: 9px; }
     header nav .mini-brand-container {
-      margin-top: 10px; }
+      margin: auto; }
     header nav a {
       font-family: "Skranji", cursive;
       font-size: 2.2vw;
@@ -40,7 +40,8 @@ header {
 
 #PlacesAutocomplete__root {
   height: inherit;
-  float: left; }
+  float: left;
+  width: auto !important; }
 
 .dropdown-toggle {
   display: none; }
