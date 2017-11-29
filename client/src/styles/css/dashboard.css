@@ -260,6 +260,13 @@
             border: 0px transparent solid;
             width: 30px;
             display: block; }
+        .body-dashboard .music-container .full-playlist .track-container button:hover .fa-play {
+          background: #3e93cc;
+          -webkit-transform: scale(1.1);
+          -moz-transform: scale(1.1);
+          -ms-transform: scale(1.1);
+          -o-transform: scale(1.1);
+          transform: scale(1.1); }
       .body-dashboard .music-container .full-playlist #trackScroll span {
         animation: marquee 5s linear; }
 
