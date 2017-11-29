@@ -85,6 +85,10 @@ header{
 			flex-direction: row;
 			flex-wrap: wrap;		
 		}
+
+		#dropdown {
+			margin-top: 9px;
+		}
 	}	
 }
 
@@ -98,12 +102,6 @@ header{
 				display: none;
 			}
 		}
-
-		.navbar {
-			button {
-				margin-top: 5px;
-				margin-left: 5px;
-			}
 			
 			// make entire dropdown area clickable
 			.dropdown-menu {
@@ -134,7 +132,7 @@ header{
 	header h2 {
 		margin: 0 0 15px 0;
 	}
-}
+
 
 @media (max-width: 600px) { 
 

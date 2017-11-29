@@ -54,7 +54,9 @@ header {
     header #PlacesAutocomplete__root {
       float: left;
       flex-direction: row;
-      flex-wrap: wrap; } }
+      flex-wrap: wrap; }
+    header #dropdown {
+      margin-top: 9px; } }
 
 @media (max-width: 867px) {
   header {
@@ -62,24 +64,22 @@ header {
     flex-wrap: wrap; }
     header .mini-brand-container img {
       display: none; }
-    header .navbar button {
-      margin-top: 5px;
-      margin-left: 5px; }
-    header .navbar .dropdown-menu a {
+    header .dropdown-menu a {
       margin: 0;
       padding: 0; }
-      header .navbar .dropdown-menu a button {
+      header .dropdown-menu a button {
         margin: 0;
         width: 100%; }
-      header .navbar .dropdown-menu a button:hover {
+      header .dropdown-menu a button:hover {
         color: #85babe;
         border: solid #85babe 2px; }
-    header .dropdown-toggle {
-      display: block; }
-    header .lg-size-btn {
-      display: none; }
-  header h2 {
-    margin: 0 0 15px 0; } }
+  .dropdown-toggle {
+    display: block; }
+  .lg-size-btn {
+    display: none; } }
+
+header h2 {
+  margin: 0 0 15px 0; }
 
 @media (max-width: 600px) {
   #PlacesAutocomplete__root {
