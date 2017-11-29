@@ -14,7 +14,7 @@
       color: #b0ffe4; }
     .body-dashboard .playlist-heading .playlist-selection-buttons {
       overflow: auto;
-      min-height: 280px;
+      min-height: 290px;
       margin-top: 20px;
       flex-flow: column;
       border: black solid 2px;
