@@ -5,7 +5,7 @@ import BrandDeclaration from "./NavMenu/BrandDeclaration.jsx";
 import UserMessage from "./UserMessage.jsx";
 import LogoutButton from "./NavMenu/LogoutButton.jsx";
 import Modals from "./NavMenu/Modals.jsx";
-import { getState } from "./index";
+import { getState } from "./index"; 
 
 class Nav extends Component {
   render() {
@@ -19,7 +19,7 @@ class Nav extends Component {
           <BrandDeclaration />
           <div style={divStyle} >
           {!modal && userMessage && <UserMessage userMessage={userMessage}/>}
-          <LocationSearch />
+          {(token) && <LocationSearch />}
           </div>
           <Modals />
 
