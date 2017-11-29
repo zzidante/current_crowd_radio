@@ -82,7 +82,8 @@ class Profile extends Component {
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundAttachment: 'fixed',
-      backgroundImage: 'url("https://www.hdwallpaperswizard.com/wp-content/uploads/2017/03/Black-Music-Wallpaper-HD-1366x768.jpg")',
+      backgroundColor: 'black',
+      // backgroundImage: 'url("https://www.hdwallpaperswizard.com/wp-content/uploads/2017/03/Black-Music-Wallpaper-HD-1366x768.jpg")',
       // TODO: adds extra scrollbar with vertical-heavy aspect-ratio but removes lack of element problem. 
       overflow: 'auto',
       width: '100%',

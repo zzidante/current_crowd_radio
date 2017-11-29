@@ -7,28 +7,65 @@
     padding-top: 80px;
     height: auto; }
   .body-dashboard .playlist-heading {
-    padding: 0 50px;
-    margin-top: 48px;
+    padding: 0 20px;
+    margin-top: 43px;
     max-height: 100vh; }
     .body-dashboard .playlist-heading h3 {
       color: #b0ffe4; }
     .body-dashboard .playlist-heading .playlist-selection-buttons {
-      padding-top: 36px;
-      flex-flow: column; }
+      overflow: auto;
+      min-height: 290px;
+      margin-top: 20px;
+      flex-flow: column;
+      border: black solid 2px;
+      border-radius: 8px;
+      background-image: -webkit-radial-gradient(80px 100px, farthest-corner, rgba(0, 0, 0, 0.664) 0%, rgba(102, 102, 102, 0.575) 100%);
+      background-image: -o-radial-gradient(80px 100px, farthest-corner, rgba(0, 0, 0, 0.664) 0%, rgba(102, 102, 102, 0.575) 100%);
+      background-image: radial-gradient(farthest-corner at 80px 100px, rgba(0, 0, 0, 0.664) 0%, rgba(102, 102, 102, 0.575) 100%); }
+      .body-dashboard .playlist-heading .playlist-selection-buttons h4 {
+        background-color: #191E24;
+        margin: 0 auto;
+        text-align: center;
+        padding: 10px 0;
+        border-bottom: black solid 2px;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        color: white; }
       .body-dashboard .playlist-heading .playlist-selection-buttons button {
+        display: block;
         background-color: #235475;
-        margin: 15px;
-        width: 180px;
-        font-size: 1.6em;
+        margin: 15px auto;
+        width: 14vw;
+        font-size: 1.6vw;
         opacity: 0.85; }
       .body-dashboard .playlist-heading .playlist-selection-buttons button:hover {
         opacity: 1; }
+      @media (max-width: 850px) {
+        .body-dashboard .playlist-heading .playlist-selection-buttons button {
+          font-size: 2.6vw;
+          padding: 5px 0;
+          width: 20vw; } }
+      @media (max-width: 600px) {
+        .body-dashboard .playlist-heading .playlist-selection-buttons button {
+          font-size: 3vw;
+          padding: 5px 0;
+          width: 22vw; } }
+  .body-dashboard .profile-block {
+    width: 95%;
+    display: block; }
   .body-dashboard .username-heading {
-    padding: 20px 20px 30px 20px;
-    margin-top: 48px;
+    min-height: 120px;
+    padding: 18px 20px 0px 20px;
+    margin-top: 0;
     max-height: 80%; }
     .body-dashboard .username-heading h2 {
-      color: #b0ffe4;
+      background-color: #191E24;
+      border-bottom: black solid 2px;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      padding: 5px 0;
+      color: white;
+      margin: 0 0 10px 0;
       text-align: center;
       font-size: 2em; }
     .body-dashboard .username-heading button {
@@ -48,11 +85,18 @@
       direction: rtl;
       overflow: auto;
       width: 100%;
-      min-height: 40vh;
+      min-height: 440px;
       max-height: 60vh;
       margin-top: 45px;
       border: black solid 2px;
+      border-radius: 8px;
       background-image: radial-gradient(farthest-corner at 80px 100px, rgba(0, 0, 0, 0.664) 0%, rgba(102, 102, 102, 0.575) 100%); }
+      .body-dashboard .username-heading ul .company-description {
+        font-size: 1em;
+        color: white; }
+      .body-dashboard .username-heading ul li:first-child {
+        padding: 0;
+        text-align: center; }
       .body-dashboard .username-heading ul li {
         padding: 5px 0px 0px 15px;
         direction: ltr;
@@ -85,7 +129,7 @@
   .body-dashboard tr:hover .track-play-btn {
     visibility: visible; }
   .body-dashboard .music-container {
-    padding: 40px 50px; }
+    padding: 66px 50px; }
     .body-dashboard .music-container .player-full-container {
       position: absolute;
       color: white;
@@ -134,6 +178,7 @@
         background-size: cover;
         -webkit-filter: blur(10px);
         filter: blur(10px);
+        opacity: 0.8;
         z-index: -1; }
       .body-dashboard .music-container .player-full-container .current-song-container {
         width: 100%;
@@ -205,6 +250,8 @@
           right: 0;
           width: 14%;
           margin: 5px 10px; }
+          .body-dashboard .music-container .full-playlist .track-container .track-btns button .fa {
+            font-size: 1.4em; }
         .body-dashboard .music-container .full-playlist .track-container button {
           padding: 0 0.1em;
           border: 0px solid transparent;
@@ -218,6 +265,13 @@
             border: 0px transparent solid;
             width: 30px;
             display: block; }
+        .body-dashboard .music-container .full-playlist .track-container button:hover .fa-play {
+          background: #3e93cc;
+          -webkit-transform: scale(1.1);
+          -moz-transform: scale(1.1);
+          -ms-transform: scale(1.1);
+          -o-transform: scale(1.1);
+          transform: scale(1.1); }
       .body-dashboard .music-container .full-playlist #trackScroll span {
         animation: marquee 5s linear; }
 
@@ -230,17 +284,18 @@
 
 @media (max-width: 600px) {
   .body-dashboard .username-heading {
-    padding: 20px 10px 30px 10px; }
+    padding: 20px 10px 0px 10px; }
     .body-dashboard .username-heading ul {
       font-size: 12px; }
       .body-dashboard .username-heading ul li {
         font-size: 12px; }
         .body-dashboard .username-heading ul li button {
-          font-size: 12px; }
-  .body-dashboard .playlist-heading .playlist-selection-buttons button {
-    font-size: 1em;
-    padding: 5px 0;
-    width: 100px; } }
+          font-size: 12px; } }
+
+.title-li {
+  background-color: #191E24;
+  border-bottom: solid black 2px;
+  color: white; }
 
 .back-button {
   margin: 40px; }

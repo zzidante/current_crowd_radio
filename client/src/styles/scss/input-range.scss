@@ -28,6 +28,7 @@ input[type=range]::-webkit-slider-thumb {
   width: $thumbsize;
   border-radius: 50%;
   background: $ball;
+  cursor: pointer;
   margin-top: -4px;
 }
 
@@ -64,6 +65,7 @@ input[type=range]::-moz-range-thumb {
   width: $thumbsize;
   border-radius: 50%;
   background: $ball;
+  cursor: pointer;
 }
 
 /*hide the outline behind the border*/
@@ -111,6 +113,7 @@ input[type=range]::-ms-thumb {
   width: $thumbsize;
   border-radius: 50%;
   background: $ball;
+  cursor: pointer;
 }
 
 input[type=range]:focus::-ms-fill-lower {
@@ -153,6 +156,7 @@ progress {
   i {
     font-size: 2em;
     color: $ball;
+    cursor: pointer;
   }
 }
 

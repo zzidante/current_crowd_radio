@@ -30,7 +30,10 @@ class Locations extends Component {
         });
       }
     return (
-       <p>{locations}</p>
+       <ul>
+        <li className="title-li">Your Cities</li>
+        {locations}
+      </ul>
     );
   }
 }
