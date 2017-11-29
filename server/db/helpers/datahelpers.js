@@ -90,7 +90,7 @@ module.exports = function makeDataHelpers (knex) {
         if (user) {
           return knex('playlists').where({user_id: userId})
           .innerJoin('playlist_tracks', 'playlists.id', 'playlist_tracks.playlist_id')
-          .innerJoin('tracks', 'playlist_tracks.track_id', 'tracks.id');
+          .innerJoin('tracks', 'playlist_tracks.track_id', 'tracks.id').orderBy('playlist_id','track_id');
         }
         return null;
       }).then( playlistTracks => {

@@ -153,20 +153,24 @@ const getTracksById = playlistType => {
         }&format=jsonpretty&limit=40&track_id=${tracks.join("+")}`
       )
       .then(res => {
-        const tracks = [];
-        res.data.results.forEach(track => {
-          const info = track.tracks[0];
-          tracks.push({
-            id: info.id,
-            name: info.name,
-            trackHREF: info.audio,
-            artist: track.name,
-            album: info.album_name,
-            image: info.image,
-            duration: info.duration
+        const tracklist = [];
+        tracks.forEach( track => {
+          res.data.results.forEach( resTrack => {
+            const info = resTrack.tracks[0];
+            if (info.id === track) {
+              tracklist.push({
+                id: info.id,
+                name: info.name,
+                trackHREF: info.audio,
+                artist: resTrack.name,
+                album: info.album_name,
+                image: info.image,
+                duration: info.duration
+              });
+            }
           });
         });
-        setState({ tracklist: tracks, playlistType });
+        setState({ tracklist: tracklist, playlistType });
       })
       .catch(() => {
         setState({
