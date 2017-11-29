@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router'
-import { Link } from "react-router-dom";
+import { Redirect } from 'react-router';
 import api from "../api/internal";
 import validation from "../validation";
 import { setState, getState } from "../index";

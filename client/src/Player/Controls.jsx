@@ -51,15 +51,20 @@ class Controls extends Component {
   };
 
   nextTrack = () => {
-    setState({
-      currentTrackIndex: getState().currentTrackIndex + 1
-    });
+    const { currentTrackIndex, tracklist} = getState()
+    if (currentTrackIndex < tracklist.length - 1){ 
+      setState({
+        currentTrackIndex: getState().currentTrackIndex + 1
+      });
+    }
   };
 
   previousTrack = () => {
-    setState({
-      currentTrackIndex: getState().currentTrackIndex - 1
-    });
+    if (getState().currentTrackIndex > 0 ){
+      setState({
+        currentTrackIndex: getState().currentTrackIndex - 1
+      });
+    }
   };
 
   render() {
@@ -137,7 +142,7 @@ class Controls extends Component {
                 <tr>
                   <td className="player-controls">
                     <button onClick={this.previousTrack}>
-                      <i className="fa fa-angle-double-left" />{" "}
+                      <i className="fa fa-fast-backward" />{" "}
                     </button>
                     <button onClick={this.stop}>
                       <i className="fa fa-stop" />
@@ -150,7 +155,7 @@ class Controls extends Component {
                       )}
                     </button>
                     <button onClick={this.nextTrack}>
-                      <i className="fa fa-angle-double-right" />{" "}
+                      <i className="fa fa-fast-forward" />{" "}
                     </button>
                   </td>
                 </tr>
