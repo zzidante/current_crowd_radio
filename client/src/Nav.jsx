@@ -29,9 +29,7 @@ class Nav extends Component {
           {/* if user is authenticated, show logout */}
           {token && token !== 'guest' && <LogoutButton />}
         </nav>
-        <div className="user-message">
-          {userMessage && <UserMessage userMessage={userMessage} />}
-        </div>
+        
       </header>
     );
   }
