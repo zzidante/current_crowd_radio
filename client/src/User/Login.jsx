@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import api from "../api/internal";
 import { setState, getState } from "../index";
+import "../styles/css/index.css";
+
 class Login extends Component {
   handleEmailChange = event => setState({ email: event.target.value });
   handlePasswordChange = event => setState({ password: event.target.value });
