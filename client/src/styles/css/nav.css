@@ -40,8 +40,7 @@ header {
 
 #PlacesAutocomplete__root {
   height: inherit;
-  float: left;
-  width: auto !important; }
+  float: left; }
 
 .dropdown-toggle {
   display: none; }
