@@ -243,6 +243,8 @@
           text-overflow: ellipsis; }
           .body-dashboard .music-container .full-playlist .track-container .track-name-container .track-name {
             margin-left: 5px; }
+        .body-dashboard .music-container .full-playlist .track-container .track-name-container:hover span {
+          color: #b0ffe4; }
         .body-dashboard .music-container .full-playlist .track-container .track-duration {
           width: 8%; }
         .body-dashboard .music-container .full-playlist .track-container .track-btns {

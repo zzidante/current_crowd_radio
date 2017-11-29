@@ -364,6 +364,11 @@ $playerTextMargin2: 20px;
 						margin-left: 5px;
 					}
 				}
+				.track-name-container:hover {
+					span {
+						color: $teal2;
+					}
+				}
 				.track-duration {
 					width:8%;
 				}
