@@ -62,6 +62,9 @@ class Profile extends Component {
         backgroundImage: "none",
         border: "1px solid #ccc",
         borderRadius: "4px"
+      },
+      autocompleteContainer: {
+        display: "block"
       }
     };
 

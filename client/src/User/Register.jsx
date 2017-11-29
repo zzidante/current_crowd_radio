@@ -39,6 +39,10 @@ class Login extends Component {
 
   render() {
     const myStyles = {
+      root: {
+        marginLeft: '0px',
+        width: '100%'
+      },
       input: {
         display: "block",
         width: "100%",

@@ -306,7 +306,7 @@
   margin: 40px; }
 
 .row {
-  margin-top: 80px; }
+  margin-top: 115px; }
 
 .update-btn {
   margin-top: 20px; }
@@ -347,3 +347,6 @@ spicegirl {
     padding: 0 5%; }
   spicegirl {
     min-width: 300px; } }
+
+div.modal-dialog {
+  width: 330px; }
