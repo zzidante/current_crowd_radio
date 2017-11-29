@@ -4,6 +4,7 @@ import panda from "./images/sad_panda.png";
 function NotFound() {
   const divStyle = {
     backgroundcolor: "0E2E39",
+    color: "black",
     margin: "auto",
     width: "100vw"
   };
@@ -13,7 +14,7 @@ function NotFound() {
   return (
     <div style={divStyle}>
       <h1>
-        <p>404</p>
+        <p>404... Sorry</p>
       </h1>
       <img
         src={panda}
