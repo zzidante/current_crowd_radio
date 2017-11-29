@@ -6,7 +6,6 @@ import UserMessage from "./UserMessage.jsx";
 import LogoutButton from "./NavMenu/LogoutButton.jsx";
 import Modals from "./NavMenu/Modals.jsx";
 import { getState } from "./index";
-import UserMessage from "./UserMessage.jsx"
 
 class Nav extends Component {
   render() {
