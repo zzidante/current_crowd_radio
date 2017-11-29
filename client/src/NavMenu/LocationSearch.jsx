@@ -26,6 +26,7 @@ class LocationSearch extends Component {
       input: {
         color: "black",
         width: "20vw",
+        margin: "5px 0px",
         fontFamily: "'Open Sans', 'sans-serif'"
       }
     };

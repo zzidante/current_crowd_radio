@@ -31,6 +31,7 @@ header{
 	
 	nav{
 		display: flex;
+		
 
 		.lg-size-btn {
 			background-color: $blueMid;
@@ -38,7 +39,7 @@ header{
 		}
 
 		.mini-brand-container {
-			margin-top: 10px;
+			margin: auto;
 		}
 
 		a {
