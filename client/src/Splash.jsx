@@ -32,7 +32,7 @@ class Splash extends Component {
       backgroundSize: 'contain',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center center',
-      marginTop: '35vh',
+      marginTop: '30vh',
       height: '25vw',
       width: '100%'
     }
