@@ -247,6 +247,8 @@
           right: 0;
           width: 14%;
           margin: 5px 10px; }
+          .body-dashboard .music-container .full-playlist .track-container .track-btns button .fa {
+            font-size: 1.4em; }
         .body-dashboard .music-container .full-playlist .track-container button {
           padding: 0 0.1em;
           border: 0px solid transparent;

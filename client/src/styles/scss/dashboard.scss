@@ -367,6 +367,11 @@ $playerTextMargin2: 20px;
 					right: 0;
 					width: 14%;
 					margin: 5px 10px;
+					button {
+						.fa {
+							font-size: 1.4em;
+						}
+					}
 				}
 
 				button {

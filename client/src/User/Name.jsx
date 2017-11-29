@@ -16,7 +16,7 @@ class Name extends Component {
     return (
       <section className="username-heading profile-block ">
         {token === "guest" &&
-          <div>
+          <div className="center-a-el">
             <h2>Welcome Guest!</h2>
             <h4>
               Sign in to save your new discoveries!
