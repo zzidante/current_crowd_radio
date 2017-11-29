@@ -1,4 +1,32 @@
+$hoverC: #e4fff8;
+
 // reset DIV auto-styling
 .modal-content {
   height: auto;
+
+  .modal-title {
+    color: black;
+    padding-left: 10px;
+  }
+
+  .btn-register {
+    padding: 5px 35px;
+    margin-left: -144px;
+    margin-top: 44px;
+  }
+
+  .btn-login {
+    margin-top: 5px;
+  }
+
+  input {
+    margin-top: 5px;
+  }
+
+  @media (max-width: 600px) {
+    .btn-register {
+      margin-top: 5px;
+      margin-left: 0;
+    }
+  }
 }

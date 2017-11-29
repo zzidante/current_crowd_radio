@@ -142,6 +142,7 @@ const loginUser = (email, password) => {
           userMessage: {},
           modal: false
         });
+        jamendo.setLocation();
         jamendo.getTracksByLocation();
       }
     })

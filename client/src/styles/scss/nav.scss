@@ -31,6 +31,7 @@ header{
 	
 	nav{
 		display: flex;
+		
 
 		.lg-size-btn {
 			background-color: $blueMid;
@@ -38,7 +39,7 @@ header{
 		}
 
 		.mini-brand-container {
-			margin-top: 10px;
+			margin: auto;
 		}
 
 		a {
@@ -47,7 +48,6 @@ header{
 			margin: 0 2vw 0 2vw;
 			vertical-align: middle;
 		}
-	
 	}
 
 	#location-search {
@@ -65,8 +65,7 @@ header{
 #PlacesAutocomplete__root {
 	height: inherit;
 	float: left;
-	margin-left: 15px;
-	margin-top: 3px;
+	width: auto !important;
 }
 
 .dropdown-toggle {
@@ -100,6 +99,12 @@ header{
 
 		.navbar {
 			margin-bottom: 0;
+
+			button {
+				margin-top: 5px;
+				margin-left: 5px;
+			}
+			
 			// make entire dropdown area clickable
 			.dropdown-menu {
 				a {
@@ -114,12 +119,6 @@ header{
 						border: solid $accent 2px;
 					}
 				}
-
-			}
-
-			button {
-				margin-top: 5px;
-				margin-left: 5px;
 			}
 		}
 		
@@ -142,11 +141,6 @@ header{
 	#PlacesAutocomplete__root {
 		float: right;	
 	}
-
-	// .location-search-form {
-	// 	width: 40%;
-	// 	min-width: 100px;		
-	// }
 
 	textarea {
 		width: 30vw;

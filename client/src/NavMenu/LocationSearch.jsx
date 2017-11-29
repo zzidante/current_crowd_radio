@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PlacesAutocomplete from "react-places-autocomplete";
 import api from "../api/jamendo";
-import UserMessage from "../UserMessage.jsx";
 import validation from "../validation";
 import { setState, getState } from "../index";
 
@@ -22,11 +21,12 @@ class LocationSearch extends Component {
   };
 
   render() {
-    const { modal, locationBar, userMessage } = getState();
+    const { locationBar } = getState();
     const myStyles = {
       input: {
         color: "black",
         width: "20vw",
+        margin: "5px 0px",
         fontFamily: "'Open Sans', 'sans-serif'"
       }
     };
@@ -52,7 +52,6 @@ class LocationSearch extends Component {
         >
           Submit
         </button>
-        {!modal && userMessage && <UserMessage userMessage={userMessage} />}
       </form>
     );
   }

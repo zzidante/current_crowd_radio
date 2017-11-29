@@ -26,7 +26,6 @@ const setLocation = () => {
 // given a country and city loads random list of songs
 const getTracksByLocation = () => {
   setState({ loading: true });
-  const artistArray = [];
   let fullCount = 0;
   const { country, city } = getState();
   axios
@@ -66,12 +65,13 @@ const getTracksByLocation = () => {
             city
           }&offset=${offset}`
         )
-        .then(artists => {
-          artists.data.results.forEach(artist => {
-            artistArray.push(artist.id);
+        .then(results => {
+          let artists = {};
+          results.data.results.forEach(artist => {
+            artists[artist.id] = artist.website
           });
-          if (artistArray.length < MAX_AMOUNT && fullCount > MAX_AMOUNT) {
-            const artistArrayFill = MAX_AMOUNT - artistArray.length;
+          if (artists.length < MAX_AMOUNT && fullCount > MAX_AMOUNT) {
+            const artistArrayFill = MAX_AMOUNT - artists.length;
             axios
               .get(
                 `https://api.jamendo.com/v3.0/artists/locations/?client_id=${
@@ -82,20 +82,24 @@ const getTracksByLocation = () => {
                   city
                 }`
               )
-              .then(artists => {
-                artists.data.results.forEach(artist => {
-                  artistArray.push(artist.id);
+              .then(results => {
+                results.data.results.forEach(artist => {
+                  artists[artist.id] = artist.website
                 });
               });
           }
-          return artistArray;
+          return artists;
         })
-        .then(artistArray => {
+        .then(artists => {
+          const artistIds = [];
+          Object.keys(artists).forEach(artist => {
+            artistIds.push(artist)
+          })
           axios
             .get(
               `https://api.jamendo.com/v3.0/artists/tracks/?client_id=${
                 API_KEY
-              }&format=jsonpretty&limit=${MAX_AMOUNT}&id=${artistArray.join(
+              }&format=jsonpretty&limit=${MAX_AMOUNT}&id=${artistIds.join(
                 "+"
               )}`
             )
@@ -103,7 +107,7 @@ const getTracksByLocation = () => {
               let tracks = [];
               const { playlists, locationBar } = getState()
               const location = playlists[locationBar]
-              artistTracks.data.results.forEach(tracklist => {
+              artistTracks.data.results.forEach( tracklist => {
                 const track =
                   tracklist.tracks[
                     Math.floor(Math.random() * tracklist.tracks.length)
@@ -114,11 +118,13 @@ const getTracksByLocation = () => {
                   trackHREF: track.audio,
                   artist: tracklist.name,
                   album: track.album_name,
+                  website: artists[tracklist.id],
                   image: track.image,
                   duration: track.duration,
                   favourited: location ? isFavourited(track.id, location) : false,
                 });
               });
+              
               for (let i = tracks.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 // [ tracks[i], tracks[j] ] = [ tracks[j], tracks[i] ];
@@ -147,20 +153,24 @@ const getTracksById = playlistType => {
         }&format=jsonpretty&limit=40&track_id=${tracks.join("+")}`
       )
       .then(res => {
-        const tracks = [];
-        res.data.results.forEach(track => {
-          const info = track.tracks[0];
-          tracks.push({
-            id: info.id,
-            name: info.name,
-            trackHREF: info.audio,
-            artist: track.name,
-            album: info.album_name,
-            image: info.image,
-            duration: info.duration
+        const tracklist = [];
+        tracks.forEach( track => {
+          res.data.results.forEach( resTrack => {
+            const info = resTrack.tracks[0];
+            if (info.id === track) {
+              tracklist.push({
+                id: info.id,
+                name: info.name,
+                trackHREF: info.audio,
+                artist: resTrack.name,
+                album: info.album_name,
+                image: info.image,
+                duration: info.duration
+              });
+            }
           });
         });
-        setState({ tracklist: tracks, playlistType });
+        setState({ tracklist: tracklist, playlistType });
       })
       .catch(() => {
         setState({
