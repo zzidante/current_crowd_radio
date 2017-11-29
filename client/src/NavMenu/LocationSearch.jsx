@@ -7,7 +7,7 @@ import { setState, getState } from "../index";
 class LocationSearch extends Component {
   onChange = locationBar => {
     const loc = locationBar.replace(/^ +/, "");
-    setState({ locationBar: loc });
+    setState({ locationBar: loc , userMessage: ''});
   };
 
   setLocation = event => {

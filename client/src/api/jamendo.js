@@ -44,7 +44,9 @@ const getTracksByLocation = () => {
             message:
               "We're sorry, we could not find any artists for that city.",
             style: "danger"
-          }
+          },
+          loading: false,
+          tracklist: []
         });
         console.log("No results");
         return;
@@ -132,7 +134,7 @@ const getTracksByLocation = () => {
                 tracks[i] = tracks[j];
                 tracks[j] = temp;
               }
-              setState({ tracklist: tracks, userMessage: {}, playlistType: '' });
+              setState({ tracklist: tracks, userMessage: {}, playlistType: ''});
             })
             .finally(() => {
               setState({ loading: false });
