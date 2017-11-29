@@ -91,6 +91,9 @@
       border: black solid 2px;
       border-radius: 8px;
       background-image: radial-gradient(farthest-corner at 80px 100px, rgba(0, 0, 0, 0.664) 0%, rgba(102, 102, 102, 0.575) 100%); }
+      .body-dashboard .username-heading ul .company-description {
+        font-size: 1em;
+        color: white; }
       .body-dashboard .username-heading ul li:first-child {
         padding: 0;
         text-align: center; }

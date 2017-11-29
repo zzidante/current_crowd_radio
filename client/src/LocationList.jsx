@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import api from "./api/jamendo";
 import { setState, getState } from "./index";
 import Locations from './Locations.jsx'
+import InfoSpiel from './InfoSpiel.jsx'
+
 class LocationList extends Component {
   setLocation = event => {
     setState({ locationBar: event.target.value });
@@ -16,6 +18,9 @@ class LocationList extends Component {
       <section className="username-heading col-md-3 col-xs-6">
         {token !== "guest" &&
           <Locations />
+        }
+        {token === "guest" && 
+          <InfoSpiel />
         }
         <div className="clear" />
       </section>
