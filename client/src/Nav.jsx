@@ -18,8 +18,8 @@ class Nav extends Component {
         <nav className="navbar">
           <BrandDeclaration />
           <div style={divStyle} >
-          <LocationSearch />
           {!modal && userMessage && <UserMessage userMessage={userMessage}/>}
+          <LocationSearch />
           </div>
           <Modals />
 
