@@ -1,6 +1,6 @@
 # Current Crowd Radio
 
-Current City Radio is about discovering local music.
+Current Crowd Radio is about discovering local music.
 
 Powered by the Jamendo library, it accesses over 500k songs spread far and wide across the world.
 
